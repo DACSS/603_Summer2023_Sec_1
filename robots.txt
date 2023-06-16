@@ -1,1 +1,1 @@
-Sitemap: https://dacss.github.io/603_Summer_Sec_1/sitemap.xml
+Sitemap: https://dacss.github.io/603_Summer2023_Sec_1/sitemap.xml
