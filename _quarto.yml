@@ -3,7 +3,7 @@ project:
 
 website:
   title: ""
-  site-url: https://github.com/DACSS
+  site-url: https://dacss.github.io/603_Summer_Sec_1/
   twitter-card:
     creator: "@UMassDACSS"
     site: "@UMassDACSS"
@@ -12,19 +12,18 @@ website:
     background: "#881c1c"
     logo: images/UMass White Wordmark Horiz.png
     right:
-      - text: ""
-        href: https://github.com/DACSS
+      - text: "Summer 2023 Posts"
+        href: https://dacss.github.io/603_Summer_Sec_1/
       - text: "Contributors"
         file: about.qmd
       - href: https://umass.edu/sbs/dacss
         text: "DACSS"
       - icon: github
-        href: https://github.com/DACSS
+        href: https://dacss.github.io/603_Summer_Sec_1/
         aria-label: GitHub
 
 execution:
   freeze: auto
-
 
 format:
   html:

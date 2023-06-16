@@ -1,0 +1,74 @@
+name: Check for freeze folder
+
+on:
+  pull_request_target:
+    branches:
+      - submission
+    types: [opened, synchronize, reopened]
+
+jobs:
+  check_for_freeze_folder:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: ${{github.event.pull_request.head.ref}}
+          repository: ${{github.event.pull_request.head.repo.full_name}}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "16.x"
+
+      - name: Install dependencies
+        run: npm install @actions/core @actions/exec
+
+      - name: Find qmd files
+        id: qmd_files
+        run: |
+          QMD_FILES=$(find ./posts -name "*.qmd" | wc -l || true)
+          echo "QMD_FILES=$QMD_FILES" >> $GITHUB_ENV
+
+      - name: Check for freeze folder
+        if: ${{ env.QMD_FILES != '0' }}
+        run: |
+          success=true
+          for file in ./posts/*.qmd; do
+            FILE_NAME=$(basename "$file" .qmd)
+            echo "$FILE_NAME"
+            echo "_freeze/posts/$FILE_NAME"
+            if [ ! -d "./_freeze/posts/$FILE_NAME" ]; then
+              echo "GOING TO ERROR"
+              echo "Render your challenge qmd file in posts folder to get freeze files"
+              success=false
+              echo $success
+              echo "::error::Render your challenge qmd file in posts folder to get freeze files"
+              break
+            fi
+          done
+          if [[ "${success}" == "false" ]]; then
+            echo "FALSE!"
+            echo "successVal=false" >> $GITHUB_ENV
+          else
+            echo "TRUE"
+            echo "successVal=true" >> $GITHUB_ENV
+          fi
+
+      - name: Show environment variables
+        run: env
+
+      - name: Create a comment on the pull request
+        if: ${{ env.successVal == 'false'}}
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{secrets.PAT}}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: "This is Sidharth's bot - Please render your challenge qmd file in post folder to generate freeze files"
+            })
+            throw new Error("Generate comment Sucessfully and github action should fail!");

@@ -1,10 +1,15 @@
 ---
 title: "DACSS 603 Introduction to Quantitative Analysis Summer 2023"
+subtitle: "Summer 2023"
 listing:
   contents: posts
   sort: "date desc"
-  type: default
+  type: table
   categories: true
+  fields: [date, title, author]
+  table-hover: true
+page-layout: full
 ---
+
 
 The blog posts here are contributed by students enrolled in DACSS 603, Introduction to Quantitative Analysis.
