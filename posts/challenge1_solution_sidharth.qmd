@@ -1,0 +1,46 @@
+---
+title: "Challenge 1 solution"
+author: "Sidharth"
+desription: "Something to describe what I did"
+date: "06/16/2023"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - challenge1
+  - Sid
+  - dataset
+  - ggplot2
+---
+
+```{r}
+#| label: setup
+#| warning: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Instructions
+
+This document provides yaml header inforamtion you will need to replicate each week to submit your homework or other blog posts. Please observe the following conventions:
+
+-   Save your own copy of this template as a blog post in the `posts` folder, naming it `FirstLast_hwX.qmd`
+-   Edit the yaml header to change your author name - use the same name each week
+-   include a *description* that is reader friendly
+-   update the *category* list to indicate the type of submission, the data used, the main packages or techniques, your name, or any thing else to make your document easy to find
+-   edit as a normal qmd/rmd file
+
+
+```{r}
+x <- c(2,3,4,5)
+mean(x)
+```
+
+## Rendering your post
+
+I did this
