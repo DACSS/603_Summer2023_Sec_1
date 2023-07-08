@@ -1,14 +1,14 @@
 [
   {
-    "listing": "/index.html",
-    "items": [
-      "/posts/final_instructionsPart1_sid.html"
-    ]
-  },
-  {
     "listing": "/about.html",
     "items": [
       "/about/about.html"
+    ]
+  },
+  {
+    "listing": "/index.html",
+    "items": [
+      "/posts/Class_Project1.html"
     ]
   }
 ]
