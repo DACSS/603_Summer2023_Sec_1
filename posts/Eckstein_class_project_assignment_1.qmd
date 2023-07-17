@@ -1,0 +1,174 @@
+---
+title: "Class Project Assignment 1"
+author: "Matt Eckstein"
+desription: "Religious Identification as Orthodox Christian vs. Approval of US Leadership in the World"
+date: "07/10/2023"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - hw1
+  - challenge1
+  - my name
+  - dataset
+  - ggplot2 
+---
+
+```{r}
+#| label: setup
+#| warning: false
+
+library(tidyverse)
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+
+```{r}
+library(dplyr)
+library(readxl)
+
+data <- read_csv("Orthodoxy_and_US_leadership_cleaned.csv")
+data$pctox <- data$pctox * 100
+
+```
+
+#Plotting probability and cumulative density functions for variables
+```{r}
+
+#Probability distribution of percent Orthodox by country
+
+probability <- data$pctox
+
+barplot(probability, 
+        xlab = "Countries by Orthodox Christian Share of Population", 
+        col = "steelblue", 
+        space = 0, 
+        main = "Orthodoxy by Country")
+
+#Probability distribution of net approval by country
+
+probability2 <- data$netapprove
+
+barplot(probability2, 
+        xlab = "Net Approval of US World Leadership by Country", 
+        col = "steelblue", 
+        space = 0, 
+        main = "Approval of US Leadership, by Country")
+
+
+
+#Cumulative distribution of the percentage of Orthodox Christians by country
+
+plot(ecdf(data$pctox))
+
+#Cumulative distribution of the net approval rating by country of US leadership in the world
+plot(ecdf(data$netapprove))
+
+
+
+```
+
+
+#Creatng buckets by which to group data
+
+```{r}
+
+# Create a vector to store the oxbucket values
+oxbucket <- character(length(data$pctox))
+
+# Assign values to oxbucket based on pctox
+oxbucket[data$pctox < 2] <- "<2%"
+oxbucket[data$pctox >= 2 & data$pctox < 5] <- "2-5%"
+oxbucket[data$pctox >= 5 & data$pctox < 10] <- "5-10%"
+oxbucket[data$pctox >= 10 & data$pctox < 25] <- "10-25%"
+oxbucket[data$pctox >= 25 & data$pctox < 50] <- "25-50%"
+oxbucket[data$pctox >= 50 & data$pctox < 75] <- "50-75%"
+oxbucket[data$pctox >= 75 & data$pctox < 100] <- "75-100%"
+
+# Add the oxbucket variable to the data frame
+data$oxbucket <- oxbucket
+
+```
+
+#Grouping data by variables of interest, obtaining mean and standard deviation
+```{r}
+avgs <- data %>%
+  group_by(bordruua, oxbucket) %>%
+  summarize(mean(netapprove),
+  sd(netapprove),
+  n())
+  
+```
+#Splitting variables by category
+
+```{r}
+border <- avgs %>% dplyr::filter(bordruua == 1)
+noborder <- avgs %>% dplyr::filter(bordruua == 0)
+
+
+```
+
+
+
+#Renaming columns
+```{r}
+
+colnames(border) <- c("Border_war", "Percent_orthodox", "mean_net_approval", "SD_net_approval", "number")
+colnames(noborder) <- c("Border_war", "Percent_orthodox", "mean_net_approval", "SD_net_approval", "number")
+  
+```
+
+
+#Estimating gaps
+```{r}
+gap <- border$mean_net_approval - noborder$mean_net_approval
+
+gap_se <- sqrt(border$SD_net_approval^2 / border$number + noborder$SD_net_approval^2 / noborder$number)
+
+gap_ci_l <- gap - 1.96 * gap_se
+
+gap_ci_u <- gap + 1.96 * gap_se
+
+result <- cbind(border[,-1], noborder[-(1:2)], gap, gap_se, gap_ci_l, gap_ci_u)
+
+
+print(result, digits = 3)
+```
+
+#Plot
+
+```{r}
+plot(data$pctox,
+     data$netapprove,
+     type = "p",
+     main = "Countries: Percent Orthodox Christian vs. Net Approval of US Leadership",
+     cex.main = 1,
+     xlab = "Percent Orthodox",
+     ylab = "Net Approval of US Leadership",
+     col = "steelblue",
+     pch = 19)
+
+```
+
+
+
+#Regression
+```{r}
+
+model <- lm(data$netapprove ~ data$pctox)
+plot2 <- plot(data$netapprove ~ data$pctox)
+
+abline(a = 2.438959, b = -0.1798092)
+
+```
+
+
+
+
+
