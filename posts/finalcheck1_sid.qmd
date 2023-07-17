@@ -33,7 +33,7 @@ knitr::opts_chunk$set(echo = TRUE)
     i) Start by first [plotting]{.underline} the probability as well as cumulative density functions for each of your variables as shown in chapter 2. Instead of using sample() to generate a vector of probabilities, designate ‘probability’ to be the observations in your dataset. You may search online for simple ways to generate these plots for you data.
 
 ```{r}
-print("hello")
+print("hellom")
 ```
 
     ii) Group data by the two variables of interest to you (and relevance to the phenomenon you are interested in exploring) and obtain mean and standard deviation for at least one of the variables like in the example below. Please also print your results, as they will be important for your final writeup. 
