@@ -144,6 +144,8 @@ airqualityanddeaths <- airqualityanddeaths %>%
 
 ### Creating a Pared-down Data Frame for Project 1
 
+The columns I'm mainly interested in are Deaths per 100,000 and PM2.5 Days. PM2.5 Days is defined as the number of days in a calendar year where PM2.5 levels (Particulate Matter less than 2.5 nm in diatmeter) exceeded the national average. Essentially, higher PM2.5 Days means there was worse air quality in that county during the year. Each observation is a county-year. The data ranges from 2000-2010 for the state of California.
+
 ```{r}
 partonedata <- airqualityanddeaths %>%
   filter(Strata == "Total Population" &
@@ -154,6 +156,10 @@ head(partonedata)
 
 ## 1
 ### a. Plotting PDFs and CDFs
+
+There is clearly a greater density of PM2.5 days at or near 0 for the year. There is an extremely noticable right (positive) skew.
+
+The Deaths per 100,000 data looks a bit closer to a normal distribution; however, there is some left (negative) skew.
 ```{r}
 partonedata %>%
   ggplot(aes(`PM2.5 Days`)) +
@@ -185,6 +191,9 @@ partonedata %>%
 ```
 
 ### b. Mean and Standard Deviation of Variables, Grouped by Year
+
+Mean Deaths per 100,000 and Mean PM2.5 Days both noticably decline throughout the decade when grouped by year, as seen in the table below.
+
 ```{r}
 averages <- partonedata %>%
   group_by(Year) %>%
@@ -198,6 +207,9 @@ averages
 ```
 
 ### c. Splitting Data by PM2.5 Days Greater or Less than Mean
+
+I chose to split my data by county-years greater or equal to the mean PM2.5 Days and county-years less than the mean PM2.5 Days.
+
 ```{r}
 PM2.5greaterthanmean <- partonedata %>%
   filter(`PM2.5 Days` >= mean(`PM2.5 Days`))
@@ -208,6 +220,9 @@ PM2.5lessthanmean <- partonedata %>%
 
 ### d. For Split Data, Finding Differences in Means, Standard Errors and Confidence Intervals
 #### Difference in Mean Deaths per 100,000
+
+Surprisingly, the mean Deaths per 100,000 rate for counties with greater PM2.5 days is about 40 less than the mean for counties with less PM2.5 days. I will explore this more below.
+
 ```{r}
 #Finding difference in Means
 meangreater <- mean(PM2.5greaterthanmean$`Deaths per 100,000`)
@@ -220,6 +235,9 @@ meangreater - meanless
 ```
 
 #### Standard Error of Deaths per 100,000 when PM2.5 >= Mean
+
+The standard error of Deaths per 100,000 for PM2.5 days greater than the mean is about 10.
+
 ```{r}
 # Calculating Standard Error of Deaths per 100,000 when PM2.5 >= Mean
 StandarderrorPM2.5greater <- (sd(PM2.5greaterthanmean$`Deaths per 100,000`)/(sqrt(nrow(PM2.5greaterthanmean))))
@@ -227,6 +245,9 @@ StandarderrorPM2.5greater
 ```
 
 #### Confidence Interval of Deaths per 100,000 when PM2.5 >= Mean
+
+The confidence interval ranges from the lower bound of around 669 to the upper bound of arround 709.
+
 ```{r}
 # Calculating Confidence Interval
 lowergreater <- meangreater - 1.96 * StandarderrorPM2.5greater
@@ -237,6 +258,9 @@ uppergreater
 ```
 
 #### Standard Error of Deaths per 100,000 when PM2.5 < Mean
+
+The standard error of Deaths per 100,000 for PM2.5 days less than the mean is about 11. This is larger standard error than for the 'greater than mean' counties and contributes to the wider confidence interval as seen below.
+
 ```{r}
 # Calculating Standard Error of Deaths per 100,000 when PM2.5 < Mean
 StandarderrorPM2.5less <- (sd(PM2.5lessthanmean$`Deaths per 100,000`)/(sqrt(nrow(PM2.5lessthanmean))))
@@ -244,6 +268,9 @@ StandarderrorPM2.5less
 ```
 
 #### Confidence Interval of Deaths per 100,000 when PM2.5 < Mean
+
+The confidence interval ranges from the lower bound of around 666 to the upper bound of arround 711.
+
 ```{r}
 # Calculating Confidence Interval
 lowerless <- meangreater - 1.96 * StandarderrorPM2.5less
@@ -254,6 +281,9 @@ upperless
 ```
 
 ### e. Creating a Scatter Plot of All Data
+
+It is clear from the scatter plot below that there is an extremely high variance in Deaths per 100,000 for counties with low, or zero, PM2.5 Days. Once past about 30 PM2.5 Days, there does appear to be a slight upward trend in death rate. I believe there is ommitted variable bias present, which I will explore more moving forward.
+
 ```{r}
 partonedata %>%
   ggplot(aes(x = `PM2.5 Days`, y = `Deaths per 100,000`)) +
@@ -266,12 +296,18 @@ partonedata %>%
 
 ## 2.
 ### Performing Simple Regression Analysis on Entire Data Set
+
+Surprisingly, the beta estimator for PM2.5 days is -1.2, suggesting that for each additional PM2.5 Day in a year, a county is expected to have 1.2 less deaths per 100,000.
+
 ```{r}
 alldatalm <- lm(formula = `Deaths per 100,000` ~ `PM2.5 Days`, data = partonedata)
 summary(alldatalm)
 ```
 
 ### a. Creating a Scatter Plot with a Linear Regression Line
+
+Below, I've added this simple regression line to the scatter plot. Clearly, this is not the trend you would expect, and I believe there are a large number of variables missing from this analysis that might explain this.
+
 ```{r}
 partonedata %>%
   ggplot(aes(x = `PM2.5 Days`, y = `Deaths per 100,000`)) +
@@ -284,6 +320,9 @@ partonedata %>%
 ```
 
 ### Looking Ahead at Population As a Variable
+
+Quickly, I'll look ahead at what happens when you split counties by those greater or less than the mean for population. My theory is that small counties will have a large variance in death rate due to the sample size being much smaller. Additionally, there may be other factors at play that affect death rate for small, rural counties that I cannot account for here.
+
 ```{r}
 Popgreaterthanmean <- partonedata %>%
   filter(Population >= mean(Population))
@@ -293,6 +332,9 @@ Poplessthanmean <- partonedata %>%
 ```
 
 ### Performing Simple Regression Analysis on Split Data
+
+The beta estimator for PM2.5 Days is indeed positive when only looking at larger counties. This will need to be explored further. I've also plotted the scatter plots with regression lines below.
+
 ```{r}
 Popgreaterlm <- lm(formula = `Deaths per 100,000` ~ `PM2.5 Days`, data = Popgreaterthanmean)
 summary(Popgreaterlm)
