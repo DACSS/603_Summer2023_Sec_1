@@ -1,0 +1,388 @@
+---
+title: "Landreth Descriptive Project"
+author: "Connor Landreth"
+desription: "First iteration of the class project"
+date: "07/18/2023"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - final project
+  - Connor Landreth
+  - dplyr
+  
+---
+
+#### Load in Relevant Packages
+
+For descriptive analysis, we'll use quite a few classic packages including Tidyverse, ggplot2, knitr, and summarytools
+
+```{r Packages}
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+library(xml2)
+library(psych)
+library(ggplot2)
+library(ggthemes)
+library(summarytools)
+library(dplyr)
+library(reshape2)
+library(SmartEDA)
+install.packages("summarytools")
+library(summarytools)
+
+#DESCRIBE DATA/SOURCE
+#write about what might be creating the skew for weird CDF/PDF. A normally distributed one looks rare. Even in the software the reason they have a normal one is because they do the trail a huge amount of times
+
+```
+
+#### set wd and read in data
+
+```{r wd_read}
+getwd()
+#JP = Job Performance
+JP <- read.csv("Connor_datafolder/JP.csv")
+
+#View(JP)
+```
+
+### Change variable names then make a descriptive table, make new column
+
+First and foremost, there are a few glaring things I want to clean within this data. First, there are two psych score columns. I have no need for two separate columns because it doesn't increase their value. Instead, I'll average out the two scores in a new column and delete the original two. As I clean the data, I have the following primary research question in mind: How does quantity of hours worked and quantity of personal development hours affect client satisfaction?
+
+Also, I'll rename headers to make the data easier to work with.
+
+```{r Clean}
+#head(JP)
+
+# Add psych test 1 & 2 and divide by two, making new average score column
+
+JP$avg_psych_score <- (JP$PsychTest1 + JP$PsychTest2)/2
+#Remove psych tests 1 & 2
+JP <- JP[ ,-1]
+JP <- JP[ ,-1]
+
+#Create new df with renamed variables
+JP_Clean <- JP %>% 
+  rename(hrs_personal_dev = "HrsTrn",
+         hrs_working = "HrsWrk",
+         client_sat = "ClientSat",
+         super_sat = "SuperSat",
+         success_project_complete = "ProjCompl",
+         years_edu = "YrsEdu"
+  )
+
+head(JP_Clean)
+```
+
+#### Create df with variables, meaning, and measurement scale
+
+The data is only as impactful as our understanding of it. I will create a indexed df below with each variable and its meaning.
+
+```{r Index}
+# Create variables
+Variables <- c('years_edu', 'IQ', 'hrs_personal_dev', 'hrs_working', 'client_sat', 'super_sat', 'success_project_complete', 'avg_psych_score')
+# Add meaning for each variable
+Meaning <- c('Years of higher education', 'IQ Test Score', 'Hours dedicated to personal culture, outside of work', 'Hours worked on average per week', 'Customer satisfaction with the worker, score 0-100', 'Satisfaction of the superior with the worker, score 0-100', 'Percentage of projects successfully completed, score 0-100', 'Psychological test, score 0-100 (2 tests)')
+# Add measurement scale for each variable 
+Measurement.Scale <- c('Discrete', 'Continuous', 'Continuous','Continuous', 'Continuous','Continuous', 'Continuous', 'Continuous')
+
+# Join the variables to create a data frame
+Index_1 <- data.frame(Variables, Meaning, Measurement.Scale)
+#View(Index)
+
+```
+
+#### Load in summarytools to get stats analysis of variables
+
+The best way I have found to get a holistic understanding and look at all variables is to use summarytools (only works for numeric variables, luckily all of mine are numeric). It displays mean, std. deviation, max, min, and other measures that may be valuable for our descriptive analysis.
+
+```{r Summary_stats}
+summarytools::descr(JP_Clean)
+
+#All numeric so all present 
+```
+
+#### Descriptive Stats Analysis Table
+
+Below, I will combine a few steps with the cleaned data and create a df that looks at each relevant statistic for each column and the interpretations for each statistical measurement.
+
+```{r Stats_Table}
+
+Variables <- c('avg_psych_score',   'client_sat',   'hrs_personal_dev',   'hrs_working',        'IQ', 'success_project_complete',   'super_sat',   'years_edu')
+# Add meaning for each variable
+Mean <- c('49.64',        '54.97',               '6.03',         '47.81',     '97.59', '48.13',       '49.91',        '2.51')
+# Add measurement scale for each variable 
+Mean_Interpretation <- c('The mean is psych score is right down the middle at roughly 50/100', 'The mean client satisfaction score appears lower than ideal, at 54.97/100', 'The average time people spend on personal development/building their own culture is 6 hours [weekly?]', 'The average hhours worked weekly was 47.81hours [weekly??]', 'The averge IQ score for participants was 97.59. This was a tight range.', 'The average percent of projects successfully completed is a seemingly low 48.13%', 'The satisfaction of superiors on a given project falls at merely 50%', 'The average years of higher education comes in at only 2.5 years, implying many participants do not possess a bachelors')
+Standard_Deviation <- c('11.40',        '18.00',               '2.48',         '24.08',      '3.72', '20.54',       '17.19',       '1.72')
+# Add measurement scale for each variable 
+SD_Interpretation <- c('One SD for psych score is 11.40', 'One SD for client satifaction is 18', 'One SD for hours of personal development is 2.48', 'One SD for working hours is 24.08', 'One SD for IQ score is 3.72', 'One SD for Successful completion of projects percentage is 20.54', 'One SD for superior satifaction is 20.54', 'One SD for years of higher education is 1.71 (oddly)')
+Min <- c('13.00',         '0.00',               '0.00',          '0.00',     '90.00',     '0.00',        '0.00',        '0.00')
+# Add measurement scale for each variable 
+Min_Interpretation <- c('The average psych score is incredibly low, signifying only 13/100 average pysch evaluation', 'The minimum client satisfaction score was zero, singifying an entirely unhappy client', 'The minimum hours spent on personal development is zero, implying no personal development','The minimum hours worked was also zero, implying an individual is likely unemployed', 'The minimum IQ score was somewhat surpringly 90, falling close behind the mean', 'Min percent of projects completed is zero, meaning the individual has yet to complete one project', 'Min superior satisfaction is zero, implying the superior is entirely unsatisfied', 'Minimum years of higher educatino is zero, signifying an individual did not attend school.')
+Max <- c('83.50',       '100.00',              '17.00',        '100.00',    '105.00',    '100.00',      '100.00',        '5.00')
+# Add measurement scale for each variable 
+Max_Interpretation <- c('The maximum average pysch score came in at 83.50, meaning people struggle to achieve the highest scpre of 100.', 'The maximum client satisfactino was 100, eaning the client was completely satified with services.', 'Max hours of personal development was 17, meaning the individual(s) spent 17 hours working on personal development over a two week period', 'Max hours working was 100, meaning the individual(s) works 100 hours over a two day week period', 'The max IQ of 105 means the max score was well below the possible maximum for an IQ test', 'Max success rate for a project is 100, meaning 100% project success rate (success based on completion)', 'Maximum superior satisfaction was 100, signifying 100% satisfied superior', 'The maximum years of education was surpringly 5, insinuiting some individuals likely have only a bachelors or a masters/MBA completed on an expedited timeline.')
+Skewness <- c('-0.08',        '-0.05',               '0.60',          '0.15',     '-0.01',   '0.08',        '0.03',       '-0.02')
+# Add measurement scale for each variable 
+Skewness_Interpretation <- c('Avg pysch score has a decent negative skew', 'client satisfaction is nearly symmetrical', 'hours of personal development have a bit of a positive skew', 'working hours is nearly symmetrical', 'IQ is nearly symmetrical', 'Project completion rate is nearly symmetrical', 'Superior satisfaction is nearly symmetrical', 'Years of education is nearly symmetrical')
+Kurtosis <- c('-0.03',  '-0.09',     '0.72',   '-0.59', ' -0.91', '-0.54',   ' -0.34',   '-1.28')
+# Add measurement scale for each variable 
+Kurtosis_Interpretation <- c('avg pysch score has an unremarkable kurtosis', 'Client satisfaction has an unremarkable kurtosis', 'Hours of personal development has an unremarkable kurtosis', 'Hours working has an unremarkable kurtosis', 'IQ has an unremarkable kurtosis', 'Project completion rate has an unremarkable kurtosis', 'Serpier satisfaction has an unremarkable kurtosis', 'Years of education has the greatest, yet an unremarkable kurtosis')
+# Join the variables to create a data frame
+Statistical_Analysis <- data.frame(Variables, Mean, Mean_Interpretation, Standard_Deviation, SD_Interpretation, Min, Min_Interpretation, Median_Interpretation, Max, Max_Interpretation, Skewness, Skewness_Interpretation, Kurtosis, Kurtosis_Interpretation)
+
+head(Statistical_Analysis)
+
+```
+
+#### Plot PDF and CDF
+
+Below we'll get deeper into the statistical analysis and map out the Probability Density Function and Cumulative Probability Function
+
+```{r CDF_PDF}
+# Example dataset
+data <- rnorm(1000, mean = 0, sd = 1)
+
+# Create a data frame
+#JP_Clean <- data.frame(x = data)
+
+# Calculate the CDF and PDF
+JP_Clean$cdf_sat <- ecdf(data)(JP_Clean$client_sat)
+JP_Clean$pdf_sat <- dnorm(JP_Clean$client_sat, mean = mean(data), sd = sd(data))
+
+# Plot the CDF
+ggplot(JP_Clean, aes(x = client_sat, y = cdf_sat)) +
+  geom_line() +
+  labs(title = "Cumulative Distribution Function (CDF)", x = "Client Satisfaction", y = "CDF")
+
+# Plot the PDF
+ggplot(JP_Clean, aes(x = client_sat, y = pdf_sat)) +
+  geom_line() +
+  labs(title = "Probability Density Function (PDF)", x = "Client Satisfaction", y = "PDF")
+
+
+```
+
+```{r}
+# Example dataset
+data2 <- rnorm(1000, mean = 0, sd = 1)
+
+# Create a data frame
+#JP_Clean <- data.frame(x = data)
+
+# Calculate the CDF and PDF
+JP_Clean$cdf_hours <- ecdf(data2)(JP_Clean$hrs_working)
+JP_Clean$pdf_hours <- dnorm(JP_Clean$hrs_working, mean = mean(data2), sd = sd(data2))
+
+# Plot the CDF
+ggplot(JP_Clean, aes(x = hrs_working, y = cdf_hours)) +
+  geom_line() +
+  labs(title = "Cumulative Distribution Function (CDF)", x = "Hours Worked", y = "CDF")
+
+# Plot the PDF
+ggplot(JP_Clean, aes(x = hrs_working, y = pdf_hours)) +
+  geom_line() +
+  labs(title = "Probability Density Function (PDF)", x = "Hours Worked", y = "PDF")
+
+#I can't help but feel these are both very incorrect in their own unique ways
+
+```
+
+Both variables here are heavily skewed. This is a common trend among productivity numbers (Numeric variables that tend to only be positive).The data is far from normally distributed.
+#### Group
+
+```{r Group_Averages}
+avgs_sat <- JP_Clean %>% 
+        group_by(client_sat, hrs_working) %>% 
+        summarise(mean(client_sat),
+                  
+                  sd(client_sat), 
+                  n())
+
+#print the results to the console
+print(avgs_sat)
+
+avgs_work <- JP_Clean %>% 
+        group_by(client_sat, hrs_working) %>% 
+        summarize(mean(hrs_working), 
+                  sd(hrs_working), 
+                  n())
+
+# print the results to the console
+print(avgs_work)
+```
+
+#### Histograms of Hours Worked, Hours of Personal Development
+
+To help visualize distributions, I'll create a few histograms below for the relevant variables.
+
+```{r Hist_Hrs_Worked}
+
+hist_working_hours<-ggplot(JP_Clean, aes(x= hrs_working)) +
+  geom_histogram() +
+  labs(title = "Histogram of Hours Worked Bi-Weekly", x = 'Hours Worked (Weekly)', y="Fequency") +
+theme_economist()
+
+hist_working_hours
+
+#I now HIGHLY question the legitimacy of this data
+
+```
+
+```{r Hist_personal_dev}
+hist_development_hours<-ggplot(JP_Clean, aes(x= hrs_personal_dev)) +
+  geom_histogram() +
+  labs(title = "Histogram of Hours Spent on Personal Development", x = 'Persnal Development (Hours)', y="Frequency") +
+theme_economist()
+
+hist_development_hours
+
+
+```
+
+#### Plots of client satisfaction vs. hrs worked, hrs personal development
+
+My personal favorite visualizations - geom_jitter/point to help show the correlation between hours of personal development and customer satisfaction. Below the viz, we'll calculate the correlation and see if there is any significance.
+
+```{r CSAT_v_PD}
+#Client sat has a mean of 54.9, so we will filter for the best performers and evaluate their hours worked, then look at all hours worked.
+
+JP_Clean %>% 
+    #filter(client_sat >= "54.9") %>% 
+  ggplot(aes(client_sat,hrs_personal_dev))+
+  geom_jitter(size=2, alpha = 0.5)+
+  #width = x
+  geom_smooth(method = "lm")+
+  #facet_wrap(~Gender)+
+  labs(x='CSAT Score', y='Hours of Personal Development') +
+  theme_linedraw()+
+  labs(title="Customer Satisfaction Against Hours of Personal Development ")
+
+
+```
+
+```{r CSAT_PD_COR}
+# NOW LETS LOOK AT HOURS OF PERSONAL DEVELOPMENT AND SEE IF THAT ACTUALLY INCREASES CLIENT SATIFACTION
+correlation2 <- cor(JP_Clean$hrs_personal_dev,JP_Clean$client_sat)
+
+print(correlation2)
+
+
+```
+
+```{r CSAT_v_HW}
+JP_Clean %>% 
+  #filter(hrs_working < 50) %>% 
+    #filter(client_sat >= "54.9") %>% 
+  ggplot(aes(client_sat,hrs_working, color = client_sat))+
+  geom_jitter(size=2, alpha = 0.5)+
+  #width = x
+  geom_smooth(method = "lm")+
+  #facet_wrap(~Gender)+
+  labs(x='Client Satisfaction Score', y='Hours Working') +
+  theme_linedraw()+
+  labs(title="Client Satisfaction & Hours Worked")
+
+
+```
+
+```{r CSAT_HW_COR}
+# We'll new look at
+correlation <- cor(JP_Clean$client_sat, JP_Clean$hrs_working)
+
+print(correlation)
+
+summary(lm(JP_Clean$client_sat ~ JP_Clean$hrs_working))
+
+
+# No real correlation, seems more hours worked doesn't necessarily mean those hours were used wisely, as client often seems unhappy as hours increase. 
+```
+
+No real correlation, seems more hours worked doesn't necessarily mean those hours were used wisely, as client often seems unhappy as hours increase.
+
+#### Estimations, SE, CI, Separating by Years of edu
+
+```{r Sort_edu}
+#Dplyr built into Tidy function below
+
+edu <- JP_Clean %>% 
+  filter(years_edu != "0") %>% 
+  #have to slice random sample to avoid problem with 'result' later
+  slice(1:171)
+
+no_edu <- JP_Clean %>% 
+  filter(years_edu == "0")
+
+
+```
+
+```{r name_edu}
+colnames(edu) <- c("Education", "IQ", "Y_bar_e", "edu", "no_edu")
+colnames(no_edu) <- c("Education", "IQ", "Y_bar_n_e", "e", "n_e")
+
+```
+
+```{r Gap_Analysis}
+
+
+gap <- edu$Y_bar_e - no_edu$Y_bar_n_e
+
+gap_se <- sqrt(edu$edu^2 / edu$no_edu + no_edu$e^2 / no_edu$n_e)
+
+gap_ci_l <- gap - 1.96 * gap_se
+
+gap_ci_u <- gap + 1.96 * gap_se
+
+result <- cbind(edu[, -1], no_edu[,-(1:2)], gap, gap_se, gap_ci_l, gap_ci_u)
+
+
+
+print(result)
+
+```
+
+#### Additional Plots
+
+Will act as auxiliary visualizations - No need to evaluate now necessarily
+
+```{r Another_CSAT_HW2}
+plot(JP_Clean$client_sat,
+     JP_Clean$hrs_working,
+     type = "p",
+     main = "Scatter of Client Satisfaction vs. Hours Worked",
+     xlab = "Client Satisfaction",
+     ylab = "Hours Worked",
+     col = "red4",
+     #Star of David Scatter
+     pch=11)
+
+```
+
+```{r Another_CSAT_HW}
+plot(JP_Clean$client_sat ~ JP_Clean$hrs_working)
+
+abline(a=54.97,
+       b=0.11)
+```
+
+```{r CSAT_Frequency_ab}
+
+mean <- 
+
+barplot(JP_Clean$client_sat,
+        xlab="Frequency",
+        col="blue",
+        space=5,
+        main = "Client Satifaction Distibution"
+        )
+abline( h = mean(JP_Clean$client_sat), col = "blue", lwd = 4)
+
+legend("topright", legend = "Mean", col = "blue", lwd = 6, label(JP_Client$clientsat, TRUE))
+
+```
+
