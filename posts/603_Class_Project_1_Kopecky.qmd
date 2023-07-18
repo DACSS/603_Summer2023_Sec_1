@@ -1,0 +1,176 @@
+---
+title: "603 Class Project 1"
+author: "Kopecky"
+desription: "General Social Survey"
+date: "07/18/2023"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - Final Project
+  - Kopecky
+---
+
+```{r}
+#| label: setup
+#| warning: false
+
+# libraries
+library(dplyr)
+library(MASS)
+library(readxl)
+library(tidyverse)
+library(ggplot2)
+library(stats)
+library(readr)
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# 1 Import Data and Descriptive Analysis
+
+```{r}
+# This dataset is from the General Social Survey (GSS) which has conducted research from 1972 on American Society. There are 15266 obervations (rows) with 6 variables (columns). The variables are *year*, *age*, *gender*, *race*, *fehelp*, and *era*. 
+
+# For variable *fehelp*, repsondents state whether they 1=Strongly Agree to 4 = Strongly Disagree with the statement, "It is more for a wife to help her husband's career than to have one herself." 
+
+# For *era*, repsondents state whether they 1=Strongly Favor to 4 = Strongly Oppose the Equal Rights Amendment (ERA). 
+
+# This project will look at the two variables *fehelp* and *year* but possibly explore the others. One question to ask is how has the level of agreement for *fehelp* changed over time.  
+
+# This seems to be a relevent question today as the Covid-19 pandemic highlighted the stress of balancing family and work. The National Women's Law Center (2022) states women left the workforce at a disproportionate rate and have not yet recovered. This is a concern because of lost skills, wages, and earning potential. https://nwlc.org/wp-content/uploads/2022/03/FINAL-NWLC-Resilient-But-Not-Recovered-3.29.22.pdf
+
+# Additionally, the BBC (2023) reports, "Researchers for Deloitte’s Women @ Work 2023 report surveyed 5,000 women across 10 countries, 98% of whom were in heterosexual relationships. The data found that nearly 40% of respondents say their partner’s career takes precedence. They cited several reasons, ranging from financial and social factors to the burden of caretaking and household responsibilities. https://www.bbc.com/worklife/article/20230620-why-many-women-prioritise-their-partners-jobs
+GSS <- read_csv("Nanci_datafolder/GSS.csv")
+GSS
+head(GSS)
+dim(GSS)
+```
+
+```{r}
+# Mutating *fehelp* to *fehelpI* by reversing the values 1=Strongly Agree through 4=Strongly Disagree to 1=Strongly Disagree through 4=Strongly Agree because it seems more intuitive for graphing. 
+GSSI <- GSS %>% 
+  mutate(fehelpI = case_when(
+    fehelp == 1 ~ 4, 
+    fehelp == 2 ~ 3, 
+    fehelp == 3 ~ 2, 
+    fehelp == 4 ~ 1))
+head(GSSI)
+```
+
+# 1i Density Functions
+
+```{r}
+# Opinion on Husband's Career Pdf vs. Histogram
+probability <- density(GSSI$fehelpI)
+plot(probability, main = "Husband's Career A Priority", xlab = "Agreement 1=Strongly Agree to 4=Strongly Disagree", 
+       ylab  = "Density")
+polygon(probability, col = "pink", border = "blue")
+
+hist(GSSI$fehelpI, main = "Husband's Career A Priority", xlab = "Agreement 1=Strongly Disagree to 4=Strongly Agree", 
+       ylab  = "Density", col = "pink", border = "blue")
+```
+
+```{r}
+# Opinion by Year Overlapping vs Separate Pdf's. This can show how the level of aggreement for *fehelpI* has shifted overtime from 1977 to 1998. 
+ggplot(GSSI, aes(fehelpI))+
+  geom_density((aes(fill=factor(year), alpha=0.1)))+
+  ggtitle("Husband's Career A Priority")+
+  labs(x = "Agreement 1=Strongly Disagree to 4=Strongly Agree", 
+       y= "Density")
+                
+ggplot(GSSI, aes(fehelpI))+
+  geom_density(aes(fill=factor(year))) +
+  ggtitle("Husband's Career A Priority")+
+  labs(x = "Agreement 1=Strongly Disagree to 4=Strongly Agree", 
+       y= "Density")+
+  facet_wrap(~ year, ncol = 4)
+```
+
+```{r}
+# Cdf's for *fehelpI*, a few perspectives of cdf's for ordinal data. 
+# Cumulative proportions
+ordinal_data <- ordered(GSSI$fehelpI)
+cumulative_proportions <- cumsum(table(ordinal_data)) / length(ordinal_data)
+plot(cumulative_proportions, type = "s", xlab = "Agreement 1=Stongly Disagree to 4=Strongly Agree", ylab = "Cumulative Proportion")
+# Empirical cumulative distribution
+cdf <- ecdf(GSSI$fehelpI)
+plot(cdf, 
+     col ="blue",
+     main = "Husband's Career a Priority", 
+     xlab = "Agreement 1=Strongly Disagree to 4=Strongly Agree", 
+     ylab = "Cumulative Density Function")
+# Textbook reference using the function cumsum
+cdf_fehelp <- cumsum(GSSI$fehelpI)
+plot(cdf_fehelp,
+     xlab = "Agreement 1=Stongly Disagree to 4=Strongly Agree",
+     main = "Cumulative Probability Distribution")
+```
+
+# 1ii-iv Descriptive Statistics
+
+```{r}
+# Opinion on Husband's Career grouped by year.  This table displays the mean, median, standard deviation and confidence intervals for *fehelpI* The mean level of agreement about making the husband's career a priority changed from 3=Agree to 2=Disagree and the standard deviation changed from 0.80 in 1972 to 0.74 in 1996. 
+GSSI %>% group_by(year) %>% 
+  summarize(mean_fehelpI= mean(fehelpI),
+            median_fehelpI =median(fehelpI),
+            sd_fehelpI =sd(fehelpI), 
+            ci_lower_fehelpI= t.test(fehelpI)$conf.int[1],
+            ci_upper_fehelpI = t.test(fehelpI)$conf.int[2])
+```
+
+# Descriptive Statistics continued
+
+```{r}
+# Frequency and proportion tables of level of aggreement for *fehelpI* grouped by year
+table(GSSI$year, GSSI$fehelpI)
+prop.table(table(GSSI$year, GSSI$fehelpI)) %>% {.*100} %>% round(2)
+```
+
+# Tidy data for scatterplot and linear regression
+
+```{r}
+# Changing from numeric to character data
+GSSI$sex <- as.character(GSSI$sex)
+# Removing rows with non-numerical cell values for era variable. And reversing the values 1=Strongly Favor - 4=Strongly Oppose to 1=Strongly Oppose - 4=Strongly Favor because it seems more intuitive for graphing. This was only collected in 1972.
+GSSI_era <- GSSI[!(is.na(GSSI$era) | GSSI$era==".i"| GSSI$era==".d" | GSSI$era==".n"), ]
+unique(GSSI_era$era)
+GSSI_era$era <- as.factor(GSSI_era$era)
+GSSI_era <- GSSI_era %>% 
+  mutate(eraI = case_when(
+    era == 1 ~ 4, 
+    era == 2 ~ 3, 
+    era == 3 ~ 2, 
+    era == 4 ~ 1))
+head(GSSI_era)
+str(GSSI_era)
+dim(GSSI_era)
+```
+
+# 1v. Scatterplot
+
+```{r}
+# *era* is the dependent variable and *fehelpI* is the independent variable.  The position_jitter function was used to visualize the overlapping points. 
+GSSI_era %>% ggplot(aes(eraI, fehelpI, fill = sex))+
+  geom_point(shape = 21, size = 1.5, position = position_jitter(width = 0.2, height = 0.2)) + 
+  labs(x = "Husband's Career a Priority 4=Strongly Agree", y = "In Favor of ERA 4=Strongly Favor") + 
+  theme_minimal()
+# Basic scatterplot with abline
+plot(GSSI_era$eraI,GSSI_era$fehelpI,main="Scatterplot")
+abline(eraxfehelpI)
+```
+
+# 2 Linear Regression
+
+```{r}
+eraxfehelpI <- lm(GSSI_era$eraI~GSSI_era$fehelpI)
+summary(eraxfehelpI)
+r_correlation_coef <- cor(GSSI_era$fehelpI, GSSI_era$eraI)
+r2_coef_of_determination <- r_correlation_coef^2
+eraxfehelpI$coefficients
+print(r_correlation_coef) # r=-0.30 represents a negative and weak association between the variables
+print(r2_coef_of_determination) # r^2=0.09 also shows a weak relationship between the variables such that only about 9% of the variation in *eraI* is determined by the variation in *fehelpI*
+```
