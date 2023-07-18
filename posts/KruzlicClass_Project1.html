@@ -1,0 +1,1721 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Bryn Kruzlic">
+<meta name="dcterms.date" content="2023-07-17">
+
+<title>Kruzlic Class Project 1</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/DACSS_Round_Network.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<meta name="twitter:title" content="Kruzlic Class Project 1">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://dacss.github.io/603_Summer2023_Sec_1/posts/KruzlicClass_Project1_files/figure-html/unnamed-chunk-6-1.png">
+<meta name="twitter:creator" content="@UMassDACSS">
+<meta name="twitter:site" content="@UMassDACSS">
+<meta name="twitter:image-height" content="960">
+<meta name="twitter:image-width" content="1344">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/UMass White Wordmark Horiz.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://dacss.github.io/603_Summer2023_Sec_1/" rel="" target="">
+ <span class="menu-text">Summer 2023 Posts</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html" rel="" target="">
+ <span class="menu-text">Contributors</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://umass.edu/sbs/dacss" rel="" target="">
+ <span class="menu-text">DACSS</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://dacss.github.io/603_Summer2023_Sec_1/" rel="" target=""><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#these-are-the-libraries-being-used-in-the-following-project." id="toc-these-are-the-libraries-being-used-in-the-following-project." class="nav-link active" data-scroll-target="#these-are-the-libraries-being-used-in-the-following-project.">These are the libraries being used in the following project.</a></li>
+  <li><a href="#read-in-file--top-spotify-chart-data" id="toc-read-in-file--top-spotify-chart-data" class="nav-link" data-scroll-target="#read-in-file--top-spotify-chart-data">Read in file- top Spotify chart data</a></li>
+  <li><a href="#eliminate-na-values-within-the-data-set" id="toc-eliminate-na-values-within-the-data-set" class="nav-link" data-scroll-target="#eliminate-na-values-within-the-data-set">Eliminate NA values within the data set</a></li>
+  <li><a href="#additional-edit-song-listed-twice" id="toc-additional-edit-song-listed-twice" class="nav-link" data-scroll-target="#additional-edit-song-listed-twice">Additional edit; song listed twice</a></li>
+  <li><a href="#grouping-and-analysis" id="toc-grouping-and-analysis" class="nav-link" data-scroll-target="#grouping-and-analysis">Grouping and Analysis</a>
+  <ul class="collapse">
+  <li><a href="#top-artists" id="toc-top-artists" class="nav-link" data-scroll-target="#top-artists">Top Artists</a></li>
+  <li><a href="#song-duration" id="toc-song-duration" class="nav-link" data-scroll-target="#song-duration">Song duration</a></li>
+  <li><a href="#most-and-least-popular-songs" id="toc-most-and-least-popular-songs" class="nav-link" data-scroll-target="#most-and-least-popular-songs">Most and least popular songs</a></li>
+  <li><a href="#artists-with-most-number-of-songs" id="toc-artists-with-most-number-of-songs" class="nav-link" data-scroll-target="#artists-with-most-number-of-songs">Artists with most number of songs</a></li>
+  </ul></li>
+  <li><a href="#plot-pdf-and-cdf" id="toc-plot-pdf-and-cdf" class="nav-link" data-scroll-target="#plot-pdf-and-cdf">Plot PDF and CDF</a></li>
+  <li><a href="#variable-defining" id="toc-variable-defining" class="nav-link" data-scroll-target="#variable-defining">Variable defining</a></li>
+  <li><a href="#standard-errors-and-confidence-intervals" id="toc-standard-errors-and-confidence-intervals" class="nav-link" data-scroll-target="#standard-errors-and-confidence-intervals">Standard errors and Confidence intervals</a></li>
+  <li><a href="#confidence-intervals-using-the-binom.test-function" id="toc-confidence-intervals-using-the-binom.test-function" class="nav-link" data-scroll-target="#confidence-intervals-using-the-binom.test-function">Confidence intervals using the binom.test() function</a></li>
+  <li><a href="#generating-a-plot" id="toc-generating-a-plot" class="nav-link" data-scroll-target="#generating-a-plot">Generating a plot</a></li>
+  <li><a href="#regression-analysis" id="toc-regression-analysis" class="nav-link" data-scroll-target="#regression-analysis">Regression analysis</a></li>
+  <li><a href="#correlations" id="toc-correlations" class="nav-link" data-scroll-target="#correlations">Correlations</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Kruzlic Class Project 1</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+  <div class="quarto-categories">
+    <div class="quarto-category">final project 1</div>
+    <div class="quarto-category">Qasim Abbas</div>
+    <div class="quarto-category">dplyr</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Bryn Kruzlic </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 17, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="these-are-the-libraries-being-used-in-the-following-project." class="level1">
+<h1>These are the libraries being used in the following project.</h1>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cluster)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(AER)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="read-in-file--top-spotify-chart-data" class="level1">
+<h1>Read in file- top Spotify chart data</h1>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>top10s <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"C:/Users/Bryn Kruzlic/OneDrive/Desktop/MS_DACSS/DACSS603/top10s.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>New names:
+Rows: 603 Columns: 15
+── Column specification
+──────────────────────────────────────────────────────── Delimiter: "," chr
+(3): title, artist, top genre dbl (12): ...1, year, bpm, nrgy, dnce, dB, live,
+val, dur, acous, spch, pop
+ℹ Use `spec()` to retrieve the full column specification for this data. ℹ
+Specify the column types or set `show_col_types = FALSE` to quiet this message.
+• `` -&gt; `...1`</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(top10s)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="eliminate-na-values-within-the-data-set" class="level1">
+<h1>Eliminate NA values within the data set</h1>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>top10s <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_all</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(bpm <span class="sc">==</span> <span class="dv">0</span> <span class="sc">|</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>           nrgy <span class="sc">==</span> <span class="dv">0</span> <span class="sc">|</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>           dnce <span class="sc">==</span> <span class="dv">0</span> <span class="sc">|</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>           dB <span class="sc">==</span> <span class="dv">0</span> <span class="sc">|</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>           live <span class="sc">==</span> <span class="dv">0</span> <span class="sc">|</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>           dur <span class="sc">==</span> <span class="dv">0</span> <span class="sc">|</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>           spch <span class="sc">==</span> <span class="dv">0</span> <span class="sc">|</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>           pop  <span class="sc">==</span> <span class="dv">0</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 15
+   ...1 title artist `top genre`  year   bpm  nrgy  dnce    dB  live   val   dur
+  &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1    51 Hello Marti… big room     2010   128    98    67    -3    10    45   191
+2   139 Blow… P!nk   dance pop    2012   114    92    60    -3    25    75   256
+3   268 Not … Justi… dance pop    2014    86    73    59    -6    38    46   266
+4   363 L.A.… Fergie dance pop    2015   202    39    48    -8    26    27   193
+5   443 Mill… Adele  british so…  2016     0     0     0   -60     0     0   227
+# ℹ 3 more variables: acous &lt;dbl&gt;, spch &lt;dbl&gt;, pop &lt;dbl&gt;</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(top10s)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>      ...1          title              artist           top genre        
+ Min.   :  1.0   Length:603         Length:603         Length:603        
+ 1st Qu.:151.5   Class :character   Class :character   Class :character  
+ Median :302.0   Mode  :character   Mode  :character   Mode  :character  
+ Mean   :302.0                                                           
+ 3rd Qu.:452.5                                                           
+ Max.   :603.0                                                           
+      year           bpm             nrgy           dnce      
+ Min.   :2010   Min.   :  0.0   Min.   : 0.0   Min.   : 0.00  
+ 1st Qu.:2013   1st Qu.:100.0   1st Qu.:61.0   1st Qu.:57.00  
+ Median :2015   Median :120.0   Median :74.0   Median :66.00  
+ Mean   :2015   Mean   :118.5   Mean   :70.5   Mean   :64.38  
+ 3rd Qu.:2017   3rd Qu.:129.0   3rd Qu.:82.0   3rd Qu.:73.00  
+ Max.   :2019   Max.   :206.0   Max.   :98.0   Max.   :97.00  
+       dB               live            val             dur       
+ Min.   :-60.000   Min.   : 0.00   Min.   : 0.00   Min.   :134.0  
+ 1st Qu.: -6.000   1st Qu.: 9.00   1st Qu.:35.00   1st Qu.:202.0  
+ Median : -5.000   Median :12.00   Median :52.00   Median :221.0  
+ Mean   : -5.579   Mean   :17.77   Mean   :52.23   Mean   :224.7  
+ 3rd Qu.: -4.000   3rd Qu.:24.00   3rd Qu.:69.00   3rd Qu.:239.5  
+ Max.   : -2.000   Max.   :74.00   Max.   :98.00   Max.   :424.0  
+     acous            spch             pop       
+ Min.   : 0.00   Min.   : 0.000   Min.   : 0.00  
+ 1st Qu.: 2.00   1st Qu.: 4.000   1st Qu.:60.00  
+ Median : 6.00   Median : 5.000   Median :69.00  
+ Mean   :14.33   Mean   : 8.358   Mean   :66.52  
+ 3rd Qu.:17.00   3rd Qu.: 9.000   3rd Qu.:76.00  
+ Max.   :99.00   Max.   :48.000   Max.   :99.00  </code></pre>
+</div>
+</div>
+</section>
+<section id="additional-edit-song-listed-twice" class="level1">
+<h1>Additional edit; song listed twice</h1>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>top10s <span class="ot">&lt;-</span> top10s <span class="sc">%&gt;%</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(title <span class="sc">!=</span> <span class="st">'The Hills'</span> <span class="sc">|</span> year <span class="sc">!=</span> <span class="dv">2016</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>#Fixing and grouping</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>genre <span class="ot">&lt;-</span> top10s[<span class="st">"top genre"</span>]</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(top10s<span class="sc">$</span><span class="st">'top genre'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "neo mellow"                "detroit hip hop"          
+ [3] "dance pop"                 "pop"                      
+ [5] "canadian pop"              "hip pop"                  
+ [7] "barbadian pop"             "atl hip hop"              
+ [9] "australian pop"            "indie pop"                
+[11] "art pop"                   "colombian pop"            
+[13] "big room"                  "british soul"             
+[15] "chicago rap"               "acoustic pop"             
+[17] "permanent wave"            "boy band"                 
+[19] "baroque pop"               "celtic rock"              
+[21] "electro"                   "complextro"               
+[23] "canadian hip hop"          "candy pop"                
+[25] "alaska indie"              "folk-pop"                 
+[27] "metropopolis"              "house"                    
+[29] "australian hip hop"        "electropop"               
+[31] "australian dance"          "hollywood"                
+[33] "canadian contemporary r&amp;b" "irish singer-songwriter"  
+[35] "tropical house"            "belgian edm"              
+[37] "french indie pop"          "hip hop"                  
+[39] "danish pop"                "latin"                    
+[41] "canadian latin"            "electronic trap"          
+[43] "edm"                       "electro house"            
+[45] "downtempo"                 "brostep"                  
+[47] "contemporary country"      "moroccan pop"             
+[49] "escape room"               "alternative r&amp;b"          </code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>top10s <span class="ot">&lt;-</span>top10s<span class="sc">%&gt;%</span><span class="fu">separate</span>((<span class="st">`</span><span class="at">top genre</span><span class="st">`</span>),<span class="fu">c</span>(<span class="st">"variable"</span>,<span class="st">"genre"</span>),<span class="at">extra=</span><span class="st">'merge'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Expected 2 pieces. Missing pieces filled with `NA` in 97 rows [5, 12, 24, 55,
+58, 60, 65, 106, 108, 110, 114, 118, 119, 138, 148, 150, 153, 155, 163, 168,
+...].</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>other <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"complextro"</span>, <span class="st">"downtempo"</span>, <span class="st">"brostep"</span>, <span class="st">"electro"</span>, <span class="st">"electronic"</span>, <span class="st">"escape"</span>, <span class="st">"folk-pop"</span>, <span class="st">"hollywood"</span>, <span class="st">"house"</span>, <span class="st">"irish"</span>, <span class="st">"permanent"</span>, <span class="st">"neo"</span>, <span class="st">"metropolis"</span>, <span class="st">"tropical"</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>top10s<span class="sc">$</span>genre[top10s<span class="sc">$</span>variable <span class="sc">%in%</span> other] <span class="ot">&lt;-</span> <span class="st">'other'</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>top10s<span class="sc">$</span>genre[top10s<span class="sc">$</span>variable <span class="sc">==</span> <span class="st">'hip'</span>] <span class="ot">&lt;-</span> <span class="st">'hip hop'</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>top10s<span class="sc">$</span>genre[top10s<span class="sc">$</span>variable <span class="sc">==</span> <span class="st">'latin'</span>] <span class="ot">&lt;-</span> <span class="st">'latin'</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>top10s<span class="sc">$</span>genre[top10s<span class="sc">$</span>variable <span class="sc">==</span> <span class="st">'boy'</span>] <span class="ot">&lt;-</span> <span class="st">'pop'</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>top10s<span class="sc">$</span>genre[top10s<span class="sc">$</span>variable <span class="sc">==</span> <span class="st">'french'</span>] <span class="ot">&lt;-</span> <span class="st">'pop'</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>top10s<span class="sc">$</span>genre[top10s<span class="sc">$</span>variable <span class="sc">==</span> <span class="st">'electropop'</span>] <span class="ot">&lt;-</span> <span class="st">'pop'</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>top10s<span class="sc">$</span>genre[top10s<span class="sc">$</span>variable <span class="sc">==</span> <span class="st">'pop'</span>] <span class="ot">&lt;-</span> <span class="st">'pop'</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>top10s<span class="sc">$</span>genre[top10s<span class="sc">$</span>genre <span class="sc">==</span> <span class="st">'contemporary r&amp;b'</span>] <span class="ot">&lt;-</span> <span class="st">'r&amp;b'</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>top10s<span class="sc">$</span>genre[top10s<span class="sc">$</span>genre <span class="sc">==</span> <span class="st">'room'</span>] <span class="ot">&lt;-</span> <span class="st">'other'</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(top10s<span class="sc">$</span>genre)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+country   dance     edm hip hop   indie   latin   other     pop     r&amp;b     rap 
+      1       6       2      20       1       5      46     493       9       1 
+   rock    soul 
+      1      11 </code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>miss <span class="ot">&lt;-</span> <span class="fu">colSums</span>(<span class="fu">is.na</span>(top10s))</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(miss[miss<span class="sc">&gt;</span><span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>genre 
+    6 </code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>top10s <span class="ot">&lt;-</span><span class="fu">na.omit</span>(top10s)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="grouping-and-analysis" class="level1">
+<h1>Grouping and Analysis</h1>
+<section id="top-artists" class="level3">
+<h3 class="anchored" data-anchor-id="top-artists">Top Artists</h3>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>pop_artist <span class="ot">&lt;-</span> top10s<span class="sc">%&gt;%</span><span class="fu">arrange</span>(<span class="fu">desc</span>(pop))<span class="sc">%&gt;%</span><span class="fu">group_by</span>(artist)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>pop_artist</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 596 × 16
+# Groups:   artist [181]
+    ...1 title   artist variable genre  year   bpm  nrgy  dnce    dB  live   val
+   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1   573 "Memor… Maroo… pop      pop    2019    91    32    76    -7     8    57
+ 2   574 "Lose … Selen… dance    pop    2019   102    34    51    -9    21     9
+ 3   575 "Someo… Lewis… pop      pop    2019   110    41    50    -6    11    45
+ 4   576 "Se\xf… Shawn… canadian pop    2019   117    54    76    -6     9    75
+ 5   577 "How D… Sam S… pop      pop    2019   111    68    48    -5     8    35
+ 6   578 "South… Ed Sh… pop      pop    2019    98    62    86    -6     9    67
+ 7   579 "Tramp… SHAED  electro… pop    2019   127    46    62    -6    14    50
+ 8   580 "Happi… Marsh… brostep  other  2019   100    79    69    -3    17    67
+ 9   581 "Truth… Lizzo  escape   other  2019   158    62    72    -3    12    41
+10   582 "Good … Lizzo  escape   other  2019    96    89    67    -3    74    48
+# ℹ 586 more rows
+# ℹ 4 more variables: dur &lt;dbl&gt;, acous &lt;dbl&gt;, spch &lt;dbl&gt;, pop &lt;dbl&gt;</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>top_artist<span class="ot">&lt;-</span>top10s<span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="st">`</span><span class="at">year</span><span class="st">`</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(artist)<span class="sc">%&gt;%</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop=</span>n<span class="sc">/</span><span class="fu">sum</span>(n))</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>most_popular_artist <span class="ot">&lt;-</span> pop_artist<span class="sc">%&gt;%</span><span class="fu">count</span>(artist)<span class="sc">%&gt;%</span><span class="fu">arrange</span>(<span class="fu">desc</span>(n))</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>most_popular_artist<span class="sc">%&gt;%</span><span class="fu">head</span>(<span class="dv">15</span>)<span class="sc">%&gt;%</span><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fu">reorder</span>(artist,n),<span class="at">y=</span>n))<span class="sc">+</span><span class="fu">geom_col</span>(<span class="at">fill=</span><span class="st">"skyblue"</span>)<span class="sc">+</span><span class="fu">ggtitle</span>(<span class="st">"15 Most Popular Artist"</span>)<span class="sc">+</span><span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="KruzlicClass_Project1_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="song-duration" class="level3">
+<h3 class="anchored" data-anchor-id="song-duration">Song duration</h3>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>duration <span class="ot">&lt;-</span>top10s<span class="sc">%&gt;%</span><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fu">reorder</span>(genre,dur),<span class="at">y=</span>dur))<span class="sc">+</span><span class="fu">geom_boxplot</span>(<span class="at">fill=</span><span class="st">"limegreen"</span>)<span class="sc">+</span><span class="fu">ggtitle</span>(<span class="st">"Song Duration"</span>)<span class="sc">+</span><span class="fu">theme_light</span>()</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>duration</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="KruzlicClass_Project1_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>duration <span class="ot">&lt;-</span> top10s <span class="sc">%&gt;%</span> </span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(genre, dur), <span class="at">y =</span> dur)) <span class="sc">+</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Song Duration"</span>) <span class="sc">+</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Genre"</span>) <span class="sc">+</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Duration"</span>) <span class="sc">+</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">vjust =</span> <span class="fl">1.2</span>))</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>duration</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="KruzlicClass_Project1_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid" width="672"></p>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>bpm <span class="ot">&lt;-</span> top10s<span class="sc">%&gt;%</span><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fu">reorder</span>(genre,bpm),<span class="at">y=</span>bpm))<span class="sc">+</span><span class="fu">geom_boxplot</span>(<span class="at">fill=</span><span class="st">"violet"</span>)<span class="sc">+</span><span class="fu">ggtitle</span>(<span class="st">"bpm Distribution"</span>)<span class="sc">+</span><span class="fu">theme_light</span>()<span class="sc">+</span><span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">vjust =</span> <span class="fl">1.2</span>))</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>bpm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="KruzlicClass_Project1_files/figure-html/unnamed-chunk-7-3.png" class="img-fluid" width="672"></p>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>summarized_data_genre <span class="ot">&lt;-</span> top10s <span class="sc">%&gt;%</span> </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(genre) <span class="sc">%&gt;%</span> </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">avg_duration =</span> <span class="fu">mean</span>(dur)) <span class="sc">%&gt;%</span> </span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(avg_duration))</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(summarized_data_genre)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="most-and-least-popular-songs" class="level3">
+<h3 class="anchored" data-anchor-id="most-and-least-popular-songs">Most and least popular songs</h3>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>max_pop <span class="ot">&lt;-</span>top10s<span class="sc">%&gt;%</span><span class="fu">filter</span>(pop<span class="sc">&gt;=</span><span class="dv">60</span>)<span class="sc">%&gt;%</span><span class="fu">select</span>(artist,pop,title,genre)<span class="sc">%&gt;%</span><span class="fu">arrange</span>(<span class="fu">desc</span>(pop))</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>max_pop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 448 × 4
+   artist          pop title                                               genre
+   &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;                                               &lt;chr&gt;
+ 1 Maroon 5         99 "Memories"                                          pop  
+ 2 Selena Gomez     97 "Lose You To Love Me"                               pop  
+ 3 Lewis Capaldi    96 "Someone You Loved"                                 pop  
+ 4 Shawn Mendes     95 "Se\xf1orita"                                       pop  
+ 5 Sam Smith        93 "How Do You Sleep?"                                 pop  
+ 6 Ed Sheeran       92 "South of the Border (feat. Camila Cabello &amp; Cardi… pop  
+ 7 SHAED            92 "Trampoline (with ZAYN)"                            pop  
+ 8 Marshmello       90 "Happier"                                           other
+ 9 Lizzo            90 "Truth Hurts"                                       other
+10 Lizzo            90 "Good as Hell (feat. Ariana Grande) - Remix"        other
+# ℹ 438 more rows</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>min_pop <span class="ot">&lt;-</span>top10s<span class="sc">%&gt;%</span><span class="fu">filter</span>(pop<span class="sc">&lt;=</span><span class="dv">59</span>)<span class="sc">%&gt;%</span><span class="fu">select</span>(artist,pop,title,genre)<span class="sc">%&gt;%</span><span class="fu">arrange</span>(<span class="fu">desc</span>(pop))</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>min_pop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 148 × 4
+   artist                pop title                                         genre
+   &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;                                         &lt;chr&gt;
+ 1 Adam Lambert           59 If I Had You                                  pop  
+ 2 The Black Eyed Peas    59 Rock That Body                                pop  
+ 3 Britney Spears         59 Hold It Against Me                            pop  
+ 4 Jennifer Lopez         59 I'm Into You                                  pop  
+ 5 Pitbull                59 Don't Stop the Party (feat. TJR)              pop  
+ 6 Alicia Keys            59 Girl On Fire (feat. Nicki Minaj) - Inferno V… hip …
+ 7 Pharrell Williams      59 Come Get It Bae                               pop  
+ 8 Lost Frequencies       59 Reality (feat. Janieck Devy) - Radio Edit     edm  
+ 9 Fifth Harmony          59 Angel                                         pop  
+10 Little Mix             59 Touch (feat. Kid Ink)                         pop  
+# ℹ 138 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="artists-with-most-number-of-songs" class="level3">
+<h3 class="anchored" data-anchor-id="artists-with-most-number-of-songs">Artists with most number of songs</h3>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>summarized_songs_artist_1 <span class="ot">&lt;-</span> top10s <span class="sc">%&gt;%</span> </span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(artist) <span class="sc">%&gt;%</span> </span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">no.of.songs =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(no.of.songs)) </span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>summarized_songs_artist <span class="ot">&lt;-</span> summarized_songs_artist_1 <span class="sc">%&gt;%</span> </span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(no.of.songs,<span class="at">n=</span><span class="dv">10</span>)</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(summarized_songs_artist)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+</section>
+<section id="plot-pdf-and-cdf" class="level1">
+<h1>Plot PDF and CDF</h1>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>var1_pdf <span class="ot">&lt;-</span> <span class="fu">prop.table</span>(<span class="fu">table</span>(top10s<span class="sc">$</span>genre))</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>var1_cdf <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(var1_pdf)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>var1_pdf_cdf <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Genre =</span> <span class="fu">names</span>(var1_pdf), <span class="at">Probability =</span> var1_pdf, <span class="at">Cumulative =</span> var1_cdf)</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(var1_pdf_cdf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>          Genre Probability.Var1 Probability.Freq  Cumulative
+country country          country      0.001677852 0.001677852
+dance     dance            dance      0.010067114 0.011744966
+edm         edm              edm      0.003355705 0.015100671
+hip hop hip hop          hip hop      0.033557047 0.048657718
+indie     indie            indie      0.001677852 0.050335570
+latin     latin            latin      0.008389262 0.058724832
+other     other            other      0.077181208 0.135906040
+pop         pop              pop      0.827181208 0.963087248
+r&amp;b         r&amp;b              r&amp;b      0.015100671 0.978187919
+rap         rap              rap      0.001677852 0.979865772
+rock       rock             rock      0.001677852 0.981543624
+soul       soul             soul      0.018456376 1.000000000</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>var2_pdf <span class="ot">&lt;-</span> <span class="fu">density</span>(top10s<span class="sc">$</span>dur)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>var2_pdf <span class="ot">&lt;-</span> <span class="fu">prop.table</span>(<span class="fu">table</span>(top10s<span class="sc">$</span>dur))</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>var2_cdf <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(top10s<span class="sc">$</span>dur)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>var2_pdf <span class="ot">&lt;-</span> <span class="fu">prop.table</span>(<span class="fu">table</span>(top10s<span class="sc">$</span>dur))</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>var2_cdf <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(var2_pdf)</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>var2_pdf_cdf <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Duration =</span> <span class="fu">unique</span>(top10s<span class="sc">$</span>dur),</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>                      <span class="at">Probability =</span> var2_pdf,</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>                      <span class="at">Cumulative =</span> var2_cdf)</span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(var2_pdf_cdf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Duration Probability.Var1 Probability.Freq  Cumulative
+134      217              134      0.001677852 0.001677852
+148      263              148      0.001677852 0.003355705
+157      200              157      0.001677852 0.005033557
+158      295              158      0.001677852 0.006711409
+159      221              159      0.003355705 0.010067114
+160      214              160      0.001677852 0.011744966
+162      203              162      0.001677852 0.013422819
+164      225              164      0.001677852 0.015100671
+166      216              166      0.001677852 0.016778523
+169      235              169      0.003355705 0.020134228
+170      230              170      0.001677852 0.021812081
+171      213              171      0.003355705 0.025167785
+172      269              172      0.001677852 0.026845638
+173      202              173      0.003355705 0.030201342
+175      308              175      0.001677852 0.031879195
+176      274              176      0.003355705 0.035234899
+177      187              177      0.001677852 0.036912752
+178      284              178      0.003355705 0.040268456
+179      227              179      0.001677852 0.041946309
+180      215              180      0.001677852 0.043624161
+181      238              181      0.008389262 0.052013423
+182      212              182      0.006711409 0.058724832
+183      231              183      0.005033557 0.063758389
+184      228              184      0.010067114 0.073825503
+185      192              185      0.005033557 0.078859060
+186      172              186      0.008389262 0.087248322
+187      258              187      0.003355705 0.090604027
+188      249              188      0.006711409 0.097315436
+189      196              189      0.011744966 0.109060403
+190      264              190      0.005033557 0.114093960
+191      253              191      0.010067114 0.124161074
+192      185              192      0.013422819 0.137583893
+193      273              193      0.021812081 0.159395973
+194      251              194      0.005033557 0.164429530
+195      193              195      0.001677852 0.166107383
+196      257              196      0.008389262 0.174496644
+197      186              197      0.006711409 0.181208054
+198      220              198      0.013422819 0.194630872
+199      329              199      0.013422819 0.208053691
+200      191              200      0.018456376 0.226510067
+201      285              201      0.010067114 0.236577181
+202      252              202      0.020134228 0.256711409
+203      236              203      0.016778523 0.273489933
+204      201              204      0.011744966 0.285234899
+205      267              205      0.008389262 0.293624161
+206      223              206      0.015100671 0.308724832
+207      260              207      0.011744966 0.320469799
+208      379              208      0.015100671 0.335570470
+209      254              209      0.008389262 0.343959732
+210      262              210      0.011744966 0.355704698
+211      205              211      0.016778523 0.372483221
+212      219              212      0.008389262 0.380872483
+213      242              213      0.021812081 0.402684564
+214      208              214      0.010067114 0.412751678
+215      199              215      0.018456376 0.431208054
+216      321              216      0.013422819 0.444630872
+217      210              217      0.015100671 0.459731544
+218      307              218      0.011744966 0.471476510
+219      232              219      0.013422819 0.484899329
+220      197              220      0.015100671 0.500000000
+221      265              221      0.018456376 0.518456376
+222      229              222      0.010067114 0.528523490
+223      247              223      0.011744966 0.540268456
+224      255              224      0.013422819 0.553691275
+225      279              225      0.020134228 0.573825503
+226      245              226      0.006711409 0.580536913
+227      233              227      0.020134228 0.600671141
+228      188              228      0.018456376 0.619127517
+229      222              229      0.013422819 0.632550336
+230      248              230      0.023489933 0.656040268
+231      211              231      0.013422819 0.669463087
+232      206              232      0.010067114 0.679530201
+233      198              233      0.010067114 0.689597315
+234      277              234      0.010067114 0.699664430
+235      171              235      0.015100671 0.714765101
+236      243              236      0.016778523 0.731543624
+237      237              237      0.003355705 0.734899329
+238      256              238      0.008389262 0.743288591
+239      224              239      0.005033557 0.748322148
+240      209              240      0.005033557 0.753355705
+241      271              241      0.003355705 0.756711409
+242      184              242      0.008389262 0.765100671
+243      177              243      0.008389262 0.773489933
+244      183              244      0.005033557 0.778523490
+245      354              245      0.011744966 0.790268456
+246      272              246      0.003355705 0.793624161
+247      326              247      0.003355705 0.796979866
+248      280              248      0.008389262 0.805369128
+249      157              249      0.005033557 0.810402685
+250      241              250      0.005033557 0.815436242
+251      207              251      0.010067114 0.825503356
+252      424              252      0.006711409 0.832214765
+253      244              253      0.008389262 0.840604027
+254      353              254      0.001677852 0.842281879
+255      286              255      0.005033557 0.847315436
+256      259              256      0.003355705 0.850671141
+257      250              257      0.006711409 0.857382550
+258      270              258      0.005033557 0.862416107
+259      173              259      0.001677852 0.864093960
+260      190              260      0.006711409 0.870805369
+261      179              261      0.003355705 0.874161074
+262      194              262      0.003355705 0.877516779
+263      240              263      0.008389262 0.885906040
+264      246              264      0.008389262 0.894295302
+265      178              265      0.001677852 0.895973154
+266      204              266      0.001677852 0.897651007
+267      319              267      0.001677852 0.899328859
+268      226              268      0.001677852 0.901006711
+269      268              269      0.006711409 0.907718121
+270      323              270      0.003355705 0.911073826
+271      169              271      0.003355705 0.914429530
+272      160              272      0.006711409 0.921140940
+273      239              273      0.005033557 0.926174497
+274      266              274      0.005033557 0.931208054
+277      282              277      0.003355705 0.934563758
+279      234              279      0.006711409 0.941275168
+280      218              280      0.001677852 0.942953020
+282      293              282      0.003355705 0.946308725
+284      189              284      0.001677852 0.947986577
+285      134              285      0.006711409 0.954697987
+286      320              286      0.003355705 0.958053691
+289      159              289      0.001677852 0.959731544
+291      292              291      0.001677852 0.961409396
+292      309              292      0.001677852 0.963087248
+293      182              293      0.001677852 0.964765101
+294      181              294      0.001677852 0.966442953
+295      166              295      0.003355705 0.969798658
+304      170              304      0.001677852 0.971476510
+307      291              307      0.001677852 0.973154362
+308      403              308      0.001677852 0.974832215
+309      310              309      0.001677852 0.976510067
+310      289              310      0.001677852 0.978187919
+319      176              319      0.001677852 0.979865772
+320      261              320      0.001677852 0.981543624
+321      158              321      0.001677852 0.983221477
+323      180              323      0.001677852 0.984899329
+326      175              326      0.001677852 0.986577181
+329      341              329      0.003355705 0.989932886
+341      164              341      0.001677852 0.991610738
+353      195              353      0.001677852 0.993288591
+354      304              354      0.001677852 0.994966443
+379      294              379      0.001677852 0.996644295
+403      148              403      0.001677852 0.998322148
+424      162              424      0.001677852 1.000000000</code></pre>
+</div>
+</div>
+</section>
+<section id="variable-defining" class="level1">
+<h1>Variable defining</h1>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>variable_2 <span class="ot">&lt;-</span> top10s <span class="sc">%&gt;%</span> </span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(genre) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">avg_duration =</span> <span class="fu">mean</span>(dur)) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(avg_duration))</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(variable_2)</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(variable_2) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Song Genre"</span>, <span class="st">"Average Song Duration"</span>)</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(variable_2)</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(top10s<span class="sc">$</span>dur)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 224.745</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(top10s<span class="sc">$</span>dur)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 34.26896</code></pre>
+</div>
+</div>
+</section>
+<section id="standard-errors-and-confidence-intervals" class="level1">
+<h1>Standard errors and Confidence intervals</h1>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>standard_errors <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(dur <span class="sc">~</span> genre, <span class="at">data =</span> top10s, <span class="at">FUN =</span> <span class="cf">function</span>(x) <span class="fu">sd</span>(x) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">length</span>(x)))</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>sufficient_observations <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(dur <span class="sc">~</span> genre, <span class="at">data =</span> top10s, <span class="at">FUN =</span> <span class="cf">function</span>(x) <span class="fu">length</span>(x) <span class="sc">&gt;=</span> <span class="dv">2</span>)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>genre_proportions <span class="ot">&lt;-</span> <span class="fu">prop.table</span>(<span class="fu">table</span>(top10s<span class="sc">$</span>genre))</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>genre_sample_sizes <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(<span class="fu">table</span>(top10s<span class="sc">$</span>genre))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="confidence-intervals-using-the-binom.test-function" class="level1">
+<h1>Confidence intervals using the binom.test() function</h1>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>confidence_intervals <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="fu">names</span>(genre_proportions), <span class="cf">function</span>(g) {</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(genre_proportions[g] <span class="sc">*</span> genre_sample_sizes[g])</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> genre_sample_sizes[g]</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  conf_int <span class="ot">&lt;-</span> <span class="fu">binom.test</span>(x, n)<span class="sc">$</span>conf.int</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="at">genre =</span> g, conf_int)</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-error">
+<pre><code>Error in binom.test(x, n): 'x' must be nonnegative and integer</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>confidence_intervals <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, confidence_intervals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-error">
+<pre><code>Error in do.call(rbind, confidence_intervals): object 'confidence_intervals' not found</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(confidence_intervals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-error">
+<pre><code>Error in print(confidence_intervals): object 'confidence_intervals' not found</code></pre>
+</div>
+</div>
+</section>
+<section id="generating-a-plot" class="level1">
+<h1>Generating a plot</h1>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>average_duration <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(dur <span class="sc">~</span> genre, <span class="at">data =</span> top10s, <span class="at">FUN =</span> mean)</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(average_duration<span class="sc">$</span>dur, <span class="at">names.arg =</span> average_duration<span class="sc">$</span>genre, <span class="at">xlab =</span> <span class="st">"Genre"</span>, <span class="at">ylab =</span> <span class="st">"Duration"</span>, <span class="at">main =</span> <span class="st">"Average Duration by Genre"</span>, <span class="at">col =</span> <span class="st">"steelblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="KruzlicClass_Project1_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="regression-analysis" class="level1">
+<h1>Regression analysis</h1>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>top10s<span class="sc">$</span>dur <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(top10s<span class="sc">$</span>dur)</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>missing_values <span class="ot">&lt;-</span> <span class="fu">is.na</span>(top10s<span class="sc">$</span>dur)</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>subset_data <span class="ot">&lt;-</span> top10s[<span class="sc">!</span>missing_values, ]</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(top10s<span class="sc">$</span>genre, <span class="at">useNA =</span> <span class="st">"ifany"</span>), <span class="at">beside =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">"lightgray"</span>, <span class="at">xlab =</span> <span class="st">"Genre"</span>, <span class="at">ylab =</span> <span class="st">"Count"</span>, <span class="at">main =</span> <span class="st">"Top 10s - Genre Distribution"</span>)</span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(dur <span class="sc">~</span> genre, <span class="at">data =</span> top10s, <span class="at">col =</span> <span class="st">"maroon"</span>, <span class="at">xlab =</span> <span class="st">"Genre"</span>, <span class="at">ylab =</span> <span class="st">"Duration"</span>, <span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">median</span>(top10s<span class="sc">$</span>dur), <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="dv">2</span>), <span class="at">main =</span> <span class="st">"Top 10s - Duration by Genre"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="KruzlicClass_Project1_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="KruzlicClass_Project1_files/figure-html/unnamed-chunk-15-2.png" class="img-fluid" width="672"></p>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(dur <span class="sc">~</span> genre, <span class="at">data =</span> top10s)</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = dur ~ genre, data = top10s)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-88.789 -21.789  -3.789  14.053 201.211 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)    196.00      32.75   5.985 3.78e-09 ***
+genredance      47.00      35.37   1.329   0.1845    
+genreedm       -37.50      40.11  -0.935   0.3502    
+genrehip hop    62.70      33.56   1.868   0.0622 .  
+genreindie      54.00      46.31   1.166   0.2441    
+genrelatin      18.60      35.87   0.518   0.6043    
+genreother      27.04      33.10   0.817   0.4143    
+genrepop        26.79      32.78   0.817   0.4141    
+genrer&amp;b        25.67      34.52   0.744   0.4575    
+genrerap       183.00      46.31   3.951 8.72e-05 ***
+genrerock        7.00      46.31   0.151   0.8799    
+genresoul       59.27      34.20   1.733   0.0836 .  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 32.75 on 584 degrees of freedom
+Multiple R-squared:  0.1037,    Adjusted R-squared:  0.08678 
+F-statistic:  6.14 on 11 and 584 DF,  p-value: 1.396e-09</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(top10s<span class="sc">$</span>genre, top10s<span class="sc">$</span>dur)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in xy.coords(x, y, xlabel, ylabel, log): NAs introduced by coercion</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in min(x): no non-missing arguments to min; returning Inf</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in max(x): no non-missing arguments to max; returning -Inf</code></pre>
+</div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in plot.window(...): need finite 'xlim' values</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="KruzlicClass_Project1_files/figure-html/unnamed-chunk-15-3.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="correlations" class="level1">
+<h1>Correlations</h1>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>nrgy_dnce <span class="ot">&lt;-</span>top10s<span class="sc">%&gt;%</span><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>nrgy,<span class="at">y=</span>dnce))<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span><span class="fu">ggtitle</span>(<span class="st">"Energy/Danceability"</span>)<span class="sc">+</span><span class="fu">theme_light</span>()<span class="sc">+</span><span class="fu">geom_smooth</span>(<span class="at">se=</span><span class="cn">FALSE</span>)</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>nrgy_dnce</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="KruzlicClass_Project1_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(top10s<span class="sc">$</span>nrgy, top10s<span class="sc">$</span>dnce)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1666149</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>val_nrgy <span class="ot">&lt;-</span>top10s<span class="sc">%&gt;%</span><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>val,<span class="at">y=</span>nrgy))<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span><span class="fu">ggtitle</span>(<span class="st">"Positivity/Energy"</span>)<span class="sc">+</span><span class="fu">theme_light</span>()<span class="sc">+</span><span class="fu">geom_smooth</span>(<span class="at">se=</span><span class="cn">FALSE</span>)</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>val_nrgy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="KruzlicClass_Project1_files/figure-html/unnamed-chunk-16-2.png" class="img-fluid" width="672"></p>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(top10s<span class="sc">$</span>val, top10s<span class="sc">$</span>nrgy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.4109696</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>bpm_dnce <span class="ot">&lt;-</span>top10s<span class="sc">%&gt;%</span><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>bpm,<span class="at">y=</span>dnce))<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span><span class="fu">ggtitle</span>(<span class="st">"BPM/Danceability"</span>)<span class="sc">+</span><span class="fu">theme_light</span>()<span class="sc">+</span><span class="fu">geom_smooth</span>(<span class="at">se=</span><span class="cn">FALSE</span>)</span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>bpm_dnce</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="KruzlicClass_Project1_files/figure-html/unnamed-chunk-16-3.png" class="img-fluid" width="672"></p>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(top10s<span class="sc">$</span>bpm, top10s<span class="sc">$</span>dnce)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -0.1322216</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>bpm_pop <span class="ot">&lt;-</span> top10s<span class="sc">%&gt;%</span><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>bpm,<span class="at">y=</span>pop))<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span><span class="fu">ggtitle</span>(<span class="st">"BPM/Popularity"</span>)<span class="sc">+</span><span class="fu">theme_minimal</span>()<span class="sc">+</span><span class="fu">geom_smooth</span>(<span class="at">se=</span><span class="cn">FALSE</span>)</span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>bpm_pop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="KruzlicClass_Project1_files/figure-html/unnamed-chunk-16-4.png" class="img-fluid" width="672"></p>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(top10s<span class="sc">$</span>bpm, top10s<span class="sc">$</span>pop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.02314881</code></pre>
+</div>
+</div>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="DACSS/603_Summer_Sec_1" data-repo-id="" data-category="Announcements" data-category-id="" data-mapping="url" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb71" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Kruzlic Class Project 1"</span></span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Bryn Kruzlic"</span></span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a><span class="an">desription:</span><span class="co"> "First iteration of the class project"</span></span>
+<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "07/17/2023"</span></span>
+<span id="cb71-6"><a href="#cb71-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb71-7"><a href="#cb71-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb71-8"><a href="#cb71-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb71-9"><a href="#cb71-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb71-10"><a href="#cb71-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb71-11"><a href="#cb71-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb71-12"><a href="#cb71-12" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
+<span id="cb71-13"><a href="#cb71-13" aria-hidden="true" tabindex="-1"></a><span class="co">  - final project 1</span></span>
+<span id="cb71-14"><a href="#cb71-14" aria-hidden="true" tabindex="-1"></a><span class="co">  - Qasim Abbas</span></span>
+<span id="cb71-15"><a href="#cb71-15" aria-hidden="true" tabindex="-1"></a><span class="co">  - dplyr</span></span>
+<span id="cb71-16"><a href="#cb71-16" aria-hidden="true" tabindex="-1"></a><span class="co">  </span></span>
+<span id="cb71-17"><a href="#cb71-17" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb71-18"><a href="#cb71-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-19"><a href="#cb71-19" aria-hidden="true" tabindex="-1"></a><span class="fu"># These are the libraries being used in the following project. </span></span>
+<span id="cb71-20"><a href="#cb71-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-23"><a href="#cb71-23" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-24"><a href="#cb71-24" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb71-25"><a href="#cb71-25" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb71-26"><a href="#cb71-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-27"><a href="#cb71-27" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb71-28"><a href="#cb71-28" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb71-29"><a href="#cb71-29" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb71-30"><a href="#cb71-30" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb71-31"><a href="#cb71-31" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb71-32"><a href="#cb71-32" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb71-33"><a href="#cb71-33" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cluster)</span>
+<span id="cb71-34"><a href="#cb71-34" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb71-35"><a href="#cb71-35" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(AER)</span>
+<span id="cb71-36"><a href="#cb71-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-37"><a href="#cb71-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-38"><a href="#cb71-38" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb71-39"><a href="#cb71-39" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-40"><a href="#cb71-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-41"><a href="#cb71-41" aria-hidden="true" tabindex="-1"></a><span class="fu"># Read in file- top Spotify chart data</span></span>
+<span id="cb71-42"><a href="#cb71-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-45"><a href="#cb71-45" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-46"><a href="#cb71-46" aria-hidden="true" tabindex="-1"></a>top10s <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"C:/Users/Bryn Kruzlic/OneDrive/Desktop/MS_DACSS/DACSS603/top10s.csv"</span>)</span>
+<span id="cb71-47"><a href="#cb71-47" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(top10s)</span>
+<span id="cb71-48"><a href="#cb71-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-49"><a href="#cb71-49" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-50"><a href="#cb71-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-51"><a href="#cb71-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-52"><a href="#cb71-52" aria-hidden="true" tabindex="-1"></a><span class="fu"># Eliminate NA values within the data set</span></span>
+<span id="cb71-53"><a href="#cb71-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-56"><a href="#cb71-56" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-57"><a href="#cb71-57" aria-hidden="true" tabindex="-1"></a>top10s <span class="sc">%&gt;%</span> </span>
+<span id="cb71-58"><a href="#cb71-58" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_all</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb71-59"><a href="#cb71-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(bpm <span class="sc">==</span> <span class="dv">0</span> <span class="sc">|</span></span>
+<span id="cb71-60"><a href="#cb71-60" aria-hidden="true" tabindex="-1"></a>           nrgy <span class="sc">==</span> <span class="dv">0</span> <span class="sc">|</span></span>
+<span id="cb71-61"><a href="#cb71-61" aria-hidden="true" tabindex="-1"></a>           dnce <span class="sc">==</span> <span class="dv">0</span> <span class="sc">|</span></span>
+<span id="cb71-62"><a href="#cb71-62" aria-hidden="true" tabindex="-1"></a>           dB <span class="sc">==</span> <span class="dv">0</span> <span class="sc">|</span></span>
+<span id="cb71-63"><a href="#cb71-63" aria-hidden="true" tabindex="-1"></a>           live <span class="sc">==</span> <span class="dv">0</span> <span class="sc">|</span></span>
+<span id="cb71-64"><a href="#cb71-64" aria-hidden="true" tabindex="-1"></a>           dur <span class="sc">==</span> <span class="dv">0</span> <span class="sc">|</span></span>
+<span id="cb71-65"><a href="#cb71-65" aria-hidden="true" tabindex="-1"></a>           spch <span class="sc">==</span> <span class="dv">0</span> <span class="sc">|</span></span>
+<span id="cb71-66"><a href="#cb71-66" aria-hidden="true" tabindex="-1"></a>           pop  <span class="sc">==</span> <span class="dv">0</span> )</span>
+<span id="cb71-67"><a href="#cb71-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-68"><a href="#cb71-68" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(top10s)</span>
+<span id="cb71-69"><a href="#cb71-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-70"><a href="#cb71-70" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-71"><a href="#cb71-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-72"><a href="#cb71-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-73"><a href="#cb71-73" aria-hidden="true" tabindex="-1"></a><span class="fu"># Additional edit; song listed twice</span></span>
+<span id="cb71-74"><a href="#cb71-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-77"><a href="#cb71-77" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-78"><a href="#cb71-78" aria-hidden="true" tabindex="-1"></a>top10s <span class="ot">&lt;-</span> top10s <span class="sc">%&gt;%</span> </span>
+<span id="cb71-79"><a href="#cb71-79" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(title <span class="sc">!=</span> <span class="st">'The Hills'</span> <span class="sc">|</span> year <span class="sc">!=</span> <span class="dv">2016</span>)</span>
+<span id="cb71-80"><a href="#cb71-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-81"><a href="#cb71-81" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-82"><a href="#cb71-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-83"><a href="#cb71-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-84"><a href="#cb71-84" aria-hidden="true" tabindex="-1"></a>#Fixing and grouping</span>
+<span id="cb71-85"><a href="#cb71-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-88"><a href="#cb71-88" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-89"><a href="#cb71-89" aria-hidden="true" tabindex="-1"></a>genre <span class="ot">&lt;-</span> top10s[<span class="st">"top genre"</span>]</span>
+<span id="cb71-90"><a href="#cb71-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-91"><a href="#cb71-91" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(top10s<span class="sc">$</span><span class="st">'top genre'</span>)</span>
+<span id="cb71-92"><a href="#cb71-92" aria-hidden="true" tabindex="-1"></a>top10s <span class="ot">&lt;-</span>top10s<span class="sc">%&gt;%</span><span class="fu">separate</span>((<span class="st">`</span><span class="at">top genre</span><span class="st">`</span>),<span class="fu">c</span>(<span class="st">"variable"</span>,<span class="st">"genre"</span>),<span class="at">extra=</span><span class="st">'merge'</span>)</span>
+<span id="cb71-93"><a href="#cb71-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-94"><a href="#cb71-94" aria-hidden="true" tabindex="-1"></a>other <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"complextro"</span>, <span class="st">"downtempo"</span>, <span class="st">"brostep"</span>, <span class="st">"electro"</span>, <span class="st">"electronic"</span>, <span class="st">"escape"</span>, <span class="st">"folk-pop"</span>, <span class="st">"hollywood"</span>, <span class="st">"house"</span>, <span class="st">"irish"</span>, <span class="st">"permanent"</span>, <span class="st">"neo"</span>, <span class="st">"metropolis"</span>, <span class="st">"tropical"</span>)</span>
+<span id="cb71-95"><a href="#cb71-95" aria-hidden="true" tabindex="-1"></a>top10s<span class="sc">$</span>genre[top10s<span class="sc">$</span>variable <span class="sc">%in%</span> other] <span class="ot">&lt;-</span> <span class="st">'other'</span></span>
+<span id="cb71-96"><a href="#cb71-96" aria-hidden="true" tabindex="-1"></a>top10s<span class="sc">$</span>genre[top10s<span class="sc">$</span>variable <span class="sc">==</span> <span class="st">'hip'</span>] <span class="ot">&lt;-</span> <span class="st">'hip hop'</span></span>
+<span id="cb71-97"><a href="#cb71-97" aria-hidden="true" tabindex="-1"></a>top10s<span class="sc">$</span>genre[top10s<span class="sc">$</span>variable <span class="sc">==</span> <span class="st">'latin'</span>] <span class="ot">&lt;-</span> <span class="st">'latin'</span></span>
+<span id="cb71-98"><a href="#cb71-98" aria-hidden="true" tabindex="-1"></a>top10s<span class="sc">$</span>genre[top10s<span class="sc">$</span>variable <span class="sc">==</span> <span class="st">'boy'</span>] <span class="ot">&lt;-</span> <span class="st">'pop'</span></span>
+<span id="cb71-99"><a href="#cb71-99" aria-hidden="true" tabindex="-1"></a>top10s<span class="sc">$</span>genre[top10s<span class="sc">$</span>variable <span class="sc">==</span> <span class="st">'french'</span>] <span class="ot">&lt;-</span> <span class="st">'pop'</span></span>
+<span id="cb71-100"><a href="#cb71-100" aria-hidden="true" tabindex="-1"></a>top10s<span class="sc">$</span>genre[top10s<span class="sc">$</span>variable <span class="sc">==</span> <span class="st">'electropop'</span>] <span class="ot">&lt;-</span> <span class="st">'pop'</span></span>
+<span id="cb71-101"><a href="#cb71-101" aria-hidden="true" tabindex="-1"></a>top10s<span class="sc">$</span>genre[top10s<span class="sc">$</span>variable <span class="sc">==</span> <span class="st">'pop'</span>] <span class="ot">&lt;-</span> <span class="st">'pop'</span></span>
+<span id="cb71-102"><a href="#cb71-102" aria-hidden="true" tabindex="-1"></a>top10s<span class="sc">$</span>genre[top10s<span class="sc">$</span>genre <span class="sc">==</span> <span class="st">'contemporary r&amp;b'</span>] <span class="ot">&lt;-</span> <span class="st">'r&amp;b'</span></span>
+<span id="cb71-103"><a href="#cb71-103" aria-hidden="true" tabindex="-1"></a>top10s<span class="sc">$</span>genre[top10s<span class="sc">$</span>genre <span class="sc">==</span> <span class="st">'room'</span>] <span class="ot">&lt;-</span> <span class="st">'other'</span></span>
+<span id="cb71-104"><a href="#cb71-104" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(top10s<span class="sc">$</span>genre)</span>
+<span id="cb71-105"><a href="#cb71-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-106"><a href="#cb71-106" aria-hidden="true" tabindex="-1"></a>miss <span class="ot">&lt;-</span> <span class="fu">colSums</span>(<span class="fu">is.na</span>(top10s))</span>
+<span id="cb71-107"><a href="#cb71-107" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(miss[miss<span class="sc">&gt;</span><span class="dv">0</span>])</span>
+<span id="cb71-108"><a href="#cb71-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-109"><a href="#cb71-109" aria-hidden="true" tabindex="-1"></a>top10s <span class="ot">&lt;-</span><span class="fu">na.omit</span>(top10s)</span>
+<span id="cb71-110"><a href="#cb71-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-111"><a href="#cb71-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-112"><a href="#cb71-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-113"><a href="#cb71-113" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-114"><a href="#cb71-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-115"><a href="#cb71-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-116"><a href="#cb71-116" aria-hidden="true" tabindex="-1"></a><span class="fu"># Grouping and Analysis</span></span>
+<span id="cb71-117"><a href="#cb71-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-118"><a href="#cb71-118" aria-hidden="true" tabindex="-1"></a><span class="fu">### Top Artists</span></span>
+<span id="cb71-119"><a href="#cb71-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-122"><a href="#cb71-122" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-123"><a href="#cb71-123" aria-hidden="true" tabindex="-1"></a>pop_artist <span class="ot">&lt;-</span> top10s<span class="sc">%&gt;%</span><span class="fu">arrange</span>(<span class="fu">desc</span>(pop))<span class="sc">%&gt;%</span><span class="fu">group_by</span>(artist)</span>
+<span id="cb71-124"><a href="#cb71-124" aria-hidden="true" tabindex="-1"></a>pop_artist</span>
+<span id="cb71-125"><a href="#cb71-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-126"><a href="#cb71-126" aria-hidden="true" tabindex="-1"></a>top_artist<span class="ot">&lt;-</span>top10s<span class="sc">%&gt;%</span></span>
+<span id="cb71-127"><a href="#cb71-127" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="st">`</span><span class="at">year</span><span class="st">`</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb71-128"><a href="#cb71-128" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(artist)<span class="sc">%&gt;%</span></span>
+<span id="cb71-129"><a href="#cb71-129" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop=</span>n<span class="sc">/</span><span class="fu">sum</span>(n))</span>
+<span id="cb71-130"><a href="#cb71-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-131"><a href="#cb71-131" aria-hidden="true" tabindex="-1"></a>most_popular_artist <span class="ot">&lt;-</span> pop_artist<span class="sc">%&gt;%</span><span class="fu">count</span>(artist)<span class="sc">%&gt;%</span><span class="fu">arrange</span>(<span class="fu">desc</span>(n))</span>
+<span id="cb71-132"><a href="#cb71-132" aria-hidden="true" tabindex="-1"></a>most_popular_artist<span class="sc">%&gt;%</span><span class="fu">head</span>(<span class="dv">15</span>)<span class="sc">%&gt;%</span><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fu">reorder</span>(artist,n),<span class="at">y=</span>n))<span class="sc">+</span><span class="fu">geom_col</span>(<span class="at">fill=</span><span class="st">"skyblue"</span>)<span class="sc">+</span><span class="fu">ggtitle</span>(<span class="st">"15 Most Popular Artist"</span>)<span class="sc">+</span><span class="fu">coord_flip</span>()</span>
+<span id="cb71-133"><a href="#cb71-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-134"><a href="#cb71-134" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-135"><a href="#cb71-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-136"><a href="#cb71-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-137"><a href="#cb71-137" aria-hidden="true" tabindex="-1"></a><span class="fu">### Song duration</span></span>
+<span id="cb71-138"><a href="#cb71-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-141"><a href="#cb71-141" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-142"><a href="#cb71-142" aria-hidden="true" tabindex="-1"></a>duration <span class="ot">&lt;-</span>top10s<span class="sc">%&gt;%</span><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fu">reorder</span>(genre,dur),<span class="at">y=</span>dur))<span class="sc">+</span><span class="fu">geom_boxplot</span>(<span class="at">fill=</span><span class="st">"limegreen"</span>)<span class="sc">+</span><span class="fu">ggtitle</span>(<span class="st">"Song Duration"</span>)<span class="sc">+</span><span class="fu">theme_light</span>()</span>
+<span id="cb71-143"><a href="#cb71-143" aria-hidden="true" tabindex="-1"></a>duration</span>
+<span id="cb71-144"><a href="#cb71-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-145"><a href="#cb71-145" aria-hidden="true" tabindex="-1"></a>duration <span class="ot">&lt;-</span> top10s <span class="sc">%&gt;%</span> </span>
+<span id="cb71-146"><a href="#cb71-146" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(genre, dur), <span class="at">y =</span> dur)) <span class="sc">+</span></span>
+<span id="cb71-147"><a href="#cb71-147" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb71-148"><a href="#cb71-148" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Song Duration"</span>) <span class="sc">+</span></span>
+<span id="cb71-149"><a href="#cb71-149" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Genre"</span>) <span class="sc">+</span></span>
+<span id="cb71-150"><a href="#cb71-150" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Duration"</span>) <span class="sc">+</span></span>
+<span id="cb71-151"><a href="#cb71-151" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb71-152"><a href="#cb71-152" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">vjust =</span> <span class="fl">1.2</span>))</span>
+<span id="cb71-153"><a href="#cb71-153" aria-hidden="true" tabindex="-1"></a>duration</span>
+<span id="cb71-154"><a href="#cb71-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-155"><a href="#cb71-155" aria-hidden="true" tabindex="-1"></a>bpm <span class="ot">&lt;-</span> top10s<span class="sc">%&gt;%</span><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fu">reorder</span>(genre,bpm),<span class="at">y=</span>bpm))<span class="sc">+</span><span class="fu">geom_boxplot</span>(<span class="at">fill=</span><span class="st">"violet"</span>)<span class="sc">+</span><span class="fu">ggtitle</span>(<span class="st">"bpm Distribution"</span>)<span class="sc">+</span><span class="fu">theme_light</span>()<span class="sc">+</span><span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">vjust =</span> <span class="fl">1.2</span>))</span>
+<span id="cb71-156"><a href="#cb71-156" aria-hidden="true" tabindex="-1"></a>bpm</span>
+<span id="cb71-157"><a href="#cb71-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-158"><a href="#cb71-158" aria-hidden="true" tabindex="-1"></a>summarized_data_genre <span class="ot">&lt;-</span> top10s <span class="sc">%&gt;%</span> </span>
+<span id="cb71-159"><a href="#cb71-159" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(genre) <span class="sc">%&gt;%</span> </span>
+<span id="cb71-160"><a href="#cb71-160" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">avg_duration =</span> <span class="fu">mean</span>(dur)) <span class="sc">%&gt;%</span> </span>
+<span id="cb71-161"><a href="#cb71-161" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(avg_duration))</span>
+<span id="cb71-162"><a href="#cb71-162" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(summarized_data_genre)</span>
+<span id="cb71-163"><a href="#cb71-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-164"><a href="#cb71-164" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-165"><a href="#cb71-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-166"><a href="#cb71-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-167"><a href="#cb71-167" aria-hidden="true" tabindex="-1"></a><span class="fu">### Most and least popular songs</span></span>
+<span id="cb71-168"><a href="#cb71-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-171"><a href="#cb71-171" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-172"><a href="#cb71-172" aria-hidden="true" tabindex="-1"></a>max_pop <span class="ot">&lt;-</span>top10s<span class="sc">%&gt;%</span><span class="fu">filter</span>(pop<span class="sc">&gt;=</span><span class="dv">60</span>)<span class="sc">%&gt;%</span><span class="fu">select</span>(artist,pop,title,genre)<span class="sc">%&gt;%</span><span class="fu">arrange</span>(<span class="fu">desc</span>(pop))</span>
+<span id="cb71-173"><a href="#cb71-173" aria-hidden="true" tabindex="-1"></a>max_pop</span>
+<span id="cb71-174"><a href="#cb71-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-175"><a href="#cb71-175" aria-hidden="true" tabindex="-1"></a>min_pop <span class="ot">&lt;-</span>top10s<span class="sc">%&gt;%</span><span class="fu">filter</span>(pop<span class="sc">&lt;=</span><span class="dv">59</span>)<span class="sc">%&gt;%</span><span class="fu">select</span>(artist,pop,title,genre)<span class="sc">%&gt;%</span><span class="fu">arrange</span>(<span class="fu">desc</span>(pop))</span>
+<span id="cb71-176"><a href="#cb71-176" aria-hidden="true" tabindex="-1"></a>min_pop</span>
+<span id="cb71-177"><a href="#cb71-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-178"><a href="#cb71-178" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-179"><a href="#cb71-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-180"><a href="#cb71-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-181"><a href="#cb71-181" aria-hidden="true" tabindex="-1"></a><span class="fu">### Artists with most number of songs</span></span>
+<span id="cb71-182"><a href="#cb71-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-185"><a href="#cb71-185" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-186"><a href="#cb71-186" aria-hidden="true" tabindex="-1"></a>summarized_songs_artist_1 <span class="ot">&lt;-</span> top10s <span class="sc">%&gt;%</span> </span>
+<span id="cb71-187"><a href="#cb71-187" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(artist) <span class="sc">%&gt;%</span> </span>
+<span id="cb71-188"><a href="#cb71-188" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">no.of.songs =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb71-189"><a href="#cb71-189" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(no.of.songs)) </span>
+<span id="cb71-190"><a href="#cb71-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-191"><a href="#cb71-191" aria-hidden="true" tabindex="-1"></a>summarized_songs_artist <span class="ot">&lt;-</span> summarized_songs_artist_1 <span class="sc">%&gt;%</span> </span>
+<span id="cb71-192"><a href="#cb71-192" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(no.of.songs,<span class="at">n=</span><span class="dv">10</span>)</span>
+<span id="cb71-193"><a href="#cb71-193" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(summarized_songs_artist)</span>
+<span id="cb71-194"><a href="#cb71-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-195"><a href="#cb71-195" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-196"><a href="#cb71-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-197"><a href="#cb71-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-198"><a href="#cb71-198" aria-hidden="true" tabindex="-1"></a><span class="fu"># Plot PDF and CDF</span></span>
+<span id="cb71-199"><a href="#cb71-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-202"><a href="#cb71-202" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-203"><a href="#cb71-203" aria-hidden="true" tabindex="-1"></a>var1_pdf <span class="ot">&lt;-</span> <span class="fu">prop.table</span>(<span class="fu">table</span>(top10s<span class="sc">$</span>genre))</span>
+<span id="cb71-204"><a href="#cb71-204" aria-hidden="true" tabindex="-1"></a>var1_cdf <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(var1_pdf)</span>
+<span id="cb71-205"><a href="#cb71-205" aria-hidden="true" tabindex="-1"></a>var1_pdf_cdf <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Genre =</span> <span class="fu">names</span>(var1_pdf), <span class="at">Probability =</span> var1_pdf, <span class="at">Cumulative =</span> var1_cdf)</span>
+<span id="cb71-206"><a href="#cb71-206" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(var1_pdf_cdf)</span>
+<span id="cb71-207"><a href="#cb71-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-208"><a href="#cb71-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-209"><a href="#cb71-209" aria-hidden="true" tabindex="-1"></a>var2_pdf <span class="ot">&lt;-</span> <span class="fu">density</span>(top10s<span class="sc">$</span>dur)</span>
+<span id="cb71-210"><a href="#cb71-210" aria-hidden="true" tabindex="-1"></a>var2_pdf <span class="ot">&lt;-</span> <span class="fu">prop.table</span>(<span class="fu">table</span>(top10s<span class="sc">$</span>dur))</span>
+<span id="cb71-211"><a href="#cb71-211" aria-hidden="true" tabindex="-1"></a>var2_cdf <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(top10s<span class="sc">$</span>dur)</span>
+<span id="cb71-212"><a href="#cb71-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-213"><a href="#cb71-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-214"><a href="#cb71-214" aria-hidden="true" tabindex="-1"></a>var2_pdf <span class="ot">&lt;-</span> <span class="fu">prop.table</span>(<span class="fu">table</span>(top10s<span class="sc">$</span>dur))</span>
+<span id="cb71-215"><a href="#cb71-215" aria-hidden="true" tabindex="-1"></a>var2_cdf <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(var2_pdf)</span>
+<span id="cb71-216"><a href="#cb71-216" aria-hidden="true" tabindex="-1"></a>var2_pdf_cdf <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Duration =</span> <span class="fu">unique</span>(top10s<span class="sc">$</span>dur),</span>
+<span id="cb71-217"><a href="#cb71-217" aria-hidden="true" tabindex="-1"></a>                      <span class="at">Probability =</span> var2_pdf,</span>
+<span id="cb71-218"><a href="#cb71-218" aria-hidden="true" tabindex="-1"></a>                      <span class="at">Cumulative =</span> var2_cdf)</span>
+<span id="cb71-219"><a href="#cb71-219" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-220"><a href="#cb71-220" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(var2_pdf_cdf)</span>
+<span id="cb71-221"><a href="#cb71-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-222"><a href="#cb71-222" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-223"><a href="#cb71-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-224"><a href="#cb71-224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-225"><a href="#cb71-225" aria-hidden="true" tabindex="-1"></a><span class="fu"># Variable defining</span></span>
+<span id="cb71-226"><a href="#cb71-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-229"><a href="#cb71-229" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-230"><a href="#cb71-230" aria-hidden="true" tabindex="-1"></a>variable_2 <span class="ot">&lt;-</span> top10s <span class="sc">%&gt;%</span> </span>
+<span id="cb71-231"><a href="#cb71-231" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(genre) <span class="sc">%&gt;%</span> </span>
+<span id="cb71-232"><a href="#cb71-232" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">avg_duration =</span> <span class="fu">mean</span>(dur)) <span class="sc">%&gt;%</span> </span>
+<span id="cb71-233"><a href="#cb71-233" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(avg_duration))</span>
+<span id="cb71-234"><a href="#cb71-234" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(variable_2)</span>
+<span id="cb71-235"><a href="#cb71-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-236"><a href="#cb71-236" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(variable_2) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Song Genre"</span>, <span class="st">"Average Song Duration"</span>)</span>
+<span id="cb71-237"><a href="#cb71-237" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(variable_2)</span>
+<span id="cb71-238"><a href="#cb71-238" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-239"><a href="#cb71-239" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(top10s<span class="sc">$</span>dur)</span>
+<span id="cb71-240"><a href="#cb71-240" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(top10s<span class="sc">$</span>dur)</span>
+<span id="cb71-241"><a href="#cb71-241" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-242"><a href="#cb71-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-243"><a href="#cb71-243" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-244"><a href="#cb71-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-245"><a href="#cb71-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-246"><a href="#cb71-246" aria-hidden="true" tabindex="-1"></a><span class="fu"># Standard errors and Confidence intervals</span></span>
+<span id="cb71-247"><a href="#cb71-247" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-250"><a href="#cb71-250" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-251"><a href="#cb71-251" aria-hidden="true" tabindex="-1"></a>standard_errors <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(dur <span class="sc">~</span> genre, <span class="at">data =</span> top10s, <span class="at">FUN =</span> <span class="cf">function</span>(x) <span class="fu">sd</span>(x) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">length</span>(x)))</span>
+<span id="cb71-252"><a href="#cb71-252" aria-hidden="true" tabindex="-1"></a>sufficient_observations <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(dur <span class="sc">~</span> genre, <span class="at">data =</span> top10s, <span class="at">FUN =</span> <span class="cf">function</span>(x) <span class="fu">length</span>(x) <span class="sc">&gt;=</span> <span class="dv">2</span>)</span>
+<span id="cb71-253"><a href="#cb71-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-254"><a href="#cb71-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-255"><a href="#cb71-255" aria-hidden="true" tabindex="-1"></a>genre_proportions <span class="ot">&lt;-</span> <span class="fu">prop.table</span>(<span class="fu">table</span>(top10s<span class="sc">$</span>genre))</span>
+<span id="cb71-256"><a href="#cb71-256" aria-hidden="true" tabindex="-1"></a>genre_sample_sizes <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(<span class="fu">table</span>(top10s<span class="sc">$</span>genre))</span>
+<span id="cb71-257"><a href="#cb71-257" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-258"><a href="#cb71-258" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-259"><a href="#cb71-259" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-260"><a href="#cb71-260" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-261"><a href="#cb71-261" aria-hidden="true" tabindex="-1"></a><span class="fu"># Confidence intervals using the binom.test() function</span></span>
+<span id="cb71-262"><a href="#cb71-262" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-265"><a href="#cb71-265" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-266"><a href="#cb71-266" aria-hidden="true" tabindex="-1"></a>confidence_intervals <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="fu">names</span>(genre_proportions), <span class="cf">function</span>(g) {</span>
+<span id="cb71-267"><a href="#cb71-267" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(genre_proportions[g] <span class="sc">*</span> genre_sample_sizes[g])</span>
+<span id="cb71-268"><a href="#cb71-268" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> genre_sample_sizes[g]</span>
+<span id="cb71-269"><a href="#cb71-269" aria-hidden="true" tabindex="-1"></a>  conf_int <span class="ot">&lt;-</span> <span class="fu">binom.test</span>(x, n)<span class="sc">$</span>conf.int</span>
+<span id="cb71-270"><a href="#cb71-270" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="at">genre =</span> g, conf_int)</span>
+<span id="cb71-271"><a href="#cb71-271" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb71-272"><a href="#cb71-272" aria-hidden="true" tabindex="-1"></a>confidence_intervals <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, confidence_intervals)</span>
+<span id="cb71-273"><a href="#cb71-273" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-274"><a href="#cb71-274" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(confidence_intervals)</span>
+<span id="cb71-275"><a href="#cb71-275" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-276"><a href="#cb71-276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-277"><a href="#cb71-277" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-278"><a href="#cb71-278" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-279"><a href="#cb71-279" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-280"><a href="#cb71-280" aria-hidden="true" tabindex="-1"></a><span class="fu"># Generating a plot</span></span>
+<span id="cb71-281"><a href="#cb71-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-284"><a href="#cb71-284" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-285"><a href="#cb71-285" aria-hidden="true" tabindex="-1"></a>average_duration <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(dur <span class="sc">~</span> genre, <span class="at">data =</span> top10s, <span class="at">FUN =</span> mean)</span>
+<span id="cb71-286"><a href="#cb71-286" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(average_duration<span class="sc">$</span>dur, <span class="at">names.arg =</span> average_duration<span class="sc">$</span>genre, <span class="at">xlab =</span> <span class="st">"Genre"</span>, <span class="at">ylab =</span> <span class="st">"Duration"</span>, <span class="at">main =</span> <span class="st">"Average Duration by Genre"</span>, <span class="at">col =</span> <span class="st">"steelblue"</span>)</span>
+<span id="cb71-287"><a href="#cb71-287" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-288"><a href="#cb71-288" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-289"><a href="#cb71-289" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-290"><a href="#cb71-290" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-291"><a href="#cb71-291" aria-hidden="true" tabindex="-1"></a><span class="fu"># Regression analysis</span></span>
+<span id="cb71-292"><a href="#cb71-292" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-295"><a href="#cb71-295" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-296"><a href="#cb71-296" aria-hidden="true" tabindex="-1"></a>top10s<span class="sc">$</span>dur <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(top10s<span class="sc">$</span>dur)</span>
+<span id="cb71-297"><a href="#cb71-297" aria-hidden="true" tabindex="-1"></a>missing_values <span class="ot">&lt;-</span> <span class="fu">is.na</span>(top10s<span class="sc">$</span>dur)</span>
+<span id="cb71-298"><a href="#cb71-298" aria-hidden="true" tabindex="-1"></a>subset_data <span class="ot">&lt;-</span> top10s[<span class="sc">!</span>missing_values, ]</span>
+<span id="cb71-299"><a href="#cb71-299" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-300"><a href="#cb71-300" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-301"><a href="#cb71-301" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(top10s<span class="sc">$</span>genre, <span class="at">useNA =</span> <span class="st">"ifany"</span>), <span class="at">beside =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">"lightgray"</span>, <span class="at">xlab =</span> <span class="st">"Genre"</span>, <span class="at">ylab =</span> <span class="st">"Count"</span>, <span class="at">main =</span> <span class="st">"Top 10s - Genre Distribution"</span>)</span>
+<span id="cb71-302"><a href="#cb71-302" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-303"><a href="#cb71-303" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-304"><a href="#cb71-304" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(dur <span class="sc">~</span> genre, <span class="at">data =</span> top10s, <span class="at">col =</span> <span class="st">"maroon"</span>, <span class="at">xlab =</span> <span class="st">"Genre"</span>, <span class="at">ylab =</span> <span class="st">"Duration"</span>, <span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">median</span>(top10s<span class="sc">$</span>dur), <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="dv">2</span>), <span class="at">main =</span> <span class="st">"Top 10s - Duration by Genre"</span>)</span>
+<span id="cb71-305"><a href="#cb71-305" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-306"><a href="#cb71-306" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-307"><a href="#cb71-307" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(dur <span class="sc">~</span> genre, <span class="at">data =</span> top10s)</span>
+<span id="cb71-308"><a href="#cb71-308" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span>
+<span id="cb71-309"><a href="#cb71-309" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-310"><a href="#cb71-310" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(top10s<span class="sc">$</span>genre, top10s<span class="sc">$</span>dur)</span>
+<span id="cb71-311"><a href="#cb71-311" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-312"><a href="#cb71-312" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-313"><a href="#cb71-313" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-314"><a href="#cb71-314" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-315"><a href="#cb71-315" aria-hidden="true" tabindex="-1"></a><span class="fu"># Correlations</span></span>
+<span id="cb71-316"><a href="#cb71-316" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-319"><a href="#cb71-319" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb71-320"><a href="#cb71-320" aria-hidden="true" tabindex="-1"></a>nrgy_dnce <span class="ot">&lt;-</span>top10s<span class="sc">%&gt;%</span><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>nrgy,<span class="at">y=</span>dnce))<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span><span class="fu">ggtitle</span>(<span class="st">"Energy/Danceability"</span>)<span class="sc">+</span><span class="fu">theme_light</span>()<span class="sc">+</span><span class="fu">geom_smooth</span>(<span class="at">se=</span><span class="cn">FALSE</span>)</span>
+<span id="cb71-321"><a href="#cb71-321" aria-hidden="true" tabindex="-1"></a>nrgy_dnce</span>
+<span id="cb71-322"><a href="#cb71-322" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(top10s<span class="sc">$</span>nrgy, top10s<span class="sc">$</span>dnce)</span>
+<span id="cb71-323"><a href="#cb71-323" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-324"><a href="#cb71-324" aria-hidden="true" tabindex="-1"></a>val_nrgy <span class="ot">&lt;-</span>top10s<span class="sc">%&gt;%</span><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>val,<span class="at">y=</span>nrgy))<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span><span class="fu">ggtitle</span>(<span class="st">"Positivity/Energy"</span>)<span class="sc">+</span><span class="fu">theme_light</span>()<span class="sc">+</span><span class="fu">geom_smooth</span>(<span class="at">se=</span><span class="cn">FALSE</span>)</span>
+<span id="cb71-325"><a href="#cb71-325" aria-hidden="true" tabindex="-1"></a>val_nrgy</span>
+<span id="cb71-326"><a href="#cb71-326" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(top10s<span class="sc">$</span>val, top10s<span class="sc">$</span>nrgy)</span>
+<span id="cb71-327"><a href="#cb71-327" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-328"><a href="#cb71-328" aria-hidden="true" tabindex="-1"></a>bpm_dnce <span class="ot">&lt;-</span>top10s<span class="sc">%&gt;%</span><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>bpm,<span class="at">y=</span>dnce))<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span><span class="fu">ggtitle</span>(<span class="st">"BPM/Danceability"</span>)<span class="sc">+</span><span class="fu">theme_light</span>()<span class="sc">+</span><span class="fu">geom_smooth</span>(<span class="at">se=</span><span class="cn">FALSE</span>)</span>
+<span id="cb71-329"><a href="#cb71-329" aria-hidden="true" tabindex="-1"></a>bpm_dnce</span>
+<span id="cb71-330"><a href="#cb71-330" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(top10s<span class="sc">$</span>bpm, top10s<span class="sc">$</span>dnce)</span>
+<span id="cb71-331"><a href="#cb71-331" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-332"><a href="#cb71-332" aria-hidden="true" tabindex="-1"></a>bpm_pop <span class="ot">&lt;-</span> top10s<span class="sc">%&gt;%</span><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>bpm,<span class="at">y=</span>pop))<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span><span class="fu">ggtitle</span>(<span class="st">"BPM/Popularity"</span>)<span class="sc">+</span><span class="fu">theme_minimal</span>()<span class="sc">+</span><span class="fu">geom_smooth</span>(<span class="at">se=</span><span class="cn">FALSE</span>)</span>
+<span id="cb71-333"><a href="#cb71-333" aria-hidden="true" tabindex="-1"></a>bpm_pop</span>
+<span id="cb71-334"><a href="#cb71-334" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(top10s<span class="sc">$</span>bpm, top10s<span class="sc">$</span>pop)</span>
+<span id="cb71-335"><a href="#cb71-335" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-336"><a href="#cb71-336" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-337"><a href="#cb71-337" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb71-338"><a href="#cb71-338" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-339"><a href="#cb71-339" aria-hidden="true" tabindex="-1"></a></span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+</body></html>
