@@ -1,0 +1,324 @@
+---
+title: "Kruzlic Class Project 1"
+author: "Bryn Kruzlic"
+desription: "First iteration of the class project"
+date: "07/17/2023"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - final project 1
+  - Qasim Abbas
+  - dplyr
+  
+---
+
+# These are the libraries being used in the following project. 
+
+```{r}
+#| label: setup
+#| warning: false
+
+library(readxl)
+library(tidyverse)
+library(lubridate)
+library(ggplot2)
+library(stringr)
+library(readr)
+library(cluster)
+library(dplyr)
+library(AER)
+
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Read in file- top Spotify chart data
+
+```{r}
+
+
+top10s <- read_csv("C:/Users/Bryn Kruzlic/OneDrive/Desktop/MS_DACSS/DACSS603/top10s.csv")
+View(top10s)
+
+```
+
+
+# Eliminate NA values within the data set
+
+```{r}
+
+top10s %>% 
+  select_all() %>% 
+  filter(bpm == 0 |
+           nrgy == 0 |
+           dnce == 0 |
+           dB == 0 |
+           live == 0 |
+           dur == 0 |
+           spch == 0 |
+           pop  == 0 )
+
+summary(top10s)
+
+```
+
+
+# Additional edit; song listed twice
+
+```{r}
+
+top10s <- top10s %>% 
+  filter(title != 'The Hills' | year != 2016)
+
+```
+
+
+#Fixing and grouping
+
+```{r}
+
+genre <- top10s["top genre"]
+
+unique(top10s$'top genre')
+top10s <-top10s%>%separate((`top genre`),c("variable","genre"),extra='merge')
+
+other <- c("complextro", "downtempo", "brostep", "electro", "electronic", "escape", "folk-pop", "hollywood", "house", "irish", "permanent", "neo", "metropolis", "tropical")
+top10s$genre[top10s$variable %in% other] <- 'other'
+top10s$genre[top10s$variable == 'hip'] <- 'hip hop'
+top10s$genre[top10s$variable == 'latin'] <- 'latin'
+top10s$genre[top10s$variable == 'boy'] <- 'pop'
+top10s$genre[top10s$variable == 'french'] <- 'pop'
+top10s$genre[top10s$variable == 'electropop'] <- 'pop'
+top10s$genre[top10s$variable == 'pop'] <- 'pop'
+top10s$genre[top10s$genre == 'contemporary r&b'] <- 'r&b'
+top10s$genre[top10s$genre == 'room'] <- 'other'
+table(top10s$genre)
+
+miss <- colSums(is.na(top10s))
+print(miss[miss>0])
+
+top10s <-na.omit(top10s)
+
+
+
+```
+
+
+# Grouping and Analysis
+
+### Top Artists
+
+```{r}
+
+pop_artist <- top10s%>%arrange(desc(pop))%>%group_by(artist)
+pop_artist
+
+top_artist<-top10s%>%
+  group_by(`year`)%>%
+  count(artist)%>%
+  mutate(prop=n/sum(n))
+
+most_popular_artist <- pop_artist%>%count(artist)%>%arrange(desc(n))
+most_popular_artist%>%head(15)%>%ggplot(aes(x=reorder(artist,n),y=n))+geom_col(fill="skyblue")+ggtitle("15 Most Popular Artist")+coord_flip()
+
+```
+
+
+### Song duration
+
+```{r}
+
+duration <-top10s%>%ggplot(aes(x=reorder(genre,dur),y=dur))+geom_boxplot(fill="limegreen")+ggtitle("Song Duration")+theme_light()
+duration
+
+duration <- top10s %>% 
+  ggplot(aes(x = reorder(genre, dur), y = dur)) +
+  geom_point() +
+  ggtitle("Song Duration") +
+  xlab("Genre") +
+  ylab("Duration") +
+  theme_light() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1.2))
+duration
+
+bpm <- top10s%>%ggplot(aes(x=reorder(genre,bpm),y=bpm))+geom_boxplot(fill="violet")+ggtitle("bpm Distribution")+theme_light()+theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1.2))
+bpm
+
+summarized_data_genre <- top10s %>% 
+  group_by(genre) %>% 
+  summarize(avg_duration = mean(dur)) %>% 
+  arrange(desc(avg_duration))
+View(summarized_data_genre)
+
+```
+
+
+### Most and least popular songs
+
+```{r}
+
+max_pop <-top10s%>%filter(pop>=60)%>%select(artist,pop,title,genre)%>%arrange(desc(pop))
+max_pop
+
+min_pop <-top10s%>%filter(pop<=59)%>%select(artist,pop,title,genre)%>%arrange(desc(pop))
+min_pop
+
+```
+
+
+### Artists with most number of songs
+
+```{r}
+
+summarized_songs_artist_1 <- top10s %>% 
+  group_by(artist) %>% 
+  summarize(no.of.songs = n()) %>% 
+  arrange(desc(no.of.songs)) 
+
+summarized_songs_artist <- summarized_songs_artist_1 %>% 
+  slice_max(no.of.songs,n=10)
+view(summarized_songs_artist)
+
+```
+
+
+# Plot PDF and CDF
+
+```{r}
+
+var1_pdf <- prop.table(table(top10s$genre))
+var1_cdf <- cumsum(var1_pdf)
+var1_pdf_cdf <- data.frame(Genre = names(var1_pdf), Probability = var1_pdf, Cumulative = var1_cdf)
+print(var1_pdf_cdf)
+
+
+var2_pdf <- density(top10s$dur)
+var2_pdf <- prop.table(table(top10s$dur))
+var2_cdf <- cumsum(top10s$dur)
+
+
+var2_pdf <- prop.table(table(top10s$dur))
+var2_cdf <- cumsum(var2_pdf)
+var2_pdf_cdf <- data.frame(Duration = unique(top10s$dur),
+                      Probability = var2_pdf,
+                      Cumulative = var2_cdf)
+
+print(var2_pdf_cdf)
+
+```
+
+
+# Variable defining
+
+```{r}
+
+variable_2 <- top10s %>% 
+  group_by(genre) %>% 
+  summarize(avg_duration = mean(dur)) %>% 
+  arrange(desc(avg_duration))
+View(variable_2)
+
+colnames(variable_2) <- c("Song Genre", "Average Song Duration")
+view(variable_2)
+
+mean(top10s$dur)
+sd(top10s$dur)
+
+
+```
+
+
+# Standard errors and Confidence intervals
+
+```{r}
+
+standard_errors <- aggregate(dur ~ genre, data = top10s, FUN = function(x) sd(x) / sqrt(length(x)))
+sufficient_observations <- aggregate(dur ~ genre, data = top10s, FUN = function(x) length(x) >= 2)
+
+
+genre_proportions <- prop.table(table(top10s$genre))
+genre_sample_sizes <- as.integer(table(top10s$genre))
+
+```
+
+
+# Confidence intervals using the binom.test() function
+
+```{r}
+
+confidence_intervals <- lapply(names(genre_proportions), function(g) {
+  x <- as.integer(genre_proportions[g] * genre_sample_sizes[g])
+  n <- genre_sample_sizes[g]
+  conf_int <- binom.test(x, n)$conf.int
+  data.frame(genre = g, conf_int)
+})
+confidence_intervals <- do.call(rbind, confidence_intervals)
+
+print(confidence_intervals)
+
+
+```
+
+
+# Generating a plot
+
+```{r}
+
+average_duration <- aggregate(dur ~ genre, data = top10s, FUN = mean)
+barplot(average_duration$dur, names.arg = average_duration$genre, xlab = "Genre", ylab = "Duration", main = "Average Duration by Genre", col = "steelblue")
+
+```
+
+
+# Regression analysis
+
+```{r}
+
+top10s$dur <- as.numeric(top10s$dur)
+missing_values <- is.na(top10s$dur)
+subset_data <- top10s[!missing_values, ]
+
+
+barplot(table(top10s$genre, useNA = "ifany"), beside = TRUE, col = "lightgray", xlab = "Genre", ylab = "Count", main = "Top 10s - Genre Distribution")
+
+
+boxplot(dur ~ genre, data = top10s, col = "maroon", xlab = "Genre", ylab = "Duration", abline(h = median(top10s$dur), col = "blue", lwd = 2, lty = 2), main = "Top 10s - Duration by Genre")
+
+
+model <- lm(dur ~ genre, data = top10s)
+summary(model)
+
+plot(top10s$genre, top10s$dur)
+
+
+```
+
+# Correlations
+
+```{r}
+
+nrgy_dnce <-top10s%>%ggplot(aes(x=nrgy,y=dnce))+geom_point()+ggtitle("Energy/Danceability")+theme_light()+geom_smooth(se=FALSE)
+nrgy_dnce
+cor(top10s$nrgy, top10s$dnce)
+
+val_nrgy <-top10s%>%ggplot(aes(x=val,y=nrgy))+geom_point()+ggtitle("Positivity/Energy")+theme_light()+geom_smooth(se=FALSE)
+val_nrgy
+cor(top10s$val, top10s$nrgy)
+
+bpm_dnce <-top10s%>%ggplot(aes(x=bpm,y=dnce))+geom_point()+ggtitle("BPM/Danceability")+theme_light()+geom_smooth(se=FALSE)
+bpm_dnce
+cor(top10s$bpm, top10s$dnce)
+
+bpm_pop <- top10s%>%ggplot(aes(x=bpm,y=pop))+geom_point()+ggtitle("BPM/Popularity")+theme_minimal()+geom_smooth(se=FALSE)
+bpm_pop
+cor(top10s$bpm, top10s$pop)
+
+
+```
+
+
+
