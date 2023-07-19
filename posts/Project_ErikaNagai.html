@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Erika Nagai">
+<meta name="dcterms.date" content="2023-07-18">
+
+<title>Class Project 1</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/DACSS_Round_Network.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<meta name="twitter:title" content="Class Project 1">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://dacss.github.io/603_Summer2023_Sec_1/posts/images_Qasim/image1.png">
+<meta name="twitter:creator" content="@UMassDACSS">
+<meta name="twitter:site" content="@UMassDACSS">
+<meta name="twitter:image-height" content="161">
+<meta name="twitter:image-width" content="328">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/UMass White Wordmark Horiz.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://dacss.github.io/603_Summer2023_Sec_1/" rel="" target="">
+ <span class="menu-text">Summer 2023 Posts</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html" rel="" target="">
+ <span class="menu-text">Contributors</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://umass.edu/sbs/dacss" rel="" target="">
+ <span class="menu-text">DACSS</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://dacss.github.io/603_Summer2023_Sec_1/" rel="" target=""><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#instructions" id="toc-instructions" class="nav-link active" data-scroll-target="#instructions">Instructions</a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview:</a></li>
+  <li><a href="#dataset" id="toc-dataset" class="nav-link" data-scroll-target="#dataset">Dataset</a></li>
+  <li><a href="#eda-1st-homework" id="toc-eda-1st-homework" class="nav-link" data-scroll-target="#eda-1st-homework">EDA (1st Homework)</a></li>
+  <li><a href="#statistics-description-of-box-office-revenue-of-foreign-movies-in-japan" id="toc-statistics-description-of-box-office-revenue-of-foreign-movies-in-japan" class="nav-link" data-scroll-target="#statistics-description-of-box-office-revenue-of-foreign-movies-in-japan">Statistics description of box office revenue of <strong>foreign movies in Japan</strong></a></li>
+  <li><a href="#statistics-description-of-box-office-revenue-of-domestic-movies-in-japan" id="toc-statistics-description-of-box-office-revenue-of-domestic-movies-in-japan" class="nav-link" data-scroll-target="#statistics-description-of-box-office-revenue-of-domestic-movies-in-japan">Statistics description of box office revenue of <strong>domestic movies in Japan</strong></a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Class Project 1</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+  <div class="quarto-categories">
+    <div class="quarto-category">final project</div>
+    <div class="quarto-category">Erika Nagai</div>
+    <div class="quarto-category">dplyr</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Erika Nagai </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 18, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="instructions" class="level2">
+<h2 class="anchored" data-anchor-id="instructions">Instructions</h2>
+<ol type="1">
+<li><p>Import data into R and load the <code>dplyr</code> package to perform the following descriptive analysis on the two variables you are working with:</p>
+<ol type="i">
+<li><p>Start by first <u>plotting</u> the probability as well as cumulative density functions for each of your variables as shown in chapter 2. Instead of using sample() to generate a vector of probabilities, designate ‘probability’ to be the observations in your dataset. You may search online for simple ways to generate these plots for you data.</p></li>
+<li><p>Group data by the two variables of interest to you (and relevance to the phenomenon you are interested in exploring) and obtain mean and standard deviation for at least one of the variables like in the example below. Please also print your results, as they will be important for your final writeup.</p></li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images_Qasim/image1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<ol start="3" type="i">
+<li>Split both of your variables like illustrated in the example below. You may use ‘greater than’ or ‘less than’ signs to split your data</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images_Qasim/image2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<ol start="4" type="i">
+<li>Rename columns according to the splits you’ve made and obtain difference in means along with standard errors and confidence intervals like so:</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images_Qasim/image3.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<ol start="22" type="a">
+<li>Now generate a plot by first designating X and Y according to the variable you would assign as an independent variable (regressor or X) and which one as a dependent variable (Y) like so:</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images_Qasim/image4.png" class="img-fluid figure-img"></p>
+</figure>
+</div></li>
+<li><p>Carry out simple regression analysis that employs lm() function to generate results for the analysis</p>
+<ol type="i">
+<li>Generate plot that regresses you X variable on Y. Fit a line through the observations to capture the systematic relationship:</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images_Qasim/image5.png" class="img-fluid figure-img"></p>
+</figure>
+</div></li>
+</ol>
+</section>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview:</h2>
+<p>This analysis was done for in-class assignment for DACSS 603 Introduction to Quantitative Analysis at the University of Massachusetts, Amherst.</p>
+<p>My analysis is about Japanese moviegoers’ behavior and trend over last 20 years. As this article (https://www.washingtonpost.com/business/avatar-struggles-show-how-japan-is-ditching-hollywood/2022/12/22/09197536-8234-11ed-8738-ed7217de2775_story.html) suggests, recent Hollywood movies are struggling in Japanese market. This might suggest that Japanese people are favoring domestic movies because they are getting more close-minded or Japanese movie industry is getting mature and more attractive for Japanese audience.</p>
+<p>My research questions are:</p>
+<ol type="1">
+<li>How has Japanese moviegoers’ behavior changed over 20 years?</li>
+<li>What kind of movies attract Japanese movies?</li>
+</ol>
+</section>
+<section id="dataset" class="level2">
+<h2 class="anchored" data-anchor-id="dataset">Dataset</h2>
+<p>I gathered the data of the movies that were among top 130 in box office revenue in Japan for the last 20 years (2002-2022) by scraping data available on Box Office Mojo by IMDbPro (https://www.boxofficemojo.com/year/2022/?area=JP&amp;grossesOption=totalGrosses&amp;sort=rank&amp;sortDir=asc) * 2022 should be changed to the year you want to refer to.</p>
+<p>Besides, I used the dataset (https://www.kaggle.com/datasets/akshaypawar7/millions-of-movies) as of July 14th, 2023 to complement useful information on movies’ language and genres.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("tidyverse")</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in data</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data_ErikaNagai/movies_update.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 3219 Columns: 27
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (13): title, distributor, title_short, genres, original_language, overv...
+dbl  (11): gross, total_gross, release_year_JP, id, popularity, budget, reve...
+lgl   (1): re_released
+date  (2): release_date_JP, release_date_World
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(total_gross)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>spc_tbl_ [3,219 × 27] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+ $ title               : chr [1:3219] "Down a Dark Hall" "Equals" "Shin Godzilla2019 Re-release" "6 Below: Miracle on the Mountain" ...
+ $ gross               : num [1:3219] 1686 3087 4640 2083 8888 ...
+ $ total_gross         : num [1:3219] 1686 3087 4640 7500 8888 ...
+ $ distributor         : chr [1:3219] "-" "Twin Film" "-" "The Klockworx" ...
+ $ release_date_JP     : Date[1:3219], format: "2019-01-04" "2017-03-04" ...
+ $ release_year_JP     : num [1:3219] 2019 2017 2020 2018 2019 ...
+ $ title_short         : chr [1:3219] "downadarkhall" "equals" "shingodzilla" "6below:miracleonthemountain" ...
+ $ re_released         : logi [1:3219] FALSE FALSE TRUE FALSE FALSE FALSE ...
+ $ id                  : num [1:3219] 421792 301875 315011 423087 468213 ...
+ $ genres              : chr [1:3219] "Thriller-Drama-Fantasy-Horror" "Drama-Romance-Science Fiction" "Action-Science Fiction-Horror" "Thriller-Drama" ...
+ $ original_language   : chr [1:3219] "en" "en" "ja" "en" ...
+ $ overview            : chr [1:3219] "Kit a troubled girl is sent to the exclusive Blackwood boarding school where she discovers that only four other"| __truncated__ "A futuristic love story set in a world where emotions have been eradicated." "When a massive gilled monster emerges from the deep and tears through the city the government scrambles to save"| __truncated__ "An adrenaline seeking snowboarder gets lost in a massive winter storm in the back country of the High Sierras w"| __truncated__ ...
+ $ popularity          : num [1:3219] 15.42 9.39 35.4 18.23 5.7 ...
+ $ production_companies: chr [1:3219] "Nostromo Pictures-Temple Hill Entertainment-Fickle Fish Films" "Scott Free Productions-Infinite Studios-Freedom Media-Route One Entertainment" NA "Dune Entertainment-Sonar Entertainment-Stormchaser Films-Tucker Tooley Entertainment-October Sky Films" ...
+ $ release_date_World  : Date[1:3219], format: "2018-08-01" "2015-07-15" ...
+ $ budget              : num [1:3219] 0.0 1.6e+07 1.5e+07 0.0 0.0 0.0 2.0e+07 0.0 5.0e+07 2.5e+07 ...
+ $ revenue             : num [1:3219] 2707199 2084628 77947607 0 0 ...
+ $ runtime             : num [1:3219] 96 102 120 97 140 103 85 94 86 110 ...
+ $ status              : chr [1:3219] "Released" "Released" "Released" "Released" ...
+ $ tagline             : chr [1:3219] "Welcome to Blackwood. Where lost girls find their way." "Find your equal." "A god incarnate. A city Doomed." "Miracle on the Mountain" ...
+ $ vote_average        : num [1:3219] 5.5 6.1 7.1 5.8 6.83 ...
+ $ vote_count          : num [1:3219] 600 1252 902 322 62 ...
+ $ credits             : chr [1:3219] "AnnaSophia Robb-Uma Thurman-Isabelle Fuhrman-Victoria Moroles-Noah Silver-Taylor Russell-Rosie Day-Rebecca Fron"| __truncated__ "Nicholas Hoult-Kristen Stewart-Guy Pearce-Jacki Weaver-Bel Powley-Claudia Kim-Scott Lawrence-Toby Huss-Kate Lyn"| __truncated__ "Hiroki Hasegawa-Yutaka Takenouchi-Satomi Ishihara-Kengo Kora-Satoru Matsuo-Mikako Ichikawa-Issey Takahashi-Kanj"| __truncated__ "Josh Hartnett-Mira Sorvino-Sarah Dumont-Kale Culley-Jason Cottle-Austin R. Grant-Nathan Stevens-Marty McSorely-"| __truncated__ ...
+ $ _merge              : chr [1:3219] "both" "both" "both" "both" ...
+ $ date_difference     : chr [1:3219] "156 days" "598 days" "1387 days" "282 days" ...
+ $ region              : chr [1:3219] "Foreign" "Foreign" "Japan" "Foreign" ...
+ $ anime               : num [1:3219] 0 0 0 0 0 0 0 0 1 0 ...
+ - attr(*, "spec")=
+  .. cols(
+  ..   title = col_character(),
+  ..   gross = col_double(),
+  ..   total_gross = col_double(),
+  ..   distributor = col_character(),
+  ..   release_date_JP = col_date(format = ""),
+  ..   release_year_JP = col_double(),
+  ..   title_short = col_character(),
+  ..   re_released = col_logical(),
+  ..   id = col_double(),
+  ..   genres = col_character(),
+  ..   original_language = col_character(),
+  ..   overview = col_character(),
+  ..   popularity = col_double(),
+  ..   production_companies = col_character(),
+  ..   release_date_World = col_date(format = ""),
+  ..   budget = col_double(),
+  ..   revenue = col_double(),
+  ..   runtime = col_double(),
+  ..   status = col_character(),
+  ..   tagline = col_character(),
+  ..   vote_average = col_double(),
+  ..   vote_count = col_double(),
+  ..   credits = col_character(),
+  ..   `_merge` = col_character(),
+  ..   date_difference = col_character(),
+  ..   region = col_character(),
+  ..   anime = col_double()
+  .. )
+ - attr(*, "problems")=&lt;externalptr&gt; </code></pre>
+</div>
+</div>
+</section>
+<section id="eda-1st-homework" class="level2">
+<h2 class="anchored" data-anchor-id="eda-1st-homework">EDA (1st Homework)</h2>
+<p>This dataset contains 3219 rows (movies) that were among top 148 movies with the highest box office revenues in Japan every year between 2002 and 2022.</p>
+<p>It contains basic information about movies such as total gross box office revenue, release date in Japan, original language, genres, and some movies have their tagline as well</p>
+<p><strong>Instruction a</strong>. Start by first plotting the probability as well as cumulative density functions for each of your variables as shown in chapter 2. Instead of using sample() to generate a vector of probabilities, designate ‘probability’ to be the observations in your dataset. You may search online for simple ways to generate these plots for you data.</p>
+<p>The below is a probability of a movie having a specific value. As the probability of a moving having a specific value is quite low (close to 0), the plot looks flat.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># probability density of Box Office revenue in Japan </span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>probability <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3219</span>, <span class="dv">3219</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> df<span class="sc">$</span>total_gross,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">y =</span> probability,</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">'Probability Distribution Function'</span>,</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">'Total Box Office Revenue in Japan (USD)'</span>,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">'Probability'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="Project_ErikaNagai_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>cum_probability <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(probability)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> df<span class="sc">$</span>total_gross,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">y =</span> cum_probability,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">'Cumulative Probability Distribution Function'</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">'Total Box Office Revenue in Japan (USD)'</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">'Cumulative Probability'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="Project_ErikaNagai_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><strong>Instruction b</strong>. Group data by the two variables of interest to you (and relevance to the phenomenon you are interested in exploring) and obtain mean and standard deviation for at least one of the variables like in the example below. Please also print your results, as they will be important for your final writeup.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">summary</span>(df<span class="sc">$</span>total_gross))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>     Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+     1686   1389612   4500000  10675179  11323219 364777208 </code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">sd</span>(df<span class="sc">$</span>total_gross))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 19617649</code></pre>
+</div>
+</div>
+<p><strong>Introduction c</strong>. Split both of your variables like illustrated in the example below. You may use ‘greater than’ or ‘less than’ signs to split your data</p>
+</section>
+<section id="statistics-description-of-box-office-revenue-of-foreign-movies-in-japan" class="level2">
+<h2 class="anchored" data-anchor-id="statistics-description-of-box-office-revenue-of-foreign-movies-in-japan">Statistics description of box office revenue of <strong>foreign movies in Japan</strong></h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df_foreign <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(region <span class="sc">==</span> <span class="st">"Foreign"</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df_foreign<span class="sc">$</span>total_gross)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>     Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+     1686   1082826   3689582  10283637  10375104 249036646 </code></pre>
+</div>
+</div>
+<p>Standard deviation of box office revenue of foreign movies in Japan</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(df_foreign<span class="sc">$</span>total_gross)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 19239505</code></pre>
+</div>
+</div>
+</section>
+<section id="statistics-description-of-box-office-revenue-of-domestic-movies-in-japan" class="level2">
+<h2 class="anchored" data-anchor-id="statistics-description-of-box-office-revenue-of-domestic-movies-in-japan">Statistics description of box office revenue of <strong>domestic movies in Japan</strong></h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df_domestic <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(region <span class="sc">==</span> <span class="st">"Japan"</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df_domestic<span class="sc">$</span>total_gross)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>     Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+     4640   2312990   5990738  12345414  13650652 364777208 </code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(df_domestic<span class="sc">$</span>total_gross)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 22099730</code></pre>
+</div>
+</div>
+<p><strong>Instruction d.</strong> Rename columns according to the splits you’ve made and obtain difference in means along with standard errors and confidence intervals like so:</p>
+<p>The mean of Box Office revenue of domestic movies are bigger than that of foreign movies.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Difference in means</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>gap_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(df_domestic<span class="sc">$</span>total_gross) <span class="sc">-</span> <span class="fu">mean</span>(df_foreign<span class="sc">$</span>total_gross)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>gap_se <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(df_domestic<span class="sc">$</span>total_gross<span class="sc">/</span><span class="fu">count</span>(df_domestic) <span class="sc">+</span> df_foreign<span class="sc">$</span>total_gross<span class="sc">/</span><span class="fu">count</span>(df_domestic))</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>gap_ci_l <span class="ot">&lt;-</span> gap_mean <span class="sc">-</span> <span class="fl">1.96</span> <span class="sc">*</span> gap_se</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>gap_ci_u <span class="ot">&lt;-</span> gap_mean <span class="sc">+</span> <span class="fl">1.96</span> <span class="sc">*</span> gap_se</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>results <span class="ot">=</span> <span class="fu">cbind</span>(gap_mean, gap_se, gap_ci_l, gap_ci_u)</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(results) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"gap_mean"</span>, <span class="st">"gap_se"</span>, <span class="st">"gap_ci_l"</span>, <span class="st">"gap_ci_u"</span>)</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>  gap_mean   gap_se gap_ci_l gap_ci_u
+1  2061777 2.249622  2061773  2061781</code></pre>
+</div>
+</div>
+<p><strong>Instruction e.</strong> assign as an independent variable (regressor or X) and which one as a dependent variable (Y) like so:</p>
+<p>My independent variable (foreign/domestic) is a discrete variable, so I used histogram instead to show the difference of distribution between foreign movies and domestic movies.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> total_gross)) <span class="sc">+</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">50</span>, <span class="at">fill=</span><span class="st">'lightblue'</span>) <span class="sc">+</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>region) <span class="sc">+</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Distribution of Box Office Revenue in Japan"</span>,</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Box Office Revenue in Japan (USD"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="Project_ErikaNagai_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><strong>Instruction.</strong> Carry out simple regression analysis that employs lm() function to generate results for the analysis a. Generate plot that regresses you X variable on Y. Fit a line through the observations to capture the systematic relationship:</p>
+<p>My independent variable is discrete so the linear regression (box office revenue ~ region) used dummy variables.</p>
+<p>This regression model basically shows the mean box office revenue by movie regions (unknown, foreign, japan). On average, both Foreign and Japanese movies are likely to make statistically higher box office revenue than movies whose original region is unknown.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>region <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>region, <span class="at">levels=</span><span class="fu">c</span>(<span class="st">"Unknown"</span>, <span class="st">"Foreign"</span>, <span class="st">"Japan"</span>))</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(df<span class="sc">$</span>total_gross<span class="sc">~</span> df<span class="sc">$</span>region)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = df$total_gross ~ df$region)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-12340774  -9132666  -5883981    869547 352431794 
+
+Coefficients:
+                 Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)       7048139     969140   7.273 4.41e-13 ***
+df$regionForeign  3235498    1088101   2.974  0.00297 ** 
+df$regionJapan    5297275    1115817   4.747 2.15e-06 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 19550000 on 3216 degrees of freedom
+Multiple R-squared:  0.007332,  Adjusted R-squared:  0.006715 
+F-statistic: 11.88 on 2 and 3216 DF,  p-value: 7.254e-06</code></pre>
+</div>
+</div>
+<p>Since my independent variable is NOT continuous, it is difficult to plot the regression model. Thus, I prepared the boxplot graph that show the difference in box offixe revenue depending on the regional origin of the movies (Unknown, Foreign, Japan)</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(df<span class="sc">$</span>total_gross <span class="sc">~</span> df<span class="sc">$</span>region)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="Project_ErikaNagai_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="DACSS/603_Summer_Sec_1" data-repo-id="" data-category="Announcements" data-category-id="" data-mapping="url" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb27" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Class Project 1"</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Erika Nagai"</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="an">desription:</span><span class="co"> "First iteration of the class project"</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "07/18/2023"</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a><span class="co">  - final project</span></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a><span class="co">  - Erika Nagai</span></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a><span class="co">  - dplyr</span></span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a><span class="co">  </span></span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a><span class="fu">## Instructions</span></span>
+<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Import data into R and load the <span class="in">`dplyr`</span> package to perform the following descriptive analysis on the two variables you are working with:</span>
+<span id="cb27-33"><a href="#cb27-33" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb27-34"><a href="#cb27-34" aria-hidden="true" tabindex="-1"></a>    i) Start by first <span class="co">[</span><span class="ot">plotting</span><span class="co">]</span>{.underline} the probability as well as cumulative density functions for each of your variables as shown in chapter 2. Instead of using sample() to generate a vector of probabilities, designate ‘probability’ to be the observations in your dataset. You may search online for simple ways to generate these plots for you data.</span>
+<span id="cb27-35"><a href="#cb27-35" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb27-36"><a href="#cb27-36" aria-hidden="true" tabindex="-1"></a>    ii) Group data by the two variables of interest to you (and relevance to the phenomenon you are interested in exploring) and obtain mean and standard deviation for at least one of the variables like in the example below. Please also print your results, as they will be important for your final writeup. </span>
+<span id="cb27-37"><a href="#cb27-37" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb27-38"><a href="#cb27-38" aria-hidden="true" tabindex="-1"></a>    <span class="al">![](images_Qasim/image1.png)</span>{fig-align="center"}</span>
+<span id="cb27-39"><a href="#cb27-39" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb27-40"><a href="#cb27-40" aria-hidden="true" tabindex="-1"></a>    iii) Split both of your variables like illustrated in the example below. You may use ‘greater than’ or ‘less than’ signs to split your data</span>
+<span id="cb27-41"><a href="#cb27-41" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb27-42"><a href="#cb27-42" aria-hidden="true" tabindex="-1"></a>    <span class="al">![](images_Qasim/image2.png)</span>{fig-align="center"}</span>
+<span id="cb27-43"><a href="#cb27-43" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb27-44"><a href="#cb27-44" aria-hidden="true" tabindex="-1"></a>    iv) Rename columns according to the splits you’ve made and obtain difference in means along with standard errors and confidence intervals like so:</span>
+<span id="cb27-45"><a href="#cb27-45" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb27-46"><a href="#cb27-46" aria-hidden="true" tabindex="-1"></a>    <span class="al">![](images_Qasim/image3.png)</span>{fig-align="center"}</span>
+<span id="cb27-47"><a href="#cb27-47" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb27-48"><a href="#cb27-48" aria-hidden="true" tabindex="-1"></a>    v) Now generate a plot by first designating X and Y according to the variable you would assign as an independent variable (regressor or X) and which one as a dependent variable (Y) like so:</span>
+<span id="cb27-49"><a href="#cb27-49" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb27-50"><a href="#cb27-50" aria-hidden="true" tabindex="-1"></a>    <span class="al">![](images_Qasim/image4.png)</span>{fig-align="center"}</span>
+<span id="cb27-51"><a href="#cb27-51" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb27-52"><a href="#cb27-52" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Carry out simple regression analysis that employs lm() function to generate results for the analysis</span>
+<span id="cb27-53"><a href="#cb27-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-54"><a href="#cb27-54" aria-hidden="true" tabindex="-1"></a>    i) Generate plot that regresses you X variable on Y. Fit a line through the observations to capture the systematic relationship:</span>
+<span id="cb27-55"><a href="#cb27-55" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb27-56"><a href="#cb27-56" aria-hidden="true" tabindex="-1"></a>     <span class="al">![](images_Qasim/image5.png)</span>{fig-align="center"}</span>
+<span id="cb27-57"><a href="#cb27-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-58"><a href="#cb27-58" aria-hidden="true" tabindex="-1"></a><span class="fu">## Overview:</span></span>
+<span id="cb27-59"><a href="#cb27-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-60"><a href="#cb27-60" aria-hidden="true" tabindex="-1"></a>This analysis was done for in-class assignment for DACSS 603 Introduction to Quantitative Analysis at the University of Massachusetts, Amherst.</span>
+<span id="cb27-61"><a href="#cb27-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-62"><a href="#cb27-62" aria-hidden="true" tabindex="-1"></a>My analysis is about Japanese moviegoers' behavior and trend over last 20 years. As this article (https://www.washingtonpost.com/business/avatar-struggles-show-how-japan-is-ditching-hollywood/2022/12/22/09197536-8234-11ed-8738-ed7217de2775_story.html) suggests, recent Hollywood movies are struggling in Japanese market. This might suggest that Japanese people are favoring domestic movies because they are getting more close-minded or Japanese movie industry is getting mature and more attractive for Japanese audience.</span>
+<span id="cb27-63"><a href="#cb27-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-64"><a href="#cb27-64" aria-hidden="true" tabindex="-1"></a>My research questions are:</span>
+<span id="cb27-65"><a href="#cb27-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-66"><a href="#cb27-66" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>How has Japanese moviegoers' behavior changed over 20 years?</span>
+<span id="cb27-67"><a href="#cb27-67" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>What kind of movies attract Japanese movies?</span>
+<span id="cb27-68"><a href="#cb27-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-69"><a href="#cb27-69" aria-hidden="true" tabindex="-1"></a><span class="fu">## Dataset</span></span>
+<span id="cb27-70"><a href="#cb27-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-71"><a href="#cb27-71" aria-hidden="true" tabindex="-1"></a>I gathered the data of the movies that were among top 130 in box office revenue in Japan for the last 20 years (2002-2022) by scraping data available on Box Office Mojo by IMDbPro (https://www.boxofficemojo.com/year/2022/?area=JP&amp;grossesOption=totalGrosses&amp;sort=rank&amp;sortDir=asc) <span class="sc">\*</span> 2022 should be changed to the year you want to refer to.</span>
+<span id="cb27-72"><a href="#cb27-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-73"><a href="#cb27-73" aria-hidden="true" tabindex="-1"></a>Besides, I used the dataset (https://www.kaggle.com/datasets/akshaypawar7/millions-of-movies) as of July 14th, 2023 to complement useful information on movies' language and genres.</span>
+<span id="cb27-74"><a href="#cb27-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-77"><a href="#cb27-77" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb27-78"><a href="#cb27-78" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb27-79"><a href="#cb27-79" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb27-80"><a href="#cb27-80" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb27-81"><a href="#cb27-81" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("tidyverse")</span></span>
+<span id="cb27-82"><a href="#cb27-82" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb27-83"><a href="#cb27-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-84"><a href="#cb27-84" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb27-85"><a href="#cb27-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-88"><a href="#cb27-88" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb27-89"><a href="#cb27-89" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in data</span></span>
+<span id="cb27-90"><a href="#cb27-90" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data_ErikaNagai/movies_update.csv"</span>)</span>
+<span id="cb27-91"><a href="#cb27-91" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(total_gross)</span>
+<span id="cb27-92"><a href="#cb27-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-93"><a href="#cb27-93" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df)</span>
+<span id="cb27-94"><a href="#cb27-94" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb27-95"><a href="#cb27-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-96"><a href="#cb27-96" aria-hidden="true" tabindex="-1"></a><span class="fu">## EDA (1st Homework)</span></span>
+<span id="cb27-97"><a href="#cb27-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-98"><a href="#cb27-98" aria-hidden="true" tabindex="-1"></a>This dataset contains 3219 rows (movies) that were among top 148 movies with the highest box office revenues in Japan every year between 2002 and 2022.</span>
+<span id="cb27-99"><a href="#cb27-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-100"><a href="#cb27-100" aria-hidden="true" tabindex="-1"></a>It contains basic information about movies such as total gross box office revenue, release date in Japan, original language, genres, and some movies have their tagline as well</span>
+<span id="cb27-101"><a href="#cb27-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-102"><a href="#cb27-102" aria-hidden="true" tabindex="-1"></a>**Instruction a**. Start by first plotting the probability as well as cumulative density functions for each of your variables as shown in chapter 2. Instead of using sample() to generate a vector of probabilities, designate 'probability' to be the observations in your dataset. You may search online for simple ways to generate these plots for you data.</span>
+<span id="cb27-103"><a href="#cb27-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-104"><a href="#cb27-104" aria-hidden="true" tabindex="-1"></a>The below is a probability of a movie having a specific value. As the probability of a moving having a specific value is quite low (close to 0), the plot looks flat.</span>
+<span id="cb27-105"><a href="#cb27-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-108"><a href="#cb27-108" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb27-109"><a href="#cb27-109" aria-hidden="true" tabindex="-1"></a><span class="co"># probability density of Box Office revenue in Japan </span></span>
+<span id="cb27-110"><a href="#cb27-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-111"><a href="#cb27-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-112"><a href="#cb27-112" aria-hidden="true" tabindex="-1"></a>probability <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3219</span>, <span class="dv">3219</span>)</span>
+<span id="cb27-113"><a href="#cb27-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-114"><a href="#cb27-114" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> df<span class="sc">$</span>total_gross,</span>
+<span id="cb27-115"><a href="#cb27-115" aria-hidden="true" tabindex="-1"></a>     <span class="at">y =</span> probability,</span>
+<span id="cb27-116"><a href="#cb27-116" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">'Probability Distribution Function'</span>,</span>
+<span id="cb27-117"><a href="#cb27-117" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">'Total Box Office Revenue in Japan (USD)'</span>,</span>
+<span id="cb27-118"><a href="#cb27-118" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">'Probability'</span>)</span>
+<span id="cb27-119"><a href="#cb27-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-120"><a href="#cb27-120" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb27-121"><a href="#cb27-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-124"><a href="#cb27-124" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb27-125"><a href="#cb27-125" aria-hidden="true" tabindex="-1"></a>cum_probability <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(probability)</span>
+<span id="cb27-126"><a href="#cb27-126" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> df<span class="sc">$</span>total_gross,</span>
+<span id="cb27-127"><a href="#cb27-127" aria-hidden="true" tabindex="-1"></a>     <span class="at">y =</span> cum_probability,</span>
+<span id="cb27-128"><a href="#cb27-128" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">'Cumulative Probability Distribution Function'</span>,</span>
+<span id="cb27-129"><a href="#cb27-129" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">'Total Box Office Revenue in Japan (USD)'</span>,</span>
+<span id="cb27-130"><a href="#cb27-130" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">'Cumulative Probability'</span>)</span>
+<span id="cb27-131"><a href="#cb27-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-132"><a href="#cb27-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-133"><a href="#cb27-133" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb27-134"><a href="#cb27-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-135"><a href="#cb27-135" aria-hidden="true" tabindex="-1"></a>**Instruction b**. Group data by the two variables of interest to you (and relevance to the phenomenon you are interested in exploring) and obtain mean and standard deviation for at least one of the variables like in the example below. Please also print your results, as they will be important for your final writeup.</span>
+<span id="cb27-136"><a href="#cb27-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-139"><a href="#cb27-139" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb27-140"><a href="#cb27-140" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">summary</span>(df<span class="sc">$</span>total_gross))</span>
+<span id="cb27-141"><a href="#cb27-141" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb27-142"><a href="#cb27-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-145"><a href="#cb27-145" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb27-146"><a href="#cb27-146" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">sd</span>(df<span class="sc">$</span>total_gross))</span>
+<span id="cb27-147"><a href="#cb27-147" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb27-148"><a href="#cb27-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-149"><a href="#cb27-149" aria-hidden="true" tabindex="-1"></a>**Introduction c**. Split both of your variables like illustrated in the example below. You may use 'greater than' or 'less than' signs to split your data</span>
+<span id="cb27-150"><a href="#cb27-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-151"><a href="#cb27-151" aria-hidden="true" tabindex="-1"></a><span class="fu">## Statistics description of box office revenue of **foreign movies in Japan**</span></span>
+<span id="cb27-152"><a href="#cb27-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-155"><a href="#cb27-155" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb27-156"><a href="#cb27-156" aria-hidden="true" tabindex="-1"></a>df_foreign <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> </span>
+<span id="cb27-157"><a href="#cb27-157" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(region <span class="sc">==</span> <span class="st">"Foreign"</span>)</span>
+<span id="cb27-158"><a href="#cb27-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-159"><a href="#cb27-159" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df_foreign<span class="sc">$</span>total_gross)</span>
+<span id="cb27-160"><a href="#cb27-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-161"><a href="#cb27-161" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb27-162"><a href="#cb27-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-163"><a href="#cb27-163" aria-hidden="true" tabindex="-1"></a>Standard deviation of box office revenue of foreign movies in Japan</span>
+<span id="cb27-164"><a href="#cb27-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-167"><a href="#cb27-167" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb27-168"><a href="#cb27-168" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(df_foreign<span class="sc">$</span>total_gross)</span>
+<span id="cb27-169"><a href="#cb27-169" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb27-170"><a href="#cb27-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-171"><a href="#cb27-171" aria-hidden="true" tabindex="-1"></a><span class="fu">## Statistics description of box office revenue of **domestic movies in Japan**</span></span>
+<span id="cb27-172"><a href="#cb27-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-175"><a href="#cb27-175" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb27-176"><a href="#cb27-176" aria-hidden="true" tabindex="-1"></a>df_domestic <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> </span>
+<span id="cb27-177"><a href="#cb27-177" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(region <span class="sc">==</span> <span class="st">"Japan"</span>)</span>
+<span id="cb27-178"><a href="#cb27-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-179"><a href="#cb27-179" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df_domestic<span class="sc">$</span>total_gross)</span>
+<span id="cb27-180"><a href="#cb27-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-181"><a href="#cb27-181" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb27-182"><a href="#cb27-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-185"><a href="#cb27-185" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb27-186"><a href="#cb27-186" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(df_domestic<span class="sc">$</span>total_gross)</span>
+<span id="cb27-187"><a href="#cb27-187" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb27-188"><a href="#cb27-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-189"><a href="#cb27-189" aria-hidden="true" tabindex="-1"></a>**Instruction d.** Rename columns according to the splits you've made and obtain difference in means along with standard errors and confidence intervals like so:</span>
+<span id="cb27-190"><a href="#cb27-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-191"><a href="#cb27-191" aria-hidden="true" tabindex="-1"></a>The mean of Box Office revenue of domestic movies are bigger than that of foreign movies.</span>
+<span id="cb27-192"><a href="#cb27-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-195"><a href="#cb27-195" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb27-196"><a href="#cb27-196" aria-hidden="true" tabindex="-1"></a><span class="co"># Difference in means</span></span>
+<span id="cb27-197"><a href="#cb27-197" aria-hidden="true" tabindex="-1"></a>gap_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(df_domestic<span class="sc">$</span>total_gross) <span class="sc">-</span> <span class="fu">mean</span>(df_foreign<span class="sc">$</span>total_gross)</span>
+<span id="cb27-198"><a href="#cb27-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-199"><a href="#cb27-199" aria-hidden="true" tabindex="-1"></a>gap_se <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(df_domestic<span class="sc">$</span>total_gross<span class="sc">/</span><span class="fu">count</span>(df_domestic) <span class="sc">+</span> df_foreign<span class="sc">$</span>total_gross<span class="sc">/</span><span class="fu">count</span>(df_domestic))</span>
+<span id="cb27-200"><a href="#cb27-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-201"><a href="#cb27-201" aria-hidden="true" tabindex="-1"></a>gap_ci_l <span class="ot">&lt;-</span> gap_mean <span class="sc">-</span> <span class="fl">1.96</span> <span class="sc">*</span> gap_se</span>
+<span id="cb27-202"><a href="#cb27-202" aria-hidden="true" tabindex="-1"></a>gap_ci_u <span class="ot">&lt;-</span> gap_mean <span class="sc">+</span> <span class="fl">1.96</span> <span class="sc">*</span> gap_se</span>
+<span id="cb27-203"><a href="#cb27-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-204"><a href="#cb27-204" aria-hidden="true" tabindex="-1"></a>results <span class="ot">=</span> <span class="fu">cbind</span>(gap_mean, gap_se, gap_ci_l, gap_ci_u)</span>
+<span id="cb27-205"><a href="#cb27-205" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(results) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"gap_mean"</span>, <span class="st">"gap_se"</span>, <span class="st">"gap_ci_l"</span>, <span class="st">"gap_ci_u"</span>)</span>
+<span id="cb27-206"><a href="#cb27-206" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(results)</span>
+<span id="cb27-207"><a href="#cb27-207" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb27-208"><a href="#cb27-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-209"><a href="#cb27-209" aria-hidden="true" tabindex="-1"></a>**Instruction e.** assign as an independent variable (regressor or X) and which one as a dependent variable (Y) like so:</span>
+<span id="cb27-210"><a href="#cb27-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-211"><a href="#cb27-211" aria-hidden="true" tabindex="-1"></a>My independent variable (foreign/domestic) is a discrete variable, so I used histogram instead to show the difference of distribution between foreign movies and domestic movies.</span>
+<span id="cb27-212"><a href="#cb27-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-215"><a href="#cb27-215" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb27-216"><a href="#cb27-216" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb27-217"><a href="#cb27-217" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> total_gross)) <span class="sc">+</span></span>
+<span id="cb27-218"><a href="#cb27-218" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">50</span>, <span class="at">fill=</span><span class="st">'lightblue'</span>) <span class="sc">+</span></span>
+<span id="cb27-219"><a href="#cb27-219" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>region) <span class="sc">+</span></span>
+<span id="cb27-220"><a href="#cb27-220" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Distribution of Box Office Revenue in Japan"</span>,</span>
+<span id="cb27-221"><a href="#cb27-221" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Box Office Revenue in Japan (USD"</span>)</span>
+<span id="cb27-222"><a href="#cb27-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-223"><a href="#cb27-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-224"><a href="#cb27-224" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb27-225"><a href="#cb27-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-226"><a href="#cb27-226" aria-hidden="true" tabindex="-1"></a>**Instruction.** Carry out simple regression analysis that employs lm() function to generate results for the analysis a. Generate plot that regresses you X variable on Y. Fit a line through the observations to capture the systematic relationship:</span>
+<span id="cb27-227"><a href="#cb27-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-228"><a href="#cb27-228" aria-hidden="true" tabindex="-1"></a>My independent variable is discrete so the linear regression (box office revenue \~ region) used dummy variables.</span>
+<span id="cb27-229"><a href="#cb27-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-230"><a href="#cb27-230" aria-hidden="true" tabindex="-1"></a>This regression model basically shows the mean box office revenue by movie regions (unknown, foreign, japan). On average, both Foreign and Japanese movies are likely to make statistically higher box office revenue than movies whose original region is unknown.</span>
+<span id="cb27-231"><a href="#cb27-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-234"><a href="#cb27-234" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb27-235"><a href="#cb27-235" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>region <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>region, <span class="at">levels=</span><span class="fu">c</span>(<span class="st">"Unknown"</span>, <span class="st">"Foreign"</span>, <span class="st">"Japan"</span>))</span>
+<span id="cb27-236"><a href="#cb27-236" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(df<span class="sc">$</span>total_gross<span class="sc">~</span> df<span class="sc">$</span>region)</span>
+<span id="cb27-237"><a href="#cb27-237" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span>
+<span id="cb27-238"><a href="#cb27-238" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb27-239"><a href="#cb27-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-240"><a href="#cb27-240" aria-hidden="true" tabindex="-1"></a>Since my independent variable is NOT continuous, it is difficult to plot the regression model. Thus, I prepared the boxplot graph that show the difference in box offixe revenue depending on the regional origin of the movies (Unknown, Foreign, Japan)</span>
+<span id="cb27-241"><a href="#cb27-241" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-244"><a href="#cb27-244" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb27-245"><a href="#cb27-245" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(df<span class="sc">$</span>total_gross <span class="sc">~</span> df<span class="sc">$</span>region)</span>
+<span id="cb27-246"><a href="#cb27-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-247"><a href="#cb27-247" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+</body></html>
