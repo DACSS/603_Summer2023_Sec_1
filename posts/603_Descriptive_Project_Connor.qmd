@@ -15,6 +15,8 @@ categories:
   - dplyr
 ---
 
+### Setup
+
 #### Load in Relevant Packages
 
 For descriptive analysis, we'll use quite a few classic packages including Tidyverse, ggplot2, knitr, and summarytools
@@ -33,13 +35,9 @@ library(reshape2)
 library(SmartEDA)
 install.packages("summarytools")
 library(summarytools)
-
-#DESCRIBE DATA/SOURCE
-#write about what might be creating the skew for weird CDF/PDF. A normally distributed one looks rare. Even in the software the reason they have a normal one is because they do the trail a huge amount of times
-
 ```
 
-#### set wd and read in data
+#### Set wd and read in data
 
 ```{r wd_read}
 getwd()
@@ -48,6 +46,7 @@ JP <- read.csv("Connor_datafolder/JP.csv")
 
 #View(JP)
 ```
+### Clean
 
 #### Change variable names then make a descriptive table, make new column
 
@@ -95,6 +94,7 @@ Index_1 <- data.frame(Variables, Meaning, Measurement.Scale)
 #View(Index)
 
 ```
+### Summarize
 
 #### Load in summarytools to get stats analysis of variables
 
@@ -105,6 +105,8 @@ summarytools::descr(JP_Clean)
 
 #All numeric so all present 
 ```
+
+### CDF & PDF
 
 #### Plot PDF and CDF
 
@@ -154,12 +156,11 @@ ggplot(JP_Clean, aes(x = hrs_working, y = cdf_hours)) +
 ggplot(JP_Clean, aes(x = hrs_working, y = pdf_hours)) +
   geom_line() +
   labs(title = "Probability Density Function (PDF)", x = "Hours Worked", y = "PDF")
-
-#I can't help but feel these are both very incorrect in their own unique ways
-
 ```
 
 Both variables here are heavily skewed. This is a common trend among productivity numbers (Numeric variables that tend to only be positive).The data is far from normally distributed. 
+
+### Descriptive Analysis
 
 #### Group
 
@@ -226,9 +227,9 @@ JP_Clean %>%
   #width = x
   geom_smooth(method = "lm")+
   #facet_wrap(~Gender)+
-  labs(x='CSAT Score', y='Hours of Personal Development') +
+  labs(x='Client Satisfaction Score', y='Hours of Personal Development') +
   theme_linedraw()+
-  labs(title="Customer Satisfaction Against Hours of Personal Development ")
+  labs(title="Client Satisfaction vs. Hours of Personal Development ")
 
 
 ```
@@ -313,7 +314,7 @@ print(result)
 
 ```
 
-#### Additional Plots
+### Additional Plots
 
 Will act as auxiliary visualizations - No need to evaluate now necessarily
 
