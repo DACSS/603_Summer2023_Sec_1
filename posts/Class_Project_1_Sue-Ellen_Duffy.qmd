@@ -42,12 +42,7 @@ knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 **Hypothesis**: The number of Cars per crash are increasing in
 Boston, Massachusetts.
 
-In order to study this hypothesis I will look at crash data from the Department of Transportation, specifically crashes in Boston form 2013 to 2022.
-
-
-**Why is this important? **
-
-More cars involved in crashes potentially mean more damage to more cars and more potential injury to more people.
+In order to study this hypothesis I will look at publicly available crash data,  from the Massachusetts Department of Transportation, specifically crashes in Boston from 2013 to 2022.
 
 
 ```{r}
@@ -117,9 +112,7 @@ does not imply causation*.
 Below we see the average number of cars involved per crash by year from
 2013 to 2022. We see the lowest averages in 2013 and 2020 with a peak in
 2019. The lowest average in 2020 can be explained likely by fewer cars
-driving, lower density in traffic patterns due to the pandemic. However,
-I am not sure I have the traffic data to explore this phenomenon, and for now this is
-simply a guess.
+driving, lower density in traffic patterns due to the pandemic. 
 
 ```{r}
 #1.b
@@ -333,8 +326,7 @@ Overall, from 2013 to 2022 within a **95% level of confidence**, the true
 yearly change in number of cars per crash is likely to be between **0.081
 and 0.017**.
 
-We see a slightly higher true yearly change from 2013 to 2019 (pre-pandemic) with **0.129 and 0.016**. This may more accurately represent crash data as the pandemic was a once in 100 years *fingers crossed* experience. 
-
+We see a slightly higher true yearly change from 2013 to 2019 (pre-pandemic) with **0.129 and 0.016**. 
 
 ### Simple Linear Regression
 
@@ -397,9 +389,9 @@ R2/(1-R2)* (n-k-1)/k
 
 ### Next steps...
 
-Our analysis demonstrates a need for more factors and variables to understand the relationship of Number of Cars Involved per Individual Crash and Year.
+The statistical analysis demonstrates a need to explore more variables in order to understand the relationship of Number of Cars Involved per Individual Crash and Year.
 
-Below are potential variables that should be considered moving forward with multivariate analysis.
+Below are some potential variables to be considered moving forward with multivariate analysis.
 
 Available within the DOT dataset:
 
