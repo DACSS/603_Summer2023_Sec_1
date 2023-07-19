@@ -1,0 +1,419 @@
+---
+title: "Class Project 1: Sue-Ellen Duffy"
+author: "Sue-Ellen Duffy"
+description: "Boston - Person Level Crash Data"
+date: "07/18/2023"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - class_project_1
+  - Sue-Ellen_Duffy
+---
+
+```{r}
+#| label: setup
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(summarytools)
+library(readxl)
+library(readr)
+library(stats)
+library(dplyr)
+library(kableExtra)
+library(ggplot2)
+library(hrbrthemes)
+library(viridis)
+library(scales)
+library(vioplot)
+library(ggfortify)
+library(stringr)
+
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
+```
+
+### Boston Crash Data - Statistical Analysis of Number of Cars Involved Per Individual Crash from 2013 to 2022
+
+**Hypothesis**: The number of Cars per crash are increasing in
+Boston, Massachusetts.
+
+In order to study this hypothesis I will look at crash data from the Department of Transportation, specifically crashes in Boston form 2013 to 2022.
+
+
+**Why is this important? **
+
+More cars involved in crashes potentially mean more damage to more cars and more potential injury to more people.
+
+
+```{r}
+#Read in Cleaned Data
+Numbers <- read_csv("Sue-Ellen_Data/2013_2022_Crashes_Boston.csv", col_types = cols(
+  "...1" = col_skip(), "CITY" = col_skip()))
+```
+### Data in numbers
+
+The first table below provides the Number of Cars Involved per Individual Crash in Boston from 2013-2022. The second table provides the corresponding percentages.
+```{r}
+#Create Count of Car Crashes per Year per Number of Cars Involved
+Numbers2 <- Numbers %>%
+  select(YEAR, NUMB_VEHC) %>%
+  group_by(YEAR, NUMB_VEHC) %>%
+  count() 
+Numbers2 <- Numbers2 %>% replace(is.na(.), 0)
+
+#Pivot Data Wide for Distribution of Crashes Per Number of Cars by Year
+Numbers3 <- pivot_wider(Numbers2, names_from=NUMB_VEHC, values_from = n)
+Numbers3 <- Numbers3 %>% replace(is.na(.), 0)
+Numbers3 <- Numbers3[, c("YEAR", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "18")]
+Numbers3 %>%
+  kbl(digits = 1, caption = "Total Crashes Per Year that Involve X Number of Cars") %>%
+  kable_classic() 
+```
+
+```{r}
+#Create a Percentage Grouping of Crashes Per Number of Cars by Year
+Number4 <- Numbers3 %>%
+  mutate(total = sum(c_across(1:13))) %>%
+  ungroup() %>%
+  mutate(across(2:13, ~ ./ total)) %>%
+  mutate(across(2:13, ~ .*100))
+
+Number4 %>%
+  kbl(digits = 1, caption = "Percent of Total Crashes Per Year that Involve X Number of Cars") %>%
+  kable_classic()
+
+```
+We can see that the percentage of crashes with only 1 car in Boston *appear* to be decreasing and crashes with 2 cars *seem* to be increasing. 
+
++ From the second table we see that 26.5% of 2013's total crashes involved only 1 car whereas only 22.5% of total crashes involved 1 car in 2022. 
+
++ In contrast, we see that 59.7% of 2013's total crashes involved 2 cars and 63.1% of total crashes involved 2 cars in 2022.
+
+### Visualizing the bivariate relationship between Year and Number of Cars involved in each Boston crash from 2013 to 2022.
+```{r}
+ggplot(Numbers, aes(YEAR, y=NUMB_VEHC)) + geom_point() + geom_jitter() + scale_x_continuous(breaks=pretty_breaks()) + labs(title = "Crashes in Boston by Number of Cars Involved per Crash", y = "Number of Cars Involved per Individual Crash", x = "Year")
+```
+
+This graph shows us that most crashes are concentrated within the 1-3 car range with some outliers in the 5+ range. The relationship is not evident on first visual inspection. The density
+of cars in the lower region of the graph, makes it difficult to see a correlation. 
+
+#### Correlation Calculation
+```{r}
+cor(Numbers$YEAR, Numbers$NUMB_VEHC)
+```
+
+Upon calculation, we see that the correlation is **positive**, though slight
+**(cor = 0.02)**. This data suggests that there is an **increase** in Number of
+Cars Involved in an Individual Crash per Year from 2013 to 2022. This
+statistic simply suggests that there is a correlation and *correlation
+does not imply causation*.
+
+### Yearly Averages
+Below we see the average number of cars involved per crash by year from
+2013 to 2022. We see the lowest averages in 2013 and 2020 with a peak in
+2019. The lowest average in 2020 can be explained likely by fewer cars
+driving, lower density in traffic patterns due to the pandemic. However,
+I am not sure I have the traffic data to explore this phenomenon, and for now this is
+simply a guess.
+
+```{r}
+#1.b
+avgs <- Numbers %>% 
+        group_by(YEAR) %>% 
+        summarise(mean(NUMB_VEHC), 
+                  sd(NUMB_VEHC), 
+                  n())
+
+colnames(avgs) <- c("Year", "Y_bar_V", "s_V", "n_V")
+avgs %>%
+  kbl(caption = "Y bar, standard deviation, and n for Number of Cars Involved per Crash by Year") %>%
+  kable_classic() 
+
+#need to calculate avgs. Numb Vehc = count + Numb Vehc*count.... /Totalct == Year avgs
+#Avg# of cars per year
+summarytools::descr(Numbers)
+# ^ This one is the winner
+
+```
+
+### Probability Plots
+
+The plot of this probability distribution function (PDF) shows the probability that an individual crashe would involve X number of cars.
+
+```{r}
+#PDF
+pdf <- dnorm(Numbers$NUMB_VEHC, mean(Numbers$NUMB_VEHC), sd(Numbers$NUMB_VEHC))
+plot(Numbers$NUMB_VEHC, pdf, main="Probability Distribution Function",
+        xlab="Number of Cars Involved per Individual Crash",
+        ylab="PDF")
+```
+This plot demonstrates the **positive skew** of the distribution with a long right tail. This demonstrates the positive skew of 1.71 as seen in the above Descriptive Statistics table. 
+
+The tail is quite heavy and would be considered **leptokurtic**. The heaviness of this tail is recorded in the table above at 12.35.
+
+The positive skew and heavy tail are to be expected as most crashes fall within 1-3 cars involved per individual crash. Crashes with more cars involved are distributed across the long heavy tail. 
+
+```{r}
+#CDF
+ggplot(Numbers, aes(NUMB_VEHC)) +
+  stat_ecdf(geom = "point", pad = TRUE) + labs(title = "Cumulative Distribution Function", y = "CDF", x = "Number of Cars Involved per Individual Crash")
+
+```
+
+The cumulative distribution function (CDF) plot shows the cumulative probability for a given x-value, or number of Cars per individual crash. The CDF here shows that 
+
++ very few crashes involve zero cars
+
++ less than 25% involve 1 car or 0 cars
+
++ a little more than 80% of crashes involve 2 cars, 1 car or zero cars
+ 
++ about 99% of crashes involve 0-4 cars
+
+
+```{r}
+# Split Variables into Years (2013:2022)
+year2013 <- avgs %>% dplyr::filter(Year == 2013)
+year2014 <- avgs %>% dplyr::filter(Year == 2014)
+year2015 <- avgs %>% dplyr::filter(Year == 2015)
+year2016 <- avgs %>% dplyr::filter(Year == 2016)
+year2017 <- avgs %>% dplyr::filter(Year == 2017)
+year2018 <- avgs %>% dplyr::filter(Year == 2018)
+year2019 <- avgs %>% dplyr::filter(Year == 2019)
+year2020 <- avgs %>% dplyr::filter(Year == 2020)
+year2021 <- avgs %>% dplyr::filter(Year == 2021)
+year2022 <- avgs %>% dplyr::filter(Year == 2022) 
+
+# Rename Columns of Splits
+colnames(year2013) <- c("Year", "Y_bar_2013", "s_2013", "n_2013")
+colnames(year2014) <- c("Year", "Y_bar_2014", "s_2014", "n_2014")
+colnames(year2015) <- c("Year", "Y_bar_2015", "s_2015", "n_2015")
+colnames(year2016) <- c("Year", "Y_bar_2016", "s_2016", "n_2016")
+colnames(year2017) <- c("Year", "Y_bar_2017", "s_2017", "n_2017")
+colnames(year2018) <- c("Year", "Y_bar_2018", "s_2018", "n_2018")
+colnames(year2019) <- c("Year", "Y_bar_2019", "s_2019", "n_2019")
+colnames(year2020) <- c("Year", "Y_bar_2020", "s_2020", "n_2020")
+colnames(year2021) <- c("Year", "Y_bar_2021", "s_2021", "n_2021")
+colnames(year2022) <- c("Year", "Y_bar_2022", "s_2022", "n_2022")
+
+
+#largest intervals?
+gap_2013_2022 <- year2022$Y_bar_2022 - year2013$Y_bar_2013
+gap_2013_2022_se <- sqrt(year2022$s_2022^2/year2022$n_2022 + year2013$s_2013^2/year2013$n_2013)
+gap_2013_2022_ci_l <- gap_2013_2022 - 1.96* gap_2013_2022_se
+gap_2013_2022_ci_u <- gap_2013_2022 + 1.96 * gap_2013_2022_se
+
+gap_2013_2019 <- year2019$Y_bar_2019 - year2013$Y_bar_2013
+gap_2013_2019_se <- sqrt(year2019$s_2019^2/year2019$n_2019 + year2013$s_2013^2/year2013$n_2013)
+gap_2013_2019_ci_l <- gap_2013_2019 - 1.96* gap_2013_2019_se
+gap_2013_2019_ci_u <- gap_2013_2019 + 1.96 * gap_2013_2019_se
+
+#2013-2014, repeat 1 year intervals
+gap_2013_2014 <- year2014$Y_bar_2014 - year2013$Y_bar_2013
+gap_2013_2014_se <- sqrt(year2014$s_2014^2/year2014$n_2014 + year2013$s_2013^2/year2013$n_2013)
+gap_2013_2014_ci_l <- gap_2013_2014 - 1.96* gap_2013_2014_se
+gap_2013_2014_ci_u <- gap_2013_2014 + 1.96 * gap_2013_2014_se
+
+gap_2014_2015 <- year2015$Y_bar_2015 - year2014$Y_bar_2014
+gap_2014_2015_se <- sqrt(year2015$s_2015^2/year2015$n_2015 + year2014$s_2014^2/year2014$n_2014)
+gap_2014_2015_ci_l <- gap_2014_2015 - 1.96* gap_2014_2015_se
+gap_2014_2015_ci_u <- gap_2014_2015 + 1.96 * gap_2014_2015_se
+
+gap_2015_2016 <- year2016$Y_bar_2016 - year2015$Y_bar_2015
+gap_2015_2016_se <- sqrt(year2016$s_2016^2/year2016$n_2016 + year2015$s_2015^2/year2015$n_2015)
+gap_2015_2016_ci_l <- gap_2015_2016 - 1.96* gap_2015_2016_se
+gap_2015_2016_ci_u <- gap_2015_2016 + 1.96 * gap_2015_2016_se
+
+gap_2016_2017 <- year2017$Y_bar_2017 - year2016$Y_bar_2016
+gap_2016_2017_se <- sqrt(year2017$s_2017^2/year2017$n_2017 + year2016$s_2016^2/year2016$n_2016)
+gap_2016_2017_ci_l <- gap_2016_2017 - 1.96* gap_2016_2017_se
+gap_2016_2017_ci_u <- gap_2016_2017 + 1.96 * gap_2016_2017_se
+
+gap_2017_2018 <- year2018$Y_bar_2018 - year2017$Y_bar_2017
+gap_2017_2018_se <- sqrt(year2018$s_2018^2/year2018$n_2018 + year2017$s_2017^2/year2017$n_2017)
+gap_2017_2018_ci_l <- gap_2017_2018 - 1.96* gap_2017_2018_se
+gap_2017_2018_ci_u <- gap_2017_2018 + 1.96 * gap_2017_2018_se
+
+gap_2018_2019 <- year2019$Y_bar_2019 - year2018$Y_bar_2018
+gap_2018_2019_se <- sqrt(year2019$s_2019^2/year2019$n_2019 + year2018$s_2018^2/year2018$n_2018)
+gap_2018_2019_ci_l <- gap_2018_2019 - 1.96* gap_2018_2019_se
+gap_2018_2019_ci_u <- gap_2018_2019 + 1.96 * gap_2018_2019_se
+
+gap_2019_2020 <- year2020$Y_bar_2020 - year2019$Y_bar_2019
+gap_2019_2020_se <- sqrt(year2020$s_2020^2/year2020$n_2020 + year2019$s_2019^2/year2019$n_2019)
+gap_2019_2020_ci_l <- gap_2019_2020 - 1.96* gap_2019_2020_se
+gap_2019_2020_ci_u <- gap_2019_2020 + 1.96 * gap_2019_2020_se
+
+gap_2020_2021 <- year2021$Y_bar_2021 - year2020$Y_bar_2020
+gap_2020_2021_se <- sqrt(year2021$s_2021^2/year2021$n_2021 + year2020$s_2020^2/year2020$n_2020)
+gap_2020_2021_ci_l <- gap_2020_2021 - 1.96* gap_2020_2021_se
+gap_2020_2021_ci_u <- gap_2020_2021 + 1.96 * gap_2020_2021_se
+
+gap_2021_2022 <- year2022$Y_bar_2022 - year2021$Y_bar_2021
+gap_2021_2022_se <- sqrt(year2022$s_2022^2/year2022$n_2022 + year2021$s_2021^2/year2021$n_2021)
+gap_2021_2022_ci_l <- gap_2021_2022 - 1.96* gap_2021_2022_se
+gap_2021_2022_ci_u <- gap_2021_2022 + 1.96 * gap_2021_2022_se
+```
+
+```{r}
+result2013_2022 <- cbind(year2013[], year2022[], gap_2013_2022, gap_2013_2022_ci_l, gap_2013_2022_ci_u, gap_2013_2022_se)
+result2013_2019 <- cbind(year2013[], year2019[], gap_2013_2019, gap_2013_2019_ci_l, gap_2013_2019_ci_u, gap_2013_2019_se)
+
+result2013_2014 <- cbind(year2013[], year2014[], gap_2013_2014, gap_2013_2014_ci_l, gap_2013_2014_ci_u, gap_2013_2014_se)
+result2014_2015 <- cbind(year2014[], year2015[], gap_2014_2015, gap_2014_2015_ci_l, gap_2014_2015_ci_u, gap_2014_2015_se)
+result2015_2016 <- cbind(year2015[], year2016[], gap_2015_2016, gap_2015_2016_ci_l, gap_2015_2016_ci_u, gap_2015_2016_se)
+result2016_2017 <- cbind(year2016[], year2017[], gap_2016_2017, gap_2016_2017_ci_l, gap_2016_2017_ci_u, gap_2016_2017_se)
+result2017_2018 <- cbind(year2017[], year2018[], gap_2017_2018, gap_2017_2018_ci_l, gap_2017_2018_ci_u, gap_2017_2018_se)
+result2018_2019 <- cbind(year2018[], year2019[], gap_2018_2019, gap_2018_2019_ci_l, gap_2018_2019_ci_u, gap_2018_2019_se)
+result2019_2020 <- cbind(year2019[], year2020[], gap_2019_2020, gap_2019_2020_ci_l, gap_2019_2020_ci_u, gap_2019_2020_se)
+result2020_2021 <- cbind(year2020[], year2021[], gap_2020_2021, gap_2020_2021_ci_l, gap_2020_2021_ci_u, gap_2020_2021_se)
+result2021_2022 <- cbind(year2021[], year2022[], gap_2021_2022, gap_2021_2022_ci_l, gap_2021_2022_ci_u, gap_2021_2022_se)
+
+colnames(result2013_2014) <- c("Year_A", "Y_bar_A", "sd_A", "n_A", "Year_B", "Y_bar_B", "sd_B", "n_B", "gap_A_B", "gap_A_B_se", "gap_A_B_ci_l", "gap_A_B_ci_U")
+colnames(result2014_2015) <- c("Year_A", "Y_bar_A", "sd_A", "n_A", "Year_B", "Y_bar_B", "sd_B", "n_B", "gap_A_B", "gap_A_B_se", "gap_A_B_ci_l", "gap_A_B_ci_U")
+colnames(result2015_2016) <- c("Year_A", "Y_bar_A", "sd_A", "n_A", "Year_B", "Y_bar_B", "sd_B", "n_B", "gap_A_B", "gap_A_B_se", "gap_A_B_ci_l", "gap_A_B_ci_U")
+colnames(result2016_2017) <- c("Year_A", "Y_bar_A", "sd_A", "n_A", "Year_B", "Y_bar_B", "sd_B", "n_B", "gap_A_B", "gap_A_B_se", "gap_A_B_ci_l", "gap_A_B_ci_U")
+colnames(result2017_2018) <- c("Year_A", "Y_bar_A", "sd_A", "n_A", "Year_B", "Y_bar_B", "sd_B", "n_B", "gap_A_B", "gap_A_B_se", "gap_A_B_ci_l", "gap_A_B_ci_U")
+colnames(result2018_2019) <- c("Year_A", "Y_bar_A", "sd_A", "n_A", "Year_B", "Y_bar_B", "sd_B", "n_B", "gap_A_B", "gap_A_B_se", "gap_A_B_ci_l", "gap_A_B_ci_U")
+colnames(result2019_2020) <- c("Year_A", "Y_bar_A", "sd_A", "n_A", "Year_B", "Y_bar_B", "sd_B", "n_B", "gap_A_B", "gap_A_B_se", "gap_A_B_ci_l", "gap_A_B_ci_U")
+colnames(result2020_2021) <- c("Year_A", "Y_bar_A", "sd_A", "n_A", "Year_B", "Y_bar_B", "sd_B", "n_B", "gap_A_B", "gap_A_B_se", "gap_A_B_ci_l", "gap_A_B_ci_U")
+colnames(result2021_2022) <- c("Year_A", "Y_bar_A", "sd_A", "n_A", "Year_B", "Y_bar_B", "sd_B", "n_B", "gap_A_B", "gap_A_B_se", "gap_A_B_ci_l", "gap_A_B_ci_U")
+colnames(result2013_2019) <- c("Year_A", "Y_bar_A", "sd_A", "n_A", "Year_B", "Y_bar_B", "sd_B", "n_B", "gap_A_B", "gap_A_B_se", "gap_A_B_ci_l", "gap_A_B_ci_U")
+colnames(result2013_2022) <- c("Year_A", "Y_bar_A", "sd_A", "n_A", "Year_B", "Y_bar_B", "sd_B", "n_B", "gap_A_B", "gap_A_B_se", "gap_A_B_ci_l", "gap_A_B_ci_U")
+
+```
+
+### Statistical Analysis - Gaps, Standard Error, and Confidence Intervals
+
+Yearly Change in Number of Cars per Crash
+
+-   The "gap_A_B" column represents the difference in the average number
+    of cars per crash between the years represented in columns "Year_A"
+    and "Year_B".
+
+-   Positive values indicate an increase in the number of car crashes
+    from Year A to Year B while a negative value indicates a decrease.
+
+Standard Error and Confidence Intervals
+
+-   The "gap_A_B_se" column represents the standard error associated
+    with the estimated yearly change.
+
+-   The "gap_A_B_ci_l" and "gap_A_B_ci_U" columns represent the lower
+    and upper bounds of the confidence interval for the estimated yearly
+    change.
+
+-   These confidence intervals give a range (lower and upper) within
+    which the true yearly change is likely to fall within a certain
+    level of confidence (in this analysis, 95% confidence).
+
+
+```{r}
+list_df = list(result2013_2014, result2014_2015, result2015_2016, result2016_2017, result2017_2018, result2018_2019, result2019_2020, result2020_2021, result2021_2022, result2013_2019, result2013_2022)
+
+all <- list_df %>%
+ reduce(full_join, by= c("Year_A", "Y_bar_A", "sd_A", "n_A", "Year_B", "Y_bar_B", "sd_B", "n_B", "gap_A_B", "gap_A_B_se", "gap_A_B_ci_l", "gap_A_B_ci_U"))
+
+col_order <- c("Year_A", "Year_B", "Y_bar_A", "Y_bar_B", "sd_A", "sd_B", "n_A", "n_B", "gap_A_B", "gap_A_B_se", "gap_A_B_ci_l", "gap_A_B_ci_U")
+allb <- all[, col_order]
+
+allb %>%
+  kbl(digits = 3, caption = "Yearly Change in Number of Cars per Individual Crash") %>%
+  kable_classic() %>%
+    column_spec(9, bold = T) %>%
+  row_spec(10:11, color = "black", background = "#B7DFF6")
+
+```
+Overall, from 2013 to 2022 within a **95% level of confidence**, the true
+yearly change in number of cars per crash is likely to be between **0.081
+and 0.017**.
+
+We see a slightly higher true yearly change from 2013 to 2019 (pre-pandemic) with **0.129 and 0.016**. This may more accurately represent crash data as the pandemic was a once in 100 years *fingers crossed* experience. 
+
+
+### Simple Linear Regression
+
+```{r}
+# estimate the model and assign the result to linear_model
+Numbers %>%
+  ggplot( aes(x=YEAR, y=NUMB_VEHC)) +
+    geom_point() +  geom_jitter() +  geom_smooth(method = "lm") + scale_x_continuous(breaks=pretty_breaks()) + labs(y = "Number of Cars Involved per Individual Crash", x = "Year", title = str_wrap("Crashes in Boston by Number of Cars Involved per Crash with Linear Model", width = 60))
+```
+The above plot is the same as we saw earlier in this analysis. It captures all of the individual crashes from 2013-2022 with each dot representing the number of Cars involved in each crash. 
+
+The blue line represents the systematic relationship between Year and Number of Cars per Individual Car Crash. 
+
+From this perspective it is difficult to see the uniqueness of the line. It almost looks straight, but if you look sharply you can see a slight increase from 2013 to 2022.
+
+
+```{r}
+Numbers %>%
+  ggplot( aes(x=YEAR, y=NUMB_VEHC)) +
+    geom_point() + geom_smooth(method = "lm") +  geom_jitter() + coord_cartesian(ylim = c(1.9, 2.0)) + labs(y = "Number of Cars Involved per Individual Crash", x = "Year", title = str_wrap("ZOOMED - Crashes in Boston by Number of Cars Involved per Crash with Linear Model", width = 60)) + scale_x_continuous(breaks=pretty_breaks()) 
+```
+Here we have the same graph, but **zoomed** in, with y parameters (1.9, 2), to the line in question . This graph more acutely visualizes the systematic line. 
+
+#### Linear Model Summary
+
+```{r}
+attach(Numbers) 
+mod_summary <- summary( lm(NUMB_VEHC ~ YEAR))
+mod_summary
+```
+#### Interpretation
+
+Beta_0 is the intercept parameter of the population regression line at
+-8.810883
+
+Beta_1 is the slope parameter of the population regression line at
+0.005339553
+
+What this data tells us is that, each year is associated with a .0053 "car" increase in number of cars involved in a crash on average. 
+
++ In 5 years, there will be a (.0053 * 5) =  .0265 "car" increase in number of cars involved in a crash on average.
+
++ In 10 years, there will be a (.0053 * 10) = .053 "car" increase in number of cars involved in a crash on average.
+
+The linear regression model suggests that while the Year variable is **statistically significant**, it has a very **weak effect** on the Number of Cars Involved per Individual Crash variable. 
+
+The passage of time only explains a small proportion of the variance in Number of Cars Involved per Individual Crash and therefore is not a strong predictor.
+
++ The p-values are significant because they are both less than .05. 
+
++ The small p-value rejects the Null Hypothesis.
+
+R-squared measures the goodness of fit, or rather measures the percentage of variation of y that is linearly explained by the variations of x's. With an **R-squared value of 0.0004016**, we can see that x (YEAR) is **not a good fit** for measuring y (Number of Cars Involved per Individual Crash).
+
+F-statistic is a measure which assess overall significance of a linear regression model. It is calculated by taking the ratio of the explained variation to the unexplained variation and adjusting for degrees of freedom. 
+R2/(1-R2)* (n-k-1)/k
+
++ The F-statistic with a value of 16.19 and an associated p-value of 5.745e-05, indicate the regression is statistically significant, with strong evidence to suggest that the model as a whole has explanatory power and there is evidence of a relationship between Number of cars Involved per Individual Crash and Year.
+
+
+### Next steps...
+
+Our analysis demonstrates a need for more factors and variables to understand the relationship of Number of Cars Involved per Individual Crash and Year.
+
+Below are potential variables that should be considered moving forward with multivariate analysis.
+
+Available within the DOT dataset:
+
++ Time of Day
+
++ Weather
+
++ Type of crash - are rear-ends the culprit of multiple car crashs or side-swipes?
+
+
+Outside of the DOT dataset:
+
++ Size increase in cars
+
++ Increase in cars driving through Boston in general
+
++ Decrease in people taking public transit
