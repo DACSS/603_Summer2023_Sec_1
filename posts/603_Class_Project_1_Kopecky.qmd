@@ -30,20 +30,21 @@ library(readr)
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 1 Import Data and Descriptive Analysis
+## 1 Import Data and Descriptive Analysis
+This dataset is from the General Social Survey (GSS) which has conducted research from 1972 on American Society. There are 15266 obervations (rows) with 6 variables (columns). The variables are *year*, *age*, *gender*, *race*, *fehelp*, and *era*. 
+
+For variable *fehelp*, repsondents state whether they 1=Strongly Agree to 4 = Strongly Disagree with the statement, "It is more for a wife to help her husband's career than to have one herself." 
+
+For *era*, repsondents state whether they 1=Strongly Favor to 4 = Strongly Oppose the Equal Rights Amendment (ERA). 
+
+This project will look at the two variables *fehelp* and *year* but possibly explore the others. One question to ask is how has the level of agreement for *fehelp* changed over time.  
+
+This seems to be a relevent question today as the Covid-19 pandemic highlighted the stress of balancing family and work. The National Women's Law Center (2022) states women left the workforce at a disproportionate rate and have not yet recovered. This is a concern because of lost skills, wages, and earning potential. https://nwlc.org/wp-content/uploads/2022/03/FINAL-NWLC-Resilient-But-Not-Recovered-3.29.22.pdf
+
+Additionally, the BBC (2023) reports, "Researchers for Deloitte’s Women @ Work 2023 report surveyed 5,000 women across 10 countries, 98% of whom were in heterosexual relationships. The data found that nearly 40% of respondents say their partner’s career takes precedence. They cited several reasons, ranging from financial and social factors to the burden of caretaking and household responsibilities. https://www.bbc.com/worklife/article/20230620-why-many-women-prioritise-their-partners-jobs
 
 ```{r}
-# This dataset is from the General Social Survey (GSS) which has conducted research from 1972 on American Society. There are 15266 obervations (rows) with 6 variables (columns). The variables are *year*, *age*, *gender*, *race*, *fehelp*, and *era*. 
 
-# For variable *fehelp*, repsondents state whether they 1=Strongly Agree to 4 = Strongly Disagree with the statement, "It is more for a wife to help her husband's career than to have one herself." 
-
-# For *era*, repsondents state whether they 1=Strongly Favor to 4 = Strongly Oppose the Equal Rights Amendment (ERA). 
-
-# This project will look at the two variables *fehelp* and *year* but possibly explore the others. One question to ask is how has the level of agreement for *fehelp* changed over time.  
-
-# This seems to be a relevent question today as the Covid-19 pandemic highlighted the stress of balancing family and work. The National Women's Law Center (2022) states women left the workforce at a disproportionate rate and have not yet recovered. This is a concern because of lost skills, wages, and earning potential. https://nwlc.org/wp-content/uploads/2022/03/FINAL-NWLC-Resilient-But-Not-Recovered-3.29.22.pdf
-
-# Additionally, the BBC (2023) reports, "Researchers for Deloitte’s Women @ Work 2023 report surveyed 5,000 women across 10 countries, 98% of whom were in heterosexual relationships. The data found that nearly 40% of respondents say their partner’s career takes precedence. They cited several reasons, ranging from financial and social factors to the burden of caretaking and household responsibilities. https://www.bbc.com/worklife/article/20230620-why-many-women-prioritise-their-partners-jobs
 GSS <- read_csv("Nanci_datafolder/GSS.csv")
 GSS
 head(GSS)
@@ -61,7 +62,7 @@ GSSI <- GSS %>%
 head(GSSI)
 ```
 
-# 1i Density Functions
+## 1i Density Functions
 
 ```{r}
 # Opinion on Husband's Career Pdf vs. Histogram
@@ -110,7 +111,7 @@ plot(cdf_fehelp,
      main = "Cumulative Probability Distribution")
 ```
 
-# 1ii-iv Descriptive Statistics
+## 1ii-iv Descriptive Statistics
 
 ```{r}
 # Opinion on Husband's Career grouped by year.  This table displays the mean, median, standard deviation and confidence intervals for *fehelpI* The mean level of agreement about making the husband's career a priority changed from 3=Agree to 2=Disagree and the standard deviation changed from 0.80 in 1972 to 0.74 in 1996. 
@@ -122,7 +123,7 @@ GSSI %>% group_by(year) %>%
             ci_upper_fehelpI = t.test(fehelpI)$conf.int[2])
 ```
 
-# Descriptive Statistics continued
+## Descriptive Statistics continued
 
 ```{r}
 # Frequency and proportion tables of level of aggreement for *fehelpI* grouped by year
@@ -130,7 +131,7 @@ table(GSSI$year, GSSI$fehelpI)
 prop.table(table(GSSI$year, GSSI$fehelpI)) %>% {.*100} %>% round(2)
 ```
 
-# Tidy data for scatterplot and linear regression
+## Tidy data for scatterplot and linear regression
 
 ```{r}
 # Changing from numeric to character data
@@ -150,7 +151,7 @@ str(GSSI_era)
 dim(GSSI_era)
 ```
 
-# 1v. Scatterplot
+## 1v. Scatterplot
 
 ```{r}
 # *era* is the dependent variable and *fehelpI* is the independent variable.  The position_jitter function was used to visualize the overlapping points. 
@@ -163,7 +164,7 @@ plot(GSSI_era$eraI,GSSI_era$fehelpI,main="Scatterplot")
 abline(eraxfehelpI)
 ```
 
-# 2 Linear Regression
+## 2 Linear Regression
 
 ```{r}
 eraxfehelpI <- lm(GSSI_era$eraI~GSSI_era$fehelpI)
