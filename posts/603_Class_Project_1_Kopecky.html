@@ -101,6 +101,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <meta name="twitter:title" content="603 Class Project 1">
+<meta name="twitter:description" content="">
 <meta name="twitter:image" content="https://dacss.github.io/603_Summer2023_Sec_1/posts/603_Class_Project_1_Kopecky_files/figure-html/unnamed-chunk-4-1.png">
 <meta name="twitter:creator" content="@UMassDACSS">
 <meta name="twitter:site" content="@UMassDACSS">
@@ -224,23 +225,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<section id="import-data-and-descriptive-analysis" class="level1">
-<h1>1 Import Data and Descriptive Analysis</h1>
+<section id="import-data-and-descriptive-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="import-data-and-descriptive-analysis">1 Import Data and Descriptive Analysis</h2>
+<p>This dataset is from the General Social Survey (GSS) which has conducted research from 1972 on American Society. There are 15266 obervations (rows) with 6 variables (columns). The variables are <em>year</em>, <em>age</em>, <em>gender</em>, <em>race</em>, <em>fehelp</em>, and <em>era</em>.</p>
+<p>For variable <em>fehelp</em>, repsondents state whether they 1=Strongly Agree to 4 = Strongly Disagree with the statement, “It is more for a wife to help her husband’s career than to have one herself.”</p>
+<p>For <em>era</em>, repsondents state whether they 1=Strongly Favor to 4 = Strongly Oppose the Equal Rights Amendment (ERA).</p>
+<p>This project will look at the two variables <em>fehelp</em> and <em>year</em> but possibly explore the others. One question to ask is how has the level of agreement for <em>fehelp</em> changed over time.</p>
+<p>This seems to be a relevent question today as the Covid-19 pandemic highlighted the stress of balancing family and work. The National Women’s Law Center (2022) states women left the workforce at a disproportionate rate and have not yet recovered. This is a concern because of lost skills, wages, and earning potential. https://nwlc.org/wp-content/uploads/2022/03/FINAL-NWLC-Resilient-But-Not-Recovered-3.29.22.pdf</p>
+<p>Additionally, the BBC (2023) reports, “Researchers for Deloitte’s Women @ Work 2023 report surveyed 5,000 women across 10 countries, 98% of whom were in heterosexual relationships. The data found that nearly 40% of respondents say their partner’s career takes precedence. They cited several reasons, ranging from financial and social factors to the burden of caretaking and household responsibilities. https://www.bbc.com/worklife/article/20230620-why-many-women-prioritise-their-partners-jobs</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This dataset is from the General Social Survey (GSS) which has conducted research from 1972 on American Society. There are 15266 obervations (rows) with 6 variables (columns). The variables are *year*, *age*, *gender*, *race*, *fehelp*, and *era*. </span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># For variable *fehelp*, repsondents state whether they 1=Strongly Agree to 4 = Strongly Disagree with the statement, "It is more for a wife to help her husband's career than to have one herself." </span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># For *era*, repsondents state whether they 1=Strongly Favor to 4 = Strongly Oppose the Equal Rights Amendment (ERA). </span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># This project will look at the two variables *fehelp* and *year* but possibly explore the others. One question to ask is how has the level of agreement for *fehelp* changed over time.  </span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># This seems to be a relevent question today as the Covid-19 pandemic highlighted the stress of balancing family and work. The National Women's Law Center (2022) states women left the workforce at a disproportionate rate and have not yet recovered. This is a concern because of lost skills, wages, and earning potential. https://nwlc.org/wp-content/uploads/2022/03/FINAL-NWLC-Resilient-But-Not-Recovered-3.29.22.pdf</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Additionally, the BBC (2023) reports, "Researchers for Deloitte’s Women @ Work 2023 report surveyed 5,000 women across 10 countries, 98% of whom were in heterosexual relationships. The data found that nearly 40% of respondents say their partner’s career takes precedence. They cited several reasons, ranging from financial and social factors to the burden of caretaking and household responsibilities. https://www.bbc.com/worklife/article/20230620-why-many-women-prioritise-their-partners-jobs</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>GSS <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"Nanci_datafolder/GSS.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>GSS <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"Nanci_datafolder/GSS.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 15266 Columns: 6
@@ -320,8 +316,8 @@ dbl (5): year, age, sex, race, fehelp
 </div>
 </div>
 </section>
-<section id="i-density-functions" class="level1">
-<h1>1i Density Functions</h1>
+<section id="i-density-functions" class="level2">
+<h2 class="anchored" data-anchor-id="i-density-functions">1i Density Functions</h2>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -407,8 +403,8 @@ dbl (5): year, age, sex, race, fehelp
 </div>
 </div>
 </section>
-<section id="ii-iv-descriptive-statistics" class="level1">
-<h1>1ii-iv Descriptive Statistics</h1>
+<section id="ii-iv-descriptive-statistics" class="level2">
+<h2 class="anchored" data-anchor-id="ii-iv-descriptive-statistics">1ii-iv Descriptive Statistics</h2>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -439,8 +435,8 @@ dbl (5): year, age, sex, race, fehelp
 </div>
 </div>
 </section>
-<section id="descriptive-statistics-continued" class="level1">
-<h1>Descriptive Statistics continued</h1>
+<section id="descriptive-statistics-continued" class="level2">
+<h2 class="anchored" data-anchor-id="descriptive-statistics-continued">Descriptive Statistics continued</h2>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -483,8 +479,8 @@ dbl (5): year, age, sex, race, fehelp
 </div>
 </div>
 </section>
-<section id="tidy-data-for-scatterplot-and-linear-regression" class="level1">
-<h1>Tidy data for scatterplot and linear regression</h1>
+<section id="tidy-data-for-scatterplot-and-linear-regression" class="level2">
+<h2 class="anchored" data-anchor-id="tidy-data-for-scatterplot-and-linear-regression">Tidy data for scatterplot and linear regression</h2>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -543,8 +539,8 @@ dbl (5): year, age, sex, race, fehelp
 </div>
 </div>
 </section>
-<section id="v.-scatterplot" class="level1">
-<h1>1v. Scatterplot</h1>
+<section id="v.-scatterplot" class="level2">
+<h2 class="anchored" data-anchor-id="v.-scatterplot">1v. Scatterplot</h2>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -574,8 +570,8 @@ dbl (5): year, age, sex, race, fehelp
 </div>
 </div>
 </section>
-<section id="linear-regression" class="level1">
-<h1>2 Linear Regression</h1>
+<section id="linear-regression" class="level2">
+<h2 class="anchored" data-anchor-id="linear-regression">2 Linear Regression</h2>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -1067,20 +1063,20 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb45-32"><a href="#cb45-32" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb45-33"><a href="#cb45-33" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb45-34"><a href="#cb45-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-35"><a href="#cb45-35" aria-hidden="true" tabindex="-1"></a><span class="fu"># 1 Import Data and Descriptive Analysis</span></span>
-<span id="cb45-36"><a href="#cb45-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-39"><a href="#cb45-39" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb45-40"><a href="#cb45-40" aria-hidden="true" tabindex="-1"></a><span class="co"># This dataset is from the General Social Survey (GSS) which has conducted research from 1972 on American Society. There are 15266 obervations (rows) with 6 variables (columns). The variables are *year*, *age*, *gender*, *race*, *fehelp*, and *era*. </span></span>
+<span id="cb45-35"><a href="#cb45-35" aria-hidden="true" tabindex="-1"></a><span class="fu">## 1 Import Data and Descriptive Analysis</span></span>
+<span id="cb45-36"><a href="#cb45-36" aria-hidden="true" tabindex="-1"></a>This dataset is from the General Social Survey (GSS) which has conducted research from 1972 on American Society. There are 15266 obervations (rows) with 6 variables (columns). The variables are *year*, *age*, *gender*, *race*, *fehelp*, and *era*. </span>
+<span id="cb45-37"><a href="#cb45-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-38"><a href="#cb45-38" aria-hidden="true" tabindex="-1"></a>For variable *fehelp*, repsondents state whether they 1=Strongly Agree to 4 = Strongly Disagree with the statement, "It is more for a wife to help her husband's career than to have one herself." </span>
+<span id="cb45-39"><a href="#cb45-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-40"><a href="#cb45-40" aria-hidden="true" tabindex="-1"></a>For *era*, repsondents state whether they 1=Strongly Favor to 4 = Strongly Oppose the Equal Rights Amendment (ERA). </span>
 <span id="cb45-41"><a href="#cb45-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-42"><a href="#cb45-42" aria-hidden="true" tabindex="-1"></a><span class="co"># For variable *fehelp*, repsondents state whether they 1=Strongly Agree to 4 = Strongly Disagree with the statement, "It is more for a wife to help her husband's career than to have one herself." </span></span>
+<span id="cb45-42"><a href="#cb45-42" aria-hidden="true" tabindex="-1"></a>This project will look at the two variables *fehelp* and *year* but possibly explore the others. One question to ask is how has the level of agreement for *fehelp* changed over time.  </span>
 <span id="cb45-43"><a href="#cb45-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-44"><a href="#cb45-44" aria-hidden="true" tabindex="-1"></a><span class="co"># For *era*, repsondents state whether they 1=Strongly Favor to 4 = Strongly Oppose the Equal Rights Amendment (ERA). </span></span>
+<span id="cb45-44"><a href="#cb45-44" aria-hidden="true" tabindex="-1"></a>This seems to be a relevent question today as the Covid-19 pandemic highlighted the stress of balancing family and work. The National Women's Law Center (2022) states women left the workforce at a disproportionate rate and have not yet recovered. This is a concern because of lost skills, wages, and earning potential. https://nwlc.org/wp-content/uploads/2022/03/FINAL-NWLC-Resilient-But-Not-Recovered-3.29.22.pdf</span>
 <span id="cb45-45"><a href="#cb45-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-46"><a href="#cb45-46" aria-hidden="true" tabindex="-1"></a><span class="co"># This project will look at the two variables *fehelp* and *year* but possibly explore the others. One question to ask is how has the level of agreement for *fehelp* changed over time.  </span></span>
+<span id="cb45-46"><a href="#cb45-46" aria-hidden="true" tabindex="-1"></a>Additionally, the BBC (2023) reports, "Researchers for Deloitte’s Women @ Work 2023 report surveyed 5,000 women across 10 countries, 98% of whom were in heterosexual relationships. The data found that nearly 40% of respondents say their partner’s career takes precedence. They cited several reasons, ranging from financial and social factors to the burden of caretaking and household responsibilities. https://www.bbc.com/worklife/article/20230620-why-many-women-prioritise-their-partners-jobs</span>
 <span id="cb45-47"><a href="#cb45-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-48"><a href="#cb45-48" aria-hidden="true" tabindex="-1"></a><span class="co"># This seems to be a relevent question today as the Covid-19 pandemic highlighted the stress of balancing family and work. The National Women's Law Center (2022) states women left the workforce at a disproportionate rate and have not yet recovered. This is a concern because of lost skills, wages, and earning potential. https://nwlc.org/wp-content/uploads/2022/03/FINAL-NWLC-Resilient-But-Not-Recovered-3.29.22.pdf</span></span>
-<span id="cb45-49"><a href="#cb45-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-50"><a href="#cb45-50" aria-hidden="true" tabindex="-1"></a><span class="co"># Additionally, the BBC (2023) reports, "Researchers for Deloitte’s Women @ Work 2023 report surveyed 5,000 women across 10 countries, 98% of whom were in heterosexual relationships. The data found that nearly 40% of respondents say their partner’s career takes precedence. They cited several reasons, ranging from financial and social factors to the burden of caretaking and household responsibilities. https://www.bbc.com/worklife/article/20230620-why-many-women-prioritise-their-partners-jobs</span></span>
+<span id="cb45-50"><a href="#cb45-50" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb45-51"><a href="#cb45-51" aria-hidden="true" tabindex="-1"></a>GSS <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"Nanci_datafolder/GSS.csv"</span>)</span>
 <span id="cb45-52"><a href="#cb45-52" aria-hidden="true" tabindex="-1"></a>GSS</span>
 <span id="cb45-53"><a href="#cb45-53" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(GSS)</span>
@@ -1098,7 +1094,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb45-67"><a href="#cb45-67" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(GSSI)</span>
 <span id="cb45-68"><a href="#cb45-68" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb45-69"><a href="#cb45-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-70"><a href="#cb45-70" aria-hidden="true" tabindex="-1"></a><span class="fu"># 1i Density Functions</span></span>
+<span id="cb45-70"><a href="#cb45-70" aria-hidden="true" tabindex="-1"></a><span class="fu">## 1i Density Functions</span></span>
 <span id="cb45-71"><a href="#cb45-71" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb45-74"><a href="#cb45-74" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb45-75"><a href="#cb45-75" aria-hidden="true" tabindex="-1"></a><span class="co"># Opinion on Husband's Career Pdf vs. Histogram</span></span>
@@ -1147,7 +1143,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb45-122"><a href="#cb45-122" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Cumulative Probability Distribution"</span>)</span>
 <span id="cb45-123"><a href="#cb45-123" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb45-124"><a href="#cb45-124" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-125"><a href="#cb45-125" aria-hidden="true" tabindex="-1"></a><span class="fu"># 1ii-iv Descriptive Statistics</span></span>
+<span id="cb45-125"><a href="#cb45-125" aria-hidden="true" tabindex="-1"></a><span class="fu">## 1ii-iv Descriptive Statistics</span></span>
 <span id="cb45-126"><a href="#cb45-126" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb45-129"><a href="#cb45-129" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb45-130"><a href="#cb45-130" aria-hidden="true" tabindex="-1"></a><span class="co"># Opinion on Husband's Career grouped by year.  This table displays the mean, median, standard deviation and confidence intervals for *fehelpI* The mean level of agreement about making the husband's career a priority changed from 3=Agree to 2=Disagree and the standard deviation changed from 0.80 in 1972 to 0.74 in 1996. </span></span>
@@ -1159,7 +1155,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb45-136"><a href="#cb45-136" aria-hidden="true" tabindex="-1"></a>            <span class="at">ci_upper_fehelpI =</span> <span class="fu">t.test</span>(fehelpI)<span class="sc">$</span>conf.int[<span class="dv">2</span>])</span>
 <span id="cb45-137"><a href="#cb45-137" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb45-138"><a href="#cb45-138" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-139"><a href="#cb45-139" aria-hidden="true" tabindex="-1"></a><span class="fu"># Descriptive Statistics continued</span></span>
+<span id="cb45-139"><a href="#cb45-139" aria-hidden="true" tabindex="-1"></a><span class="fu">## Descriptive Statistics continued</span></span>
 <span id="cb45-140"><a href="#cb45-140" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb45-143"><a href="#cb45-143" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb45-144"><a href="#cb45-144" aria-hidden="true" tabindex="-1"></a><span class="co"># Frequency and proportion tables of level of aggreement for *fehelpI* grouped by year</span></span>
@@ -1167,7 +1163,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb45-146"><a href="#cb45-146" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(GSSI<span class="sc">$</span>year, GSSI<span class="sc">$</span>fehelpI)) <span class="sc">%&gt;%</span> {.<span class="sc">*</span><span class="dv">100</span>} <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">2</span>)</span>
 <span id="cb45-147"><a href="#cb45-147" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb45-148"><a href="#cb45-148" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-149"><a href="#cb45-149" aria-hidden="true" tabindex="-1"></a><span class="fu"># Tidy data for scatterplot and linear regression</span></span>
+<span id="cb45-149"><a href="#cb45-149" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tidy data for scatterplot and linear regression</span></span>
 <span id="cb45-150"><a href="#cb45-150" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb45-153"><a href="#cb45-153" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb45-154"><a href="#cb45-154" aria-hidden="true" tabindex="-1"></a><span class="co"># Changing from numeric to character data</span></span>
@@ -1187,7 +1183,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb45-168"><a href="#cb45-168" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(GSSI_era)</span>
 <span id="cb45-169"><a href="#cb45-169" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb45-170"><a href="#cb45-170" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-171"><a href="#cb45-171" aria-hidden="true" tabindex="-1"></a><span class="fu"># 1v. Scatterplot</span></span>
+<span id="cb45-171"><a href="#cb45-171" aria-hidden="true" tabindex="-1"></a><span class="fu">## 1v. Scatterplot</span></span>
 <span id="cb45-172"><a href="#cb45-172" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb45-175"><a href="#cb45-175" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb45-176"><a href="#cb45-176" aria-hidden="true" tabindex="-1"></a><span class="co"># *era* is the dependent variable and *fehelpI* is the independent variable.  The position_jitter function was used to visualize the overlapping points. </span></span>
@@ -1200,7 +1196,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb45-183"><a href="#cb45-183" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(eraxfehelpI)</span>
 <span id="cb45-184"><a href="#cb45-184" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb45-185"><a href="#cb45-185" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-186"><a href="#cb45-186" aria-hidden="true" tabindex="-1"></a><span class="fu"># 2 Linear Regression</span></span>
+<span id="cb45-186"><a href="#cb45-186" aria-hidden="true" tabindex="-1"></a><span class="fu">## 2 Linear Regression</span></span>
 <span id="cb45-187"><a href="#cb45-187" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb45-190"><a href="#cb45-190" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb45-191"><a href="#cb45-191" aria-hidden="true" tabindex="-1"></a>eraxfehelpI <span class="ot">&lt;-</span> <span class="fu">lm</span>(GSSI_era<span class="sc">$</span>eraI<span class="sc">~</span>GSSI_era<span class="sc">$</span>fehelpI)</span>
