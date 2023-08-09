@@ -1,0 +1,21 @@
+---
+title: "Class Project 2"
+author: "Qasim Abbas"
+desription: "Class Project 2"
+date: "08/08/2023"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - final project
+  - Qasim Abbas
+  - dplyr
+---
+
+```{r}
+library(dyplr)
+print("hi")
+```
