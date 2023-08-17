@@ -1,0 +1,279 @@
+---
+title: "Class Project Assignment 2"
+author: "Matt Eckstein"
+desription: "Religious Identification as Orthodox Christian vs. Approval of US Leadership in the World"
+date: "08/18/2023"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - Matt Eckstein
+---
+
+```{r}
+#| label: setup
+#| warning: false
+
+library(tidyverse)
+library(AER)
+library(dplyr)
+library(readxl)
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+
+
+
+# 1. Multiple regression models
+
+
+$$
+NetApprove_{i} = \beta_{0} + \beta _{1} × pctox
+$$
+
+$$
+NetApprove_{i} = \beta_{0} + \beta _{1} × pctox + \beta _{2} × netsentiment
+$$
+$$
+NetApprove_{i} = \beta_{0} + \beta _{1} × pctox + \beta _{2} × bordruua
+$$
+$$
+NetApprove_{i} = \beta_{0} + \beta _{1} × pctox + \beta _{2} × netsentiment + \beta _{3} × bordruua
+$$
+$$
+NetApprove_{i} = \beta_{0} + \beta _{1} × pctox + \beta _{2} × strongru
+$$
+$$
+NetApprove_{i} = \beta_{0} + \beta _{1} × pctox + \beta _{2} × closewest
+$$
+
+#2a. 
+
+```{r}
+
+data <- read_csv("Eckstein_data/Orthodoxy_and_US_leadership_cleaned.csv")
+data$pctox <- data$pctox * 100
+summary(data)
+
+```
+
+#2b. Customizing variable names
+
+```{r}
+#Most of my variable names are good as they are; though, here, I create and name additional variables that will be helpful in my analysis 
+
+# Create a vector to store the oxbucket values
+oxbucket <- character(length(data$pctox))
+
+# Assign values to oxbucket based on pctox
+oxbucket[data$pctox < 2] <- "<2%"
+oxbucket[data$pctox >= 2 & data$pctox < 5] <- "2-5%"
+oxbucket[data$pctox >= 5 & data$pctox < 10] <- "5-10%"
+oxbucket[data$pctox >= 10 & data$pctox < 25] <- "10-25%"
+oxbucket[data$pctox >= 25 & data$pctox < 50] <- "25-50%"
+oxbucket[data$pctox >= 50 & data$pctox < 75] <- "50-75%"
+oxbucket[data$pctox >= 75 & data$pctox < 100] <- "75-100%"
+
+# Add the oxbucket variable to the data frame
+data$oxbucket <- oxbucket
+
+avgs <- data %>%
+  group_by(bordruua, oxbucket) %>%
+  summarize(mean(netapprove),
+  sd(netapprove),
+  n())
+
+border <- avgs %>% dplyr::filter(bordruua == 1)
+noborder <- avgs %>% dplyr::filter(bordruua == 0)
+
+
+colnames(border) <- c("Border_war", "Percent_orthodox", "mean_net_approval", "SD_net_approval", "number")
+colnames(noborder) <- c("Border_war", "Percent_orthodox", "mean_net_approval", "SD_net_approval", "number")
+
+```
+
+#2c. Designating regressors and reporting means and SDs
+
+```{r}
+vars <- c("pctox", "netsentiment", "bordruua", "strongru", "closewest")
+
+cbind(allvars_mean = sapply(data[, vars], mean),
+allvars_sd = sapply(data[, vars], sd))
+
+```
+
+#2d. Basic linear equation
+
+```{r}
+
+model <- lm(data$netapprove ~ data$pctox)
+model
+summary(model)
+
+```
+
+#2e. (Prompt 2e is identical to prompt 2d; see answer 2d)
+
+#2f. Linear-log model
+
+```{r}
+Linearlog_model <- lm(netapprove ~ log(pctox), data = data)
+Linearlog_model
+summary(Linearlog_model)
+
+```
+
+#2g. Cubic model
+
+```{r}
+cubic_model <- lm(netapprove ~ I(pctox) + I(pctox^2) + I(pctox^3), data =
+data)
+cubic_model
+summary(cubic_model)
+
+```
+
+
+#2h. Plot the observations and add the linear, log-linear, and cubic models
+
+
+```{r}
+plot <- plot(data$pctox, data$netapprove,
+pch = 20,
+col = "steelblue",
+xlab = "Percent Orthodox",
+ylab = "Net Approval of US Leadership",
+xlim = c(0, 100),
+ylim = c(-100, 100))
+abline(model, lwd = 2)
+order_id <- order(data$pctox)
+lines(data$pctox[order_id],
+fitted(Linearlog_model)[order_id],
+col = "darkgreen",
+lwd = 2)
+lines(x = data$pctox[order_id],
+y = fitted(cubic_model)[order_id],
+col = "orange",
+lwd = 2)
+legend("topleft",
+legend = c("Linear", "Linear-Log", "Cubic"),
+lty = 1,
+col = c("Black", "darkgreen", "orange"))
+
+  
+```
+
+
+
+#3:
+
+Visually speaking, none of the three representations (linear, linear-log, or cubic) is drastically different from the other two. The linear and linear-log models are extremely similar except for a slight upward hook at the left side of the graph in the linear-log model, and this makes the model neither noticeably better nor noticeably worse than the linear model.
+
+The cubic model arguably follows the points slightly better than the other two models, but this is thanks to a dip in the model line at around 70% Orthodox that appears to be driven in large part by one point (Russia's) with the lowest net approval of US leadership of any country in the dataset. Given the apparent ability of the curve to be noticeably influenced by this single point, it is likely that this model is overfitted. As such, there is no apparent advantage to choosing a non-linear model for this analysis.
+
+
+#4a.
+
+```{r}
+
+model <- lm(data$netapprove ~ data$pctox)
+model2 <- lm(data$netapprove ~ data$pctox + data$netsentiment)
+model3 <- lm(data$netapprove ~ data$pctox + data$bordruua)
+model4 <- lm(data$netapprove ~ data$pctox + data$bordruua + data$netsentiment)
+model5 <- lm(data$netapprove ~ data$pctox + data$strongru)
+model6 <- lm(data$netapprove ~ data$pctox + data$closewest)
+print(model)
+print(model2)
+print(model3)
+print(model4)
+print(model5)
+print(model6)
+summary(model)
+summary(model2)
+summary(model3)
+summary(model4)
+summary(model5)
+summary(model6)
+
+```
+
+#4b.
+
+```{r}
+rob_se <- list(sqrt(diag(vcovHC(model, type = "HC1"))),
+sqrt(diag(vcovHC(model2, type = "HC1"))),
+sqrt(diag(vcovHC(model3, type = "HC1"))),
+sqrt(diag(vcovHC(model4, type = "HC1"))),
+sqrt(diag(vcovHC(model5, type = "HC1"))),
+sqrt(diag(vcovHC(model6, type = "HC1"))))
+
+```
+
+
+#4c. 
+
+```{r my latextable, results = "asis"}
+library(stargazer)
+stargazer(model, model2, model3,
+model4, model5, model6,
+title = "Regressions of Orthodox Christian Religious ID and Net Approval of US Leadership",
+type = "html",
+digits = 3,
+header = FALSE,
+se = rob_se,
+object.names = TRUE,
+model.numbers = FALSE,
+column.labels = c("(I)", "(II)", "(III)", "(IV)", "(V)", "(VI)"))
+
+```
+
+
+#4d. Linear hypothesis tests (F-tests) for each model:
+
+```{r}
+#Note the white.adjust robust fix for handling heteroskedasticity
+
+linearHypothesis(model, c("data$pctox=0"), white.adjust = "hc1")
+linearHypothesis(model2, c("data$netsentiment=0", "data$pctox=0"), white.adjust = "hc1")
+linearHypothesis(model3, c("data$bordruua=0", "data$pctox=0"), white.adjust = "hc1")
+linearHypothesis(model4, c("data$netsentiment=0", "data$pctox=0", "data$bordruua=0"), white.adjust = "hc1")
+linearHypothesis(model5, c("data$pctox=0", "data$strongru=0"), white.adjust = "hc1")
+linearHypothesis(model6, c("data$pctox=0", "data$closewest=0"), white.adjust = "hc1")
+
+
+```
+
+#5.
+
+I have examined the influence of the percentage of Eastern European countries' populations that identify as Orthodox Christian, as measured by Pew Research, on their populations' net approval of US leadership in the world (the difference between the share of people who expressed approval and the share who expressed disapproval), as measured by Gallup.
+
+I have considered a series of six models for examining contributing factors in this relationship:
+
+-model (I), which uses the percentage of countries' populations identifying as Orthodox (pctox) as the sole independent variable to explain variation in net approval of US leadership (netapprove)
+-model (II), which uses both pctox and netsentiment, a variable that measures the difference in each surveyed country between the percentages of respondents who agree with the statements "It is in our country's interest to work closely with the U.S. and other Western powers" and "A strong Russia is necessary to balance the influence of the West."
+-model (III), which uses both pctox and bordruua, a dummy variable that accounts for geographic proximity to the Russia-Ukraine conflict and takes the value 1 in countries that border Russia and/or Ukraine and 0 in countries that do not border either
+-model (IV), which uses pctox, netsentiment, and bordruua together
+-model (V), which uses pctox and strongru, a variable that codes for levels of agreement with the statement "A strong Russia is necessary to balance the influence of the West"
+-model (VI), which uses pctox and closewest, a variable that codes for levels of agreement with the statement "It is in our country's interest to work closely with the U.S. and other Western powers"
+
+I began this analysis hypothesizing that the share of countries' populations that identify as Orthodox would negatively predict public approval of US leadership, due to Russia's history as a major influence on public opinion in the Orthodox world and its use of Orthodox religious themes in anti-Western political propaganda attempting to justify actions such as its invasion of Ukraine. When I used pctox as my sole independent variable in model (I), it was negatively signed, but not statistically significant. In the other models where it was included alongside other variables, its sign was sometimes positive and sometimes negative, but it never attained statistical significance, meaning that I did not find evidence in favor of my initial hypothesis.
+
+I did find, though, that inclusion of the netsentiment variable measuring the difference between respondents' endorsement of the pro-Western statement and their endorsement of the pro-Russian statement resulted in its significance as a predictor of net approval of US leadership. Similarly, including the pro-Western statement or the pro-Russian statement alone without making any reference to the other also resulted in statistical significance as a predictor of net approval of US leadership. In model II, the coefficient on netsentiment of 1.361 was statistically significant at the 1% level, meaning that an increase in netsentiment of one percentage point, holding all else constant, led to an increase in US leadership approval of 1.361 percentage points and that there  was a less than one percent chance of the study finding a value at least as extreme as the one observed in the absence of a true relationship. In model IV, the coefficient on netsentiment was a very similar 1.385, also significant at the 1% level. Model V found that the coefficient on strongru, measuring agreement with the pro-Russian statement, was -1.555, and that this finding was also significant at the 1% level. This means that, if all other variables' values are held constant, increasing a surveyed country's agreement that a strong Russia is necessary to balance the West by one percentage point led to a 1.555 percentage point decrease in net approval of US leadership. Conversely, in Model VI, the coefficient on closewest was 2.002, meaning that, holding all else constant, increasing a country's agreement with the pro-Western statement by one percentage point led to a 2.002 percentage point increase in net approval of US leadership. However, this was a somewhat weaker finding, being statistically significant at the 5% level, meaning that there was a less than 5% but greater than 1% chance of finding a value at least as extreme as the one observed in the absence of a true relationship.
+
+In no model was the bordruua variable, measuring whether or not a country borders Russia and/or Ukraine, statistically significant, meaning that this analysis did not find evidence of geographic proximity to the Russian invasion of Ukraine as a meaningful predictor of attitudes towards US leadership.
+
+Considering these factors, although no  model found statistical significance of the predictor I set out to investigate, the model that best explains the relationship between Orthodox Christian religious affiliation and views of US leadership is model (II). It finds a potential alternative explanation, netsentiment, highly statistically significant. Furthermore, an F-test finds that the model has a p-value of 0.001793, meaning that, if the model's variables were collectively not truly related to net approval of US leadership, there would be only a 1 in 558 chance of data at least as extreme as what was observed occurring by chance. The significance of netsentiment sheds light on where some of the impact I expected to come from pctox is actually coming from and thus provides insights into why pctox lacks significance.
+
+This analysis has a few limitations. Notably, it does not include a variable measuring the percentage of ethnic Russians in the included countries, because no dataset was available that measured this variable across countries in a consistent manner. This poses a risk of omitted variable bias, meaning that the absence of this factor from the analysis could cause have distorted the estimates of some coefficients. Of the included countries, those with large minorities of ethnic Russians and where the majority ethnic group has few adherents of Orthodox Christianity - that is, Estonia and Latvia - are most likely to be affected, since some of the effects the model is attributing to Orthodox religious affiliation may in fact be caused at least in part by Russian ethnic identity. Also, the small sample size of 17 countries can result in large confidence intervals for some estimates, meaning that there is a risk of some estimated values being further from their true values than they would have been with a larger sample. The scope of this risk, though, is limited, since the small number of countries in Eastern Europe will automatically limit the scope of the data - the sample of 17 is a relatively large share of the entire universe of Eastern European countries. Additionally, this analysis would have benefited from, and future analysis would benefit from, availability of data at a more granular level, to analyze the relationship between Orthodox identity and approval of US leadership in the world broken down by sub-national dimensions such as administrative division (province, oblast, etc.), age, gender, and ethnicity.
+
+While the missing data on Russian ethnicity threatens some aspects of internal validity, the scope of this threat is limited. While the lack of data on Russian ethnicity may cause some distortion of results when it comes to Estonia and Latvia, the risk of distortion of results via conflation of the impacts of Russian ethnicity with those of Orthodox religious affiliation is relatively low elsewhere. The netsentiment variable, by measuring the difference between national publics' feelings towards the West and their feelings towards Russia, is a suitable regressor for accounting for non-religious political factors that impact Eastern Europeans' views of US leadership in the world. The credibility of the Pew Research Center and Gallup as data sources likely means the risk of an errors-in-variables bias caused by mismeasuring values of variables is quite low. Furthermore, the risk of simultaneous causality bias, the phenomenon wherein a dependent and an independent variable are causes of each other, is also low, since it seems much less likely (although theoretically possible) for a person to change their religious affiliation as a result of their views of US leadership than it does for a person's pre-existing religious affiliation to affect their views of US leadership.
+
+External validity of this analysis is likely strong, because the countries included in the study are roughly representative of Eastern European countries as a whole, and each variable has a consistent time and source for every included country.
+
+
