@@ -92,7 +92,7 @@ print(result)
 ```
 + **NUMB_VEHC**: Number of Vehicles per Crash
 
-+ **AADT**: Average Annual Daily Traffic: average number of vehicles that pass a specific point on a road or highway in both directions over the course of a year, typically calculated by summing the traffic volumes for each day of the year and then dividing by 365. A traffic volume metric.
++ **AADT**: Average Annual Daily Traffic: average number of vehicles that pass a specific point on a road or highway in both directions over the course of a year, typically calculated by summing the traffic volumes for each day of the year and then dividing by 365. A traffic volume metric, and therefore referenced at times in this report as "Traffic Volume"
 
 + **SPEED_LIMIT**: Speed Limit at the particular site of crash. Does not indicate speed of driver.
 
@@ -154,7 +154,7 @@ mydata %>%
   geom_smooth(method = lm, formula = y ~ poly(x, 3), se = FALSE, aes(color = "Cubic"), size = 2, linetype = "dotted", na.rm = TRUE) +
   geom_smooth(method = "lm", formula = y ~ log(x), se = FALSE, aes(color = "LogLinear"), size = 1, linetype = "dashed", na.rm = TRUE) +
   geom_smooth(method = "lm", formula = y ~ log(x) + I(log(x)^2) + I(log(x)^3), se = FALSE, aes(color = "PolyLog"), size = 1, na.rm = TRUE) +
-  labs(x = "AADT", y = "Number of Vehicles per Crash", title = "BOSTON CRASH") +
+  labs(x = "AADT", y = "Number of Vehicles per Crash", title = "Number of Vehicles per Crash by Traffic Volume") +
   theme_minimal() +
   theme(
     panel.grid = element_blank(),
@@ -184,7 +184,7 @@ mydata %>%
   geom_smooth(method = lm, formula = y ~ poly(x, 3), se = FALSE, aes(color = "Cubic"), size = 2, linetype = "dotted", na.rm = TRUE) +
   geom_smooth(method = "lm", formula = y ~ log(x), se = FALSE, aes(color = "LogLinear"), size = 1, linetype = "dashed", na.rm = TRUE) +
   geom_smooth(method = "lm", formula = y ~ log(x) + I(log(x)^2) + I(log(x)^3), se = FALSE, aes(color = "PolyLog"), size = 1, na.rm = TRUE) +
-  labs(x = "AADT", y = "Number of Vehicles per Crash", title = "BOSTON CRASH") +
+  labs(x = "AADT", y = "Number of Vehicles per Crash", title = "Number of Vehicles per Crash by Traffic Volume") +
   theme_minimal() +
   theme(
     panel.grid = element_blank(),
@@ -247,7 +247,7 @@ colnames(avgAADT_1) <- c("AADT", "Y_bar", "s", "n")
 
 ```{r}
 avgAADT_1 %>%
-    kbl(caption = "Table 1: Y bar, standard deviation, and n for Number of Cars Involved per Crash by AADT 0% to 10% quantile") %>%
+    kbl(caption = "Table 1: Y bar, standard deviation, and n for Number of Cars Involved per Crash by Traffic Volume 0% to 10% quantile") %>%
     kable_classic()
 ```
 ```{r}
@@ -275,7 +275,7 @@ colnames(avgAADT_2) <- c("AADT", "Y_bar", "s", "n")
 
 ```{r}
 avgAADT_2 %>%
-    kbl(caption = "Table 1: Y bar, standard deviation, and n for Number of Cars Involved per Crash by AADT 90% to 100% quantile") %>%
+    kbl(caption = "Table 1: Y bar, standard deviation, and n for Number of Cars Involved per Crash by Traffic Volume 90% to 100% quantile") %>%
     kable_classic()
 ```
 
@@ -393,7 +393,6 @@ linearHypothesis(mod4, c("SPEED_LIMIT=0", "Distracted_Binary=0","YEAR=0"),
 
 
 In order to explain the relationship between the Number of Vehicles per Crash and Traffic Volume (AADT), I wrote 5 regression models including additional the additional variables: speed limit, distracted driver, and year(of crash). 
-
 Models 1 through 3 exhibit robust significance both in terms of individual coefficients and the overall F-statistics. However, models 4 and 5 demonstrate that the particular year of the accident has little to no statistical significance when regressed with other regressors. When isolated in a regression against the Number of Vehicles per Crash, Year has a high level of significance, but has a very small adjusted R2. 
 
 Concerning adjusted R-squared values, F-statistics and p-values, model 3 is the best fit. The formula for model 3 is as follows:
@@ -415,7 +414,7 @@ The adjusted R2 for this model is 0.04393736, which means that this model accoun
 
 What I had initially anticipated with this project was that the Number of Vehicles per Crash were increasing over time. I was only able to analyze the data over 10 years, and looking here at the fifth model we can see how small the adjusted R2 is for lm(NUMB_VEHC ~ YEAR), with Year only accounting for .04% of the variation in the Number of Vehicles per year. The F-statistic with a value of 16.19 and an associated p-value of 5.745e-05, indicate the regression is highly statistically significant, with strong evidence to suggest that the model as a whole has explanatory power and there is evidence of a relationship between Number of Vehicles per Crash and Year.
 
-However, when regressed with the main regressor for this report, AADT (mod4), Year loses its significance as does the constant (Number of Vehicles per Crash). The F statistic still remains significant in mod5, but the loss of significance of the Year and Number of Vehicles per Crash lead me to believe Year is not the most beneficial regressor in considering Number of Vehicles per Crash without more extensive data. Continuing on this trend of discounting year as a beneficial regressor, when performing a linear hypothesis where Year is set to 0, the p-value increases to greater than the significance level of 0.05. In this context, its reasonable to conclude that Year does not have a substantial impact on the Number of Vehicles per Crash.
+However, when regressed with the main regressor for this report, AADT (mod4), Year loses its significance as does the Number of Vehicles per Crash. The F statistic still remains significant in mod5, but the loss of significance of the Year and Number of Vehicles per Crash lead me to believe Year is not the most beneficial regressor in considering Number of Vehicles per Crash without more extensive data. Continuing on this trend of discounting year as a beneficial regressor, when performing a linear hypothesis where Year is set to 0, the p-value increases to greater than the significance level of 0.05. In this context, its reasonable to conclude that Year does not have a substantial impact on the Number of Vehicles per Crash.
 
 # Limitations
 
@@ -427,3 +426,13 @@ One limitation within the data itself is that there are mistakes. For instance, 
 
 ##### AADT Year 
 The AADT values were most recently calculated in 2020 and 2018. There are no AADT values for the past 3 years.Unfortunately, due to the nature of the cleaning process, I was unable to completely organize data by the year the AADT was derived. If I was able to disaggregate this data, there may have been more interesting data analysis possible. However, the MassDot routinely uses AADT data from previous years when referring to crashes, resulting in 5+ years difference between the recorded AADT and the crash.
+
+
+
+
+# Bibliography
+
+IMPACT. Data Extract. 2023. https://apps.impact.dot.state.ma.us/cdp/home
+
+RStudio Team (2020). RStudio: Integrated Development for R. RStudio, PBC, Boston, MA URL 
+http://www.rstudio.com/.
