@@ -117,7 +117,7 @@ ranking %>%
 
 ```
 
-The below graph demonstrates if the top 100 movies in Japan were animation or not. It shows that more Japanese animation movies are gaining popularity in Japan in recent years.
+The below graph demonstrates if the top 100 movies in Japan were animated or not. It shows that more Japanese animation movies are gaining popularity in Japan in recent years.
 
 ```{r}
 
@@ -156,11 +156,11 @@ ranking %>%
 
 ### **1. Write down multiple regression models as discussed in the lab. Please view the recordings for instructions on multicollinearity checks and OVB reduction as it pertains to model specification.**
 
-As the exploratory analysis shows, the Japanese moviegoers behavior had a great shift around 2008. Also, in Japanese movie industry, the animation format is a critical factor to be considered. Thus, my linear model will include `region`(Foreign movie / Japanese movie), `animation`, `Worldwide box office revenue`, `after_2008` (If the movie is released before or after 2008)
+As the exploratory analysis shows, the Japanese moviegoers behavior had a great shift around 2008. Also, in Japanese movie industry, the animated format is a critical factor to be considered. Thus, my linear model will include `region`(Foreign movie / Japanese movie), `animation`, `Worldwide box office revenue`, `after_2008` (If the movie is released before or after 2008)
 
-***Multicollinearity***: Multicollinearity occurs when there are correlation between independent variable. There is no concern about multicollinearity because there is only one numeric variable (global revenue)
+***Multicollinearity***: Multicollinearity occurs when there are correlations between independent variables. There is no concern about multicollinearity because there is only one numeric variable (global revenue)
 
-***Omitted Variable Bias***: Omitted variable bias happens when a model doesn't include one or more relevant variables. In my analysis, the original region of movies (Japanese/foreign) cannot be left out. I added the anime variable that refers to if the movie is animation or not because animation is a format more common in Japanese movies than foreign movies, and the region and the format should be considered separate.
+***Omitted Variable Bias***: Omitted variable bias happens when a model doesn't include one or more relevant variables. In my analysis, the original region of movies (Japanese/foreign) cannot be left out. I added the anime variable that refers to if the movie is animated or not because animation is a format more common in Japanese movies than foreign movies, and the region and the format should be considered separate.
 
 My linear models are as follows;
 
@@ -214,23 +214,23 @@ Log Linear model cannot be run because Worldwide box office revenue contains 0 v
 
 #### External validity:
 
-This analysis aims to uncover the preferences of Japanese audiences when it comes to watching movies in theaters and to understand the changing trends over time. According to the Exploratory Analysis, there has been a shift in Japanese movie-going behavior since 2008. Prior to 2008, foreign films were more commonly watched, but since then, there has been a shift towards Japanese films being more frequently viewed.
+This analysis aims to uncover the preferences of Japanese audiences when it comes to watching movies in theaters and to understand the changing trends over time. According to the Exploratory Analysis, there has been a shift in Japanese movie-going behavior since 2008. Prior to 2008, foreign films were more commonly watched, but since then, there has been a shift toward Japanese films being more frequently viewed.
 
 The following is the strategy I took to make my model have a high external validity:
 
-**Dependent variable**: I used a dependent variable quite representative for Japanese moviegoers preference, which is box office revenue of the movie in Japan. The independent variable "region" represents if the movie is Japanese movie or foreign movie. This data came from if the movie is in Japanese or other languages. Box office revenue is calculated by multiplying the number of viewers by the ticket price, which hasn't changed significantly across different movies. Thus, this dependent variable effectively reflects the popularity of movies among Japanese audiences.
+**Dependent variable**: I used a dependent variable quite representative of Japanese moviegoers' preference, which is the box office revenue of the movie in Japan. The independent variable "region" represents if the movie is a Japanese movie or a foreign movie. This data came from if the movie is in Japanese or other languages. Box office revenue is calculated by multiplying the number of viewers by the ticket price, which hasn't changed significantly across different movies. Thus, this dependent variable effectively reflects the popularity of movies among Japanese audiences.
 
-**Independent variable:** In order to answer the main question "if Japanese moviegoers are watching more domestic movies and less foreign movies", I used an independent variable "region", which basically means if the original language of the movie is Japanese or not. The definition of "Japanese movies" is not clear because it can mean that the movie is aimed for only Japanese audience, the movie is available primarily only in Japan, or it is produced by a Japanese company or organization, however I decided to use the original language used in the movie to avoid any arbitrariness. Also, I believe this definition using the original language is aligned with Japanese moviegoers' definition of Japanese/foreign movies. For example, in this analysis, "Pokémon Detective Pikachu", a movie produced by both American (Warner brothers) and Japanese companies (Pokemon), is considered as a foriegn movie because it is originally in English.
+**Independent variable:** In order to answer the main question "if Japanese moviegoers are watching domestic movies more and foreign movies less", I used an independent variable "region", which basically means if the original language of the movie is Japanese or not. The definition of "Japanese movies" is not clear because it can mean that the movie is aimed at an only a Japanese audience, the movie is available primarily only in Japan, or it is produced by a Japanese company or organization, however, I decided to use the original language used in the movie to avoid any arbitrariness. Also, I believe this definition using the original language is aligned with Japanese moviegoers' definition of Japanese/foreign movies. For example, in this analysis, "Pokémon Detective Pikachu", a movie produced by both American (Warner Brothers) and Japanese companies (Pokemon), is considered as a foreign movie because it is originally in English.
 
 #### Internal validity:
 
-Internal validity refers to how well the relationship between the dependent and independent variables holds true. In this analysis, we aim to investigate whether a movie being of Japanese origin or foreign origin affects its box office revenue in Japan and whether this trend changes over time.
+Internal validity refers to how well the relationship between the dependent and independent variables holds true. In this analysis, we aim to find out whether a movie being of Japanese origin or foreign origin affects its box office revenue in Japan and whether this trend changes over time.
 
 To ensure internal validity, I took the following measures:
 
 First, I obtained the data for the predictor variable, which is the box office revenue in Japan, from a reliable source called IMDb Pro. There are no missing values, and since the information comes from a single source (IMDb), it can be considered consistent.
 
-The independent variables, whether the movie is from Japan or an anime, and the worldwide box office revenue, are based on information from another trustworthy website called TMDB. Therefore, these variables should generally be unbiased and consistent. However, some of the top-grossing movies in Japan lacked information on TMDB. For instance, there are movies that were only released in Japan and don't have information on global sites, or there are discrepancies between the titles used in Japan and those registered on TMDB. In such cases, I manually entered data to indicate if the movie is Japanese or an anime to the best of my ability (you can review the data cleaning process in the GitHub link below). It's important to note that there are limitations to this data cleaning process, and I acknowledge that the information about the independent variables is not 100% accurate or consistent.
+The independent variables, whether the movie is from Japan or an anime, and the worldwide box office revenue, are based on information from another trustworthy website called TMDB. Therefore, these variables should generally be unbiased and consistent. However, this dataset may have some sample selection bias as some of the top-grossing movies in Japan lacked information on TMDB. For instance, there are movies that were only released in Japan and don't have information on global sites, or there are discrepancies between the titles used in Japan and those registered on TMDB. In such cases, I manually entered data to indicate if the movie is Japanese or an anime to the best of my ability (you can review the data cleaning process in the GitHub link below). It's important to note that there are limitations to this data-cleaning process, and I acknowledge that the information about the independent variables is not 100% accurate or consistent.
 
 This dataset is based on over 2000 movies, making it sufficiently large for analysis and capable of withstanding statistical testing.
 
@@ -339,7 +339,7 @@ Considering these outcomes, it's optimal to utilize a straightforward linear reg
 
 In the following analysis, we'll employ Worldwide_revenue as well as introduce new variables like `region` ,`anime,` and `after_2018` to explore a model that better explains the predictive variables.
 
-Again, these variables mean as follows: `region`: Where the movie is from (Japan/Foreign/Unknown) `anime`: If the movie is animation or not `after_2018`: If the movie was among top movies of the year before 2008 / 2008 or after. This variable is incorporated because 2018 marked a significant shift in Japanese moviegoers' behavior.
+Again, these variables mean as follows: `region`: Where the movie is from (Japan/Foreign/Unknown) `anime`: If the movie is animation or not `after_2018`: If the movie was among the top movies of the year before 2008 / 2008 or after. This variable is incorporated because 2018 marked a significant shift in Japanese moviegoers' behavior.
 
 ```{r}
 mod1 <- lm(JP_revenue ~ region + anime, data = df)
@@ -390,7 +390,7 @@ linearHypothesis(mod4,
    vcov. = vcovHC(mod4, type = "HC1"))
 ```
 
-## 5.Explain which robust model best explains the relationship you\'ve set out to investigate.
+## 5.Explain which robust model best explains the relationship you've set out to investigate.
 
 Among the four models, the one that includes "after_2008" (indicating whether the movie was released after 2008) had the smallest Residual Std. error and the highest Adjusted R-squared value, indicating the most high-performing results. This indirectly suggests a change in the trend of box office revenue for movies in Japan around the year 2008.
 
@@ -412,7 +412,7 @@ As demonstrated above, this model exhibits both external validity and internal v
 
 However, it's worth noting that, as previously mentioned, there are missing values in the worldwide box office revenue data, and manual data processing has occurred, introducing some inconsistency in that aspect.
 
-### Observation and lnsights from the models 
+### Observation and lnsights from the models
 
 The results from these linear models reveal intriguing insights into the movie-going tendencies in Japanese theaters.
 
@@ -424,13 +424,13 @@ As mentioned earlier in the analysis, the primary focus was on uncovering how th
 
 Firstly, post-2008, the influence of worldwide revenue on domestic box office revenue in Japan has diminished. (The coefficient of worldwide_revenue before 2008 was 0.061, while after introducing "after_2008," the coefficient for worldwide_revenue after 2008 became 0.061 - 0.028 (coefficient of worldwide_revenue:after_2008) = 0.033.) This suggests that the impact of a movie's international box office revenue on its box office revenue in Japan has decreased, indicating a deviation of Japan's movie box office revenue trend from that of the rest of the world.
 
-Secondly, though according to the exploratory analysis it appears that Japanese films gained popularity over foreign films after 2008, the reason behind this shift lies not solely in a general rise in the popularity of Japanese films, but in the increased popularity of animated Japanese films.
+Secondly, though according to the exploratory analysis, it appears that Japanese films gained popularity over foreign films after 2008, the reason behind this shift lies not solely in a general rise in the popularity of Japanese films, but in the increased popularity of animated Japanese films.
 
 ### Additional analysis (Dividing the data into two periods)
 
-Moving forward, additional analyses were conducted to further find out the trends around the 2008 period. The dataset was divided into two distinct segments: the years 2002-2007 and 2008-2020. Separate linear regression models were then applied to each of these segments.
+Moving forward, I conducted additional analyses to further find out the trends around the 2008 period. The dataset was divided into two distinct segments: the years 2002-2007 and 2008-2020. Separate linear regression models were then applied to each of these segments.
 
-The aim of these analyses was to provide clearer insights into the shifts that occurred around the 2008 timeframe. By examining the data in these two distinct timeframes and running separate linear regression models for each, we sought to capture any contrasting patterns or trends that might have emerged before and after 2008. This approach allowed us to better understand how the dynamics of the movie industry, particularly in relation to Japan's movie-watching preferences, have evolved over time.
+The aim of these analyses was to provide clearer insights into the shifts that occurred around the 2008 timeframe and capture any contrasting patterns or trends that might have emerged before and after 2008.
 
 ```{r}
 
@@ -465,8 +465,16 @@ This phenomenon can be attributed to three factors:
 
 Firstly, Japanese movie preferences are diverging from global trends. Prior to 2008, a \$1 increase in worldwide box office revenue corresponded to a \$0.066 increase in Japanese box office revenue. However, post-2008, this correlation weakened significantly to a mere \$0.028 increase. A global hit is not necessarily a guarantee for success in Japan.
 
-Secondly, predicting Japanese movie revenue has become more complex after 2008. Before 2008, 46% of Japanese box office revenue could be explained using three factors: 1. Japanese or foreign film, 2. Animation or not, and 3. Worldwide box office revenue. However, post-2008, only 28% of the revenue could be explained. This suggests that Japanese movie preferences are influenced by more intricate factors not covered by these simple variables.
+Secondly, predicting Japanese movie revenue has become more complex after 2008. Before 2008, 46% of Japanese box office revenue could be explained using three factors: 1. Japanese or foreign film, 2. animated or not, and 3. Worldwide box office revenue. However, post-2008, only 28% of the revenue could be explained. This suggests that Japanese movie preferences are influenced by more intricate factors not covered by these simple variables.
 
 Lastly, while the data indicates a growing preference for Japanese films among Japanese audiences, it's not necessarily the fact of being a Japanese film that drives revenue growth. Instead, the surge in revenue is more correlated with the presence of "anime films," which are prevalent in Japanese cinema.
 
-### 
+### Source
+
+Bloomberg, G. R. \|. (2022, December 27). Analysis \| "avatar" struggles show how Japan is ditching Hollywood. The Washington Post. https://www.washingtonpost.com/business/avatar-struggles-show-how-japan-is-ditching-hollywood/2022/12/22/09197536-8234-11ed-8738-ed7217de2775_story.html
+
+STATISTICS OF FILM INDUSTRY IN JAPAN. Motion Picture Producers Association of Japan , Inc. (n.d.). http://www.eiren.org/statistics_e/index.html
+
+Japanese box office. Box Office Mojo. (n.d.). https://www.boxofficemojo.com/year/2022/?area=JP&grossesOption=totalGrosses&sort=rank&sortDir=asc
+
+Pawar, A. (2023, August 16). Movies Daily Update Dataset. Kaggle. https://www.kaggle.com/datasets/akshaypawar7/millions-of-movies
