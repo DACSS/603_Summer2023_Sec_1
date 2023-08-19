@@ -1,0 +1,130 @@
+---
+title: "Class Project 2"
+author: "Qasim Abbas"
+desription: "Class Project 2"
+date: "08/08/2023"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - final project
+  - Qasim Abbas
+  - dplyr
+---
+
+```{r}
+#| label: setup
+#| warning: false
+
+library(tidyverse)
+library(dplyr)
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Instructions
+
+1. **Write down multiple regression models as discussed in the lab. Please view the recordings for instructions on multicollinearity checks and OVB reduction as it pertains to model specification.** 
+
+2. **Upon writing your models, please follow the following steps that make your model-building strategy lends to both internal and external validity**
+
+    a. The first step toward obtaining valid results is to get summary statistics for the data you are working with:
+    
+        *     data("MASchools")
+        *     summary(MASchools)
+    b. Customize your variables like so:
+    
+        *     MASchools$score <- MASchools$score4 
+        *     MASchools$STR <- MASchools$stratio
+    c. Designate your regressors and report their mean and standard deviation:
+    
+        *     vars <- c("score", "STR", "english", "lunch", "income")
+        *     cbind(MA_mean = sapply(MASchools[, vars], mean),
+                  MA_sd   = sapply(MASchools[, vars], sd))
+    d. Estimate a basic linear equation and report summary:
+    
+        *     Linear_model_MA <- lm(score ~ income, data = MASchools)
+        *     Linear_model_MA
+
+    e. Estimate a basic linear equation and report summary:
+        *     Linear_model_MA <- lm(score ~ income, data = MASchools)
+        *     Linear_model_MA
+    f. Attempt a log-linear model like so:
+        *     Linearlog_model_MA <- lm(score ~ log(income), data = MASchools) 
+        *     Linearlog_model_MA
+    g. Now attempt a cubic model:
+        *     cubic_model_MA <- lm(score ~ I(income) + I(income^2) + I(income^3), data = MASchools)
+        *     cubic_model_MA
+    h. Plot the observations and add the linear, log-linear, as well as the cubic model like so:
+    
+        *     plot(MASchools$income, MASchools$score,
+                pch = 20,
+                col = "steelblue",
+                xlab = "District income",
+                ylab = "Test score",
+                xlim = c(0, 50),
+                ylim = c(620, 780))
+        *     abline(Linear_model_MA, lwd = 2)
+        *     order_id  <- order(MASchools$income)
+        *     lines(MASchools$income[order_id],
+                fitted(Linearlog_model_MA)[order_id], 
+                col = "darkgreen", 
+                lwd = 2)
+        *     lines(x = MASchools$income[order_id], 
+                y = fitted(cubic_model_MA)[order_id],
+                col = "orange", 
+                lwd = 2)
+        *     legend("topleft",
+                legend = c("Linear", "Linear-Log", "Cubic"),
+                lty = 1,
+                col = c("Black", "darkgreen", "orange"))
+
+2. **Explain if, visually speaking, a non-linear equation explains the relationship better than a linear model. Explain why, and how the visual plot influences your model specification strategy. Write an explanation that’s at least two paragraphs long.**  
+
+3. **Now find the best model specification through the following steps:**
+
+    a. Estimate multiple specifications that help address your research question like so:
+    
+        *     TestScore_MA_mod1 <- lm(score ~ STR, data = MASchools)
+        *     TestScore_MA_mod2 <- lm(score ~ STR + english + lunch + log(income), 
+                        data = MASchools)
+        *     TestScore_MA_mod3 <- lm(score ~ STR + english + lunch + income + I(income^2) + I(income^3), data = MASchools)
+        *     TestScore_MA_mod4 <- lm(score ~ STR + I(STR^2) + I(STR^3) + english + lunch + income + I(income^2) + I(income^3), data = MASchools)
+        *     TestScore_MA_mod5 <- lm(score ~ STR + HiEL + I(income^2) + I(income^3) + HiEL:STR + lunch + income, data = MASchools)
+        *     TestScore_MA_mod6 <- lm(score ~ STR + I(income^2) + I(income^3)+ lunch + income, data = MASchools)
+
+    b. Obtain robust standard errors for each of your models like so:
+    
+        *     rob_se <- list(sqrt(diag(vcovHC(TestScore_MA_mod1, type = "HC1"))),
+               sqrt(diag(vcovHC(TestScore_MA_mod2, type = "HC1"))),
+               sqrt(diag(vcovHC(TestScore_MA_mod3, type = "HC1"))),
+               sqrt(diag(vcovHC(TestScore_MA_mod4, type = "HC1"))),
+               sqrt(diag(vcovHC(TestScore_MA_mod5, type = "HC1"))),
+               sqrt(diag(vcovHC(TestScore_MA_mod6, type = "HC1"))))
+    c. Using stargazer, report the results of your models like the following:
+    
+        *     library(stargazer)
+        *     stargazer(TestScore_MA_mod1, TestScore_MA_mod2, TestScore_MA_mod3, 
+                TestScore_MA_mod4, TestScore_MA_mod5, TestScore_MA_mod6,
+                title = "Regressions Using Massachusetts Test Score Data",
+                type = "latex",
+                digits = 3,
+                header = FALSE,
+                se = rob_se,
+                object.names = TRUE,
+                model.numbers = FALSE,
+                column.labels = c("(I)", "(II)", "(III)", "(IV)", "(V)", "(VI)"))
+    d. Now carry out a linear hypothesis test (F-Test) for EACH of your models by using the following example:
+    
+        *     linearHypothesis(TestScore_MA_mod3, 
+                 c("I(income^2)=0", "I(income^3)=0"), 
+                 vcov. = vcovHC(TestScore_MA_mod3, type = "HC1"))
+
+4. **Explain which robust model best explains the relationship you’ve set out to investigate. Communicate your ideas so you can add them to a professional report. Think of your ideal employer. What would they want to know about your model? How would you go about interpreting the results, including the  coefficients? Write several paragraphs that you might make part of a professional report—one that explains how your preferred model yields valid results both internally and externally in light of what you’ve earned in Chapter 9**
+
+
+
