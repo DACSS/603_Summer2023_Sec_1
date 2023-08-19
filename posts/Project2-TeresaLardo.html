@@ -1,0 +1,2504 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Peri (Teresa) Lardo">
+<meta name="dcterms.date" content="2023-08-17">
+
+<title>Length of UFO Encounters: Multiple Regressions</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/DACSS_Round_Network.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<meta name="twitter:title" content="Length of UFO Encounters: Multiple Regressions">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://dacss.github.io/603_Summer2023_Sec_1/posts/Project2-TeresaLardo_files/figure-html/Plot of Models chunk-1.png">
+<meta name="twitter:creator" content="@UMassDACSS">
+<meta name="twitter:site" content="@UMassDACSS">
+<meta name="twitter:image-height" content="960">
+<meta name="twitter:image-width" content="1344">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/UMass White Wordmark Horiz.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://dacss.github.io/603_Summer2023_Sec_1/" rel="" target="">
+ <span class="menu-text">Summer 2023 Posts</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html" rel="" target="">
+ <span class="menu-text">Contributors</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://umass.edu/sbs/dacss" rel="" target="">
+ <span class="menu-text">DACSS</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://dacss.github.io/603_Summer2023_Sec_1/" rel="" target=""><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#load-libraries-and-dataset-clean-data" id="toc-load-libraries-and-dataset-clean-data" class="nav-link active" data-scroll-target="#load-libraries-and-dataset-clean-data">Load libraries and dataset, clean data</a></li>
+  <li><a href="#model-building" id="toc-model-building" class="nav-link" data-scroll-target="#model-building">Model Building</a>
+  <ul class="collapse">
+  <li><a href="#variables" id="toc-variables" class="nav-link" data-scroll-target="#variables">Variables</a></li>
+  <li><a href="#linear-model" id="toc-linear-model" class="nav-link" data-scroll-target="#linear-model">Linear Model</a></li>
+  <li><a href="#log-linear-model" id="toc-log-linear-model" class="nav-link" data-scroll-target="#log-linear-model">Log-Linear Model</a></li>
+  <li><a href="#quadratic-model" id="toc-quadratic-model" class="nav-link" data-scroll-target="#quadratic-model">Quadratic Model</a></li>
+  <li><a href="#cubic-model" id="toc-cubic-model" class="nav-link" data-scroll-target="#cubic-model">Cubic Model</a></li>
+  <li><a href="#plot-observations-models" id="toc-plot-observations-models" class="nav-link" data-scroll-target="#plot-observations-models">Plot Observations &amp; Models</a></li>
+  <li><a href="#linear-or-non-linear" id="toc-linear-or-non-linear" class="nav-link" data-scroll-target="#linear-or-non-linear">Linear or Non-Linear?</a></li>
+  </ul></li>
+  <li><a href="#model-specifications" id="toc-model-specifications" class="nav-link" data-scroll-target="#model-specifications">Model Specifications</a>
+  <ul class="collapse">
+  <li><a href="#robust-standard-errors" id="toc-robust-standard-errors" class="nav-link" data-scroll-target="#robust-standard-errors">Robust Standard Errors</a></li>
+  <li><a href="#multiple-regression-specification-models" id="toc-multiple-regression-specification-models" class="nav-link" data-scroll-target="#multiple-regression-specification-models">Multiple Regression Specification Models</a>
+  <ul class="collapse">
+  <li><a href="#hypothesis-testing" id="toc-hypothesis-testing" class="nav-link" data-scroll-target="#hypothesis-testing">Hypothesis Testing</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#findings-conclusion" id="toc-findings-conclusion" class="nav-link" data-scroll-target="#findings-conclusion">Findings &amp; Conclusion</a>
+  <ul class="collapse">
+  <li><a href="#what-does-this-mean-for-ufo-shapes" id="toc-what-does-this-mean-for-ufo-shapes" class="nav-link" data-scroll-target="#what-does-this-mean-for-ufo-shapes">What Does This Mean for UFO Shapes?</a></li>
+  </ul></li>
+  <li><a href="#citations" id="toc-citations" class="nav-link" data-scroll-target="#citations">Citations</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Length of UFO Encounters: Multiple Regressions</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+  <div class="quarto-categories">
+    <div class="quarto-category">Project2</div>
+    <div class="quarto-category">Peri Teresa Lardo</div>
+    <div class="quarto-category">UFO sightings</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Peri (Teresa) Lardo </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 17, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="load-libraries-and-dataset-clean-data" class="level2">
+<h2 class="anchored" data-anchor-id="load-libraries-and-dataset-clean-data">Load libraries and dataset, clean data</h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Load libraries</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Create shape categories for personal sanity</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>round <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"disk"</span>, <span class="st">"round"</span>, <span class="st">"sphere"</span>, <span class="st">"circle"</span>, <span class="st">"dome"</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>triangular <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"triangle"</span>, <span class="st">"cone"</span>, <span class="st">"pyramid"</span>, <span class="st">"delta"</span>, <span class="st">"chevron"</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>oval <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"oval"</span>, <span class="st">"teardrop"</span>, <span class="st">"egg"</span>, <span class="st">"crescent"</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>parallelogram <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"cross"</span>, <span class="st">"diamond"</span>, <span class="st">"hexagon"</span>, <span class="st">"rectangle"</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>cylinder <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"cylinder"</span>, <span class="st">"cigar"</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Import data &amp; clean necessary elements</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>ufo_sighting_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/ufo_sighting_data.csv"</span>) <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>(UFO_shape, length_of_encounter_seconds, country, Date_time, latitude) <span class="sc">%&gt;%</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(length_of_encounter_seconds <span class="sc">&lt;</span> <span class="dv">86400</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"us"</span>, <span class="st">"ca"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">str_detect</span>(description, <span class="st">'HOAX'</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>UFO_shape <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"light"</span>, <span class="st">"fireball"</span>, <span class="st">"flare"</span>, <span class="st">"flash"</span>, <span class="st">"other"</span>, <span class="st">"unknown"</span>, <span class="st">"formation"</span>, <span class="st">"changing"</span>, <span class="st">"changed"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Shape_Category =</span> <span class="fu">case_when</span>(</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>         UFO_shape <span class="sc">%in%</span> round <span class="sc">~</span> <span class="st">"Round"</span>,</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>         UFO_shape <span class="sc">%in%</span> triangular <span class="sc">~</span> <span class="st">"Triangular"</span>,</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>         UFO_shape <span class="sc">%in%</span> oval <span class="sc">~</span> <span class="st">"Oval"</span>,</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>         UFO_shape <span class="sc">%in%</span> parallelogram <span class="sc">~</span> <span class="st">"Parallelogram"</span>,</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>         UFO_shape <span class="sc">%in%</span> cylinder <span class="sc">~</span> <span class="st">"Cylinder"</span>))</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure the Date_time column is actually in datetime format</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>ufo_sighting_data<span class="sc">$</span>Date_time <span class="ot">&lt;-</span> <span class="fu">parse_date_time</span>(ufo_sighting_data<span class="sc">$</span>Date_time, <span class="st">"mdy_HM"</span>)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Create separate variables for the Month &amp; time of day (by hour) of the encounters</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>ufo_sighting_data<span class="sc">$</span>Month <span class="ot">=</span> <span class="fu">month</span>(ufo_sighting_data<span class="sc">$</span>Date_time)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>ufo_sighting_data<span class="sc">$</span>Hour <span class="ot">=</span> <span class="dv">1</span> <span class="sc">+</span> <span class="fu">hour</span>(ufo_sighting_data<span class="sc">$</span>Date_time)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Create dummy variables for categorical Shape (x) variable</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fastDummies)</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>ufo_sighting_data <span class="ot">&lt;-</span> <span class="fu">dummy_cols</span>(ufo_sighting_data, <span class="at">select_columns =</span> <span class="st">'Shape_Category'</span>)</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ufo_sighting_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Date_time                          city           state/province    
+ Min.   :1910-01-02 00:00:00.00   Length:32352       Length:32352      
+ 1st Qu.:2001-02-07 11:07:30.00   Class :character   Class :character  
+ Median :2006-09-09 20:45:00.00   Mode  :character   Mode  :character  
+ Mean   :2003-07-04 07:34:43.36                                        
+ 3rd Qu.:2011-05-28 22:30:00.00                                        
+ Max.   :2014-05-08 00:00:00.00                                        
+   country           UFO_shape         length_of_encounter_seconds
+ Length:32352       Length:32352       Min.   :    0.01           
+ Class :character   Class :character   1st Qu.:   30.00           
+ Mode  :character   Mode  :character   Median :  180.00           
+                                       Mean   :  821.47           
+                                       3rd Qu.:  600.00           
+                                       Max.   :73800.00           
+ described_duration_of_encounter description        date_documented   
+ Length:32352                    Length:32352       Length:32352      
+ Class :character                Class :character   Class :character  
+ Mode  :character                Mode  :character   Mode  :character  
+                                                                      
+                                                                      
+                                                                      
+    latitude       longitude       Shape_Category         Month       
+ Min.   :17.97   Min.   :-170.48   Length:32352       Min.   : 1.000  
+ 1st Qu.:34.23   1st Qu.:-112.45   Class :character   1st Qu.: 4.000  
+ Median :39.18   Median : -89.01   Mode  :character   Median : 7.000  
+ Mean   :38.65   Mean   : -94.84                      Mean   : 6.835  
+ 3rd Qu.:42.25   3rd Qu.: -80.22                      3rd Qu.: 9.000  
+ Max.   :72.70   Max.   : -52.67                      Max.   :12.000  
+      Hour       Shape_Category_Cylinder Shape_Category_Oval
+ Min.   : 1.00   Min.   :0.00000         Min.   :0.0000     
+ 1st Qu.:12.00   1st Qu.:0.00000         1st Qu.:0.0000     
+ Median :20.00   Median :0.00000         Median :0.0000     
+ Mean   :16.42   Mean   :0.08562         Mean   :0.1339     
+ 3rd Qu.:22.00   3rd Qu.:0.00000         3rd Qu.:0.0000     
+ Max.   :24.00   Max.   :1.00000         Max.   :1.0000     
+ Shape_Category_Parallelogram Shape_Category_Round Shape_Category_Triangular
+ Min.   :0.00000              Min.   :0.0000       Min.   :0.000            
+ 1st Qu.:0.00000              1st Qu.:0.0000       1st Qu.:0.000            
+ Median :0.00000              Median :0.0000       Median :0.000            
+ Mean   :0.06979              Mean   :0.4677       Mean   :0.243            
+ 3rd Qu.:0.00000              3rd Qu.:1.0000       3rd Qu.:0.000            
+ Max.   :1.00000              Max.   :1.0000       Max.   :1.000            </code></pre>
+</div>
+</div>
+</section>
+<section id="model-building" class="level1">
+<h1>Model Building</h1>
+<p>In Project I, we started off interested in the independent variable of <strong><em>UFO Shape</em></strong> (transformed into a series of dummy variables) and the dependent variable of <strong><em>Length of Encounter (in Seconds)</em></strong>. Another possible (available) variable that may contribute to the length of a UFO sighting is the hour of day (measured 1-24 from 1st hour of the day, midnight to one, to the 24th hour, 11PM to midnight).</p>
+<p>The time of day may influence the length of a sighting (and contribute to the identification of UFO shape) in part because of how much or how little light is available outdoors, where UFOs are traditionally seen (but if you ever spot one in the middle of your kitchen or a Starbucks, definitely let me know). The month of the year would also play into the expected level of sunlight at any given time because the amount of sunlight at, for instance, 7 pm in July is much different than at 7 pm in February.</p>
+<p>Latitude is another element that can influence the amount of light at a given time of day &amp; year. There is also a preexisting cultural association between UFOs/paranormal activity and a certain latitude - the 37th parallel north.</p>
+<p>Due to the variations in seasons in different hemispheres represented in our dataset, I have limited the data to reported UFO sightings in Canada and the United States. Just over 96% of the sightings in the dataset are from these two countries.</p>
+<section id="variables" class="level3">
+<h3 class="anchored" data-anchor-id="variables">Variables</h3>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Customize variables</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>ufo_sighting_data<span class="sc">$</span>seconds <span class="ot">&lt;-</span> ufo_sighting_data<span class="sc">$</span>length_of_encounter_seconds</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>ufo_sighting_data<span class="sc">$</span>Round <span class="ot">&lt;-</span> ufo_sighting_data<span class="sc">$</span>Shape_Category_Round</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>ufo_sighting_data<span class="sc">$</span>Triangular <span class="ot">&lt;-</span> ufo_sighting_data<span class="sc">$</span>Shape_Category_Triangular</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>ufo_sighting_data<span class="sc">$</span>Cylindrical <span class="ot">&lt;-</span> ufo_sighting_data<span class="sc">$</span>Shape_Category_Cylinder</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>ufo_sighting_data<span class="sc">$</span>Oval <span class="ot">&lt;-</span> ufo_sighting_data<span class="sc">$</span>Shape_Category_Oval</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Designate regressors, report mean &amp; standard deviations thereof</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"seconds"</span>, <span class="st">"Round"</span>, <span class="st">"Triangular"</span>, <span class="st">"Cylindrical"</span>, <span class="st">"Oval"</span>, <span class="st">"latitude"</span>, <span class="st">"Hour"</span>, <span class="st">"Month"</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(<span class="at">Mean =</span> <span class="fu">sapply</span>(ufo_sighting_data[, vars], mean),</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">StandardDev =</span> <span class="fu">sapply</span>(ufo_sighting_data[, vars], sd))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>                    Mean  StandardDev
+seconds     821.46936078 2699.9808513
+Round         0.46766815    0.4989613
+Triangular    0.24298343    0.4288918
+Cylindrical   0.08562067    0.2798074
+Oval          0.13393299    0.3405856
+latitude     38.65174613    5.6948996
+Hour         16.41654303    7.5296713
+Month         6.83490974    3.1924518</code></pre>
+</div>
+</div>
+</section>
+<section id="linear-model" class="level3">
+<h3 class="anchored" data-anchor-id="linear-model">Linear Model</h3>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Linear_model_UFO <span class="ot">&lt;-</span> <span class="fu">lm</span>(seconds <span class="sc">~</span> Hour, <span class="at">data =</span> ufo_sighting_data)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>Linear_model_UFO</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = seconds ~ Hour, data = ufo_sighting_data)
+
+Coefficients:
+(Intercept)         Hour  
+    1010.08       -11.49  </code></pre>
+</div>
+</div>
+</section>
+<section id="log-linear-model" class="level3">
+<h3 class="anchored" data-anchor-id="log-linear-model">Log-Linear Model</h3>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>Linearlog_model_UFO <span class="ot">&lt;-</span> <span class="fu">lm</span>(seconds <span class="sc">~</span> <span class="fu">log</span>(Hour), <span class="at">data =</span> ufo_sighting_data)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>Linearlog_model_UFO</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = seconds ~ log(Hour), data = ufo_sighting_data)
+
+Coefficients:
+(Intercept)    log(Hour)  
+       1113         -114  </code></pre>
+</div>
+</div>
+</section>
+<section id="quadratic-model" class="level3">
+<h3 class="anchored" data-anchor-id="quadratic-model">Quadratic Model</h3>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>quad_model_UFO <span class="ot">&lt;-</span> <span class="fu">lm</span>(seconds <span class="sc">~</span> <span class="fu">I</span>(Hour) <span class="sc">+</span> <span class="fu">I</span>((Hour)<span class="sc">^</span><span class="dv">2</span>), <span class="at">data =</span> ufo_sighting_data)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>quad_model_UFO</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = seconds ~ I(Hour) + I((Hour)^2), data = ufo_sighting_data)
+
+Coefficients:
+(Intercept)      I(Hour)  I((Hour)^2)  
+   1209.751      -63.737        2.017  </code></pre>
+</div>
+</div>
+</section>
+<section id="cubic-model" class="level3">
+<h3 class="anchored" data-anchor-id="cubic-model">Cubic Model</h3>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>cubic_model_UFO <span class="ot">&lt;-</span> <span class="fu">lm</span>(seconds <span class="sc">~</span> <span class="fu">I</span>(Hour) <span class="sc">+</span> <span class="fu">I</span>((Hour)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> <span class="fu">I</span>((Hour)<span class="sc">^</span><span class="dv">3</span>) <span class="sc">+</span> Month, <span class="at">data =</span> ufo_sighting_data)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>cubic_model_UFO</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = seconds ~ I(Hour) + I((Hour)^2) + I((Hour)^3) + 
+    Month, data = ufo_sighting_data)
+
+Coefficients:
+(Intercept)      I(Hour)  I((Hour)^2)  I((Hour)^3)        Month  
+  1.210e+03   -6.584e+01    2.217e+00   -5.094e-03    6.439e-01  </code></pre>
+</div>
+</div>
+</section>
+<section id="plot-observations-models" class="level2">
+<h2 class="anchored" data-anchor-id="plot-observations-models">Plot Observations &amp; Models</h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ufo_sighting_data<span class="sc">$</span>Hour, ufo_sighting_data<span class="sc">$</span>seconds,</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">20</span>,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"orange"</span>,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">300</span>, <span class="dv">1300</span>), </span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Hour of Day"</span>,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Length of Sighting in Seconds"</span>,</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Models </span><span class="sc">\n</span><span class="st"> Y-limited for zoomed-in view"</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(Linear_model_UFO, <span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>order_id <span class="ot">&lt;-</span> <span class="fu">order</span>(ufo_sighting_data<span class="sc">$</span>Hour)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(ufo_sighting_data<span class="sc">$</span>Hour[order_id],</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>     <span class="fu">fitted</span>(Linearlog_model_UFO)[order_id],</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"blue"</span>,</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>     <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x =</span> ufo_sighting_data<span class="sc">$</span>Hour[order_id],</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="fu">fitted</span>(cubic_model_UFO)[order_id],</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>      <span class="at">col =</span> <span class="st">"red"</span>,</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>      <span class="at">lwd =</span> <span class="dv">4</span>)</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x =</span> ufo_sighting_data<span class="sc">$</span>Hour[order_id],</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>     <span class="at">y =</span> <span class="fu">fitted</span>(quad_model_UFO)[order_id],</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"green"</span>,</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>     <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"bottomright"</span>,</span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"Linear"</span>, <span class="st">"Linear-Log"</span>, <span class="st">"Cubic"</span>, <span class="st">"Quadratic"</span>),</span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>       <span class="at">lty =</span> <span class="dv">1</span>,</span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"blue"</span>, <span class="st">"red"</span>, <span class="st">"green"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="Project2-TeresaLardo_files/figure-html/Plot of Models chunk-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><img src="images/HoursGraphPlot-01.jpg" class="img-fluid"></p>
+</section>
+<section id="linear-or-non-linear" class="level2">
+<h2 class="anchored" data-anchor-id="linear-or-non-linear">Linear or Non-Linear?</h2>
+<p>I think a non-linear equation may better explain the possible relationship between the hour of the day and the duration of UFO sightings. When I inspect the zoomed-out view of the plot above and concentrate on the lower Y-values where most data points collect, I can see that the values do not a) uniformly increase throughout the day, b) uniformly decrease throughout the day, or c) remain constant throughout the day. There appears to be undulation in the shape of the data points.</p>
+<p>The plot above shows a dip in encounter/sighting duration during the morning hours when many people are waking up and starting their work day, but sighting duration is higher again during the late afternoon/evening hours. The sighting duration seems to level off during the final few hours of the day (9PM to midnight), so at first I thought a quadratic equation may be best-suited. But my love for bar charts cannot be quelled, so I also made a bar chart to better visualize the mean sighting duration per hour. The bar chart showed a dip in the duration mean from 10PM to midnight that persuades me toward a cubic model. In the zoomed-in model plot above, the cubic and quadratic curves follow a very similar path. When developing my model specifications, I will make both quadratic and cubic models to determine which will be more appropriate.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ufo_sighting_data <span class="sc">%&gt;%</span> </span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Hour), <span class="fu">aes</span>(<span class="at">x =</span> Hour, <span class="at">y =</span> <span class="fu">mean</span>(seconds), <span class="at">fill =</span> Hour)) <span class="sc">+</span> </span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span> </span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"The Bar Chart that Persuaded Me to Consider Cubic Models"</span>) <span class="sc">+</span> </span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Hour of Day"</span>) <span class="sc">+</span> </span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Duration Mean (in seconds)"</span>) <span class="sc">+</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span> </span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradient2</span>(<span class="at">low =</span> <span class="st">"darkorchid4"</span>, <span class="at">high =</span> <span class="st">"purple4"</span>, <span class="at">mid =</span> <span class="st">"gold2"</span>, <span class="at">midpoint =</span> <span class="dv">12</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="Project2-TeresaLardo_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="model-specifications" class="level1">
+<h1>Model Specifications</h1>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create multiple specifications</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>UFO_shape_mod1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(seconds <span class="sc">~</span> Hour, <span class="at">data =</span> ufo_sighting_data)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>UFO_shape_mod2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(seconds <span class="sc">~</span> Hour <span class="sc">+</span> <span class="fu">I</span>(Hour<span class="sc">^</span><span class="dv">2</span>), <span class="at">data =</span> ufo_sighting_data)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>UFO_shape_mod3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(seconds <span class="sc">~</span> Hour <span class="sc">+</span> <span class="fu">I</span>(Hour<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> <span class="fu">I</span>(Hour<span class="sc">^</span><span class="dv">3</span>), <span class="at">data =</span> ufo_sighting_data)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>UFO_shape_mod4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(seconds <span class="sc">~</span> Hour <span class="sc">+</span> <span class="fu">I</span>(Hour<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> <span class="fu">I</span>(Hour<span class="sc">^</span><span class="dv">3</span>) <span class="sc">+</span> Triangular <span class="sc">+</span> Round <span class="sc">+</span> Cylindrical <span class="sc">+</span> Oval, <span class="at">data =</span> ufo_sighting_data)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>UFO_shape_mod5 <span class="ot">&lt;-</span> <span class="fu">lm</span>(seconds <span class="sc">~</span> Hour <span class="sc">+</span> <span class="fu">I</span>(Hour<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> Triangular <span class="sc">+</span> Round <span class="sc">+</span> Cylindrical <span class="sc">+</span> Oval, <span class="at">data =</span> ufo_sighting_data)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>UFO_shape_mod6 <span class="ot">&lt;-</span> <span class="fu">lm</span>(seconds <span class="sc">~</span> Hour <span class="sc">+</span> <span class="fu">I</span>(Hour<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> Triangular <span class="sc">+</span> Round <span class="sc">+</span> Cylindrical <span class="sc">+</span> Oval <span class="sc">+</span> latitude, <span class="at">data =</span> ufo_sighting_data)</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>UFO_shape_mod7 <span class="ot">&lt;-</span> <span class="fu">lm</span>(seconds <span class="sc">~</span> Hour <span class="sc">+</span> <span class="fu">I</span>(Hour<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> Triangular <span class="sc">+</span> Round <span class="sc">+</span> Cylindrical <span class="sc">+</span> Oval <span class="sc">+</span> latitude <span class="sc">+</span> Month, <span class="at">data =</span> ufo_sighting_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="robust-standard-errors" class="level3">
+<h3 class="anchored" data-anchor-id="robust-standard-errors">Robust Standard Errors</h3>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get Standard Errors for each model</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sandwich)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'sandwich' was built under R version 4.2.3</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>rob_se <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(UFO_shape_mod1, <span class="at">type =</span> <span class="st">"HC1"</span>))),</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(UFO_shape_mod2, <span class="at">type =</span> <span class="st">"HC1"</span>))),</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(UFO_shape_mod3, <span class="at">type =</span> <span class="st">"HC1"</span>))),</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(UFO_shape_mod4, <span class="at">type =</span> <span class="st">"HC1"</span>))),</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(UFO_shape_mod5, <span class="at">type =</span> <span class="st">"HC1"</span>))),</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(UFO_shape_mod6, <span class="at">type =</span> <span class="st">"HC1"</span>))),</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(UFO_shape_mod7, <span class="at">type =</span> <span class="st">"HC1"</span>))))</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>rob_se</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+(Intercept)        Hour 
+  41.009453    2.206693 
+
+[[2]]
+(Intercept)        Hour   I(Hour^2) 
+ 58.5748592   9.8733651   0.3603472 
+
+[[3]]
+(Intercept)        Hour   I(Hour^2)   I(Hour^3) 
+78.20407203 27.81302690  2.49462059  0.06308149 
+
+[[4]]
+(Intercept)        Hour   I(Hour^2)   I(Hour^3)  Triangular       Round 
+92.23228915 27.71464434  2.49367437  0.06325126 59.81228591 55.20980249 
+Cylindrical        Oval 
+66.58233104 64.37162303 
+
+[[5]]
+(Intercept)        Hour   I(Hour^2)  Triangular       Round Cylindrical 
+ 74.9282701   9.9506300   0.3661259  59.8083911  55.1664977  66.5348160 
+       Oval 
+ 64.3743712 
+
+[[6]]
+(Intercept)        Hour   I(Hour^2)  Triangular       Round Cylindrical 
+125.3779287   9.9103213   0.3646796  59.8119217  55.1978495  66.5465776 
+       Oval    latitude 
+ 64.3793529   2.8077180 
+
+[[7]]
+(Intercept)        Hour   I(Hour^2)  Triangular       Round Cylindrical 
+129.0824232   9.9088788   0.3646046  59.8118663  55.1984879  66.5479794 
+       Oval    latitude       Month 
+ 64.3451071   2.8077880   4.5789916 </code></pre>
+</div>
+</div>
+</section>
+<section id="multiple-regression-specification-models" class="level2">
+<h2 class="anchored" data-anchor-id="multiple-regression-specification-models">Multiple Regression Specification Models</h2>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>models <span class="ot">&lt;-</span> <span class="fu">list</span>(UFO_shape_mod1, UFO_shape_mod2, UFO_shape_mod3,</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>UFO_shape_mod4, UFO_shape_mod5, UFO_shape_mod6, UFO_shape_mod7)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stargazer)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<pre><code>
+Please cite as: </code></pre>
+<pre><code> Hlavac, Marek (2022). stargazer: Well-Formatted Regression and Summary Statistics Tables.</code></pre>
+<pre><code> R package version 5.2.3. https://CRAN.R-project.org/package=stargazer </code></pre>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(models,</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="at">title =</span> <span class="st">"Regressions on UFO Sighting Duration"</span>,</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="at">type =</span> <span class="st">"html"</span>,</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="at">digits =</span> <span class="dv">3</span>,</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="at">header =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="at">se =</span> rob_se,</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="at">object.names =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="at">model.numbers =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="at">column.labels =</span> <span class="fu">c</span>(<span class="st">"(I)"</span>, <span class="st">"(II)"</span>, <span class="st">"(III)"</span>, <span class="st">"(IV)"</span>, <span class="st">"(V)"</span>, <span class="st">"(VI)"</span>, <span class="st">"(VII)"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+
+<table style="text-align:center">
+<caption>
+<strong>Regressions on UFO Sighting Duration</strong>
+</caption>
+<tbody><tr>
+<td colspan="8" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="7">
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="7" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="7">
+seconds
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(I)
+</td>
+<td>
+(II)
+</td>
+<td>
+(III)
+</td>
+<td>
+(IV)
+</td>
+<td>
+(V)
+</td>
+<td>
+(VI)
+</td>
+<td>
+(VII)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+models
+</td>
+<td>
+NA
+</td>
+<td>
+NA
+</td>
+<td>
+NA
+</td>
+<td>
+NA
+</td>
+<td>
+NA
+</td>
+<td>
+NA
+</td>
+</tr>
+<tr>
+<td colspan="8" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Hour
+</td>
+<td>
+-11.489<sup>***</sup>
+</td>
+<td>
+-63.737<sup>***</sup>
+</td>
+<td>
+-65.808<sup>**</sup>
+</td>
+<td>
+-64.960<sup>**</sup>
+</td>
+<td>
+-64.791<sup>***</sup>
+</td>
+<td>
+-65.266<sup>***</sup>
+</td>
+<td>
+-65.305<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(2.207)
+</td>
+<td>
+(9.873)
+</td>
+<td>
+(27.813)
+</td>
+<td>
+(27.715)
+</td>
+<td>
+(9.951)
+</td>
+<td>
+(9.910)
+</td>
+<td>
+(9.909)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+I(Hour2)
+</td>
+<td>
+</td>
+<td>
+2.017<sup>***</sup>
+</td>
+<td>
+2.216
+</td>
+<td>
+2.077
+</td>
+<td>
+2.061<sup>***</sup>
+</td>
+<td>
+2.080<sup>***</sup>
+</td>
+<td>
+2.081<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+(0.360)
+</td>
+<td>
+(2.495)
+</td>
+<td>
+(2.494)
+</td>
+<td>
+(0.366)
+</td>
+<td>
+(0.365)
+</td>
+<td>
+(0.365)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+I(Hour3)
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+-0.005
+</td>
+<td>
+-0.0004
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+(0.063)
+</td>
+<td>
+(0.063)
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Triangular
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+-91.436
+</td>
+<td>
+-91.437
+</td>
+<td>
+-91.532
+</td>
+<td>
+-91.563
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+(59.812)
+</td>
+<td>
+(59.808)
+</td>
+<td>
+(59.812)
+</td>
+<td>
+(59.812)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Round
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+58.712
+</td>
+<td>
+58.716
+</td>
+<td>
+58.921
+</td>
+<td>
+58.927
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+(55.210)
+</td>
+<td>
+(55.166)
+</td>
+<td>
+(55.198)
+</td>
+<td>
+(55.198)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Cylindrical
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+-110.424<sup>*</sup>
+</td>
+<td>
+-110.420<sup>*</sup>
+</td>
+<td>
+-110.470<sup>*</sup>
+</td>
+<td>
+-110.466<sup>*</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+(66.582)
+</td>
+<td>
+(66.535)
+</td>
+<td>
+(66.547)
+</td>
+<td>
+(66.548)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Oval
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+-33.922
+</td>
+<td>
+-33.923
+</td>
+<td>
+-33.994
+</td>
+<td>
+-33.904
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+(64.372)
+</td>
+<td>
+(64.374)
+</td>
+<td>
+(64.379)
+</td>
+<td>
+(64.345)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+latitude
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+-2.944
+</td>
+<td>
+-2.957
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+(2.808)
+</td>
+<td>
+(2.808)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Month
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+0.835
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+(4.579)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+1,010.075<sup>***</sup>
+</td>
+<td>
+1,209.751<sup>***</sup>
+</td>
+<td>
+1,213.769<sup>***</sup>
+</td>
+<td>
+1,222.002<sup>***</sup>
+</td>
+<td>
+1,221.673<sup>***</sup>
+</td>
+<td>
+1,336.895<sup>***</sup>
+</td>
+<td>
+1,331.886<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(41.009)
+</td>
+<td>
+(58.575)
+</td>
+<td>
+(78.204)
+</td>
+<td>
+(92.232)
+</td>
+<td>
+(74.928)
+</td>
+<td>
+(125.378)
+</td>
+<td>
+(129.082)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td colspan="8" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+32,352
+</td>
+<td>
+32,352
+</td>
+<td>
+32,352
+</td>
+<td>
+32,352
+</td>
+<td>
+32,352
+</td>
+<td>
+32,352
+</td>
+<td>
+32,352
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.001
+</td>
+<td>
+0.002
+</td>
+<td>
+0.002
+</td>
+<td>
+0.003
+</td>
+<td>
+0.003
+</td>
+<td>
+0.003
+</td>
+<td>
+0.003
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0.001
+</td>
+<td>
+0.002
+</td>
+<td>
+0.002
+</td>
+<td>
+0.002
+</td>
+<td>
+0.002
+</td>
+<td>
+0.002
+</td>
+<td>
+0.002
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Residual Std. Error
+</td>
+<td>
+2,698.636 (df = 32350)
+</td>
+<td>
+2,697.357 (df = 32349)
+</td>
+<td>
+2,697.399 (df = 32348)
+</td>
+<td>
+2,696.683 (df = 32344)
+</td>
+<td>
+2,696.641 (df = 32345)
+</td>
+<td>
+2,696.631 (df = 32344)
+</td>
+<td>
+2,696.671 (df = 32343)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+F Statistic
+</td>
+<td>
+33.243<sup>***</sup> (df = 1; 32350)
+</td>
+<td>
+32.479<sup>***</sup> (df = 2; 32349)
+</td>
+<td>
+21.655<sup>***</sup> (df = 3; 32348)
+</td>
+<td>
+12.311<sup>***</sup> (df = 7; 32344)
+</td>
+<td>
+14.363<sup>***</sup> (df = 6; 32345)
+</td>
+<td>
+12.489<sup>***</sup> (df = 7; 32344)
+</td>
+<td>
+10.932<sup>***</sup> (df = 8; 32343)
+</td>
+</tr>
+<tr>
+<td colspan="8" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td colspan="7" style="text-align:right">
+<sup><em></em></sup><em>p&lt;0.1; <sup><strong></strong></sup><strong>p&lt;0.05; <sup></sup></strong></em>p&lt;0.01
+</td>
+</tr>
+
+</tbody></table>
+<section id="hypothesis-testing" class="level3">
+<h3 class="anchored" data-anchor-id="hypothesis-testing">Hypothesis Testing</h3>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'car' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: carData</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'carData' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'car'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:dplyr':
+
+    recode</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:purrr':
+
+    some</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">linearHypothesis</span>(UFO_shape_mod1,</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">"Hour=0"</span>),</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="at">vcov. =</span> <span class="fu">vcovHC</span>(UFO_shape_mod1, <span class="at">type =</span> <span class="st">"HC1"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear hypothesis test
+
+Hypothesis:
+Hour = 0
+
+Model 1: restricted model
+Model 2: seconds ~ Hour
+
+Note: Coefficient covariance matrix supplied.
+
+  Res.Df Df      F    Pr(&gt;F)    
+1  32351                        
+2  32350  1 27.106 1.938e-07 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">linearHypothesis</span>(UFO_shape_mod2,</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">"Hour=0"</span>, <span class="st">"I(Hour^2)=0"</span>),</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="at">vcov. =</span> <span class="fu">vcovHC</span>(UFO_shape_mod2, <span class="at">type =</span> <span class="st">"HC1"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear hypothesis test
+
+Hypothesis:
+Hour = 0
+I(Hour^2) = 0
+
+Model 1: restricted model
+Model 2: seconds ~ Hour + I(Hour^2)
+
+Note: Coefficient covariance matrix supplied.
+
+  Res.Df Df      F    Pr(&gt;F)    
+1  32351                        
+2  32349  2 25.788 6.448e-12 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">linearHypothesis</span>(UFO_shape_mod3,</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">"Hour=0"</span>, <span class="st">"I(Hour^2)=0"</span>, <span class="st">"I(Hour^3)=0"</span>),</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="at">vcov. =</span> <span class="fu">vcovHC</span>(UFO_shape_mod3, <span class="at">type =</span> <span class="st">"HC1"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear hypothesis test
+
+Hypothesis:
+Hour = 0
+I(Hour^2) = 0
+I(Hour^3) = 0
+
+Model 1: restricted model
+Model 2: seconds ~ Hour + I(Hour^2) + I(Hour^3)
+
+Note: Coefficient covariance matrix supplied.
+
+  Res.Df Df      F    Pr(&gt;F)    
+1  32351                        
+2  32348  3 17.206 3.686e-11 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">linearHypothesis</span>(UFO_shape_mod4,</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">"Hour=0"</span>, <span class="st">"I(Hour^2)=0"</span>, <span class="st">"I(Hour^3)=0"</span>, <span class="st">"Triangular=0"</span>, <span class="st">"Round=0"</span>, <span class="st">"Cylindrical=0"</span>, <span class="st">"Oval=0"</span>),</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="at">vcov. =</span> <span class="fu">vcovHC</span>(UFO_shape_mod4, <span class="at">type =</span> <span class="st">"HC1"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear hypothesis test
+
+Hypothesis:
+Hour = 0
+I(Hour^2) = 0
+I(Hour^3) = 0
+Triangular = 0
+Round = 0
+Cylindrical = 0
+Oval = 0
+
+Model 1: restricted model
+Model 2: seconds ~ Hour + I(Hour^2) + I(Hour^3) + Triangular + Round + 
+    Cylindrical + Oval
+
+Note: Coefficient covariance matrix supplied.
+
+  Res.Df Df     F    Pr(&gt;F)    
+1  32351                       
+2  32344  7 10.95 6.894e-14 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">linearHypothesis</span>(UFO_shape_mod5,</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">"Hour=0"</span>, <span class="st">"I(Hour^2)=0"</span>, <span class="st">"Triangular=0"</span>, <span class="st">"Round=0"</span>, <span class="st">"Cylindrical=0"</span>, <span class="st">"Oval=0"</span>),</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="at">vcov. =</span> <span class="fu">vcovHC</span>(UFO_shape_mod5, <span class="at">type =</span> <span class="st">"HC1"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear hypothesis test
+
+Hypothesis:
+Hour = 0
+I(Hour^2) = 0
+Triangular = 0
+Round = 0
+Cylindrical = 0
+Oval = 0
+
+Model 1: restricted model
+Model 2: seconds ~ Hour + I(Hour^2) + Triangular + Round + Cylindrical + 
+    Oval
+
+Note: Coefficient covariance matrix supplied.
+
+  Res.Df Df      F    Pr(&gt;F)    
+1  32351                        
+2  32345  6 12.775 1.826e-14 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">linearHypothesis</span>(UFO_shape_mod6,</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">"Hour=0"</span>, <span class="st">"I(Hour^2)=0"</span>, <span class="st">"Triangular=0"</span>, <span class="st">"Round=0"</span>, <span class="st">"Cylindrical=0"</span>, <span class="st">"Oval=0"</span>, <span class="st">"latitude=0"</span>),</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="at">vcov. =</span> <span class="fu">vcovHC</span>(UFO_shape_mod6, <span class="at">type =</span> <span class="st">"HC1"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear hypothesis test
+
+Hypothesis:
+Hour = 0
+I(Hour^2) = 0
+Triangular = 0
+Round = 0
+Cylindrical = 0
+Oval = 0
+latitude = 0
+
+Model 1: restricted model
+Model 2: seconds ~ Hour + I(Hour^2) + Triangular + Round + Cylindrical + 
+    Oval + latitude
+
+Note: Coefficient covariance matrix supplied.
+
+  Res.Df Df      F    Pr(&gt;F)    
+1  32351                        
+2  32344  7 11.293 2.241e-14 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">linearHypothesis</span>(UFO_shape_mod7,</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">"Hour=0"</span>, <span class="st">"I(Hour^2)=0"</span>, <span class="st">"Triangular=0"</span>, <span class="st">"Round=0"</span>, <span class="st">"Cylindrical=0"</span>, <span class="st">"Oval=0"</span>, <span class="st">"latitude=0"</span>, <span class="st">"Month=0"</span>),</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="at">vcov. =</span> <span class="fu">vcovHC</span>(UFO_shape_mod7, <span class="at">type =</span> <span class="st">"HC1"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear hypothesis test
+
+Hypothesis:
+Hour = 0
+I(Hour^2) = 0
+Triangular = 0
+Round = 0
+Cylindrical = 0
+Oval = 0
+latitude = 0
+Month = 0
+
+Model 1: restricted model
+Model 2: seconds ~ Hour + I(Hour^2) + Triangular + Round + Cylindrical + 
+    Oval + latitude + Month
+
+Note: Coefficient covariance matrix supplied.
+
+  Res.Df Df      F    Pr(&gt;F)    
+1  32351                        
+2  32343  8 9.9102 7.108e-14 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>After running linear hypothesis tests, we reject the null hypothesis at the <strong>.1%</strong> significance level for each and every one of the seven models.</p>
+</section>
+</section>
+</section>
+<section id="findings-conclusion" class="level1">
+<h1>Findings &amp; Conclusion</h1>
+<p>In all of the cubic models tested, the coefficient on the <strong><em>Hour<sup>3</sup></em></strong> variable runs close to zero (-0.005 on model III and -0.0004 on model IV), suggesting negligible influence from cubic formulas. The coefficient on <strong><em>Hour<sup>2</sup></em></strong> is reliably just over 2.0, and the coefficient on <strong><em>Hour</em></strong> stabilizes between -66 and -63 once <strong><em>Hour<sup>2</sup></em></strong> is added to the specifications. Coefficients on each of the dummy variables for UFO shape remain similar across all regressions that include them.</p>
+<p>The R<sup>2</sup> and adjusted R<sup>2</sup> values for the seven different model specifications indicate that none of the tested regressors are good predictors for the duration of a UFO sighting; none of the adjusted R<sup>2</sup> values surpasses .002. Including the <strong><em>latitude</em></strong> and <strong><em>Month</em></strong> variables did not raise these low values. The model that best explains the influence of the hour of day and UFO shape on the duration of UFO sightings - and by “best” I do mean “barely least terrible” - is Model V:</p>
+<p><span class="math display">\[
+Duration = 1221.673 - 64.791(H) + 2.061(H^2) - 91.437(T) + 58.716(R) - 110.420(C) - 33.923(O)
+\]</span></p>
+<table class="table">
+<tbody>
+<tr class="odd">
+<td>H = Hour</td>
+<td>T = Triangular</td>
+<td>R = Round</td>
+<td>C = Cylindrical</td>
+<td>O = Oval</td>
+</tr>
+</tbody>
+</table>
+<p>The multiple regression table indicates that <strong><em>Hour</em></strong> and <strong><em>Hour<sup>2</sup></em></strong> are both statistically significant at the <strong>.1%</strong> level and that the dummy variable for <strong><em>Cylindrical</em></strong> UFOs is statistically significant at the <strong>5%</strong> level in this model.</p>
+<section id="what-does-this-mean-for-ufo-shapes" class="level3">
+<h3 class="anchored" data-anchor-id="what-does-this-mean-for-ufo-shapes">What Does This Mean for UFO Shapes?</h3>
+<p>The original pursuit of Project 1 was to investigate if and how the shape of UFOs affected the duration of sightings - do people who see round UFOs tend to have longer sightings? Do sightings of cigar-shaped cylindrical crafts tend to be relatively brief? We can use our chosen model formula to find the population mean of duration time when crafts of different shapes appear, holding all other variables constant.</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Coefficient</th>
+<th>UFO Shape</th>
+<th>Pop. Mean (seconds)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>-91.437</td>
+<td>Triangular</td>
+<td>1130.24</td>
+</tr>
+<tr class="even">
+<td>58.716</td>
+<td>Round</td>
+<td>1280.39</td>
+</tr>
+<tr class="odd">
+<td>-110.420</td>
+<td>Cylindrical</td>
+<td>1111.25</td>
+</tr>
+<tr class="even">
+<td>-33.923</td>
+<td>Oval</td>
+<td>1187.75</td>
+</tr>
+</tbody>
+</table>
+<p>The results shown in the table above suggest that sightings of round UFOs trend longer than the other shape categories, while triangular, oval, and cylindrical crafts don’t drastically vary from each other in terms of sighting duration.</p>
+<p>Further studies on craft shape and sighting duration would be necessary to establish any sort of external validity. However, considering that the low R<sup>2</sup> values indicate that the shape category regressors are not good predictors of duration length, I strongly doubt that these findings can be generalized in the wider study of ufology.</p>
+</section>
+</section>
+<section id="citations" class="level1">
+<h1>Citations</h1>
+<p>Hlavac, Marek (2022). stargazer: Well-Formatted Regression and Summary Statistics Tables. R package version 5.2.3. https://CRAN.R-project.org/package=stargazer</p>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="DACSS/603_Summer_Sec_1" data-repo-id="" data-category="Announcements" data-category-id="" data-mapping="url" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb46" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Length of UFO Encounters: Multiple Regressions"</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Peri (Teresa) Lardo"</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="an">desription:</span><span class="co"> "Multiple Regression models for UFO sightings data set"</span></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "8/17/2023"</span></span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a><span class="co">  - Project2</span></span>
+<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a><span class="co">  - Peri Teresa Lardo</span></span>
+<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a><span class="co">  - UFO sightings</span></span>
+<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb46-17"><a href="#cb46-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-18"><a href="#cb46-18" aria-hidden="true" tabindex="-1"></a><span class="fu">## Load libraries and dataset, clean data</span></span>
+<span id="cb46-19"><a href="#cb46-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-20"><a href="#cb46-20" aria-hidden="true" tabindex="-1"></a><span class="in">```{r Loading Chunk}</span></span>
+<span id="cb46-21"><a href="#cb46-21" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb46-22"><a href="#cb46-22" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb46-23"><a href="#cb46-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-24"><a href="#cb46-24" aria-hidden="true" tabindex="-1"></a><span class="co">#Load libraries</span></span>
+<span id="cb46-25"><a href="#cb46-25" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb46-26"><a href="#cb46-26" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb46-27"><a href="#cb46-27" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb46-28"><a href="#cb46-28" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb46-29"><a href="#cb46-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-30"><a href="#cb46-30" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb46-31"><a href="#cb46-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-32"><a href="#cb46-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Create shape categories for personal sanity</span></span>
+<span id="cb46-33"><a href="#cb46-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-34"><a href="#cb46-34" aria-hidden="true" tabindex="-1"></a>round <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"disk"</span>, <span class="st">"round"</span>, <span class="st">"sphere"</span>, <span class="st">"circle"</span>, <span class="st">"dome"</span>)</span>
+<span id="cb46-35"><a href="#cb46-35" aria-hidden="true" tabindex="-1"></a>triangular <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"triangle"</span>, <span class="st">"cone"</span>, <span class="st">"pyramid"</span>, <span class="st">"delta"</span>, <span class="st">"chevron"</span>)</span>
+<span id="cb46-36"><a href="#cb46-36" aria-hidden="true" tabindex="-1"></a>oval <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"oval"</span>, <span class="st">"teardrop"</span>, <span class="st">"egg"</span>, <span class="st">"crescent"</span>)</span>
+<span id="cb46-37"><a href="#cb46-37" aria-hidden="true" tabindex="-1"></a>parallelogram <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"cross"</span>, <span class="st">"diamond"</span>, <span class="st">"hexagon"</span>, <span class="st">"rectangle"</span>)</span>
+<span id="cb46-38"><a href="#cb46-38" aria-hidden="true" tabindex="-1"></a>cylinder <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"cylinder"</span>, <span class="st">"cigar"</span>)</span>
+<span id="cb46-39"><a href="#cb46-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-40"><a href="#cb46-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Import data &amp; clean necessary elements</span></span>
+<span id="cb46-41"><a href="#cb46-41" aria-hidden="true" tabindex="-1"></a>ufo_sighting_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/ufo_sighting_data.csv"</span>) <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>(UFO_shape, length_of_encounter_seconds, country, Date_time, latitude) <span class="sc">%&gt;%</span></span>
+<span id="cb46-42"><a href="#cb46-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(length_of_encounter_seconds <span class="sc">&lt;</span> <span class="dv">86400</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb46-43"><a href="#cb46-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"us"</span>, <span class="st">"ca"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb46-44"><a href="#cb46-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">str_detect</span>(description, <span class="st">'HOAX'</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb46-45"><a href="#cb46-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>UFO_shape <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"light"</span>, <span class="st">"fireball"</span>, <span class="st">"flare"</span>, <span class="st">"flash"</span>, <span class="st">"other"</span>, <span class="st">"unknown"</span>, <span class="st">"formation"</span>, <span class="st">"changing"</span>, <span class="st">"changed"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb46-46"><a href="#cb46-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Shape_Category =</span> <span class="fu">case_when</span>(</span>
+<span id="cb46-47"><a href="#cb46-47" aria-hidden="true" tabindex="-1"></a>         UFO_shape <span class="sc">%in%</span> round <span class="sc">~</span> <span class="st">"Round"</span>,</span>
+<span id="cb46-48"><a href="#cb46-48" aria-hidden="true" tabindex="-1"></a>         UFO_shape <span class="sc">%in%</span> triangular <span class="sc">~</span> <span class="st">"Triangular"</span>,</span>
+<span id="cb46-49"><a href="#cb46-49" aria-hidden="true" tabindex="-1"></a>         UFO_shape <span class="sc">%in%</span> oval <span class="sc">~</span> <span class="st">"Oval"</span>,</span>
+<span id="cb46-50"><a href="#cb46-50" aria-hidden="true" tabindex="-1"></a>         UFO_shape <span class="sc">%in%</span> parallelogram <span class="sc">~</span> <span class="st">"Parallelogram"</span>,</span>
+<span id="cb46-51"><a href="#cb46-51" aria-hidden="true" tabindex="-1"></a>         UFO_shape <span class="sc">%in%</span> cylinder <span class="sc">~</span> <span class="st">"Cylinder"</span>))</span>
+<span id="cb46-52"><a href="#cb46-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-53"><a href="#cb46-53" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure the Date_time column is actually in datetime format</span></span>
+<span id="cb46-54"><a href="#cb46-54" aria-hidden="true" tabindex="-1"></a>ufo_sighting_data<span class="sc">$</span>Date_time <span class="ot">&lt;-</span> <span class="fu">parse_date_time</span>(ufo_sighting_data<span class="sc">$</span>Date_time, <span class="st">"mdy_HM"</span>)</span>
+<span id="cb46-55"><a href="#cb46-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-56"><a href="#cb46-56" aria-hidden="true" tabindex="-1"></a><span class="co"># Create separate variables for the Month &amp; time of day (by hour) of the encounters</span></span>
+<span id="cb46-57"><a href="#cb46-57" aria-hidden="true" tabindex="-1"></a>ufo_sighting_data<span class="sc">$</span>Month <span class="ot">=</span> <span class="fu">month</span>(ufo_sighting_data<span class="sc">$</span>Date_time)</span>
+<span id="cb46-58"><a href="#cb46-58" aria-hidden="true" tabindex="-1"></a>ufo_sighting_data<span class="sc">$</span>Hour <span class="ot">=</span> <span class="dv">1</span> <span class="sc">+</span> <span class="fu">hour</span>(ufo_sighting_data<span class="sc">$</span>Date_time)</span>
+<span id="cb46-59"><a href="#cb46-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-60"><a href="#cb46-60" aria-hidden="true" tabindex="-1"></a><span class="co"># Create dummy variables for categorical Shape (x) variable</span></span>
+<span id="cb46-61"><a href="#cb46-61" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fastDummies)</span>
+<span id="cb46-62"><a href="#cb46-62" aria-hidden="true" tabindex="-1"></a>ufo_sighting_data <span class="ot">&lt;-</span> <span class="fu">dummy_cols</span>(ufo_sighting_data, <span class="at">select_columns =</span> <span class="st">'Shape_Category'</span>)</span>
+<span id="cb46-63"><a href="#cb46-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-64"><a href="#cb46-64" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ufo_sighting_data)</span>
+<span id="cb46-65"><a href="#cb46-65" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb46-66"><a href="#cb46-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-67"><a href="#cb46-67" aria-hidden="true" tabindex="-1"></a><span class="fu"># Model Building</span></span>
+<span id="cb46-68"><a href="#cb46-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-69"><a href="#cb46-69" aria-hidden="true" tabindex="-1"></a>In Project I, we started off interested in the independent variable of ***UFO Shape*** (transformed into a series of dummy variables) and the dependent variable of ***Length of Encounter (in Seconds)***. Another possible (available) variable that may contribute to the length of a UFO sighting is the hour of day (measured 1-24 from 1st hour of the day, midnight to one, to the 24th hour, 11PM to midnight).</span>
+<span id="cb46-70"><a href="#cb46-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-71"><a href="#cb46-71" aria-hidden="true" tabindex="-1"></a>The time of day may influence the length of a sighting (and contribute to the identification of UFO shape) in part because of how much or how little light is available outdoors, where UFOs are traditionally seen (but if you ever spot one in the middle of your kitchen or a Starbucks, definitely let me know). The month of the year would also play into the expected level of sunlight at any given time because the amount of sunlight at, for instance, 7 pm in July is much different than at 7 pm in February.</span>
+<span id="cb46-72"><a href="#cb46-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-73"><a href="#cb46-73" aria-hidden="true" tabindex="-1"></a>Latitude is another element that can influence the amount of light at a given time of day &amp; year. There is also a preexisting cultural association between UFOs/paranormal activity and a certain latitude - the 37th parallel north.</span>
+<span id="cb46-74"><a href="#cb46-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-75"><a href="#cb46-75" aria-hidden="true" tabindex="-1"></a>Due to the variations in seasons in different hemispheres represented in our dataset, I have limited the data to reported UFO sightings in Canada and the United States. Just over 96% of the sightings in the dataset are from these two countries.</span>
+<span id="cb46-76"><a href="#cb46-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-77"><a href="#cb46-77" aria-hidden="true" tabindex="-1"></a><span class="fu">### Variables</span></span>
+<span id="cb46-78"><a href="#cb46-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-79"><a href="#cb46-79" aria-hidden="true" tabindex="-1"></a><span class="in">```{r Variables Chunk}</span></span>
+<span id="cb46-80"><a href="#cb46-80" aria-hidden="true" tabindex="-1"></a><span class="co"># Customize variables</span></span>
+<span id="cb46-81"><a href="#cb46-81" aria-hidden="true" tabindex="-1"></a>ufo_sighting_data<span class="sc">$</span>seconds <span class="ot">&lt;-</span> ufo_sighting_data<span class="sc">$</span>length_of_encounter_seconds</span>
+<span id="cb46-82"><a href="#cb46-82" aria-hidden="true" tabindex="-1"></a>ufo_sighting_data<span class="sc">$</span>Round <span class="ot">&lt;-</span> ufo_sighting_data<span class="sc">$</span>Shape_Category_Round</span>
+<span id="cb46-83"><a href="#cb46-83" aria-hidden="true" tabindex="-1"></a>ufo_sighting_data<span class="sc">$</span>Triangular <span class="ot">&lt;-</span> ufo_sighting_data<span class="sc">$</span>Shape_Category_Triangular</span>
+<span id="cb46-84"><a href="#cb46-84" aria-hidden="true" tabindex="-1"></a>ufo_sighting_data<span class="sc">$</span>Cylindrical <span class="ot">&lt;-</span> ufo_sighting_data<span class="sc">$</span>Shape_Category_Cylinder</span>
+<span id="cb46-85"><a href="#cb46-85" aria-hidden="true" tabindex="-1"></a>ufo_sighting_data<span class="sc">$</span>Oval <span class="ot">&lt;-</span> ufo_sighting_data<span class="sc">$</span>Shape_Category_Oval</span>
+<span id="cb46-86"><a href="#cb46-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-87"><a href="#cb46-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-88"><a href="#cb46-88" aria-hidden="true" tabindex="-1"></a><span class="co"># Designate regressors, report mean &amp; standard deviations thereof</span></span>
+<span id="cb46-89"><a href="#cb46-89" aria-hidden="true" tabindex="-1"></a>vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"seconds"</span>, <span class="st">"Round"</span>, <span class="st">"Triangular"</span>, <span class="st">"Cylindrical"</span>, <span class="st">"Oval"</span>, <span class="st">"latitude"</span>, <span class="st">"Hour"</span>, <span class="st">"Month"</span>)</span>
+<span id="cb46-90"><a href="#cb46-90" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(<span class="at">Mean =</span> <span class="fu">sapply</span>(ufo_sighting_data[, vars], mean),</span>
+<span id="cb46-91"><a href="#cb46-91" aria-hidden="true" tabindex="-1"></a>      <span class="at">StandardDev =</span> <span class="fu">sapply</span>(ufo_sighting_data[, vars], sd))</span>
+<span id="cb46-92"><a href="#cb46-92" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb46-93"><a href="#cb46-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-94"><a href="#cb46-94" aria-hidden="true" tabindex="-1"></a><span class="fu">### Linear Model</span></span>
+<span id="cb46-95"><a href="#cb46-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-96"><a href="#cb46-96" aria-hidden="true" tabindex="-1"></a><span class="in">```{r Linear Model chunk}</span></span>
+<span id="cb46-97"><a href="#cb46-97" aria-hidden="true" tabindex="-1"></a>Linear_model_UFO <span class="ot">&lt;-</span> <span class="fu">lm</span>(seconds <span class="sc">~</span> Hour, <span class="at">data =</span> ufo_sighting_data)</span>
+<span id="cb46-98"><a href="#cb46-98" aria-hidden="true" tabindex="-1"></a>Linear_model_UFO</span>
+<span id="cb46-99"><a href="#cb46-99" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb46-100"><a href="#cb46-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-101"><a href="#cb46-101" aria-hidden="true" tabindex="-1"></a><span class="fu">### Log-Linear Model</span></span>
+<span id="cb46-102"><a href="#cb46-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-103"><a href="#cb46-103" aria-hidden="true" tabindex="-1"></a><span class="in">```{r Log-Linear Model chunk}</span></span>
+<span id="cb46-104"><a href="#cb46-104" aria-hidden="true" tabindex="-1"></a>Linearlog_model_UFO <span class="ot">&lt;-</span> <span class="fu">lm</span>(seconds <span class="sc">~</span> <span class="fu">log</span>(Hour), <span class="at">data =</span> ufo_sighting_data)</span>
+<span id="cb46-105"><a href="#cb46-105" aria-hidden="true" tabindex="-1"></a>Linearlog_model_UFO</span>
+<span id="cb46-106"><a href="#cb46-106" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb46-107"><a href="#cb46-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-108"><a href="#cb46-108" aria-hidden="true" tabindex="-1"></a><span class="fu">### Quadratic Model</span></span>
+<span id="cb46-109"><a href="#cb46-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-110"><a href="#cb46-110" aria-hidden="true" tabindex="-1"></a><span class="in">```{r Quadratic Model chunk}</span></span>
+<span id="cb46-111"><a href="#cb46-111" aria-hidden="true" tabindex="-1"></a>quad_model_UFO <span class="ot">&lt;-</span> <span class="fu">lm</span>(seconds <span class="sc">~</span> <span class="fu">I</span>(Hour) <span class="sc">+</span> <span class="fu">I</span>((Hour)<span class="sc">^</span><span class="dv">2</span>), <span class="at">data =</span> ufo_sighting_data)</span>
+<span id="cb46-112"><a href="#cb46-112" aria-hidden="true" tabindex="-1"></a>quad_model_UFO</span>
+<span id="cb46-113"><a href="#cb46-113" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb46-114"><a href="#cb46-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-115"><a href="#cb46-115" aria-hidden="true" tabindex="-1"></a><span class="fu">### Cubic Model</span></span>
+<span id="cb46-116"><a href="#cb46-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-117"><a href="#cb46-117" aria-hidden="true" tabindex="-1"></a><span class="in">```{r Cubic Model chunk}</span></span>
+<span id="cb46-118"><a href="#cb46-118" aria-hidden="true" tabindex="-1"></a>cubic_model_UFO <span class="ot">&lt;-</span> <span class="fu">lm</span>(seconds <span class="sc">~</span> <span class="fu">I</span>(Hour) <span class="sc">+</span> <span class="fu">I</span>((Hour)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> <span class="fu">I</span>((Hour)<span class="sc">^</span><span class="dv">3</span>) <span class="sc">+</span> Month, <span class="at">data =</span> ufo_sighting_data)</span>
+<span id="cb46-119"><a href="#cb46-119" aria-hidden="true" tabindex="-1"></a>cubic_model_UFO</span>
+<span id="cb46-120"><a href="#cb46-120" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb46-121"><a href="#cb46-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-122"><a href="#cb46-122" aria-hidden="true" tabindex="-1"></a><span class="fu">## Plot Observations &amp; Models</span></span>
+<span id="cb46-123"><a href="#cb46-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-124"><a href="#cb46-124" aria-hidden="true" tabindex="-1"></a><span class="in">```{r Plot of Models chunk}</span></span>
+<span id="cb46-125"><a href="#cb46-125" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ufo_sighting_data<span class="sc">$</span>Hour, ufo_sighting_data<span class="sc">$</span>seconds,</span>
+<span id="cb46-126"><a href="#cb46-126" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">20</span>,</span>
+<span id="cb46-127"><a href="#cb46-127" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"orange"</span>,</span>
+<span id="cb46-128"><a href="#cb46-128" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">300</span>, <span class="dv">1300</span>), </span>
+<span id="cb46-129"><a href="#cb46-129" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Hour of Day"</span>,</span>
+<span id="cb46-130"><a href="#cb46-130" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Length of Sighting in Seconds"</span>,</span>
+<span id="cb46-131"><a href="#cb46-131" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Models </span><span class="sc">\n</span><span class="st"> Y-limited for zoomed-in view"</span>)</span>
+<span id="cb46-132"><a href="#cb46-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-133"><a href="#cb46-133" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(Linear_model_UFO, <span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb46-134"><a href="#cb46-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-135"><a href="#cb46-135" aria-hidden="true" tabindex="-1"></a>order_id <span class="ot">&lt;-</span> <span class="fu">order</span>(ufo_sighting_data<span class="sc">$</span>Hour)</span>
+<span id="cb46-136"><a href="#cb46-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-137"><a href="#cb46-137" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(ufo_sighting_data<span class="sc">$</span>Hour[order_id],</span>
+<span id="cb46-138"><a href="#cb46-138" aria-hidden="true" tabindex="-1"></a>     <span class="fu">fitted</span>(Linearlog_model_UFO)[order_id],</span>
+<span id="cb46-139"><a href="#cb46-139" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"blue"</span>,</span>
+<span id="cb46-140"><a href="#cb46-140" aria-hidden="true" tabindex="-1"></a>     <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb46-141"><a href="#cb46-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-142"><a href="#cb46-142" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x =</span> ufo_sighting_data<span class="sc">$</span>Hour[order_id],</span>
+<span id="cb46-143"><a href="#cb46-143" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="fu">fitted</span>(cubic_model_UFO)[order_id],</span>
+<span id="cb46-144"><a href="#cb46-144" aria-hidden="true" tabindex="-1"></a>      <span class="at">col =</span> <span class="st">"red"</span>,</span>
+<span id="cb46-145"><a href="#cb46-145" aria-hidden="true" tabindex="-1"></a>      <span class="at">lwd =</span> <span class="dv">4</span>)</span>
+<span id="cb46-146"><a href="#cb46-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-147"><a href="#cb46-147" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="at">x =</span> ufo_sighting_data<span class="sc">$</span>Hour[order_id],</span>
+<span id="cb46-148"><a href="#cb46-148" aria-hidden="true" tabindex="-1"></a>     <span class="at">y =</span> <span class="fu">fitted</span>(quad_model_UFO)[order_id],</span>
+<span id="cb46-149"><a href="#cb46-149" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"green"</span>,</span>
+<span id="cb46-150"><a href="#cb46-150" aria-hidden="true" tabindex="-1"></a>     <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb46-151"><a href="#cb46-151" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb46-152"><a href="#cb46-152" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"bottomright"</span>,</span>
+<span id="cb46-153"><a href="#cb46-153" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"Linear"</span>, <span class="st">"Linear-Log"</span>, <span class="st">"Cubic"</span>, <span class="st">"Quadratic"</span>),</span>
+<span id="cb46-154"><a href="#cb46-154" aria-hidden="true" tabindex="-1"></a>       <span class="at">lty =</span> <span class="dv">1</span>,</span>
+<span id="cb46-155"><a href="#cb46-155" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"blue"</span>, <span class="st">"red"</span>, <span class="st">"green"</span>))</span>
+<span id="cb46-156"><a href="#cb46-156" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb46-157"><a href="#cb46-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-158"><a href="#cb46-158" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/HoursGraphPlot-01.jpg)</span></span>
+<span id="cb46-159"><a href="#cb46-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-160"><a href="#cb46-160" aria-hidden="true" tabindex="-1"></a><span class="fu">## Linear or Non-Linear?</span></span>
+<span id="cb46-161"><a href="#cb46-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-162"><a href="#cb46-162" aria-hidden="true" tabindex="-1"></a>I think a non-linear equation may better explain the possible relationship between the hour of the day and the duration of UFO sightings. When I inspect the zoomed-out view of the plot above and concentrate on the lower Y-values where most data points collect, I can see that the values do not a) uniformly increase throughout the day, b) uniformly decrease throughout the day, or c) remain constant throughout the day. There appears to be undulation in the shape of the data points.</span>
+<span id="cb46-163"><a href="#cb46-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-164"><a href="#cb46-164" aria-hidden="true" tabindex="-1"></a>The plot above shows a dip in encounter/sighting duration during the morning hours when many people are waking up and starting their work day, but sighting duration is higher again during the late afternoon/evening hours. The sighting duration seems to level off during the final few hours of the day (9PM to midnight), so at first I thought a quadratic equation may be best-suited. But my love for bar charts cannot be quelled, so I also made a bar chart to better visualize the mean sighting duration per hour. The bar chart showed a dip in the duration mean from 10PM to midnight that persuades me toward a cubic model. In the zoomed-in model plot above, the cubic and quadratic curves follow a very similar path. When developing my model specifications, I will make both quadratic and cubic models to determine which will be more appropriate.</span>
+<span id="cb46-165"><a href="#cb46-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-168"><a href="#cb46-168" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb46-169"><a href="#cb46-169" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb46-170"><a href="#cb46-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-171"><a href="#cb46-171" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ufo_sighting_data <span class="sc">%&gt;%</span> </span>
+<span id="cb46-172"><a href="#cb46-172" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Hour), <span class="fu">aes</span>(<span class="at">x =</span> Hour, <span class="at">y =</span> <span class="fu">mean</span>(seconds), <span class="at">fill =</span> Hour)) <span class="sc">+</span> </span>
+<span id="cb46-173"><a href="#cb46-173" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span> </span>
+<span id="cb46-174"><a href="#cb46-174" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"The Bar Chart that Persuaded Me to Consider Cubic Models"</span>) <span class="sc">+</span> </span>
+<span id="cb46-175"><a href="#cb46-175" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Hour of Day"</span>) <span class="sc">+</span> </span>
+<span id="cb46-176"><a href="#cb46-176" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Duration Mean (in seconds)"</span>) <span class="sc">+</span></span>
+<span id="cb46-177"><a href="#cb46-177" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span> </span>
+<span id="cb46-178"><a href="#cb46-178" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradient2</span>(<span class="at">low =</span> <span class="st">"darkorchid4"</span>, <span class="at">high =</span> <span class="st">"purple4"</span>, <span class="at">mid =</span> <span class="st">"gold2"</span>, <span class="at">midpoint =</span> <span class="dv">12</span>)</span>
+<span id="cb46-179"><a href="#cb46-179" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb46-180"><a href="#cb46-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-181"><a href="#cb46-181" aria-hidden="true" tabindex="-1"></a><span class="fu"># Model Specifications</span></span>
+<span id="cb46-182"><a href="#cb46-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-185"><a href="#cb46-185" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb46-186"><a href="#cb46-186" aria-hidden="true" tabindex="-1"></a><span class="co"># Create multiple specifications</span></span>
+<span id="cb46-187"><a href="#cb46-187" aria-hidden="true" tabindex="-1"></a>UFO_shape_mod1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(seconds <span class="sc">~</span> Hour, <span class="at">data =</span> ufo_sighting_data)</span>
+<span id="cb46-188"><a href="#cb46-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-189"><a href="#cb46-189" aria-hidden="true" tabindex="-1"></a>UFO_shape_mod2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(seconds <span class="sc">~</span> Hour <span class="sc">+</span> <span class="fu">I</span>(Hour<span class="sc">^</span><span class="dv">2</span>), <span class="at">data =</span> ufo_sighting_data)</span>
+<span id="cb46-190"><a href="#cb46-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-191"><a href="#cb46-191" aria-hidden="true" tabindex="-1"></a>UFO_shape_mod3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(seconds <span class="sc">~</span> Hour <span class="sc">+</span> <span class="fu">I</span>(Hour<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> <span class="fu">I</span>(Hour<span class="sc">^</span><span class="dv">3</span>), <span class="at">data =</span> ufo_sighting_data)</span>
+<span id="cb46-192"><a href="#cb46-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-193"><a href="#cb46-193" aria-hidden="true" tabindex="-1"></a>UFO_shape_mod4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(seconds <span class="sc">~</span> Hour <span class="sc">+</span> <span class="fu">I</span>(Hour<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> <span class="fu">I</span>(Hour<span class="sc">^</span><span class="dv">3</span>) <span class="sc">+</span> Triangular <span class="sc">+</span> Round <span class="sc">+</span> Cylindrical <span class="sc">+</span> Oval, <span class="at">data =</span> ufo_sighting_data)</span>
+<span id="cb46-194"><a href="#cb46-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-195"><a href="#cb46-195" aria-hidden="true" tabindex="-1"></a>UFO_shape_mod5 <span class="ot">&lt;-</span> <span class="fu">lm</span>(seconds <span class="sc">~</span> Hour <span class="sc">+</span> <span class="fu">I</span>(Hour<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> Triangular <span class="sc">+</span> Round <span class="sc">+</span> Cylindrical <span class="sc">+</span> Oval, <span class="at">data =</span> ufo_sighting_data)</span>
+<span id="cb46-196"><a href="#cb46-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-197"><a href="#cb46-197" aria-hidden="true" tabindex="-1"></a>UFO_shape_mod6 <span class="ot">&lt;-</span> <span class="fu">lm</span>(seconds <span class="sc">~</span> Hour <span class="sc">+</span> <span class="fu">I</span>(Hour<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> Triangular <span class="sc">+</span> Round <span class="sc">+</span> Cylindrical <span class="sc">+</span> Oval <span class="sc">+</span> latitude, <span class="at">data =</span> ufo_sighting_data)</span>
+<span id="cb46-198"><a href="#cb46-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-199"><a href="#cb46-199" aria-hidden="true" tabindex="-1"></a>UFO_shape_mod7 <span class="ot">&lt;-</span> <span class="fu">lm</span>(seconds <span class="sc">~</span> Hour <span class="sc">+</span> <span class="fu">I</span>(Hour<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> Triangular <span class="sc">+</span> Round <span class="sc">+</span> Cylindrical <span class="sc">+</span> Oval <span class="sc">+</span> latitude <span class="sc">+</span> Month, <span class="at">data =</span> ufo_sighting_data)</span>
+<span id="cb46-200"><a href="#cb46-200" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb46-201"><a href="#cb46-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-202"><a href="#cb46-202" aria-hidden="true" tabindex="-1"></a><span class="fu">### Robust Standard Errors</span></span>
+<span id="cb46-203"><a href="#cb46-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-206"><a href="#cb46-206" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb46-207"><a href="#cb46-207" aria-hidden="true" tabindex="-1"></a><span class="co"># Get Standard Errors for each model</span></span>
+<span id="cb46-208"><a href="#cb46-208" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sandwich)</span>
+<span id="cb46-209"><a href="#cb46-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-210"><a href="#cb46-210" aria-hidden="true" tabindex="-1"></a>rob_se <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(UFO_shape_mod1, <span class="at">type =</span> <span class="st">"HC1"</span>))),</span>
+<span id="cb46-211"><a href="#cb46-211" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(UFO_shape_mod2, <span class="at">type =</span> <span class="st">"HC1"</span>))),</span>
+<span id="cb46-212"><a href="#cb46-212" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(UFO_shape_mod3, <span class="at">type =</span> <span class="st">"HC1"</span>))),</span>
+<span id="cb46-213"><a href="#cb46-213" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(UFO_shape_mod4, <span class="at">type =</span> <span class="st">"HC1"</span>))),</span>
+<span id="cb46-214"><a href="#cb46-214" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(UFO_shape_mod5, <span class="at">type =</span> <span class="st">"HC1"</span>))),</span>
+<span id="cb46-215"><a href="#cb46-215" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(UFO_shape_mod6, <span class="at">type =</span> <span class="st">"HC1"</span>))),</span>
+<span id="cb46-216"><a href="#cb46-216" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(UFO_shape_mod7, <span class="at">type =</span> <span class="st">"HC1"</span>))))</span>
+<span id="cb46-217"><a href="#cb46-217" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-218"><a href="#cb46-218" aria-hidden="true" tabindex="-1"></a>rob_se</span>
+<span id="cb46-219"><a href="#cb46-219" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb46-220"><a href="#cb46-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-221"><a href="#cb46-221" aria-hidden="true" tabindex="-1"></a><span class="fu">## Multiple Regression Specification Models</span></span>
+<span id="cb46-222"><a href="#cb46-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-223"><a href="#cb46-223" aria-hidden="true" tabindex="-1"></a><span class="in">```{r my latexable, results = "asis"}</span></span>
+<span id="cb46-224"><a href="#cb46-224" aria-hidden="true" tabindex="-1"></a>models <span class="ot">&lt;-</span> <span class="fu">list</span>(UFO_shape_mod1, UFO_shape_mod2, UFO_shape_mod3,</span>
+<span id="cb46-225"><a href="#cb46-225" aria-hidden="true" tabindex="-1"></a>UFO_shape_mod4, UFO_shape_mod5, UFO_shape_mod6, UFO_shape_mod7)</span>
+<span id="cb46-226"><a href="#cb46-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-227"><a href="#cb46-227" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stargazer)</span>
+<span id="cb46-228"><a href="#cb46-228" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(models,</span>
+<span id="cb46-229"><a href="#cb46-229" aria-hidden="true" tabindex="-1"></a><span class="at">title =</span> <span class="st">"Regressions on UFO Sighting Duration"</span>,</span>
+<span id="cb46-230"><a href="#cb46-230" aria-hidden="true" tabindex="-1"></a><span class="at">type =</span> <span class="st">"html"</span>,</span>
+<span id="cb46-231"><a href="#cb46-231" aria-hidden="true" tabindex="-1"></a><span class="at">digits =</span> <span class="dv">3</span>,</span>
+<span id="cb46-232"><a href="#cb46-232" aria-hidden="true" tabindex="-1"></a><span class="at">header =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb46-233"><a href="#cb46-233" aria-hidden="true" tabindex="-1"></a><span class="at">se =</span> rob_se,</span>
+<span id="cb46-234"><a href="#cb46-234" aria-hidden="true" tabindex="-1"></a><span class="at">object.names =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb46-235"><a href="#cb46-235" aria-hidden="true" tabindex="-1"></a><span class="at">model.numbers =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb46-236"><a href="#cb46-236" aria-hidden="true" tabindex="-1"></a><span class="at">column.labels =</span> <span class="fu">c</span>(<span class="st">"(I)"</span>, <span class="st">"(II)"</span>, <span class="st">"(III)"</span>, <span class="st">"(IV)"</span>, <span class="st">"(V)"</span>, <span class="st">"(VI)"</span>, <span class="st">"(VII)"</span>))</span>
+<span id="cb46-237"><a href="#cb46-237" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb46-238"><a href="#cb46-238" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-239"><a href="#cb46-239" aria-hidden="true" tabindex="-1"></a><span class="fu">### Hypothesis Testing</span></span>
+<span id="cb46-240"><a href="#cb46-240" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-243"><a href="#cb46-243" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb46-244"><a href="#cb46-244" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb46-245"><a href="#cb46-245" aria-hidden="true" tabindex="-1"></a><span class="fu">linearHypothesis</span>(UFO_shape_mod1,</span>
+<span id="cb46-246"><a href="#cb46-246" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">"Hour=0"</span>),</span>
+<span id="cb46-247"><a href="#cb46-247" aria-hidden="true" tabindex="-1"></a><span class="at">vcov. =</span> <span class="fu">vcovHC</span>(UFO_shape_mod1, <span class="at">type =</span> <span class="st">"HC1"</span>))</span>
+<span id="cb46-248"><a href="#cb46-248" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb46-249"><a href="#cb46-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-252"><a href="#cb46-252" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb46-253"><a href="#cb46-253" aria-hidden="true" tabindex="-1"></a><span class="fu">linearHypothesis</span>(UFO_shape_mod2,</span>
+<span id="cb46-254"><a href="#cb46-254" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">"Hour=0"</span>, <span class="st">"I(Hour^2)=0"</span>),</span>
+<span id="cb46-255"><a href="#cb46-255" aria-hidden="true" tabindex="-1"></a><span class="at">vcov. =</span> <span class="fu">vcovHC</span>(UFO_shape_mod2, <span class="at">type =</span> <span class="st">"HC1"</span>))</span>
+<span id="cb46-256"><a href="#cb46-256" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb46-257"><a href="#cb46-257" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-260"><a href="#cb46-260" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb46-261"><a href="#cb46-261" aria-hidden="true" tabindex="-1"></a><span class="fu">linearHypothesis</span>(UFO_shape_mod3,</span>
+<span id="cb46-262"><a href="#cb46-262" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">"Hour=0"</span>, <span class="st">"I(Hour^2)=0"</span>, <span class="st">"I(Hour^3)=0"</span>),</span>
+<span id="cb46-263"><a href="#cb46-263" aria-hidden="true" tabindex="-1"></a><span class="at">vcov. =</span> <span class="fu">vcovHC</span>(UFO_shape_mod3, <span class="at">type =</span> <span class="st">"HC1"</span>))</span>
+<span id="cb46-264"><a href="#cb46-264" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb46-265"><a href="#cb46-265" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-268"><a href="#cb46-268" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb46-269"><a href="#cb46-269" aria-hidden="true" tabindex="-1"></a><span class="fu">linearHypothesis</span>(UFO_shape_mod4,</span>
+<span id="cb46-270"><a href="#cb46-270" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">"Hour=0"</span>, <span class="st">"I(Hour^2)=0"</span>, <span class="st">"I(Hour^3)=0"</span>, <span class="st">"Triangular=0"</span>, <span class="st">"Round=0"</span>, <span class="st">"Cylindrical=0"</span>, <span class="st">"Oval=0"</span>),</span>
+<span id="cb46-271"><a href="#cb46-271" aria-hidden="true" tabindex="-1"></a><span class="at">vcov. =</span> <span class="fu">vcovHC</span>(UFO_shape_mod4, <span class="at">type =</span> <span class="st">"HC1"</span>))</span>
+<span id="cb46-272"><a href="#cb46-272" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb46-273"><a href="#cb46-273" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-276"><a href="#cb46-276" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb46-277"><a href="#cb46-277" aria-hidden="true" tabindex="-1"></a><span class="fu">linearHypothesis</span>(UFO_shape_mod5,</span>
+<span id="cb46-278"><a href="#cb46-278" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">"Hour=0"</span>, <span class="st">"I(Hour^2)=0"</span>, <span class="st">"Triangular=0"</span>, <span class="st">"Round=0"</span>, <span class="st">"Cylindrical=0"</span>, <span class="st">"Oval=0"</span>),</span>
+<span id="cb46-279"><a href="#cb46-279" aria-hidden="true" tabindex="-1"></a><span class="at">vcov. =</span> <span class="fu">vcovHC</span>(UFO_shape_mod5, <span class="at">type =</span> <span class="st">"HC1"</span>))</span>
+<span id="cb46-280"><a href="#cb46-280" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb46-281"><a href="#cb46-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-284"><a href="#cb46-284" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb46-285"><a href="#cb46-285" aria-hidden="true" tabindex="-1"></a><span class="fu">linearHypothesis</span>(UFO_shape_mod6,</span>
+<span id="cb46-286"><a href="#cb46-286" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">"Hour=0"</span>, <span class="st">"I(Hour^2)=0"</span>, <span class="st">"Triangular=0"</span>, <span class="st">"Round=0"</span>, <span class="st">"Cylindrical=0"</span>, <span class="st">"Oval=0"</span>, <span class="st">"latitude=0"</span>),</span>
+<span id="cb46-287"><a href="#cb46-287" aria-hidden="true" tabindex="-1"></a><span class="at">vcov. =</span> <span class="fu">vcovHC</span>(UFO_shape_mod6, <span class="at">type =</span> <span class="st">"HC1"</span>))</span>
+<span id="cb46-288"><a href="#cb46-288" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb46-289"><a href="#cb46-289" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-292"><a href="#cb46-292" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb46-293"><a href="#cb46-293" aria-hidden="true" tabindex="-1"></a><span class="fu">linearHypothesis</span>(UFO_shape_mod7,</span>
+<span id="cb46-294"><a href="#cb46-294" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">"Hour=0"</span>, <span class="st">"I(Hour^2)=0"</span>, <span class="st">"Triangular=0"</span>, <span class="st">"Round=0"</span>, <span class="st">"Cylindrical=0"</span>, <span class="st">"Oval=0"</span>, <span class="st">"latitude=0"</span>, <span class="st">"Month=0"</span>),</span>
+<span id="cb46-295"><a href="#cb46-295" aria-hidden="true" tabindex="-1"></a><span class="at">vcov. =</span> <span class="fu">vcovHC</span>(UFO_shape_mod7, <span class="at">type =</span> <span class="st">"HC1"</span>))</span>
+<span id="cb46-296"><a href="#cb46-296" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb46-297"><a href="#cb46-297" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-298"><a href="#cb46-298" aria-hidden="true" tabindex="-1"></a>After running linear hypothesis tests, we reject the null hypothesis at the **.1%** significance level for each and every one of the seven models.</span>
+<span id="cb46-299"><a href="#cb46-299" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-300"><a href="#cb46-300" aria-hidden="true" tabindex="-1"></a><span class="fu"># Findings &amp; Conclusion</span></span>
+<span id="cb46-301"><a href="#cb46-301" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-302"><a href="#cb46-302" aria-hidden="true" tabindex="-1"></a>In all of the cubic models tested, the coefficient on the ***Hour^3^*** variable runs close to zero (-0.005 on model III and -0.0004 on model IV), suggesting negligible influence from cubic formulas. The coefficient on ***Hour^2^*** is reliably just over 2.0, and the coefficient on ***Hour*** stabilizes between -66 and -63 once ***Hour^2^*** is added to the specifications. Coefficients on each of the dummy variables for UFO shape remain similar across all regressions that include them.</span>
+<span id="cb46-303"><a href="#cb46-303" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-304"><a href="#cb46-304" aria-hidden="true" tabindex="-1"></a>The R^2^ and adjusted R^2^ values for the seven different model specifications indicate that none of the tested regressors are good predictors for the duration of a UFO sighting; none of the adjusted R^2^ values surpasses .002. Including the ***latitude*** and ***Month*** variables did not raise these low values. The model that best explains the influence of the hour of day and UFO shape on the duration of UFO sightings - and by "best" I do mean "barely least terrible" - is Model V:</span>
+<span id="cb46-305"><a href="#cb46-305" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-306"><a href="#cb46-306" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb46-307"><a href="#cb46-307" aria-hidden="true" tabindex="-1"></a>Duration = 1221.673 - 64.791(H) + 2.061(H^2) - 91.437(T) + 58.716(R) - 110.420(C) - 33.923(O)</span>
+<span id="cb46-308"><a href="#cb46-308" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb46-309"><a href="#cb46-309" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-310"><a href="#cb46-310" aria-hidden="true" tabindex="-1"></a>|          |                |           |                 |          |</span>
+<span id="cb46-311"><a href="#cb46-311" aria-hidden="true" tabindex="-1"></a>|----------|----------------|-----------|-----------------|----------|</span>
+<span id="cb46-312"><a href="#cb46-312" aria-hidden="true" tabindex="-1"></a>| H = Hour | T = Triangular | R = Round | C = Cylindrical | O = Oval |</span>
+<span id="cb46-313"><a href="#cb46-313" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-314"><a href="#cb46-314" aria-hidden="true" tabindex="-1"></a>The multiple regression table indicates that ***Hour*** and ***Hour^2^*** are both statistically significant at the **.1%** level and that the dummy variable for ***Cylindrical*** UFOs is statistically significant at the **5%** level in this model.</span>
+<span id="cb46-315"><a href="#cb46-315" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-316"><a href="#cb46-316" aria-hidden="true" tabindex="-1"></a><span class="fu">### What Does This Mean for UFO Shapes?</span></span>
+<span id="cb46-317"><a href="#cb46-317" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-318"><a href="#cb46-318" aria-hidden="true" tabindex="-1"></a>The original pursuit of Project 1 was to investigate if and how the shape of UFOs affected the duration of sightings - do people who see round UFOs tend to have longer sightings? Do sightings of cigar-shaped cylindrical crafts tend to be relatively brief? We can use our chosen model formula to find the population mean of duration time when crafts of different shapes appear, holding all other variables constant.</span>
+<span id="cb46-319"><a href="#cb46-319" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-320"><a href="#cb46-320" aria-hidden="true" tabindex="-1"></a>| Coefficient | UFO Shape   | Pop. Mean (seconds) |</span>
+<span id="cb46-321"><a href="#cb46-321" aria-hidden="true" tabindex="-1"></a>|-------------|-------------|---------------------|</span>
+<span id="cb46-322"><a href="#cb46-322" aria-hidden="true" tabindex="-1"></a>| -91.437     | Triangular  | 1130.24             |</span>
+<span id="cb46-323"><a href="#cb46-323" aria-hidden="true" tabindex="-1"></a>| 58.716      | Round       | 1280.39             |</span>
+<span id="cb46-324"><a href="#cb46-324" aria-hidden="true" tabindex="-1"></a>| -110.420    | Cylindrical | 1111.25             |</span>
+<span id="cb46-325"><a href="#cb46-325" aria-hidden="true" tabindex="-1"></a>| -33.923     | Oval        | 1187.75             |</span>
+<span id="cb46-326"><a href="#cb46-326" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-327"><a href="#cb46-327" aria-hidden="true" tabindex="-1"></a>The results shown in the table above suggest that sightings of round UFOs trend longer than the other shape categories, while triangular, oval, and cylindrical crafts don't drastically vary from each other in terms of sighting duration.</span>
+<span id="cb46-328"><a href="#cb46-328" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-329"><a href="#cb46-329" aria-hidden="true" tabindex="-1"></a>Further studies on craft shape and sighting duration would be necessary to establish any sort of external validity. However, considering that the low R^2^ values indicate that the shape category regressors are not good predictors of duration length, I strongly doubt that these findings can be generalized in the wider study of ufology.</span>
+<span id="cb46-330"><a href="#cb46-330" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-331"><a href="#cb46-331" aria-hidden="true" tabindex="-1"></a><span class="fu"># Citations</span></span>
+<span id="cb46-332"><a href="#cb46-332" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-333"><a href="#cb46-333" aria-hidden="true" tabindex="-1"></a>Hlavac, Marek (2022). stargazer: Well-Formatted Regression and Summary Statistics Tables. R package version 5.2.3. https://CRAN.R-project.org/package=stargazer</span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+</body></html>
