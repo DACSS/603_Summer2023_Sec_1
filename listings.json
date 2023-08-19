@@ -1,7 +1,14 @@
 [
   {
+    "listing": "/about.html",
+    "items": [
+      "/about/about.html"
+    ]
+  },
+  {
     "listing": "/index.html",
     "items": [
+      "/posts/KeithMartin_Project2.html",
       "/posts/finalProject_Qasim.html",
       "/posts/603_Descriptive_Project_Connor.html",
       "/posts/Class_Project_1_Sue-Ellen_Duffy.html",
@@ -10,15 +17,9 @@
       "/posts/KruzlicClass_Project1.html",
       "/posts/KeithMartin_Project1.html",
       "/posts/Class_Project1_JosephVincent_New.html",
-      "/posts/Eckstein_class_project_assignment_1.html",
       "/posts/Class_Project1.html",
-      "/posts/Project1-TeresaLardo.html"
-    ]
-  },
-  {
-    "listing": "/about.html",
-    "items": [
-      "/about/about.html"
+      "/posts/Project1-TeresaLardo.html",
+      "/posts/Eckstein_class_project_assignment_1.html"
     ]
   }
 ]

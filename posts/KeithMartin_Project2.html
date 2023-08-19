@@ -1,0 +1,2209 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Keith Martin">
+<meta name="dcterms.date" content="2023-08-17">
+
+<title>Keith Martin Project 2</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/DACSS_Round_Network.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<meta name="twitter:title" content="Keith Martin Project 2">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://dacss.github.io/603_Summer2023_Sec_1/posts/KeithMartin_Project2_files/figure-html/unnamed-chunk-8-1.png">
+<meta name="twitter:creator" content="@UMassDACSS">
+<meta name="twitter:site" content="@UMassDACSS">
+<meta name="twitter:image-height" content="960">
+<meta name="twitter:image-width" content="1344">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/UMass White Wordmark Horiz.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://dacss.github.io/603_Summer2023_Sec_1/" rel="" target="">
+ <span class="menu-text">Summer 2023 Posts</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html" rel="" target="">
+ <span class="menu-text">Contributors</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://umass.edu/sbs/dacss" rel="" target="">
+ <span class="menu-text">DACSS</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://dacss.github.io/603_Summer2023_Sec_1/" rel="" target=""><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#reading-the-data" id="toc-reading-the-data" class="nav-link" data-scroll-target="#reading-the-data">Reading The Data</a></li>
+  <li><a href="#cleaning-data" id="toc-cleaning-data" class="nav-link" data-scroll-target="#cleaning-data">Cleaning Data</a></li>
+  <li><a href="#regression-models" id="toc-regression-models" class="nav-link" data-scroll-target="#regression-models">Regression Models</a></li>
+  <li><a href="#multivariate-regression" id="toc-multivariate-regression" class="nav-link" data-scroll-target="#multivariate-regression">Multivariate Regression</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Keith Martin Project 2</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+  <div class="quarto-categories">
+    <div class="quarto-category">project2</div>
+    <div class="quarto-category">dataset</div>
+    <div class="quarto-category">ggplot2</div>
+    <div class="quarto-category">regression</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Keith Martin </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 17, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(summarytools)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(AER)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stargazer)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>This dataset comprises information gathered from 387 applications submitted in Pennsylvania during 2016. These applications originated from various companies vying for licenses to operate dispensaries within the state.</p>
+<p>Each entry in the dataset represents a company, and occasionally, there are multiple applications from the same company. These applications are evaluated across 16 distinct categories. These categories encompass factors such as diversity plans, operational timetables, qualifications, security protocols, transportation, storage, labeling, inventory management, diversion prevention, sanitation, record-keeping, historical context, capital investment, community engagement, site planning, and personal identification.</p>
+<p>The evaluation scores across these categories are aggregated to form a total score, which has a maximum value of 800. Theoretically, a higher total score correlates with an increased likelihood of obtaining a license. However, upon reviewing the data, it becomes apparent that the companies with the highest scores do not always secure licenses. Conversely, some companies with lower scores do receive licenses. Moreover, specific categories can influence licensing outcomes, allowing companies with lower overall scores but strong performance in key categories to succeed.</p>
+<p>This analysis focuses on investigating various regression models to understand the impact of a company’s capital score on their chances of obtaining a license. The legislative process emphasized prioritizing communities most adversely affected by the criminalization of Marijuana during the licensing allocation.</p>
+<p>The analysis includes qualification scores as a variable. This enables a comparison between the significance of the diversity plan and qualification score. Qualification scores are also used to account for omitted variable bias.</p>
+<p>The hypothesis is that capital will exhibit a statistically more significant relationship than the diversity plan in influencing the licensing outcome. Qualification is used as a quasi-control variable to assess whether the diversity plan’s impact on outcomes holds when the company is otherwise qualified.</p>
+<p>It is anticipated that diversity plan significance levels will be lower compared to capital. The hypothesis postulates that capital directly influences the outcome of obtaining a license.</p>
+</section>
+<section id="reading-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="reading-the-data">Reading The Data</h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>PA_Dispensary_License_Data_tab <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"~/Downloads/PA Dispensary License Data.tab.xlsx"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(PA_Dispensary_License_Data_tab, <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 22
+   phase dispens…¹ name  diver…² opera…³ quali…⁴ secur…⁵ trans…⁶ storage label…⁷
+   &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+ 1     1 D-1001-17 BHS …      31    70.4    25.6    50.2    11.8    24.4    16.4
+ 2     1 D-1003-17 Prim…      68    64.8    35.6    56.2    16      37.8    18.2
+ 3     1 D-1004-17 Keen…      65    63.8    32.4    72.2    12.4    30.8    13.6
+ 4     1 D-1006-17 Grow…      34    48      27.2    48.4    13      20.6    14.4
+ 5     1 D-1007-17 Heal…      25    51.4    26.2    51.4    13.2    23.4    14.2
+ 6     1 D-1009-17 Elem…      40    66      27.8    65.6    18.6    32.4    15.8
+ 7     1 D-1010-17 420 …      60    29.6    21      32.6     9.6    16.2     9.6
+ 8     1 D-1011-17 Pali…      38    48      31.6    56.8     6.2    26.4    16.6
+ 9     1 D-1012-17 The …      32    24.8    29.2    56.4    15      26.2    14.6
+10     1 D-1013-17 Elem…      40    66.4    31.4    65.6    18      32.6    17.2
+# … with 12 more variables: inventory &lt;dbl&gt;, diversion &lt;dbl&gt;, sanitation &lt;dbl&gt;,
+#   recordkeeping &lt;dbl&gt;, history &lt;dbl&gt;, capital &lt;dbl&gt;, community &lt;dbl&gt;,
+#   siteplan &lt;dbl&gt;, personalid &lt;dbl&gt;, awarded &lt;dbl&gt;, licensed &lt;dbl&gt;,
+#   dispensaries &lt;dbl&gt;, and abbreviated variable names ¹​dispensarynumber,
+#   ²​diversityplan, ³​operationaltimetable, ⁴​qualifications, ⁵​security,
+#   ⁶​transportation, ⁷​labeling</code></pre>
+</div>
+</div>
+<p>The data set includes various companies that applied for a dispensary license in 2016. There are 16 categories that are added up to a total score. The score is used to determine whether or not the company will receive a license to operate a dispensary.</p>
+</section>
+<section id="cleaning-data" class="level2">
+<h2 class="anchored" data-anchor-id="cleaning-data">Cleaning Data</h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a> PA_Dispensary_License_Condensed<span class="ot">&lt;-</span>PA_Dispensary_License_Data_tab <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(name, diversityplan, qualifications, security, capital,licensed, awarded)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(PA_Dispensary_License_Condensed, <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 7
+   name                          diver…¹ quali…² secur…³ capital licen…⁴ awarded
+   &lt;chr&gt;                           &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+ 1 BHS Wellness, LLC                  31    25.6    50.2    28.6       0    471 
+ 2 Prime Wellness of Pennsylvan…      68    35.6    56.2    67.2       0    644 
+ 3 Keen Meds, LLC                     65    32.4    72.2    59.2       0    608.
+ 4 Grow Ventures Penn, LLC            34    27.2    48.4    53.6       0    468.
+ 5 Healing Hope, LLC                  25    26.2    51.4    37.4       0    478.
+ 6 Elemental Health Group, LLC        40    27.8    65.6    62.6       0    646.
+ 7 420 Nature's Root                  60    21      32.6    41.2       0    396.
+ 8 PaliaTech PA, LLC                  38    31.6    56.8    50         0    512.
+ 9 The Natural Dispensary, LLC        32    29.2    56.4    51.8       0    492.
+10 Elemental Health Group, LLC        40    31.4    65.6    56.2       0    618.
+# … with abbreviated variable names ¹​diversityplan, ²​qualifications, ³​security,
+#   ⁴​licensed</code></pre>
+</div>
+</div>
+</section>
+<section id="regression-models" class="level2">
+<h2 class="anchored" data-anchor-id="regression-models">Regression Models</h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">###original model</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>linear_model<span class="ot">&lt;-</span><span class="fu">lm</span>(licensed <span class="sc">~</span> capital, <span class="at">data =</span> PA_Dispensary_License_Condensed)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="do">### original probit model</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">glm</span>(licensed <span class="sc">~</span> capital, <span class="at">data =</span> PA_Dispensary_License_Condensed, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link=</span><span class="st">"probit"</span>))</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="do">###original logit model</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>model_logit <span class="ot">&lt;-</span> <span class="fu">glm</span>(licensed <span class="sc">~</span> capital, <span class="at">data =</span> PA_Dispensary_License_Condensed, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link=</span><span class="st">"logit"</span>))</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="do">###Probit Model Plus Diversity Plan Regressor</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>model_diversity <span class="ot">&lt;-</span> <span class="fu">glm</span>(licensed <span class="sc">~</span> capital <span class="sc">+</span> diversityplan, <span class="at">data =</span> PA_Dispensary_License_Condensed, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"probit"</span>))</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="do">###Probit Model with Qualification Regressor</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>model_qualification <span class="ot">&lt;-</span> <span class="fu">glm</span> (licensed <span class="sc">~</span> capital <span class="sc">+</span> qualifications, <span class="at">data =</span> PA_Dispensary_License_Condensed, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"probit"</span>))</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="do">###Probit Model With All Regressots</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>model_all <span class="ot">&lt;-</span> <span class="fu">glm</span> (licensed <span class="sc">~</span> capital <span class="sc">+</span> qualifications <span class="sc">+</span> diversityplan, <span class="at">data =</span> PA_Dispensary_License_Condensed, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"probit"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>coefficients_df <span class="ot">&lt;-</span>  <span class="fu">suppressWarnings</span>(<span class="fu">bind_rows</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="at">mod1 =</span><span class="fu">tidy</span>(linear_model, <span class="at">conf.int =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="at">mod2 =</span><span class="fu">tidy</span>(model, <span class="at">conf.int =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="at">mod3 =</span><span class="fu">tidy</span>(model_logit, <span class="at">conf.int =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="at">mod4 =</span><span class="fu">tidy</span>(model_diversity, <span class="at">conf.int =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="at">mod5 =</span><span class="fu">tidy</span>(model_qualification, <span class="at">conf.int =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="at">mod6 =</span><span class="fu">tidy</span>(model_all, <span class="at">conf.int=</span><span class="cn">TRUE</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Print the coefficients table using kable</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(coefficients_df, <span class="at">caption =</span> <span class="st">"Regresssion Model Coefficient Results"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<caption>Regresssion Model Coefficient Results</caption>
+<colgroup>
+<col style="width: 18%">
+<col style="width: 15%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 15%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">term</th>
+<th style="text-align: right;">estimate</th>
+<th style="text-align: right;">std.error</th>
+<th style="text-align: right;">statistic</th>
+<th style="text-align: right;">p.value</th>
+<th style="text-align: right;">conf.low</th>
+<th style="text-align: right;">conf.high</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">-0.2442783</td>
+<td style="text-align: right;">0.0852046</td>
+<td style="text-align: right;">-2.866962</td>
+<td style="text-align: right;">0.0044991</td>
+<td style="text-align: right;">-0.4120918</td>
+<td style="text-align: right;">-0.0764647</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">capital</td>
+<td style="text-align: right;">0.0065795</td>
+<td style="text-align: right;">0.0015533</td>
+<td style="text-align: right;">4.235692</td>
+<td style="text-align: right;">0.0000321</td>
+<td style="text-align: right;">0.0035201</td>
+<td style="text-align: right;">0.0096388</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">-5.6223750</td>
+<td style="text-align: right;">1.1633523</td>
+<td style="text-align: right;">-4.832909</td>
+<td style="text-align: right;">0.0000013</td>
+<td style="text-align: right;">-8.1829818</td>
+<td style="text-align: right;">-3.5532529</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">capital</td>
+<td style="text-align: right;">0.0749624</td>
+<td style="text-align: right;">0.0190141</td>
+<td style="text-align: right;">3.942471</td>
+<td style="text-align: right;">0.0000806</td>
+<td style="text-align: right;">0.0407410</td>
+<td style="text-align: right;">0.1164120</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">-10.3084100</td>
+<td style="text-align: right;">2.2333146</td>
+<td style="text-align: right;">-4.615745</td>
+<td style="text-align: right;">0.0000039</td>
+<td style="text-align: right;">-15.1612780</td>
+<td style="text-align: right;">-6.4049083</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">capital</td>
+<td style="text-align: right;">0.1394364</td>
+<td style="text-align: right;">0.0359413</td>
+<td style="text-align: right;">3.879565</td>
+<td style="text-align: right;">0.0001046</td>
+<td style="text-align: right;">0.0756969</td>
+<td style="text-align: right;">0.2166748</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">-5.7371537</td>
+<td style="text-align: right;">1.1491234</td>
+<td style="text-align: right;">-4.992635</td>
+<td style="text-align: right;">0.0000006</td>
+<td style="text-align: right;">-8.2816391</td>
+<td style="text-align: right;">-3.6714647</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">capital</td>
+<td style="text-align: right;">0.0660720</td>
+<td style="text-align: right;">0.0194028</td>
+<td style="text-align: right;">3.405288</td>
+<td style="text-align: right;">0.0006609</td>
+<td style="text-align: right;">0.0308188</td>
+<td style="text-align: right;">0.1084331</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">diversityplan</td>
+<td style="text-align: right;">0.0138857</td>
+<td style="text-align: right;">0.0089170</td>
+<td style="text-align: right;">1.557214</td>
+<td style="text-align: right;">0.1194197</td>
+<td style="text-align: right;">-0.0038138</td>
+<td style="text-align: right;">0.0317270</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">-7.5834522</td>
+<td style="text-align: right;">1.4963448</td>
+<td style="text-align: right;">-5.067984</td>
+<td style="text-align: right;">0.0000004</td>
+<td style="text-align: right;">-10.8197982</td>
+<td style="text-align: right;">-4.8749181</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">capital</td>
+<td style="text-align: right;">0.0577678</td>
+<td style="text-align: right;">0.0212039</td>
+<td style="text-align: right;">2.724394</td>
+<td style="text-align: right;">0.0064420</td>
+<td style="text-align: right;">0.0183242</td>
+<td style="text-align: right;">0.1026350</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">qualifications</td>
+<td style="text-align: right;">0.0881670</td>
+<td style="text-align: right;">0.0317759</td>
+<td style="text-align: right;">2.774645</td>
+<td style="text-align: right;">0.0055262</td>
+<td style="text-align: right;">0.0279051</td>
+<td style="text-align: right;">0.1554821</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">-7.6813219</td>
+<td style="text-align: right;">1.4902407</td>
+<td style="text-align: right;">-5.154417</td>
+<td style="text-align: right;">0.0000003</td>
+<td style="text-align: right;">-10.9230486</td>
+<td style="text-align: right;">-4.9693986</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">capital</td>
+<td style="text-align: right;">0.0496580</td>
+<td style="text-align: right;">0.0217109</td>
+<td style="text-align: right;">2.287239</td>
+<td style="text-align: right;">0.0221819</td>
+<td style="text-align: right;">0.0093499</td>
+<td style="text-align: right;">0.0954759</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">qualifications</td>
+<td style="text-align: right;">0.0874564</td>
+<td style="text-align: right;">0.0324421</td>
+<td style="text-align: right;">2.695768</td>
+<td style="text-align: right;">0.0070227</td>
+<td style="text-align: right;">0.0260376</td>
+<td style="text-align: right;">0.1556713</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">diversityplan</td>
+<td style="text-align: right;">0.0130037</td>
+<td style="text-align: right;">0.0094610</td>
+<td style="text-align: right;">1.374459</td>
+<td style="text-align: right;">0.1692991</td>
+<td style="text-align: right;">-0.0056912</td>
+<td style="text-align: right;">0.0318210</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>I have included the results of the regression analysis above. I will continue with the analysis in the below setions.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># List of variables you want to summarize</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>vars_to_summarize <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"capital"</span>, <span class="st">"diversityplan"</span>, <span class="st">"qualifications"</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize an empty data frame to store the results</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>summary_table <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop through each variable and calculate summary statistics</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (var <span class="cf">in</span> vars_to_summarize) {</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  summary_row <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">Metric =</span> <span class="fu">c</span>(<span class="fu">paste0</span>(<span class="st">"sd_"</span>, var), <span class="fu">paste0</span>(<span class="st">"max_"</span>, var), <span class="fu">paste0</span>(<span class="st">"min_"</span>, var), <span class="fu">paste0</span>(<span class="st">"avg_"</span>, var), <span class="fu">paste0</span>(<span class="st">"med_"</span>, var), <span class="fu">paste0</span>(<span class="st">"n_"</span>, var)),</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">Value =</span> <span class="fu">c</span>(<span class="fu">sd</span>(PA_Dispensary_License_Condensed[[var]], <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>               <span class="fu">max</span>(PA_Dispensary_License_Condensed[[var]], <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>               <span class="fu">min</span>(PA_Dispensary_License_Condensed[[var]], <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>               <span class="fu">mean</span>(PA_Dispensary_License_Condensed[[var]], <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>               <span class="fu">median</span>(PA_Dispensary_License_Condensed[[var]], <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>               <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(PA_Dispensary_License_Condensed[[var]])))  <span class="co"># Count non-NA values</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Append the summary_row to the summary_table using rbind()</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  summary_table <span class="ot">&lt;-</span> <span class="fu">rbind</span>(summary_table, summary_row)</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the resulting summary_table</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(summary_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>               Metric      Value
+1          sd_capital  12.232781
+2         max_capital  72.600000
+3         min_capital  10.200000
+4         avg_capital  53.476693
+5         med_capital  57.330000
+6           n_capital 251.000000
+7    sd_diversityplan  15.354646
+8   max_diversityplan  75.000000
+9   min_diversityplan   5.000000
+10  avg_diversityplan  44.917313
+11  med_diversityplan  45.000000
+12    n_diversityplan 387.000000
+13  sd_qualifications   6.101741
+14 max_qualifications  45.000000
+15 min_qualifications   8.200000
+16 avg_qualifications  30.757080
+17 med_qualifications  31.600000
+18   n_qualifications 387.000000</code></pre>
+</div>
+</div>
+<p>Additionally, I have included the summary statistics above. As the table shows, diversity plan has a slightly larger variation in standard deviation when compared to the other two variables. The summary statistics provide the background for the below regression analysis.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>linear_model<span class="ot">&lt;-</span><span class="fu">lm</span>(licensed <span class="sc">~</span> capital, <span class="at">data =</span> PA_Dispensary_License_Condensed)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(linear_model)<span class="sc">$</span>coefficient</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>                Estimate  Std. Error   t value     Pr(&gt;|t|)
+(Intercept) -0.244278261 0.085204568 -2.866962 4.499059e-03
+capital      0.006579464 0.001553339  4.235692 3.209303e-05</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Have to plot it differently</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(PA_Dispensary_License_Condensed<span class="sc">$</span>capital, PA_Dispensary_License_Condensed<span class="sc">$</span>licensed, <span class="at">main =</span> <span class="st">"Regression Results"</span>, <span class="at">xlab =</span> <span class="st">"X"</span>, <span class="at">ylab =</span> <span class="st">"Y"</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(linear_model, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="KeithMartin_Project2_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>In summary, a T-value of 4.235692 for the independent variable capital in a simple regression with the dependent variable licensed indicates a strong relationship between the variables, and the relationship is statistically significant based on the chosen level of significance. In this case, the p-value is extremely small and less than one 1%. The chosen level of significance for this case would be P&lt;.05. More specifically, if the p-value is below the predetermined significance level, it suggests that the probability of observing the results under the null hypothesis are very low. In such cases, it is generally concluded that there is a statistically significant relationship in the data.</p>
+<p>For each unit increase in the capital variable, there is an estimated increase of approximately 0.006579464 in the probability or likelihood of the licensed variable being equal to 1, assuming all other factors are held constant.</p>
+<p>In plain English, this means that as the capital variable increases, the estimated effect is a slight increase in the probability of having a value of 1 for the licensed variable. However, since the coefficient is very small (0.006579464), the practical significance of this effect may be limited.</p>
+<p>Since the dependent variable is a dummy (binary) variable, the regression line does not fit that nicely on the plot. I did some additional research and found that a curve is more fitting for this type of variable. ## Regression Analysis With Binary Variable</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Regression Graph for Dummy Dependent Variable</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">glm</span>(licensed <span class="sc">~</span> capital, <span class="at">data =</span> PA_Dispensary_License_Condensed, <span class="at">family =</span> binomial)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(PA_Dispensary_License_Condensed<span class="sc">$</span>capital, PA_Dispensary_License_Condensed<span class="sc">$</span>licensed, <span class="at">main =</span> <span class="st">"Regression Plot of Licensed vs. Capital"</span>, <span class="at">xlab =</span> <span class="st">"Capital"</span>, <span class="at">ylab =</span> <span class="st">"Licensed"</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="do">### This code adds a curve instead of a standard line(abline) for regression of dummy dependent variables</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">predict</span>(model, <span class="fu">data.frame</span>(<span class="at">capital =</span> x), <span class="at">type =</span> <span class="st">"response"</span>), <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="KeithMartin_Project2_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>In the above plot, I used a general linear model to predict the curve of the dummy variable. This is a much cleaner plot that the original regression line above. This more closely illustrates the relationship between capital score and licensing outcome.</p>
+</section>
+<section id="multivariate-regression" class="level1">
+<h1>Multivariate Regression</h1>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Original Model Probit</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">glm</span>(licensed <span class="sc">~</span> capital, <span class="at">data =</span> PA_Dispensary_License_Condensed, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link=</span><span class="st">"probit"</span>))</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(model, <span class="at">vcov. =</span> vcovHC, <span class="at">type =</span> <span class="st">"HC1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+z test of coefficients:
+
+             Estimate Std. Error z value  Pr(&gt;|z|)    
+(Intercept) -5.622375   0.930207 -6.0442 1.501e-09 ***
+capital      0.074962   0.015349  4.8839 1.040e-06 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>P(License|Capital) = Φ(-5.62 +.075Capital Score)</p>
+<p>In the context of the provided results, where “capital” is listed as an independent variable with a significant coefficient estimate, it suggests that there is a statistically meaningful relationship between the “capital” variable and the dependent variable being analyzed. The analysis indicates that changes in the “capital” variable are associated with changes in the outcome of interest.</p>
+<p>Since the coefficient estimate for “capital” is positive (approximately 0.074962), it implies that an increase in the value of the “capital” variable is associated with an increase in the value of the dependent variable, licensed, all else being equal. In other words, there is a positive correlation between the “capital” variable and the licensing outcome being studied.</p>
+<p>The fact that the coefficient for “capital” is statistically significant (indicated by the low p-value) suggests that this relationship is unlikely to be due to random chance. It’s important to note that statistical significance does not necessarily imply a causal relationship; it only indicates that there is a strong association between the two variables in the analyzed data.</p>
+<p>Without more specific context about the nature of the variables and the analysis being conducted, it’s challenging to provide a precise interpretation of how “capital” relates to “license.” However, based on the information provided, it can be inferred that higher values of the “capital” variable are predictive of higher values of the dependent variable, and this relationship is supported by the statistical analysis.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> PA_Dispensary_License_Condensed<span class="sc">$</span>capital,</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">y =</span> PA_Dispensary_License_Condensed<span class="sc">$</span>licensed,</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Scatterplot Dispensary Application Approval and </span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="st">                                    the Capital"</span>,</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Capital Score"</span>,</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"License Result"</span>,</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">20</span>,</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.4</span>, <span class="fl">1.4</span>),</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex.main =</span> <span class="fl">0.8</span>)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co"># add horizontal dashed lines and text</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">1</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"darkred"</span>)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"darkred"</span>)</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">20</span>, <span class="fl">0.9</span>, <span class="at">cex =</span> <span class="fl">0.8</span>, <span class="st">"License Approved"</span>)</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">20</span>, <span class="sc">-</span><span class="fl">0.1</span>, <span class="at">cex=</span> <span class="fl">0.8</span>, <span class="st">"License Denied"</span>)</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="do">### add a regression line</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">70</span>, <span class="dv">10</span>)</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">predict</span>(model, <span class="fu">list</span>(<span class="at">capital =</span> x), <span class="at">type =</span> <span class="st">"response"</span>)</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, y, <span class="at">lwd =</span> <span class="fl">1.5</span>, <span class="at">col =</span> <span class="st">"steelblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="KeithMartin_Project2_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The above graph shows that the probit model is similar to general linear model above. This is particularly useful when the relationship between the independent variables(Captial) and the probability of the binary outcome occurring is not linear, but rather follows a cumulative distribution function (CDF), specifically the cumulative normal distribution function.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Predictions with Capital 60 to 70</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>new_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">capital =</span> <span class="fu">c</span>(<span class="dv">60</span>, <span class="dv">70</span>))  <span class="co"># Create a data frame with the 'capital' values you want to predict for</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>predictions <span class="ot">&lt;-</span> <span class="fu">predict</span>(model, <span class="at">newdata =</span> new_data, <span class="at">type =</span> <span class="st">"response"</span>)  <span class="co"># Use "response" for binary outcome prediction</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">diff</span>(predictions)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>        2 
+0.2234556 </code></pre>
+</div>
+</div>
+<p>We find that an increase in the capital score from 60 to 70 is predicted to increase the probability of denial by approximately 22.3% This further supports the initial hypothesis that an increase in the capital score increases the chances of a compoany receiving a dispensary license.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Original Model Logit</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>model_logit <span class="ot">&lt;-</span> <span class="fu">glm</span>(licensed <span class="sc">~</span> capital, <span class="at">data =</span> PA_Dispensary_License_Condensed, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link=</span><span class="st">"logit"</span>))</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(model_logit, <span class="at">vcov. =</span> vcovHC, <span class="at">type =</span> <span class="st">"HC1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+z test of coefficients:
+
+              Estimate Std. Error z value  Pr(&gt;|z|)    
+(Intercept) -10.308410   1.844778 -5.5879 2.299e-08 ***
+capital       0.139436   0.029845  4.6720 2.983e-06 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>P(Licensed = 1| Capital) = F(-10.3 + .13Capital)</p>
+<p>Intercept (Constant Term):</p>
+<p>Estimate: The estimated intercept (constant term) is -10.308410. Std. Error: The standard error associated with the intercept estimate is 1.844778.</p>
+<p>z value: The calculated z value for the intercept is -5.5879. Pr(&gt;|z|): The p-value associated with the z value is extremely small (2.299e-08), indicating that the intercept is statistically significant. This suggests that the log-odds of the outcome being “licensed” are significantly different from zero. Capital:</p>
+<p>Estimate: The estimated coefficient for the variable “capital” is 0.139436.</p>
+<p>Std. Error: The standard error associated with the coefficient estimate is 0.029845.</p>
+<p>z value: The calculated z value for the coefficient is 4.6720. Pr(&gt;|z|): The p-value associated with the z value is very small (2.983e-06), indicating that the “capital” variable is statistically significant. This suggests that for a one-unit increase in the “capital” variable, the log-odds of the outcome being “licensed” increases by 0.139436 units.</p>
+<p>The “Signif. codes” section provides a quick interpretation of the significance levels:</p>
+<p>In summary, based on this logistic regression model, there is strong evidence to suggest that the “capital” variable significantly influences the likelihood of being “licensed,” while the intercept (constant term) also plays a significant role in predicting the outcome.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Plot Logit Regression</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> PA_Dispensary_License_Condensed<span class="sc">$</span>capital,</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">y =</span> PA_Dispensary_License_Condensed<span class="sc">$</span>licensed,</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Scatterplot Dispensary Application Approval and </span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="st">                                    the Capital"</span>,</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Capital Score"</span>,</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"License Result"</span>,</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">20</span>,</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.4</span>, <span class="fl">1.4</span>),</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex.main =</span> <span class="fl">0.8</span>)</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="co"># add horizontal dashed lines and text</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">1</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"darkred"</span>)</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"darkred"</span>)</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">60</span>, <span class="fl">0.9</span>, <span class="at">cex =</span> <span class="fl">0.8</span>, <span class="st">"License Approved"</span>)</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">20</span>, <span class="sc">-</span><span class="fl">0.1</span>, <span class="at">cex=</span> <span class="fl">0.8</span>, <span class="st">"License Denied"</span>)</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a><span class="do">### add a regression line</span></span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">70</span>, <span class="dv">10</span>)</span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>y_probit <span class="ot">&lt;-</span> <span class="fu">predict</span>(model, <span class="fu">list</span>(<span class="at">capital =</span> x), <span class="at">type =</span> <span class="st">"response"</span>)</span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>y_logit <span class="ot">&lt;-</span> <span class="fu">predict</span>(model, <span class="fu">list</span>(<span class="at">capital =</span> x), <span class="at">type =</span> <span class="st">"response"</span>)</span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a><span class="do">### Add both regression Lines</span></span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, y_probit, <span class="at">lwd =</span> <span class="fl">1.5</span>, <span class="at">col =</span> <span class="st">"steelblue"</span>)</span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, y_logit, <span class="at">lwd =</span> <span class="fl">1.5</span>, <span class="at">col =</span> <span class="st">"black"</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a><span class="do">###Legend</span></span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>,</span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>       <span class="at">horiz =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"Probit"</span>, <span class="st">"Logit"</span>),</span>
+<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"steelblue"</span>, <span class="st">"black"</span>), </span>
+<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a>       <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="KeithMartin_Project2_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>As you can see from the above model, the logit and probit model are almost the exact same. A logit model, also known as a logistic regression model, is a statistical method used to model the relationship between one or more independent variables and a binary dependent variable. In a logistic regression, the coefficients β are estimated using maximum likelihood estimation. These coefficients provide information about the direction and strength of the relationship between each predictor variable and the probability of the binary outcome occurring. In the below analysis, I will discuss the specific values of the logit model.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Multi-Variate Model with Diversity</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>model_diversity <span class="ot">&lt;-</span> <span class="fu">glm</span>(licensed <span class="sc">~</span> capital <span class="sc">+</span> diversityplan, <span class="at">data =</span> PA_Dispensary_License_Condensed, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"probit"</span>))</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(model_diversity, <span class="at">vcov. =</span> vcovHC, <span class="at">type =</span> <span class="st">"HC1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+z test of coefficients:
+
+               Estimate Std. Error z value  Pr(&gt;|z|)    
+(Intercept)   -5.737154   0.858463 -6.6831 2.340e-11 ***
+capital        0.066072   0.015441  4.2791 1.877e-05 ***
+diversityplan  0.013886   0.008202  1.6930   0.09046 .  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">linearHypothesis</span>(model_diversity, <span class="fu">c</span>(<span class="st">"capital=0"</span>, <span class="st">"diversityplan=0"</span>), <span class="at">white.adjust =</span> <span class="st">"hc1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear hypothesis test
+
+Hypothesis:
+capital = 0
+diversityplan = 0
+
+Model 1: restricted model
+Model 2: licensed ~ capital + diversityplan
+
+  Res.Df Df  Chisq Pr(&gt;Chisq)    
+1    250                         
+2    248  2 18.124   0.000116 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>P(License|Capital+Diversityplan) = Φ(-5.62 +.066Capital Score +.013Diversityplan) ** Not statistically significant in Diversity Plan</p>
+<p>z Test of Coefficients:</p>
+<p>(Intercept) coefficient: The coefficient for the intercept is -5.737154. The corresponding standard error is 0.858463. The z value (coefficient divided by its standard error) is -6.6831. The p-value associated with this z value is extremely small (2.340e-11), indicated by ‘<strong><em>’, suggesting that the intercept is significantly different from zero. capital coefficient: The coefficient for the capital predictor variable is 0.066072. The standard error is 0.015441. The z value is 4.2791, and the p-value is also very small (1.877e-05), ’</em></strong>’, indicating that the capital predictor is statistically significant. diversityplan coefficient: The coefficient for the diversityplan predictor is 0.013886, and its standard error is 0.008202. The z value is 1.6930, and the associated p-value is 0.09046, indicated by a ‘.’. This suggests that the diversityplan predictor is not statistically significant at the conventional significance levels (alpha = 0.05). Linear Hypothesis Test: The linear hypothesis test is evaluating the joint significance of the capital and diversityplan predictors by comparing two models:</p>
+<p>Model 1: Restricted model without capital and diversityplan. Model 2: Full model with capital and diversityplan. The test statistic (Chi-square) is 18.124 with 2 degrees of freedom. The p-value associated with this test statistic is 0.000116, ’***’, indicating strong evidence to reject the null hypothesis. This suggests that the joint inclusion of capital and diversityplan significantly improves the fit of the model compared to a model without these predictors.</p>
+<p>In summary, the z test of coefficients indicates that the intercept and the capital predictor are both statistically significant. The diversityplan predictor, although not statistically significant by itself, contributes to the overall model fit in the linear hypothesis test when combined with the capital predictor.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="do">### general linear model with qualifications</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>model_qualification <span class="ot">&lt;-</span> <span class="fu">glm</span> (licensed <span class="sc">~</span> capital <span class="sc">+</span> qualifications, <span class="at">data =</span> PA_Dispensary_License_Condensed, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"probit"</span>))</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(model_qualification, <span class="at">vcov. =</span> vcovHC, <span class="at">type =</span> <span class="st">"HC1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+z test of coefficients:
+
+                Estimate Std. Error z value  Pr(&gt;|z|)    
+(Intercept)    -7.583452   1.223928 -6.1960 5.792e-10 ***
+capital         0.057768   0.018528  3.1179 0.0018217 ** 
+qualifications  0.088167   0.025949  3.3977 0.0006795 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">linearHypothesis</span>(model_qualification, <span class="fu">c</span>(<span class="st">"capital=0"</span>, <span class="st">"qualifications=0"</span>), <span class="at">white.adjust =</span> <span class="st">"hc1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear hypothesis test
+
+Hypothesis:
+capital = 0
+qualifications = 0
+
+Model 1: restricted model
+Model 2: licensed ~ capital + qualifications
+
+  Res.Df Df  Chisq Pr(&gt;Chisq)    
+1    250                         
+2    248  2 19.719  5.225e-05 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>P(License|Capital+Qualification) = Φ(-5.62 +.057Capital Score +.088Qualification)</p>
+<p>Z Test of Coefficients:</p>
+<p>Intercept: The coefficient for the intercept is -7.583452. This represents the expected log-odds of the licensed variable when both capital and qualifications are zero. The negative coefficient suggests that as the predictor values increase, the log-odds of being licensed decrease.</p>
+<p>capital: The coefficient for the capital predictor is 0.057768. It is statistically significant as indicated by the ’**’ symbol. This means that a unit increase in capital is associated with a 0.057768 increase in the log-odds of being licensed, holding other variables constant.</p>
+<p>qualifications: The coefficient for the qualifications predictor is 0.088167. It is statistically significant (’***’), indicating that a unit increase in qualifications is associated with a 0.088167 increase in the log-odds of being licensed, holding other variables constant.</p>
+<p>Linear Hypothesis Test: The linear hypothesis test evaluates the joint significance of capital and qualifications in the model:</p>
+<p>Model 1: Restricted model without capital and qualifications. Model 2: Full model with capital and qualifications. The test statistic (Chi-square) is 19.719, and the associated p-value is 5.225e-05 (’***’). This p-value is much smaller than the significance level of 0.05, indicating strong evidence to reject the null hypothesis. This suggests that including both capital and qualifications significantly improves the model’s fit compared to a model without these predictors.</p>
+<p>In summary, both capital and qualifications are individually significant predictors. Additionally, the linear hypothesis test indicates that the joint inclusion of these predictors significantly enhances the model’s performance, further supporting their importance in explaining the variability in the response variable licensed.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="do">### general linear model with all variables </span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>model_all <span class="ot">&lt;-</span> <span class="fu">glm</span> (licensed <span class="sc">~</span> capital <span class="sc">+</span> qualifications <span class="sc">+</span> diversityplan, <span class="at">data =</span> PA_Dispensary_License_Condensed, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"probit"</span>))</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="do">###CoefTest</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(model_all, <span class="at">vcov. =</span> vcovHC, <span class="at">type =</span> <span class="st">"HC1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+z test of coefficients:
+
+                 Estimate Std. Error z value  Pr(&gt;|z|)    
+(Intercept)    -7.6813219  1.1612710 -6.6146 3.726e-11 ***
+capital         0.0496580  0.0195072  2.5456   0.01091 *  
+qualifications  0.0874564  0.0276150  3.1670   0.00154 ** 
+diversityplan   0.0130037  0.0090475  1.4373   0.15064    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="do">###Linear Hypothesis</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">linearHypothesis</span>(model_all, <span class="fu">c</span>(<span class="st">"capital=0"</span>,<span class="st">"diversityplan = 0"</span>, <span class="st">"qualifications=0"</span>), <span class="at">white.adjust =</span> <span class="st">"hc1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear hypothesis test
+
+Hypothesis:
+capital = 0
+diversityplan = 0
+qualifications = 0
+
+Model 1: restricted model
+Model 2: licensed ~ capital + qualifications + diversityplan
+
+  Res.Df Df  Chisq Pr(&gt;Chisq)    
+1    250                         
+2    247  3 21.313  9.064e-05 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>In this case:</p>
+<p>The intercept has a significantly negative coefficient, indicating that when all predictor variables are zero, the log-odds of being licensed is significantly negative. capital has a positive coefficient with a p-value of 0.01091, which is less than 0.05. This suggests that an increase in capital is associated with a higher likelihood of being licensed.</p>
+<p>Qualifications has a positive coefficient with a p-value of 0.00154, which is less than 0.05. This suggests that higher qualifications are associated with a higher likelihood of being licensed.</p>
+<p>Diversityplan has a positive coefficient, but its p-value (0.15064) is greater than 0.05. This suggests that diversityplan might not be statistically significant in predicting licensing status.</p>
+<p>Linear Hypothesis Test: The linearHypothesis function tests the joint significance of multiple coefficients by comparing a restricted model (where those coefficients are restricted to zero) to the full model.</p>
+<p>In this case: The null hypothesis is that all three coefficients (capital, diversityplan, and qualifications) are simultaneously equal to zero.</p>
+<p>The p-value associated with the hypothesis test (9.064e-05) is less than 0.05, indicating that at least one of these coefficients is significantly different from zero when considered together.</p>
+<p>This suggests that at least one of these three variables (capital, diversityplan, qualifications) is important for predicting the licensing status when all three are considered together.</p>
+<p>The significance tests like these provide insights into whether the coefficients are likely different from zero, but they do not provide information about the strength or practical importance of these effects.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>rob_se<span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(linear_model, <span class="at">type =</span> <span class="st">"HC1"</span>))),</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>               <span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(model, <span class="at">type =</span> <span class="st">"HC1"</span>))),</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>               <span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(model_logit, <span class="at">type =</span> <span class="st">"HC1"</span>))),</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>               <span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(model_diversity, <span class="at">type =</span> <span class="st">"HC1"</span>))),</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>               <span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(model_qualification, <span class="at">type =</span> <span class="st">"HC1"</span>))),</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>               <span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(model_all, <span class="at">type =</span> <span class="st">"HC1"</span>))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>mod_list <span class="ot">&lt;-</span> <span class="fu">list</span>(linear_model,model,model_logit,model_diversity,  model_qualification, model_all) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(mod_list,  </span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">digits =</span> <span class="dv">3</span>,</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">type =</span> <span class="st">"html"</span>, </span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">header =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">se =</span> rob_se,</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">model.numbers =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">column.labels =</span> <span class="fu">c</span>(<span class="st">"(1)"</span>, <span class="st">"(2)"</span>, <span class="st">"(3)"</span>, <span class="st">"(4)"</span>, <span class="st">"(5)"</span>, <span class="st">"(6)"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+
+<table style="text-align:center">
+<tbody><tr>
+<td colspan="7" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="6">
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="6" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td colspan="6">
+licensed
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<em>OLS</em>
+</td>
+<td>
+<em>probit</em>
+</td>
+<td>
+<em>logistic</em>
+</td>
+<td colspan="3">
+<em>probit</em>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(1)
+</td>
+<td>
+(2)
+</td>
+<td>
+(3)
+</td>
+<td>
+(4)
+</td>
+<td>
+(5)
+</td>
+<td>
+(6)
+</td>
+</tr>
+<tr>
+<td colspan="7" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+capital
+</td>
+<td>
+0.007<sup>***</sup>
+</td>
+<td>
+0.075<sup>***</sup>
+</td>
+<td>
+0.139<sup>***</sup>
+</td>
+<td>
+0.066<sup>***</sup>
+</td>
+<td>
+0.058<sup>***</sup>
+</td>
+<td>
+0.050<sup>**</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.001)
+</td>
+<td>
+(0.015)
+</td>
+<td>
+(0.030)
+</td>
+<td>
+(0.015)
+</td>
+<td>
+(0.019)
+</td>
+<td>
+(0.020)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+diversityplan
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+0.014<sup>*</sup>
+</td>
+<td>
+</td>
+<td>
+0.013
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+(0.008)
+</td>
+<td>
+</td>
+<td>
+(0.009)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+qualifications
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+0.088<sup>***</sup>
+</td>
+<td>
+0.087<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+(0.026)
+</td>
+<td>
+(0.028)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+-0.244<sup>***</sup>
+</td>
+<td>
+-5.622<sup>***</sup>
+</td>
+<td>
+-10.308<sup>***</sup>
+</td>
+<td>
+-5.737<sup>***</sup>
+</td>
+<td>
+-7.583<sup>***</sup>
+</td>
+<td>
+-7.681<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.056)
+</td>
+<td>
+(0.930)
+</td>
+<td>
+(1.845)
+</td>
+<td>
+(0.858)
+</td>
+<td>
+(1.224)
+</td>
+<td>
+(1.161)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td colspan="7" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+251
+</td>
+<td>
+251
+</td>
+<td>
+251
+</td>
+<td>
+251
+</td>
+<td>
+251
+</td>
+<td>
+251
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.067
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0.063
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Log Likelihood
+</td>
+<td>
+</td>
+<td>
+-72.585
+</td>
+<td>
+-72.951
+</td>
+<td>
+-71.402
+</td>
+<td>
+-68.254
+</td>
+<td>
+-67.323
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Akaike Inf. Crit.
+</td>
+<td>
+</td>
+<td>
+149.170
+</td>
+<td>
+149.902
+</td>
+<td>
+148.805
+</td>
+<td>
+142.508
+</td>
+<td>
+142.647
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Residual Std. Error
+</td>
+<td>
+0.300 (df = 249)
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+F Statistic
+</td>
+<td>
+17.941<sup>***</sup> (df = 1; 249)
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td colspan="7" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td colspan="6" style="text-align:right">
+<sup><em></em></sup><em>p&lt;0.1; <sup><strong></strong></sup><strong>p&lt;0.05; <sup></sup></strong></em>p&lt;0.01
+</td>
+</tr>
+
+</tbody></table>
+<p>OLS (Ordinary Least Squares):</p>
+<p>OLS assumes that the dependent variable is continuous and normally distributed. R-squared indicates the proportion of variance explained by the model. A relatively low R-squared (0.067) suggests that the linear relationship might not capture all the complexities of the data. Since the dependent variable “licensed” is likely binary (indicating presence or absence), OLS might not be the most suitable choice.</p>
+<p>Probit Models (Two Instances):</p>
+<p>Probit models are used for binary outcomes, assuming that the latent variable follows a normal distribution. Log Likelihood values (-72.951 and -68.254) suggest that these models fit the data relatively well, but a lower value is preferred. AIC values (149.902 and 142.508) indicate that the second probit model has a better balance between fit and complexity compared to the first one. Probit models provide probabilities of being “licensed,” assuming a normal distribution of the underlying latent variable.</p>
+<p>Logistic (Logit) Model:</p>
+<p>Logistic models are widely used for binary outcomes, assuming a logistic distribution of the latent variable. The log-likelihood value (-71.402) suggests a reasonably good fit to the data.</p>
+<p>The AIC value (148.805) indicates that the logistic model provides a balance between model fit and complexity. Logistic models provide probabilities of being “licensed” that are bounded between 0 and 1.</p>
+<p>In summary, the findings align with the previously stated hypothesis, indicating that the diversity plan score bears lesser importance in comparison to both capital and qualification scores. This outcome presents a contradiction to the initial aim of fostering social equity. While the diversity plan does exert some impact on the overall model, its statistical significance pales when contrasted with the other variables.</p>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="DACSS/603_Summer_Sec_1" data-repo-id="" data-category="Announcements" data-category-id="" data-mapping="url" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb38" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Keith Martin Project 2"</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Keith Martin"</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="an">desription:</span><span class="co"> "Regression Analysis on Dispensary Licensing"</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "08/17/2023"</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a><span class="co">  - project2</span></span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a><span class="co">  - dataset</span></span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a><span class="co">  - ggplot2</span></span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a><span class="co">  - regression</span></span>
+<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-21"><a href="#cb38-21" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-22"><a href="#cb38-22" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb38-23"><a href="#cb38-23" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb38-24"><a href="#cb38-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-25"><a href="#cb38-25" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb38-26"><a href="#cb38-26" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb38-27"><a href="#cb38-27" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(summarytools)</span>
+<span id="cb38-28"><a href="#cb38-28" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb38-29"><a href="#cb38-29" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
+<span id="cb38-30"><a href="#cb38-30" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb38-31"><a href="#cb38-31" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(AER)</span>
+<span id="cb38-32"><a href="#cb38-32" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stargazer)</span>
+<span id="cb38-33"><a href="#cb38-33" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb38-34"><a href="#cb38-34" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb38-35"><a href="#cb38-35" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb38-36"><a href="#cb38-36" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb38-37"><a href="#cb38-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-38"><a href="#cb38-38" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introduction</span></span>
+<span id="cb38-39"><a href="#cb38-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-40"><a href="#cb38-40" aria-hidden="true" tabindex="-1"></a>This dataset comprises information gathered from 387 applications submitted in Pennsylvania during 2016. These applications originated from various companies vying for licenses to operate dispensaries within the state.</span>
+<span id="cb38-41"><a href="#cb38-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-42"><a href="#cb38-42" aria-hidden="true" tabindex="-1"></a>Each entry in the dataset represents a company, and occasionally, there are multiple applications from the same company. These applications are evaluated across 16 distinct categories. These categories encompass factors such as diversity plans, operational timetables, qualifications, security protocols, transportation, storage, labeling, inventory management, diversion prevention, sanitation, record-keeping, historical context, capital investment, community engagement, site planning, and personal identification.</span>
+<span id="cb38-43"><a href="#cb38-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-44"><a href="#cb38-44" aria-hidden="true" tabindex="-1"></a>The evaluation scores across these categories are aggregated to form a total score, which has a maximum value of 800. Theoretically, a higher total score correlates with an increased likelihood of obtaining a license. However, upon reviewing the data, it becomes apparent that the companies with the highest scores do not always secure licenses. Conversely, some companies with lower scores do receive licenses. Moreover, specific categories can influence licensing outcomes, allowing companies with lower overall scores but strong performance in key categories to succeed.</span>
+<span id="cb38-45"><a href="#cb38-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-46"><a href="#cb38-46" aria-hidden="true" tabindex="-1"></a>This analysis focuses on investigating various regression models to understand the impact of a company's capital score on their chances of obtaining a license. The legislative process emphasized prioritizing communities most adversely affected by the criminalization of Marijuana during the licensing allocation.</span>
+<span id="cb38-47"><a href="#cb38-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-48"><a href="#cb38-48" aria-hidden="true" tabindex="-1"></a>The analysis includes qualification scores as a variable. This enables a comparison between the significance of the diversity plan and qualification score. Qualification scores are also used to account for omitted variable bias.</span>
+<span id="cb38-49"><a href="#cb38-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-50"><a href="#cb38-50" aria-hidden="true" tabindex="-1"></a>The hypothesis is that capital will exhibit a statistically more significant relationship than the diversity plan in influencing the licensing outcome. Qualification is used as a quasi-control variable to assess whether the diversity plan's impact on outcomes holds when the company is otherwise qualified.</span>
+<span id="cb38-51"><a href="#cb38-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-52"><a href="#cb38-52" aria-hidden="true" tabindex="-1"></a>It is anticipated that diversity plan significance levels will be lower compared to capital. The hypothesis postulates that capital directly influences the outcome of obtaining a license.</span>
+<span id="cb38-53"><a href="#cb38-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-54"><a href="#cb38-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-55"><a href="#cb38-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-56"><a href="#cb38-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-57"><a href="#cb38-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-58"><a href="#cb38-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-59"><a href="#cb38-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-60"><a href="#cb38-60" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reading The Data</span></span>
+<span id="cb38-61"><a href="#cb38-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-62"><a href="#cb38-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-63"><a href="#cb38-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-66"><a href="#cb38-66" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-67"><a href="#cb38-67" aria-hidden="true" tabindex="-1"></a>PA_Dispensary_License_Data_tab <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"~/Downloads/PA Dispensary License Data.tab.xlsx"</span>)</span>
+<span id="cb38-68"><a href="#cb38-68" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(PA_Dispensary_License_Data_tab, <span class="dv">10</span>)</span>
+<span id="cb38-69"><a href="#cb38-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-70"><a href="#cb38-70" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb38-71"><a href="#cb38-71" aria-hidden="true" tabindex="-1"></a>The data set includes various companies that applied for a dispensary license in 2016. There are 16 categories that are added up to a total score. The score is used to determine whether or not the company will receive a license to operate a dispensary. </span>
+<span id="cb38-72"><a href="#cb38-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-73"><a href="#cb38-73" aria-hidden="true" tabindex="-1"></a><span class="fu">## Cleaning Data</span></span>
+<span id="cb38-74"><a href="#cb38-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-77"><a href="#cb38-77" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-78"><a href="#cb38-78" aria-hidden="true" tabindex="-1"></a> PA_Dispensary_License_Condensed<span class="ot">&lt;-</span>PA_Dispensary_License_Data_tab <span class="sc">%&gt;%</span></span>
+<span id="cb38-79"><a href="#cb38-79" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(name, diversityplan, qualifications, security, capital,licensed, awarded)</span>
+<span id="cb38-80"><a href="#cb38-80" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(PA_Dispensary_License_Condensed, <span class="dv">10</span>)</span>
+<span id="cb38-81"><a href="#cb38-81" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb38-82"><a href="#cb38-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-83"><a href="#cb38-83" aria-hidden="true" tabindex="-1"></a><span class="fu">## Regression Models</span></span>
+<span id="cb38-86"><a href="#cb38-86" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-87"><a href="#cb38-87" aria-hidden="true" tabindex="-1"></a><span class="do">###original model</span></span>
+<span id="cb38-88"><a href="#cb38-88" aria-hidden="true" tabindex="-1"></a>linear_model<span class="ot">&lt;-</span><span class="fu">lm</span>(licensed <span class="sc">~</span> capital, <span class="at">data =</span> PA_Dispensary_License_Condensed)</span>
+<span id="cb38-89"><a href="#cb38-89" aria-hidden="true" tabindex="-1"></a><span class="do">### original probit model</span></span>
+<span id="cb38-90"><a href="#cb38-90" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">glm</span>(licensed <span class="sc">~</span> capital, <span class="at">data =</span> PA_Dispensary_License_Condensed, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link=</span><span class="st">"probit"</span>))</span>
+<span id="cb38-91"><a href="#cb38-91" aria-hidden="true" tabindex="-1"></a><span class="do">###original logit model</span></span>
+<span id="cb38-92"><a href="#cb38-92" aria-hidden="true" tabindex="-1"></a>model_logit <span class="ot">&lt;-</span> <span class="fu">glm</span>(licensed <span class="sc">~</span> capital, <span class="at">data =</span> PA_Dispensary_License_Condensed, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link=</span><span class="st">"logit"</span>))</span>
+<span id="cb38-93"><a href="#cb38-93" aria-hidden="true" tabindex="-1"></a><span class="do">###Probit Model Plus Diversity Plan Regressor</span></span>
+<span id="cb38-94"><a href="#cb38-94" aria-hidden="true" tabindex="-1"></a>model_diversity <span class="ot">&lt;-</span> <span class="fu">glm</span>(licensed <span class="sc">~</span> capital <span class="sc">+</span> diversityplan, <span class="at">data =</span> PA_Dispensary_License_Condensed, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"probit"</span>))</span>
+<span id="cb38-95"><a href="#cb38-95" aria-hidden="true" tabindex="-1"></a><span class="do">###Probit Model with Qualification Regressor</span></span>
+<span id="cb38-96"><a href="#cb38-96" aria-hidden="true" tabindex="-1"></a>model_qualification <span class="ot">&lt;-</span> <span class="fu">glm</span> (licensed <span class="sc">~</span> capital <span class="sc">+</span> qualifications, <span class="at">data =</span> PA_Dispensary_License_Condensed, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"probit"</span>))</span>
+<span id="cb38-97"><a href="#cb38-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-98"><a href="#cb38-98" aria-hidden="true" tabindex="-1"></a><span class="do">###Probit Model With All Regressots</span></span>
+<span id="cb38-99"><a href="#cb38-99" aria-hidden="true" tabindex="-1"></a>model_all <span class="ot">&lt;-</span> <span class="fu">glm</span> (licensed <span class="sc">~</span> capital <span class="sc">+</span> qualifications <span class="sc">+</span> diversityplan, <span class="at">data =</span> PA_Dispensary_License_Condensed, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"probit"</span>))</span>
+<span id="cb38-100"><a href="#cb38-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-101"><a href="#cb38-101" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb38-102"><a href="#cb38-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-103"><a href="#cb38-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-106"><a href="#cb38-106" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-107"><a href="#cb38-107" aria-hidden="true" tabindex="-1"></a>coefficients_df <span class="ot">&lt;-</span>  <span class="fu">suppressWarnings</span>(<span class="fu">bind_rows</span>(</span>
+<span id="cb38-108"><a href="#cb38-108" aria-hidden="true" tabindex="-1"></a><span class="at">mod1 =</span><span class="fu">tidy</span>(linear_model, <span class="at">conf.int =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb38-109"><a href="#cb38-109" aria-hidden="true" tabindex="-1"></a><span class="at">mod2 =</span><span class="fu">tidy</span>(model, <span class="at">conf.int =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb38-110"><a href="#cb38-110" aria-hidden="true" tabindex="-1"></a><span class="at">mod3 =</span><span class="fu">tidy</span>(model_logit, <span class="at">conf.int =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb38-111"><a href="#cb38-111" aria-hidden="true" tabindex="-1"></a><span class="at">mod4 =</span><span class="fu">tidy</span>(model_diversity, <span class="at">conf.int =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb38-112"><a href="#cb38-112" aria-hidden="true" tabindex="-1"></a><span class="at">mod5 =</span><span class="fu">tidy</span>(model_qualification, <span class="at">conf.int =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb38-113"><a href="#cb38-113" aria-hidden="true" tabindex="-1"></a><span class="at">mod6 =</span><span class="fu">tidy</span>(model_all, <span class="at">conf.int=</span><span class="cn">TRUE</span>)))</span>
+<span id="cb38-114"><a href="#cb38-114" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb38-115"><a href="#cb38-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-116"><a href="#cb38-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-119"><a href="#cb38-119" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-120"><a href="#cb38-120" aria-hidden="true" tabindex="-1"></a><span class="co">#Print the coefficients table using kable</span></span>
+<span id="cb38-121"><a href="#cb38-121" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(coefficients_df, <span class="at">caption =</span> <span class="st">"Regresssion Model Coefficient Results"</span>)</span>
+<span id="cb38-122"><a href="#cb38-122" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb38-123"><a href="#cb38-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-124"><a href="#cb38-124" aria-hidden="true" tabindex="-1"></a>I have included the results of the regression analysis above. I will continue with the analysis in the below setions.</span>
+<span id="cb38-125"><a href="#cb38-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-128"><a href="#cb38-128" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-129"><a href="#cb38-129" aria-hidden="true" tabindex="-1"></a><span class="co"># List of variables you want to summarize</span></span>
+<span id="cb38-130"><a href="#cb38-130" aria-hidden="true" tabindex="-1"></a>vars_to_summarize <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"capital"</span>, <span class="st">"diversityplan"</span>, <span class="st">"qualifications"</span>)</span>
+<span id="cb38-131"><a href="#cb38-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-132"><a href="#cb38-132" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize an empty data frame to store the results</span></span>
+<span id="cb38-133"><a href="#cb38-133" aria-hidden="true" tabindex="-1"></a>summary_table <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
+<span id="cb38-134"><a href="#cb38-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-135"><a href="#cb38-135" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop through each variable and calculate summary statistics</span></span>
+<span id="cb38-136"><a href="#cb38-136" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (var <span class="cf">in</span> vars_to_summarize) {</span>
+<span id="cb38-137"><a href="#cb38-137" aria-hidden="true" tabindex="-1"></a>  summary_row <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb38-138"><a href="#cb38-138" aria-hidden="true" tabindex="-1"></a>    <span class="at">Metric =</span> <span class="fu">c</span>(<span class="fu">paste0</span>(<span class="st">"sd_"</span>, var), <span class="fu">paste0</span>(<span class="st">"max_"</span>, var), <span class="fu">paste0</span>(<span class="st">"min_"</span>, var), <span class="fu">paste0</span>(<span class="st">"avg_"</span>, var), <span class="fu">paste0</span>(<span class="st">"med_"</span>, var), <span class="fu">paste0</span>(<span class="st">"n_"</span>, var)),</span>
+<span id="cb38-139"><a href="#cb38-139" aria-hidden="true" tabindex="-1"></a>    <span class="at">Value =</span> <span class="fu">c</span>(<span class="fu">sd</span>(PA_Dispensary_License_Condensed[[var]], <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb38-140"><a href="#cb38-140" aria-hidden="true" tabindex="-1"></a>               <span class="fu">max</span>(PA_Dispensary_License_Condensed[[var]], <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb38-141"><a href="#cb38-141" aria-hidden="true" tabindex="-1"></a>               <span class="fu">min</span>(PA_Dispensary_License_Condensed[[var]], <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb38-142"><a href="#cb38-142" aria-hidden="true" tabindex="-1"></a>               <span class="fu">mean</span>(PA_Dispensary_License_Condensed[[var]], <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb38-143"><a href="#cb38-143" aria-hidden="true" tabindex="-1"></a>               <span class="fu">median</span>(PA_Dispensary_License_Condensed[[var]], <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb38-144"><a href="#cb38-144" aria-hidden="true" tabindex="-1"></a>               <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(PA_Dispensary_License_Condensed[[var]])))  <span class="co"># Count non-NA values</span></span>
+<span id="cb38-145"><a href="#cb38-145" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb38-146"><a href="#cb38-146" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb38-147"><a href="#cb38-147" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Append the summary_row to the summary_table using rbind()</span></span>
+<span id="cb38-148"><a href="#cb38-148" aria-hidden="true" tabindex="-1"></a>  summary_table <span class="ot">&lt;-</span> <span class="fu">rbind</span>(summary_table, summary_row)</span>
+<span id="cb38-149"><a href="#cb38-149" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb38-150"><a href="#cb38-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-151"><a href="#cb38-151" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the resulting summary_table</span></span>
+<span id="cb38-152"><a href="#cb38-152" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(summary_table)</span>
+<span id="cb38-153"><a href="#cb38-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-154"><a href="#cb38-154" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb38-155"><a href="#cb38-155" aria-hidden="true" tabindex="-1"></a>Additionally, I have included the summary statistics above. As the table shows, diversity plan has a slightly larger variation in standard deviation when compared to the other two variables. The summary statistics provide the background for the below regression analysis.</span>
+<span id="cb38-156"><a href="#cb38-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-157"><a href="#cb38-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-160"><a href="#cb38-160" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-161"><a href="#cb38-161" aria-hidden="true" tabindex="-1"></a>linear_model<span class="ot">&lt;-</span><span class="fu">lm</span>(licensed <span class="sc">~</span> capital, <span class="at">data =</span> PA_Dispensary_License_Condensed)</span>
+<span id="cb38-162"><a href="#cb38-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-163"><a href="#cb38-163" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(linear_model)<span class="sc">$</span>coefficient</span>
+<span id="cb38-164"><a href="#cb38-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-165"><a href="#cb38-165" aria-hidden="true" tabindex="-1"></a><span class="do">### Have to plot it differently</span></span>
+<span id="cb38-166"><a href="#cb38-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-167"><a href="#cb38-167" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(PA_Dispensary_License_Condensed<span class="sc">$</span>capital, PA_Dispensary_License_Condensed<span class="sc">$</span>licensed, <span class="at">main =</span> <span class="st">"Regression Results"</span>, <span class="at">xlab =</span> <span class="st">"X"</span>, <span class="at">ylab =</span> <span class="st">"Y"</span>)</span>
+<span id="cb38-168"><a href="#cb38-168" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(linear_model, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb38-169"><a href="#cb38-169" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb38-170"><a href="#cb38-170" aria-hidden="true" tabindex="-1"></a>In summary, a T-value of 4.235692 for the independent variable capital in a simple regression with the dependent variable licensed indicates a strong relationship between the variables, and the relationship is statistically significant based on the chosen level of significance. In this case, the p-value is extremely small and less than one 1%. The chosen level of significance for this case would be P&lt;.05. More specifically, if the p-value is below the predetermined significance level, it suggests that the probability of observing the results under the null hypothesis are very low. In such cases, it is generally concluded that there is a statistically significant relationship in the data.</span>
+<span id="cb38-171"><a href="#cb38-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-172"><a href="#cb38-172" aria-hidden="true" tabindex="-1"></a>For each unit increase in the capital variable, there is an estimated increase of approximately 0.006579464 in the probability or likelihood of the licensed variable being equal to 1, assuming all other factors are held constant.</span>
+<span id="cb38-173"><a href="#cb38-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-174"><a href="#cb38-174" aria-hidden="true" tabindex="-1"></a>In plain English, this means that as the capital variable increases, the estimated effect is a slight increase in the probability of having a value of 1 for the licensed variable. However, since the coefficient is very small (0.006579464), the practical significance of this effect may be limited.</span>
+<span id="cb38-175"><a href="#cb38-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-176"><a href="#cb38-176" aria-hidden="true" tabindex="-1"></a>Since the dependent variable is a dummy (binary) variable, the regression line does not fit that nicely on the plot. I did some additional research and found that a curve is more fitting for this type of variable. </span>
+<span id="cb38-177"><a href="#cb38-177" aria-hidden="true" tabindex="-1"></a><span class="fu">## Regression Analysis With Binary Variable</span></span>
+<span id="cb38-178"><a href="#cb38-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-181"><a href="#cb38-181" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-182"><a href="#cb38-182" aria-hidden="true" tabindex="-1"></a><span class="do">### Regression Graph for Dummy Dependent Variable</span></span>
+<span id="cb38-183"><a href="#cb38-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-184"><a href="#cb38-184" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">glm</span>(licensed <span class="sc">~</span> capital, <span class="at">data =</span> PA_Dispensary_License_Condensed, <span class="at">family =</span> binomial)</span>
+<span id="cb38-185"><a href="#cb38-185" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(PA_Dispensary_License_Condensed<span class="sc">$</span>capital, PA_Dispensary_License_Condensed<span class="sc">$</span>licensed, <span class="at">main =</span> <span class="st">"Regression Plot of Licensed vs. Capital"</span>, <span class="at">xlab =</span> <span class="st">"Capital"</span>, <span class="at">ylab =</span> <span class="st">"Licensed"</span>)</span>
+<span id="cb38-186"><a href="#cb38-186" aria-hidden="true" tabindex="-1"></a><span class="do">### This code adds a curve instead of a standard line(abline) for regression of dummy dependent variables</span></span>
+<span id="cb38-187"><a href="#cb38-187" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">predict</span>(model, <span class="fu">data.frame</span>(<span class="at">capital =</span> x), <span class="at">type =</span> <span class="st">"response"</span>), <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span>
+<span id="cb38-188"><a href="#cb38-188" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb38-189"><a href="#cb38-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-190"><a href="#cb38-190" aria-hidden="true" tabindex="-1"></a>In the above plot, I used a general linear model to predict the curve of the dummy variable. This is a much cleaner plot that the original regression line above. This more closely illustrates the relationship between capital score and licensing outcome.</span>
+<span id="cb38-191"><a href="#cb38-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-192"><a href="#cb38-192" aria-hidden="true" tabindex="-1"></a><span class="fu"># Multivariate Regression</span></span>
+<span id="cb38-193"><a href="#cb38-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-196"><a href="#cb38-196" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-197"><a href="#cb38-197" aria-hidden="true" tabindex="-1"></a><span class="do">### Original Model Probit</span></span>
+<span id="cb38-198"><a href="#cb38-198" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">glm</span>(licensed <span class="sc">~</span> capital, <span class="at">data =</span> PA_Dispensary_License_Condensed, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link=</span><span class="st">"probit"</span>))</span>
+<span id="cb38-199"><a href="#cb38-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-200"><a href="#cb38-200" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(model, <span class="at">vcov. =</span> vcovHC, <span class="at">type =</span> <span class="st">"HC1"</span>)</span>
+<span id="cb38-201"><a href="#cb38-201" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb38-202"><a href="#cb38-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-203"><a href="#cb38-203" aria-hidden="true" tabindex="-1"></a>P(License|Capital) = Φ(-5.62 +.075Capital Score)</span>
+<span id="cb38-204"><a href="#cb38-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-205"><a href="#cb38-205" aria-hidden="true" tabindex="-1"></a>In the context of the provided results, where "capital" is listed as an independent variable with a significant coefficient estimate, it suggests that there is a statistically meaningful relationship between the "capital" variable and the dependent variable being analyzed. The analysis indicates that changes in the "capital" variable are associated with changes in the outcome of interest.</span>
+<span id="cb38-206"><a href="#cb38-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-207"><a href="#cb38-207" aria-hidden="true" tabindex="-1"></a>Since the coefficient estimate for "capital" is positive (approximately 0.074962), it implies that an increase in the value of the "capital" variable is associated with an increase in the value of the dependent variable, licensed, all else being equal. In other words, there is a positive correlation between the "capital" variable and the licensing outcome being studied.</span>
+<span id="cb38-208"><a href="#cb38-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-209"><a href="#cb38-209" aria-hidden="true" tabindex="-1"></a>The fact that the coefficient for "capital" is statistically significant (indicated by the low p-value) suggests that this relationship is unlikely to be due to random chance. It's important to note that statistical significance does not necessarily imply a causal relationship; it only indicates that there is a strong association between the two variables in the analyzed data.</span>
+<span id="cb38-210"><a href="#cb38-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-211"><a href="#cb38-211" aria-hidden="true" tabindex="-1"></a>Without more specific context about the nature of the variables and the analysis being conducted, it's challenging to provide a precise interpretation of how "capital" relates to "license." However, based on the information provided, it can be inferred that higher values of the "capital" variable are predictive of higher values of the dependent variable, and this relationship is supported by the statistical analysis.</span>
+<span id="cb38-212"><a href="#cb38-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-213"><a href="#cb38-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-216"><a href="#cb38-216" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-217"><a href="#cb38-217" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> PA_Dispensary_License_Condensed<span class="sc">$</span>capital,</span>
+<span id="cb38-218"><a href="#cb38-218" aria-hidden="true" tabindex="-1"></a>     <span class="at">y =</span> PA_Dispensary_License_Condensed<span class="sc">$</span>licensed,</span>
+<span id="cb38-219"><a href="#cb38-219" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Scatterplot Dispensary Application Approval and </span></span>
+<span id="cb38-220"><a href="#cb38-220" aria-hidden="true" tabindex="-1"></a><span class="st">                                    the Capital"</span>,</span>
+<span id="cb38-221"><a href="#cb38-221" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Capital Score"</span>,</span>
+<span id="cb38-222"><a href="#cb38-222" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"License Result"</span>,</span>
+<span id="cb38-223"><a href="#cb38-223" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">20</span>,</span>
+<span id="cb38-224"><a href="#cb38-224" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.4</span>, <span class="fl">1.4</span>),</span>
+<span id="cb38-225"><a href="#cb38-225" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex.main =</span> <span class="fl">0.8</span>)</span>
+<span id="cb38-226"><a href="#cb38-226" aria-hidden="true" tabindex="-1"></a><span class="co"># add horizontal dashed lines and text</span></span>
+<span id="cb38-227"><a href="#cb38-227" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">1</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"darkred"</span>)</span>
+<span id="cb38-228"><a href="#cb38-228" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"darkred"</span>)</span>
+<span id="cb38-229"><a href="#cb38-229" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">20</span>, <span class="fl">0.9</span>, <span class="at">cex =</span> <span class="fl">0.8</span>, <span class="st">"License Approved"</span>)</span>
+<span id="cb38-230"><a href="#cb38-230" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">20</span>, <span class="sc">-</span><span class="fl">0.1</span>, <span class="at">cex=</span> <span class="fl">0.8</span>, <span class="st">"License Denied"</span>)</span>
+<span id="cb38-231"><a href="#cb38-231" aria-hidden="true" tabindex="-1"></a><span class="do">### add a regression line</span></span>
+<span id="cb38-232"><a href="#cb38-232" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">70</span>, <span class="dv">10</span>)</span>
+<span id="cb38-233"><a href="#cb38-233" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">predict</span>(model, <span class="fu">list</span>(<span class="at">capital =</span> x), <span class="at">type =</span> <span class="st">"response"</span>)</span>
+<span id="cb38-234"><a href="#cb38-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-235"><a href="#cb38-235" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, y, <span class="at">lwd =</span> <span class="fl">1.5</span>, <span class="at">col =</span> <span class="st">"steelblue"</span>)</span>
+<span id="cb38-236"><a href="#cb38-236" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-237"><a href="#cb38-237" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb38-238"><a href="#cb38-238" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-239"><a href="#cb38-239" aria-hidden="true" tabindex="-1"></a>The above graph shows that the probit model is similar to general linear model above.  This is particularly useful when the relationship between the independent variables(Captial) and the probability of the binary outcome occurring is not linear, but rather follows a cumulative distribution function (CDF), specifically the cumulative normal distribution function.</span>
+<span id="cb38-240"><a href="#cb38-240" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-243"><a href="#cb38-243" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-244"><a href="#cb38-244" aria-hidden="true" tabindex="-1"></a><span class="do">### Predictions with Capital 60 to 70</span></span>
+<span id="cb38-245"><a href="#cb38-245" aria-hidden="true" tabindex="-1"></a>new_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">capital =</span> <span class="fu">c</span>(<span class="dv">60</span>, <span class="dv">70</span>))  <span class="co"># Create a data frame with the 'capital' values you want to predict for</span></span>
+<span id="cb38-246"><a href="#cb38-246" aria-hidden="true" tabindex="-1"></a>predictions <span class="ot">&lt;-</span> <span class="fu">predict</span>(model, <span class="at">newdata =</span> new_data, <span class="at">type =</span> <span class="st">"response"</span>)  <span class="co"># Use "response" for binary outcome prediction</span></span>
+<span id="cb38-247"><a href="#cb38-247" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-248"><a href="#cb38-248" aria-hidden="true" tabindex="-1"></a><span class="fu">diff</span>(predictions)</span>
+<span id="cb38-249"><a href="#cb38-249" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb38-250"><a href="#cb38-250" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-251"><a href="#cb38-251" aria-hidden="true" tabindex="-1"></a>We find that an increase in the capital score from  60 to  70 is predicted to increase the probability of denial by approximately 22.3% This further supports the initial hypothesis that an increase in the capital score increases the chances of a compoany receiving a dispensary license. </span>
+<span id="cb38-252"><a href="#cb38-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-253"><a href="#cb38-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-256"><a href="#cb38-256" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-257"><a href="#cb38-257" aria-hidden="true" tabindex="-1"></a><span class="do">### Original Model Logit</span></span>
+<span id="cb38-258"><a href="#cb38-258" aria-hidden="true" tabindex="-1"></a>model_logit <span class="ot">&lt;-</span> <span class="fu">glm</span>(licensed <span class="sc">~</span> capital, <span class="at">data =</span> PA_Dispensary_License_Condensed, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link=</span><span class="st">"logit"</span>))</span>
+<span id="cb38-259"><a href="#cb38-259" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-260"><a href="#cb38-260" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(model_logit, <span class="at">vcov. =</span> vcovHC, <span class="at">type =</span> <span class="st">"HC1"</span>)</span>
+<span id="cb38-261"><a href="#cb38-261" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb38-262"><a href="#cb38-262" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-263"><a href="#cb38-263" aria-hidden="true" tabindex="-1"></a>P(Licensed = 1| Capital) = F(-10.3 + .13Capital)</span>
+<span id="cb38-264"><a href="#cb38-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-265"><a href="#cb38-265" aria-hidden="true" tabindex="-1"></a>Intercept (Constant Term):</span>
+<span id="cb38-266"><a href="#cb38-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-267"><a href="#cb38-267" aria-hidden="true" tabindex="-1"></a>Estimate: The estimated intercept (constant term) is -10.308410.</span>
+<span id="cb38-268"><a href="#cb38-268" aria-hidden="true" tabindex="-1"></a>Std. Error: The standard error associated with the intercept estimate is 1.844778.</span>
+<span id="cb38-269"><a href="#cb38-269" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-270"><a href="#cb38-270" aria-hidden="true" tabindex="-1"></a>z value: The calculated z value for the intercept is -5.5879.</span>
+<span id="cb38-271"><a href="#cb38-271" aria-hidden="true" tabindex="-1"></a>Pr(&gt;|z|): The p-value associated with the z value is extremely small (2.299e-08), indicating that the intercept is statistically significant. This suggests that the log-odds of the outcome being "licensed" are significantly different from zero.</span>
+<span id="cb38-272"><a href="#cb38-272" aria-hidden="true" tabindex="-1"></a>Capital:</span>
+<span id="cb38-273"><a href="#cb38-273" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-274"><a href="#cb38-274" aria-hidden="true" tabindex="-1"></a>Estimate: The estimated coefficient for the variable "capital" is 0.139436.</span>
+<span id="cb38-275"><a href="#cb38-275" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-276"><a href="#cb38-276" aria-hidden="true" tabindex="-1"></a>Std. Error: The standard error associated with the coefficient estimate is 0.029845.</span>
+<span id="cb38-277"><a href="#cb38-277" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-278"><a href="#cb38-278" aria-hidden="true" tabindex="-1"></a>z value: The calculated z value for the coefficient is 4.6720.</span>
+<span id="cb38-279"><a href="#cb38-279" aria-hidden="true" tabindex="-1"></a>Pr(&gt;|z|): The p-value associated with the z value is very small (2.983e-06), indicating that the "capital" variable is statistically significant. This suggests that for a one-unit increase in the "capital" variable, the log-odds of the outcome being "licensed" increases by 0.139436 units.</span>
+<span id="cb38-280"><a href="#cb38-280" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-281"><a href="#cb38-281" aria-hidden="true" tabindex="-1"></a>The "Signif. codes" section provides a quick interpretation of the significance levels:</span>
+<span id="cb38-282"><a href="#cb38-282" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-283"><a href="#cb38-283" aria-hidden="true" tabindex="-1"></a>In summary, based on this logistic regression model, there is strong evidence to suggest that the "capital" variable significantly influences the likelihood of being "licensed," while the intercept (constant term) also plays a significant role in predicting the outcome.</span>
+<span id="cb38-284"><a href="#cb38-284" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-285"><a href="#cb38-285" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-288"><a href="#cb38-288" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-289"><a href="#cb38-289" aria-hidden="true" tabindex="-1"></a><span class="do">### Plot Logit Regression</span></span>
+<span id="cb38-290"><a href="#cb38-290" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> PA_Dispensary_License_Condensed<span class="sc">$</span>capital,</span>
+<span id="cb38-291"><a href="#cb38-291" aria-hidden="true" tabindex="-1"></a>     <span class="at">y =</span> PA_Dispensary_License_Condensed<span class="sc">$</span>licensed,</span>
+<span id="cb38-292"><a href="#cb38-292" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Scatterplot Dispensary Application Approval and </span></span>
+<span id="cb38-293"><a href="#cb38-293" aria-hidden="true" tabindex="-1"></a><span class="st">                                    the Capital"</span>,</span>
+<span id="cb38-294"><a href="#cb38-294" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Capital Score"</span>,</span>
+<span id="cb38-295"><a href="#cb38-295" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"License Result"</span>,</span>
+<span id="cb38-296"><a href="#cb38-296" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">20</span>,</span>
+<span id="cb38-297"><a href="#cb38-297" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.4</span>, <span class="fl">1.4</span>),</span>
+<span id="cb38-298"><a href="#cb38-298" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex.main =</span> <span class="fl">0.8</span>)</span>
+<span id="cb38-299"><a href="#cb38-299" aria-hidden="true" tabindex="-1"></a><span class="co"># add horizontal dashed lines and text</span></span>
+<span id="cb38-300"><a href="#cb38-300" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">1</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"darkred"</span>)</span>
+<span id="cb38-301"><a href="#cb38-301" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"darkred"</span>)</span>
+<span id="cb38-302"><a href="#cb38-302" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">60</span>, <span class="fl">0.9</span>, <span class="at">cex =</span> <span class="fl">0.8</span>, <span class="st">"License Approved"</span>)</span>
+<span id="cb38-303"><a href="#cb38-303" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">20</span>, <span class="sc">-</span><span class="fl">0.1</span>, <span class="at">cex=</span> <span class="fl">0.8</span>, <span class="st">"License Denied"</span>)</span>
+<span id="cb38-304"><a href="#cb38-304" aria-hidden="true" tabindex="-1"></a><span class="do">### add a regression line</span></span>
+<span id="cb38-305"><a href="#cb38-305" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">70</span>, <span class="dv">10</span>)</span>
+<span id="cb38-306"><a href="#cb38-306" aria-hidden="true" tabindex="-1"></a>y_probit <span class="ot">&lt;-</span> <span class="fu">predict</span>(model, <span class="fu">list</span>(<span class="at">capital =</span> x), <span class="at">type =</span> <span class="st">"response"</span>)</span>
+<span id="cb38-307"><a href="#cb38-307" aria-hidden="true" tabindex="-1"></a>y_logit <span class="ot">&lt;-</span> <span class="fu">predict</span>(model, <span class="fu">list</span>(<span class="at">capital =</span> x), <span class="at">type =</span> <span class="st">"response"</span>)</span>
+<span id="cb38-308"><a href="#cb38-308" aria-hidden="true" tabindex="-1"></a><span class="do">### Add both regression Lines</span></span>
+<span id="cb38-309"><a href="#cb38-309" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, y_probit, <span class="at">lwd =</span> <span class="fl">1.5</span>, <span class="at">col =</span> <span class="st">"steelblue"</span>)</span>
+<span id="cb38-310"><a href="#cb38-310" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, y_logit, <span class="at">lwd =</span> <span class="fl">1.5</span>, <span class="at">col =</span> <span class="st">"black"</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb38-311"><a href="#cb38-311" aria-hidden="true" tabindex="-1"></a><span class="do">###Legend</span></span>
+<span id="cb38-312"><a href="#cb38-312" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>,</span>
+<span id="cb38-313"><a href="#cb38-313" aria-hidden="true" tabindex="-1"></a>       <span class="at">horiz =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb38-314"><a href="#cb38-314" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"Probit"</span>, <span class="st">"Logit"</span>),</span>
+<span id="cb38-315"><a href="#cb38-315" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"steelblue"</span>, <span class="st">"black"</span>), </span>
+<span id="cb38-316"><a href="#cb38-316" aria-hidden="true" tabindex="-1"></a>       <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">2</span>))</span>
+<span id="cb38-317"><a href="#cb38-317" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-318"><a href="#cb38-318" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb38-319"><a href="#cb38-319" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-320"><a href="#cb38-320" aria-hidden="true" tabindex="-1"></a>As you can see from the above model, the logit and probit model are almost the exact same. A logit model, also known as a logistic regression model, is a statistical method used to model the relationship between one or more independent variables and a binary dependent variable. In a logistic regression, the coefficients β are estimated using maximum likelihood estimation. These coefficients provide information about the direction and strength of the relationship between each predictor variable and the probability of the binary outcome occurring. In the below analysis, I will discuss the specific values of the logit model.</span>
+<span id="cb38-321"><a href="#cb38-321" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-324"><a href="#cb38-324" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-325"><a href="#cb38-325" aria-hidden="true" tabindex="-1"></a><span class="do">### Multi-Variate Model with Diversity</span></span>
+<span id="cb38-326"><a href="#cb38-326" aria-hidden="true" tabindex="-1"></a>model_diversity <span class="ot">&lt;-</span> <span class="fu">glm</span>(licensed <span class="sc">~</span> capital <span class="sc">+</span> diversityplan, <span class="at">data =</span> PA_Dispensary_License_Condensed, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"probit"</span>))</span>
+<span id="cb38-327"><a href="#cb38-327" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-328"><a href="#cb38-328" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(model_diversity, <span class="at">vcov. =</span> vcovHC, <span class="at">type =</span> <span class="st">"HC1"</span>)</span>
+<span id="cb38-329"><a href="#cb38-329" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-330"><a href="#cb38-330" aria-hidden="true" tabindex="-1"></a><span class="fu">linearHypothesis</span>(model_diversity, <span class="fu">c</span>(<span class="st">"capital=0"</span>, <span class="st">"diversityplan=0"</span>), <span class="at">white.adjust =</span> <span class="st">"hc1"</span>)</span>
+<span id="cb38-331"><a href="#cb38-331" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-332"><a href="#cb38-332" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb38-333"><a href="#cb38-333" aria-hidden="true" tabindex="-1"></a>P(License|Capital+Diversityplan) = Φ(-5.62 +.066Capital Score +.013Diversityplan) ** Not statistically significant in Diversity Plan</span>
+<span id="cb38-334"><a href="#cb38-334" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-335"><a href="#cb38-335" aria-hidden="true" tabindex="-1"></a>z Test of Coefficients:</span>
+<span id="cb38-336"><a href="#cb38-336" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-337"><a href="#cb38-337" aria-hidden="true" tabindex="-1"></a>(Intercept) coefficient: The coefficient for the intercept is -5.737154. The corresponding standard error is 0.858463. The z value (coefficient divided by its standard error) is -6.6831. The p-value associated with this z value is extremely small (2.340e-11), indicated by '***', suggesting that the intercept is significantly different from zero.</span>
+<span id="cb38-338"><a href="#cb38-338" aria-hidden="true" tabindex="-1"></a>capital coefficient: The coefficient for the capital predictor variable is 0.066072. The standard error is 0.015441. The z value is 4.2791, and the p-value is also very small (1.877e-05), '***', indicating that the capital predictor is statistically significant.</span>
+<span id="cb38-339"><a href="#cb38-339" aria-hidden="true" tabindex="-1"></a>diversityplan coefficient: The coefficient for the diversityplan predictor is 0.013886, and its standard error is 0.008202. The z value is 1.6930, and the associated p-value is 0.09046, indicated by a '.'. This suggests that the diversityplan predictor is not statistically significant at the conventional significance levels (alpha = 0.05).</span>
+<span id="cb38-340"><a href="#cb38-340" aria-hidden="true" tabindex="-1"></a>Linear Hypothesis Test:</span>
+<span id="cb38-341"><a href="#cb38-341" aria-hidden="true" tabindex="-1"></a>The linear hypothesis test is evaluating the joint significance of the capital and diversityplan predictors by comparing two models:</span>
+<span id="cb38-342"><a href="#cb38-342" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-343"><a href="#cb38-343" aria-hidden="true" tabindex="-1"></a>Model 1: Restricted model without capital and diversityplan.</span>
+<span id="cb38-344"><a href="#cb38-344" aria-hidden="true" tabindex="-1"></a>Model 2: Full model with capital and diversityplan.</span>
+<span id="cb38-345"><a href="#cb38-345" aria-hidden="true" tabindex="-1"></a>The test statistic (Chi-square) is 18.124 with 2 degrees of freedom. The p-value associated with this test statistic is 0.000116, '***', indicating strong evidence to reject the null hypothesis. This suggests that the joint inclusion of capital and diversityplan significantly improves the fit of the model compared to a model without these predictors.</span>
+<span id="cb38-346"><a href="#cb38-346" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-347"><a href="#cb38-347" aria-hidden="true" tabindex="-1"></a>In summary, the z test of coefficients indicates that the intercept and the capital predictor are both statistically significant. The diversityplan predictor, although not statistically significant by itself, contributes to the overall model fit in the linear hypothesis test when combined with the capital predictor.</span>
+<span id="cb38-348"><a href="#cb38-348" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-351"><a href="#cb38-351" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-352"><a href="#cb38-352" aria-hidden="true" tabindex="-1"></a><span class="do">### general linear model with qualifications</span></span>
+<span id="cb38-353"><a href="#cb38-353" aria-hidden="true" tabindex="-1"></a>model_qualification <span class="ot">&lt;-</span> <span class="fu">glm</span> (licensed <span class="sc">~</span> capital <span class="sc">+</span> qualifications, <span class="at">data =</span> PA_Dispensary_License_Condensed, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"probit"</span>))</span>
+<span id="cb38-354"><a href="#cb38-354" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(model_qualification, <span class="at">vcov. =</span> vcovHC, <span class="at">type =</span> <span class="st">"HC1"</span>)</span>
+<span id="cb38-355"><a href="#cb38-355" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-356"><a href="#cb38-356" aria-hidden="true" tabindex="-1"></a><span class="fu">linearHypothesis</span>(model_qualification, <span class="fu">c</span>(<span class="st">"capital=0"</span>, <span class="st">"qualifications=0"</span>), <span class="at">white.adjust =</span> <span class="st">"hc1"</span>)</span>
+<span id="cb38-357"><a href="#cb38-357" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-358"><a href="#cb38-358" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb38-359"><a href="#cb38-359" aria-hidden="true" tabindex="-1"></a>P(License|Capital+Qualification) = Φ(-5.62 +.057Capital Score +.088Qualification)</span>
+<span id="cb38-360"><a href="#cb38-360" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-361"><a href="#cb38-361" aria-hidden="true" tabindex="-1"></a>Z Test of Coefficients:</span>
+<span id="cb38-362"><a href="#cb38-362" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-363"><a href="#cb38-363" aria-hidden="true" tabindex="-1"></a>Intercept: The coefficient for the intercept is -7.583452. This represents the expected log-odds of the licensed variable when both capital and qualifications are zero. The negative coefficient suggests that as the predictor values increase, the log-odds of being licensed decrease.</span>
+<span id="cb38-364"><a href="#cb38-364" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-365"><a href="#cb38-365" aria-hidden="true" tabindex="-1"></a>capital: The coefficient for the capital predictor is 0.057768. It is statistically significant as indicated by the '**' symbol. This means that a unit increase in capital is associated with a 0.057768 increase in the log-odds of being licensed, holding other variables constant.</span>
+<span id="cb38-366"><a href="#cb38-366" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-367"><a href="#cb38-367" aria-hidden="true" tabindex="-1"></a>qualifications: The coefficient for the qualifications predictor is 0.088167. It is statistically significant ('***'), indicating that a unit increase in qualifications is associated with a 0.088167 increase in the log-odds of being licensed, holding other variables constant.</span>
+<span id="cb38-368"><a href="#cb38-368" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-369"><a href="#cb38-369" aria-hidden="true" tabindex="-1"></a>Linear Hypothesis Test:</span>
+<span id="cb38-370"><a href="#cb38-370" aria-hidden="true" tabindex="-1"></a>The linear hypothesis test evaluates the joint significance of capital and qualifications in the model:</span>
+<span id="cb38-371"><a href="#cb38-371" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-372"><a href="#cb38-372" aria-hidden="true" tabindex="-1"></a>Model 1: Restricted model without capital and qualifications.</span>
+<span id="cb38-373"><a href="#cb38-373" aria-hidden="true" tabindex="-1"></a>Model 2: Full model with capital and qualifications.</span>
+<span id="cb38-374"><a href="#cb38-374" aria-hidden="true" tabindex="-1"></a>The test statistic (Chi-square) is 19.719, and the associated p-value is 5.225e-05 ('***'). This p-value is much smaller than the significance level of 0.05, indicating strong evidence to reject the null hypothesis. This suggests that including both capital and qualifications significantly improves the model's fit compared to a model without these predictors.</span>
+<span id="cb38-375"><a href="#cb38-375" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-376"><a href="#cb38-376" aria-hidden="true" tabindex="-1"></a>In summary, both capital and qualifications are individually significant predictors. Additionally, the linear hypothesis test indicates that the joint inclusion of these predictors significantly enhances the model's performance, further supporting their importance in explaining the variability in the response variable licensed.</span>
+<span id="cb38-377"><a href="#cb38-377" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-380"><a href="#cb38-380" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-381"><a href="#cb38-381" aria-hidden="true" tabindex="-1"></a><span class="do">### general linear model with all variables </span></span>
+<span id="cb38-382"><a href="#cb38-382" aria-hidden="true" tabindex="-1"></a>model_all <span class="ot">&lt;-</span> <span class="fu">glm</span> (licensed <span class="sc">~</span> capital <span class="sc">+</span> qualifications <span class="sc">+</span> diversityplan, <span class="at">data =</span> PA_Dispensary_License_Condensed, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"probit"</span>))</span>
+<span id="cb38-383"><a href="#cb38-383" aria-hidden="true" tabindex="-1"></a><span class="do">###CoefTest</span></span>
+<span id="cb38-384"><a href="#cb38-384" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(model_all, <span class="at">vcov. =</span> vcovHC, <span class="at">type =</span> <span class="st">"HC1"</span>)</span>
+<span id="cb38-385"><a href="#cb38-385" aria-hidden="true" tabindex="-1"></a><span class="do">###Linear Hypothesis</span></span>
+<span id="cb38-386"><a href="#cb38-386" aria-hidden="true" tabindex="-1"></a><span class="fu">linearHypothesis</span>(model_all, <span class="fu">c</span>(<span class="st">"capital=0"</span>,<span class="st">"diversityplan = 0"</span>, <span class="st">"qualifications=0"</span>), <span class="at">white.adjust =</span> <span class="st">"hc1"</span>)</span>
+<span id="cb38-387"><a href="#cb38-387" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-388"><a href="#cb38-388" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-389"><a href="#cb38-389" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb38-390"><a href="#cb38-390" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-391"><a href="#cb38-391" aria-hidden="true" tabindex="-1"></a>In this case:</span>
+<span id="cb38-392"><a href="#cb38-392" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-393"><a href="#cb38-393" aria-hidden="true" tabindex="-1"></a>The intercept has a significantly negative coefficient, indicating that when all predictor variables are zero, the log-odds of being licensed is significantly negative.</span>
+<span id="cb38-394"><a href="#cb38-394" aria-hidden="true" tabindex="-1"></a>capital has a positive coefficient with a p-value of 0.01091, which is less than 0.05. This suggests that an increase in capital is associated with a higher likelihood of being licensed.</span>
+<span id="cb38-395"><a href="#cb38-395" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-396"><a href="#cb38-396" aria-hidden="true" tabindex="-1"></a>Qualifications has a positive coefficient with a p-value of 0.00154, which is less than 0.05. This suggests that higher qualifications are associated with a higher likelihood of being licensed.</span>
+<span id="cb38-397"><a href="#cb38-397" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-398"><a href="#cb38-398" aria-hidden="true" tabindex="-1"></a>Diversityplan has a positive coefficient, but its p-value (0.15064) is greater than 0.05. This suggests that diversityplan might not be statistically significant in predicting licensing status.</span>
+<span id="cb38-399"><a href="#cb38-399" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-400"><a href="#cb38-400" aria-hidden="true" tabindex="-1"></a>Linear Hypothesis Test:</span>
+<span id="cb38-401"><a href="#cb38-401" aria-hidden="true" tabindex="-1"></a>The linearHypothesis function tests the joint significance of multiple coefficients by comparing a restricted model (where those coefficients are restricted to zero) to the full model.</span>
+<span id="cb38-402"><a href="#cb38-402" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-403"><a href="#cb38-403" aria-hidden="true" tabindex="-1"></a>In this case:</span>
+<span id="cb38-404"><a href="#cb38-404" aria-hidden="true" tabindex="-1"></a>The null hypothesis is that all three coefficients (capital, diversityplan, and qualifications) are simultaneously equal to zero.</span>
+<span id="cb38-405"><a href="#cb38-405" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-406"><a href="#cb38-406" aria-hidden="true" tabindex="-1"></a>The p-value associated with the hypothesis test (9.064e-05) is less than 0.05, indicating that at least one of these coefficients is significantly different from zero when considered together.</span>
+<span id="cb38-407"><a href="#cb38-407" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-408"><a href="#cb38-408" aria-hidden="true" tabindex="-1"></a>This suggests that at least one of these three variables (capital, diversityplan, qualifications) is important for predicting the licensing status when all three are considered together.</span>
+<span id="cb38-409"><a href="#cb38-409" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-410"><a href="#cb38-410" aria-hidden="true" tabindex="-1"></a>The significance tests like these provide insights into whether the coefficients are likely different from zero, but they do not provide information about the strength or practical importance of these effects.</span>
+<span id="cb38-411"><a href="#cb38-411" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-412"><a href="#cb38-412" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-413"><a href="#cb38-413" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-416"><a href="#cb38-416" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-417"><a href="#cb38-417" aria-hidden="true" tabindex="-1"></a>rob_se<span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(linear_model, <span class="at">type =</span> <span class="st">"HC1"</span>))),</span>
+<span id="cb38-418"><a href="#cb38-418" aria-hidden="true" tabindex="-1"></a>               <span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(model, <span class="at">type =</span> <span class="st">"HC1"</span>))),</span>
+<span id="cb38-419"><a href="#cb38-419" aria-hidden="true" tabindex="-1"></a>               <span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(model_logit, <span class="at">type =</span> <span class="st">"HC1"</span>))),</span>
+<span id="cb38-420"><a href="#cb38-420" aria-hidden="true" tabindex="-1"></a>               <span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(model_diversity, <span class="at">type =</span> <span class="st">"HC1"</span>))),</span>
+<span id="cb38-421"><a href="#cb38-421" aria-hidden="true" tabindex="-1"></a>               <span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(model_qualification, <span class="at">type =</span> <span class="st">"HC1"</span>))),</span>
+<span id="cb38-422"><a href="#cb38-422" aria-hidden="true" tabindex="-1"></a>               <span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(model_all, <span class="at">type =</span> <span class="st">"HC1"</span>))))</span>
+<span id="cb38-423"><a href="#cb38-423" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb38-424"><a href="#cb38-424" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-427"><a href="#cb38-427" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb38-428"><a href="#cb38-428" aria-hidden="true" tabindex="-1"></a>mod_list <span class="ot">&lt;-</span> <span class="fu">list</span>(linear_model,model,model_logit,model_diversity,  model_qualification, model_all) </span>
+<span id="cb38-429"><a href="#cb38-429" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb38-430"><a href="#cb38-430" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-431"><a href="#cb38-431" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-432"><a href="#cb38-432" aria-hidden="true" tabindex="-1"></a><span class="in">```{r my latextable, results = "asis"}</span></span>
+<span id="cb38-433"><a href="#cb38-433" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(mod_list,  </span>
+<span id="cb38-434"><a href="#cb38-434" aria-hidden="true" tabindex="-1"></a>          <span class="at">digits =</span> <span class="dv">3</span>,</span>
+<span id="cb38-435"><a href="#cb38-435" aria-hidden="true" tabindex="-1"></a>          <span class="at">type =</span> <span class="st">"html"</span>, </span>
+<span id="cb38-436"><a href="#cb38-436" aria-hidden="true" tabindex="-1"></a>          <span class="at">header =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb38-437"><a href="#cb38-437" aria-hidden="true" tabindex="-1"></a>          <span class="at">se =</span> rob_se,</span>
+<span id="cb38-438"><a href="#cb38-438" aria-hidden="true" tabindex="-1"></a>          <span class="at">model.numbers =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb38-439"><a href="#cb38-439" aria-hidden="true" tabindex="-1"></a>          <span class="at">column.labels =</span> <span class="fu">c</span>(<span class="st">"(1)"</span>, <span class="st">"(2)"</span>, <span class="st">"(3)"</span>, <span class="st">"(4)"</span>, <span class="st">"(5)"</span>, <span class="st">"(6)"</span>))</span>
+<span id="cb38-440"><a href="#cb38-440" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb38-441"><a href="#cb38-441" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-442"><a href="#cb38-442" aria-hidden="true" tabindex="-1"></a>OLS (Ordinary Least Squares):</span>
+<span id="cb38-443"><a href="#cb38-443" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-444"><a href="#cb38-444" aria-hidden="true" tabindex="-1"></a>OLS assumes that the dependent variable is continuous and normally distributed.</span>
+<span id="cb38-445"><a href="#cb38-445" aria-hidden="true" tabindex="-1"></a>R-squared indicates the proportion of variance explained by the model. A relatively low R-squared (0.067) suggests that the linear relationship might not capture all the complexities of the data.</span>
+<span id="cb38-446"><a href="#cb38-446" aria-hidden="true" tabindex="-1"></a>Since the dependent variable "licensed" is likely binary (indicating presence or absence), OLS might not be the most suitable choice.</span>
+<span id="cb38-447"><a href="#cb38-447" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-448"><a href="#cb38-448" aria-hidden="true" tabindex="-1"></a>Probit Models (Two Instances):</span>
+<span id="cb38-449"><a href="#cb38-449" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-450"><a href="#cb38-450" aria-hidden="true" tabindex="-1"></a>Probit models are used for binary outcomes, assuming that the latent variable follows a normal distribution.</span>
+<span id="cb38-451"><a href="#cb38-451" aria-hidden="true" tabindex="-1"></a>Log Likelihood values (-72.951 and -68.254) suggest that these models fit the data relatively well, but a lower value is preferred.</span>
+<span id="cb38-452"><a href="#cb38-452" aria-hidden="true" tabindex="-1"></a>AIC values (149.902 and 142.508) indicate that the second probit model has a better balance between fit and complexity compared to the first one.</span>
+<span id="cb38-453"><a href="#cb38-453" aria-hidden="true" tabindex="-1"></a>Probit models provide probabilities of being "licensed," assuming a normal distribution of the underlying latent variable.</span>
+<span id="cb38-454"><a href="#cb38-454" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-455"><a href="#cb38-455" aria-hidden="true" tabindex="-1"></a>Logistic (Logit) Model:</span>
+<span id="cb38-456"><a href="#cb38-456" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-457"><a href="#cb38-457" aria-hidden="true" tabindex="-1"></a>Logistic models are widely used for binary outcomes, assuming a logistic distribution of the latent variable.</span>
+<span id="cb38-458"><a href="#cb38-458" aria-hidden="true" tabindex="-1"></a>The log-likelihood value (-71.402) suggests a reasonably good fit to the data.</span>
+<span id="cb38-459"><a href="#cb38-459" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-460"><a href="#cb38-460" aria-hidden="true" tabindex="-1"></a>The AIC value (148.805) indicates that the logistic model provides a balance between model fit and complexity.</span>
+<span id="cb38-461"><a href="#cb38-461" aria-hidden="true" tabindex="-1"></a>Logistic models provide probabilities of being "licensed" that are bounded between 0 and 1.</span>
+<span id="cb38-462"><a href="#cb38-462" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-463"><a href="#cb38-463" aria-hidden="true" tabindex="-1"></a>In summary, the findings align with the previously stated hypothesis, indicating that the diversity plan score bears lesser importance in comparison to both capital and qualification scores. This outcome presents a contradiction to the initial aim of fostering social equity. While the diversity plan does exert some impact on the overall model, its statistical significance pales when contrasted with the other variables.</span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+</body></html>
