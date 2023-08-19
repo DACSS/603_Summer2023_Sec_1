@@ -43,7 +43,7 @@ My analysis is about Japanese moviegoers' behavior and trend over last 20 years.
 
 My research questions are:
 
--   \- How has Japanese movie-going behavior change for last 20 years?
+-   \- How has Japanese movie-going behavior changed for last 20 years?
 
 -   \- Are Japanese movies getting more popular among Japanese moviegoers?
 
@@ -57,7 +57,7 @@ I used two datasets from two different sources.
 
 2.  By-movie dataset ('ranking') I gathered the data of Top 100 movies in box office revenue in Japan for the last 20 years (2002-2022) by scraping data available on Box Office Mojo by [IMDbPro](https://www.boxofficemojo.com/year/2022/?area=JP&grossesOption=totalGrosses&sort=rank&sortDir=asc)
 
-Then, I added more detailed information about the movies using the dataset of movies available on [TMdb](https://www.kaggle.com/datasets/akshaypawar7/millions-of-movies) as of July 14th, 2023 to complement useful information on movies' language and genres.
+-   Then, I added more detailed information about the movies using the dataset of movies available on [TMdb](https://www.kaggle.com/datasets/akshaypawar7/millions-of-movies) as of July 14th, 2023 to complement useful information on movies' language and genres.
 
 ```{r}
 
@@ -95,7 +95,7 @@ year %>%
   ggplot(aes(x=year, y=number_movies, color=`Original region of movies`)) +
   geom_line() +
   scale_color_manual(values = c('coral', 'darkturquoise'), labels=c("Foreign Movies", "Japanese Movies")) +
-  labs(y="Box Office Revenue in Japan")
+  labs(y="Number of movies available in the theaters in Japan")
 ```
 
 This graph shows the region of Top 100 movies in terms of box office revenue in Japan for the last 20 years. It clearly illustrates the shift in dominance from foreign films to Japanese films.
@@ -349,7 +349,7 @@ mod3 <- lm(JP_revenue ~ region + anime + Worldwide_revenue + after_2008, data = 
 mod4 <- lm(JP_revenue ~ region + anime + Worldwide_revenue + after_2008 * region + after_2008 * anime + after_2008 * Worldwide_revenue, data = df)
 ```
 
-## 4. Now find the best model specification through the following steps:
+### 4. Now find the best model specification through the following steps:
 
 ```{r}
 
@@ -391,7 +391,7 @@ linearHypothesis(mod4,
    vcov. = vcovHC(mod4, type = "HC1"))
 ```
 
-## 5.Explain which robust model best explains the relationship you've set out to investigate.
+### 5.Explain which robust model best explains the relationship you've set out to investigate.
 
 Among the four models, the one that includes "after_2008" (indicating whether the movie was released after 2008) had the smallest Residual Std. error and the highest Adjusted R-squared value, indicating the most high-performing results. This indirectly suggests a change in the trend of box office revenue for movies in Japan around the year 2008.
 
