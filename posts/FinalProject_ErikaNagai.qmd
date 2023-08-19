@@ -1,0 +1,481 @@
+---
+title: "Class Project Erika Nagai"
+author: "Erika Nagai"
+desription: "Class Project - Japanese movie-goers trend in last 20 years"
+date: "08/08/2023"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+    
+categories:
+  - final project
+  - Erika Nagai
+  - dplyr
+  - movies
+---
+
+```{r}
+#| label: setup
+#| warning: false
+
+library(tidyverse)
+library(dplyr)
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+#install.packages("gridExtra")
+library(gridExtra)
+library(AER)
+library(stargazer)
+library(stringr)
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Overview:
+
+This analysis was done for in-class assignment for DACSS 603 Introduction to Quantitative Analysis at the University of Massachusetts, Amherst.
+
+My analysis is about Japanese moviegoers' behavior and trend over last 20 years. As this [article](https://www.washingtonpost.com/business/avatar-struggles-show-how-japan-is-ditching-hollywood/2022/12/22/09197536-8234-11ed-8738-ed7217de2775_story.html) suggests, recent Hollywood movies are struggling in Japanese market. This might suggest that Japanese people are favoring domestic movies because they are getting more close-minded or Japanese movie industry is getting mature and more attractive for Japanese audience.
+
+My research questions are:
+
+-   \- How has Japanese movie-going behavior changed for last 20 years?
+
+-   \- Are Japanese movies getting more popular among Japanese moviegoers?
+
+-   \- Are foreign movies getting less popular among Japanese moviegoers?
+
+## Dataset
+
+I used two datasets from two different sources.
+
+1.  By-year dataset (year) I gathered the data about general information (total box office revenue, total \# of people who went to movie theaters, \# of screens) of every year from 2000 to 2022 from this [website](http://www.eiren.org/statistics_e/index.html).
+
+2.  By-movie dataset ('ranking') I gathered the data of Top 100 movies in box office revenue in Japan for the last 20 years (2002-2022) by scraping data available on Box Office Mojo by [IMDbPro](https://www.boxofficemojo.com/year/2022/?area=JP&grossesOption=totalGrosses&sort=rank&sortDir=asc)
+
+-   Then, I added more detailed information about the movies using the dataset of movies available on [TMdb](https://www.kaggle.com/datasets/akshaypawar7/millions-of-movies) as of July 14th, 2023 to complement useful information on movies' language and genres.
+
+```{r}
+
+year <- read_csv("data_ErikaNagai/revised_year.csv")
+ranking <- read_csv("data_ErikaNagai/merged_ranking.csv") 
+ranking$anime <- as.factor(ranking$anime)
+```
+
+## Exploratory Analysis
+
+### How did Japanese moviegoers' taste change?
+
+**The year 2008 marks a significant turning point in the trend of moviegoing in Japan. Before 2008, foreign films were more popular and generated higher box office revenues compared to domestic films. However, from 2008 onwards, the situation changed, and Japanese films started to dominate in terms of box office earnings.**
+
+In 2020, the COVID-19 pandemic impacted both Japanese and foreign films, resulting in reduced box office revenues. However, the decline in box office revenue for foreign films was significantly greater than that of Japanese films.
+
+After 2020, Japanese films gradually recovered their box office revenue to pre-pandemic levels, and in 2022, they recorded the second-highest box office revenue in the past 20 years. On the other hand, the box office revenue for foreign films is yet to return to its pre-pandemic levels.
+
+```{r}
+year %>%
+  select(c('year', 'jp_revenue', 'foreign_revenue')) %>%
+  pivot_longer(cols=c('jp_revenue', 'foreign_revenue'), names_to = 'Original region of movies', values_to = 'revenue') %>%
+  ggplot(aes(x=year, y=revenue, color=`Original region of movies`)) +
+  geom_line() +
+  scale_color_manual(values = c('coral', 'darkturquoise'), labels=c("Foreign Movies", "Japanese Movies")) +
+  labs(y="Box Office Revenue in Japan")
+```
+
+The exact reason for the shift in Japanese audiences' preference from foreign films to Japanese films is not fully understood. However, it seems that the increase in the number of domestically produced films alone is **not** be the sole cause. This is because the number of foreign films being screened in Japanese cinemas has also increased over time.
+
+```{r}
+year %>%
+  select(c('year', 'jp_movies', 'foreign_movies')) %>%
+  pivot_longer(cols=c('jp_movies', 'foreign_movies'), names_to = 'Original region of movies', values_to = 'number_movies') %>%
+  ggplot(aes(x=year, y=number_movies, color=`Original region of movies`)) +
+  geom_line() +
+  scale_color_manual(values = c('coral', 'darkturquoise'), labels=c("Foreign Movies", "Japanese Movies")) +
+  labs(y="Number of movies available in the theaters in Japan")
+```
+
+This graph shows the region of Top 100 movies in terms of box office revenue in Japan for the last 20 years. It clearly illustrates the shift in dominance from foreign films to Japanese films.
+
+```{r}
+
+ranking %>%
+  ggplot(aes(x=year, y=rank, color=region, size=gross)) +
+  geom_point() +
+  coord_flip() +
+  scale_x_reverse() +
+  scale_color_manual(values = c('coral', 'darkturquoise', 'grey'))+
+  labs(title="The origin region of top movies in Japan",
+       x='Year',
+       y='Rank',
+       size = "Box Office Revenue in Japan",
+       color = "Original region of the movie") +
+  theme(legend.position='bottom')+
+  theme_minimal()
+
+```
+
+The below graph demonstrates if the top 100 movies in Japan were animated or not. It shows that more Japanese animation movies are gaining popularity in Japan in recent years.
+
+```{r}
+
+ranking %>%
+  filter(region!="Unknown") %>%
+  ggplot(aes(x=year, y=rank, color=anime, size=gross)) +
+  geom_point() +
+  coord_flip() +
+  scale_x_reverse() +
+  scale_color_manual(values = c('grey', 'pink'), labels=c("No animation", "Animation"))+
+  scale_shape_manual(values = c(4, 3)) +
+  labs(title="The genre of top 100 movies in Japan",
+       x='Year',
+       y='Rank') +
+  theme_minimal() +
+  facet_grid(~region) +
+  labs(color = "Genre \n(Anime or not)", size = "Box office\nrevenue \n (in million USD)") 
+
+
+
+```
+
+This graph compares the distribution of worldwide box office revenue and domestic (Japan) box office revenue, showing distinct trends before and after the year 2008. For instance, prior to 2008, there seems to be a strong correlation between worldwide box office revenue and domestic box office revenue, suggesting that successful movies globally also performed well in Japan. However, after 2008, a notable shift is observed: there is a growing number of movies with extremely low global box office revenue but high domestic box office revenue in Japan.
+
+```{r}
+
+ranking %>%
+  mutate(after_2018 = case_when(year>=2008 ~ TRUE,
+                                TRUE ~ FALSE)) %>%
+  ggplot(aes(x=global_revenue, y=gross, color=after_2018)) +
+  geom_point(alpha = 0.1)
+  
+```
+
+## Instructions by Professor
+
+### **1. Write down multiple regression models as discussed in the lab. Please view the recordings for instructions on multicollinearity checks and OVB reduction as it pertains to model specification.**
+
+As the exploratory analysis shows, the Japanese moviegoers behavior had a great shift around 2008. Also, in Japanese movie industry, the animated format is a critical factor to be considered. Thus, my linear model will include `region`(Foreign movie / Japanese movie), `animation`, `Worldwide box office revenue`, `after_2008` (If the movie is released before or after 2008)
+
+***Multicollinearity***: Multicollinearity occurs when there are correlations between independent variables. There is no concern about multicollinearity because there is only one numeric variable (global revenue)
+
+***Omitted Variable Bias***: Omitted variable bias happens when a model doesn't include one or more relevant variables. In my analysis, the original region of movies (Japanese/foreign) cannot be left out. I added the anime variable that refers to if the movie is animated or not because animation is a format more common in Japanese movies than foreign movies, and the region and the format should be considered separate.
+
+My linear models are as follows;
+
+The dependent variable of all models is **box office revenue in Japan**
+
+1.  **Model 1**
+
+    Independent variables:
+
+    1.  Original region of the movie (Japanese/Foreign/Unknown)
+
+    2.  Animation (Animation or not)
+
+2.  **Model 2**
+
+    Independent variables:
+
+    1.  Original region of the movie (Japanese/Foreing/Unknown)
+
+    2.  Animation (Animation or not)
+
+    3.  Worldwide box office revenue
+
+3.  **Model 3**
+
+    1.  Original region of the movie (Japanese/Foreing/Unknown)
+
+    2.  Animation (Animation or not)
+
+    3.  Worldwide box office revenue
+
+    4.  After_2018
+
+4.  **Model 4**
+
+    1.  Original region of the movie (Japanese/Foreing/Unknown)
+
+    2.  Animation (Animation or not)
+
+    3.  Worldwide box office revenue
+
+    4.  After_2018 \* Original region of the movie
+
+    5.  After_2018 \* Animation
+
+    6.  After_2018 \* Worldwide box office revenue
+
+Log Linear model cannot be run because Worldwide box office revenue contains 0 value and log(0) is not defined.
+
+### **2.Upon writing your models, please follow the following steps that make your model-building strategy lends to both internal and external validity**
+
+#### External validity:
+
+This analysis aims to uncover the preferences of Japanese audiences when it comes to watching movies in theaters and to understand the changing trends over time. According to the Exploratory Analysis, there has been a shift in Japanese movie-going behavior since 2008. Prior to 2008, foreign films were more commonly watched, but since then, there has been a shift toward Japanese films being more frequently viewed.
+
+The following is the strategy I took to make my model have a high external validity:
+
+**Dependent variable**: I used a dependent variable quite representative of Japanese moviegoers' preference, which is the box office revenue of the movie in Japan. The independent variable "region" represents if the movie is a Japanese movie or a foreign movie. This data came from if the movie is in Japanese or other languages. Box office revenue is calculated by multiplying the number of viewers by the ticket price, which hasn't changed significantly across different movies. Thus, this dependent variable effectively reflects the popularity of movies among Japanese audiences.
+
+**Independent variable:** In order to answer the main question "if Japanese moviegoers are watching domestic movies more and foreign movies less", I used an independent variable "region", which basically means if the original language of the movie is Japanese or not. The definition of "Japanese movies" is not clear because it can mean that the movie is aimed at an only a Japanese audience, the movie is available primarily only in Japan, or it is produced by a Japanese company or organization, however, I decided to use the original language used in the movie to avoid any arbitrariness. Also, I believe this definition using the original language is aligned with Japanese moviegoers' definition of Japanese/foreign movies. For example, in this analysis, "Pokémon Detective Pikachu", a movie produced by both American (Warner Brothers) and Japanese companies (Pokemon), is considered as a foreign movie because it is originally in English.
+
+#### Internal validity:
+
+Internal validity refers to how well the relationship between the dependent and independent variables holds true. In this analysis, we aim to find out whether a movie being of Japanese origin or foreign origin affects its box office revenue in Japan and whether this trend changes over time.
+
+To ensure internal validity, I took the following measures:
+
+First, I obtained the data for the predictor variable, which is the box office revenue in Japan, from a reliable source called IMDb Pro. There are no missing values, and since the information comes from a single source (IMDb), it can be considered consistent.
+
+The independent variables, whether the movie is from Japan or an anime, and the worldwide box office revenue, are based on information from another trustworthy website called TMDB. Therefore, these variables should generally be unbiased and consistent. However, this dataset may have some sample selection bias as some of the top-grossing movies in Japan lacked information on TMDB. For instance, there are movies that were only released in Japan and don't have information on global sites, or there are discrepancies between the titles used in Japan and those registered on TMDB. In such cases, I manually entered data to indicate if the movie is Japanese or an anime to the best of my ability (you can review the data cleaning process in the GitHub link below). It's important to note that there are limitations to this data-cleaning process, and I acknowledge that the information about the independent variables is not 100% accurate or consistent.
+
+This dataset is based on over 2000 movies, making it sufficiently large for analysis and capable of withstanding statistical testing.
+
+\[GitHub link to data cleaning process: https://github.com/Enagai-nagai/603_Summer2023_Sec_1/tree/template/posts\]
+
+```{r}
+#a. Summary statistics for the data: 
+summary(ranking)
+```
+
+```{r}
+
+
+# drop NA
+df <- ranking %>% 
+  filter(!is.na(global_revenue))
+
+df[is.na(df)|df=="inf"] = NA
+
+# b. Customize my variables
+df$JP_revenue <- df$gross
+df$Worldwide_revenue <- df$global_revenue
+df$after_2008 <- case_when(
+  df$year <= 2007 ~ 0,
+  TRUE ~ 1
+)
+
+# Almost 1000 movies' have 0 for their worldwide revenue, which doesn't seem correct.
+# So for those movies I filled Worldwide revenue with their total gross revenue in Japan because those movies are most likely to be available only in Japan and thus their worldwide revenue data was not available
+
+df$Worldwide_revenue[df$Worldwide_revenue == 0] <- df$total_gross[df$Worldwide_revenue == 0]
+
+# df <- df %>% filter(Worldwide_revenue !=0)
+
+```
+
+```{r}
+# c. Designate your regressors and report their mean and standard deviation
+
+vars <- c("JP_revenue", "Worldwide_revenue")
+cbind(mean = sapply(df[, vars], mean),
+      sd = sapply(df[, vars], sd),
+      max = sapply(df[, vars], max),
+      min = sapply(df[,vars], min))
+```
+
+```{r}
+
+# d. Estimate a basic linear equation and report summary
+
+linear_model <- lm(JP_revenue ~ Worldwide_revenue, data = df)
+summary(linear_model)
+
+# e. Squared model:
+squared_model <- lm(JP_revenue ~ I(Worldwide_revenue) + I(Worldwide_revenue ^ 2), data = df)
+summary(squared_model)
+
+# f. Attempt a log-linear model:
+linearlog_model <- lm(JP_revenue ~ log(Worldwide_revenue), data = df)
+summary(linearlog_model)
+
+# g. Now attempt a cubic model
+cubic_model <- lm(JP_revenue ~ I(Worldwide_revenue) + I(Worldwide_revenue^2) + I(Worldwide_revenue^3), data = df)
+summary(cubic_model)
+
+```
+
+```{r}
+plot(df$Worldwide_revenue, df$JP_revenue,
+  pch = 20,
+  col = "steelblue",
+  xlab = "Worldwide revenue",
+  ylab = "Revenue in Japan",
+abline(linear_model, lwd = 2))
+
+order_id <- order(df$Worldwide_revenue)
+
+
+lines(df$Worldwide_revenue[order_id],
+      fitted(squared_model)[order_id],
+      col = "red",
+      lwd = 2)
+
+lines(df$Worldwide_revenue[order_id],
+      fitted(linearlog_model)[order_id],
+      col = "green",
+      lwd = 2)
+
+lines(df$Worldwide_revenue[order_id],
+      fitted(cubic_model)[order_id],
+      col = "orange",
+      lwd = 2)
+
+legend("topleft",
+  legend = c("Linear", "Squared", "Linear-log", "Cubic"),
+  lty = 1,
+  col = c("black", "red", "green", "orange"))
+
+```
+
+### **3. Explain which robust model best explains the relationship you've set out to investigate.**
+
+After running these four regression models, all except the log-linear model exhibit nearly identical results, with an Adjusted R-squared value around 0.23. This similarity arises due to the coefficients of I(Worldwide_revenue\^2) and I(Worldwide_revenue\^3) within the Squared and Cubic models being extremely small compared to the simpler linear regression model. The log-linear model demonstrates a distinct trend from the other three models and provides less accurate predictions (with an adjusted R-squared value of 0.118).
+
+Considering these outcomes, it's optimal to utilize a straightforward linear regression model for the Worldwide_revenue variable. This choice is based on the statistical insignificance of the coefficients for squared and cubed transformations of Worldwide_revenue, their minute values, and the ease of interpretation with fewer variables.
+
+In the following analysis, we'll employ Worldwide_revenue as well as introduce new variables like `region` ,`anime,` and `after_2018` to explore a model that better explains the predictive variables.
+
+Again, these variables mean as follows: `region`: Where the movie is from (Japan/Foreign/Unknown) `anime`: If the movie is animation or not `after_2018`: If the movie was among the top movies of the year before 2008 / 2008 or after. This variable is incorporated because 2018 marked a significant shift in Japanese moviegoers' behavior.
+
+```{r}
+mod1 <- lm(JP_revenue ~ region + anime, data = df)
+mod2 <- lm(JP_revenue ~ region + anime + Worldwide_revenue, data = df)
+mod3 <- lm(JP_revenue ~ region + anime + Worldwide_revenue + after_2008, data = df)
+mod4 <- lm(JP_revenue ~ region + anime + Worldwide_revenue + after_2008 * region + after_2008 * anime + after_2008 * Worldwide_revenue, data = df)
+```
+
+### 4. Now find the best model specification through the following steps:
+
+```{r}
+
+rob_se <- list(sqrt(diag(vcovHC(mod1, type = "HC1"))),
+ sqrt(diag(vcovHC(mod2, type = "HC1"))),
+ sqrt(diag(vcovHC(mod3, type = "HC1"))),
+ sqrt(diag(vcovHC(mod4, type = "HC1"))))
+
+stargazer(mod1, mod2, mod3, mod4,
+  title = "Regressions",
+  type = "text",
+  digits = 3,
+  header = FALSE,
+  se = rob_se,
+  object.names = TRUE,
+  model.numbers = FALSE,
+  column.labels = c("(I)", "(II)", "(III)", "(IV)"))
+```
+
+```{r}
+summary(mod4)
+```
+
+```{r}
+linearHypothesis(mod1, 
+   c("regionJapan=0", "anime1=0"), 
+   vcov. = vcovHC(mod1, type = "HC1"))
+
+linearHypothesis(mod2,
+   c("regionJapan=0", "anime1=0"),
+   vcov. = vcovHC(mod2, type = "HC1"))
+
+linearHypothesis(mod3,
+   c("regionJapan=0", "anime1=0", "after_2008=0"),
+   vcov. = vcovHC(mod3, type = "HC1"))
+
+linearHypothesis(mod4,
+   c("regionJapan=0", "anime1=0", "after_2008=0", "regionJapan:after_2008 = 0", "anime1:after_2008 = 0"),
+   vcov. = vcovHC(mod4, type = "HC1"))
+```
+
+### 5.Explain which robust model best explains the relationship you've set out to investigate.
+
+Among the four models, the one that includes "after_2008" (indicating whether the movie was released after 2008) had the smallest Residual Std. error and the highest Adjusted R-squared value, indicating the most high-performing results. This indirectly suggests a change in the trend of box office revenue for movies in Japan around the year 2008.
+
+### Interpretation of the best-performing model
+
+To interpret each variable and coefficient in more detail:
+
+1\. Being a Japanese film generally is related to the increase of box office revenue in Japan (regionJapan: 11,642,032\*\*\*). However, after 2008, being a Japanese film doesn't seem to inherently boost revenue, as the coefficient for regionJapan:after_2008 is statistically insignificant and negative (-6,782,232).
+
+2\. Being an anime film is generally associated with a decrease of \$3,047,104 in Japanese box office revenue. Yet, post-2008, being an anime film is linked to an increase in Japanese box office revenue of \$6,782,232 - \$3,047,104 = \$3,735,128.
+
+3\. Considering the relationship with worldwide box office revenue, before 2008, for every \$1 increase in worldwide_revenue, Japanese box office revenue tended to increase by \$0.062. However, after 2008, for every \$1 increase in worldwide_revenue, Japanese box office revenue only increases by \$0.033 (\$0.062 - \$0.029). This suggests that Japanese box office revenue is less influenced by global box office revenue post-2008.
+
+In summary, the model incorporating "after_2008" yields the best results among the four models, hinting at a shift in Japanese movie revenue trends around 2008.
+
+**External and Internal Validity**
+
+As demonstrated above, this model exhibits both external validity and internal validity. This is because the model aims to demonstrate how the trend of moviegoing behavior in Japanese cinemas has changed over the past 20 years. Specifically, it addresses the previously identified trend that "around 2008, Japanese moviegoers shifted their preferences, watching more domestic films and fewer foreign films." The model uses Japanese moviegoer preferences as indicated by box office revenue in Japan, representing the variables of Japanese films/foreign films and the language spoken in movies. The inclusion of the "after_2008" variable further enhances external validity. Moreover, the data is sourced from a reliable and consistent database, reducing bias and ensuring high internal validity.
+
+However, it's worth noting that, as previously mentioned, there are missing values in the worldwide box office revenue data, and manual data processing has occurred, introducing some inconsistency in that aspect.
+
+### Observation and lnsights from the models
+
+The results from these linear models reveal intriguing insights into the movie-going tendencies in Japanese theaters.
+
+First, considering solely the global box office revenue of movies, I find that it can explain less than 22% of the variation in Japan's movie box office revenue (linear model : R squared ≒ 0.2). This discovery is thought-provoking, as it implies that movies that resonate in Japan might not necessarily be highly influenced by their global popularity. This suggests that a movie's success worldwide might not directly translate to its popularity in Japan. For instance, a movie that performs exceptionally well worldwide might not garner as much attention in Japanese theaters.
+
+Further delving into the impact of a movie's origin (Japan or overseas) and whether it is an animated film (mod1), we observe that, in terms of Japan's movie box office revenue, only the distinction of being an animated film holds statistically significant influence. The origin of being a Japanese movie appears to positively affect the box office revenue (with a coefficient of approximately 848,000), yet it does not hold statistical significance.
+
+As mentioned earlier in the analysis, the primary focus was on uncovering how the movie-watching tendencies in Japan have evolved over time. Building upon the preliminary analysis that revealed a reversal in the total box office revenue between foreign and Japanese films around 2008, mod4 introduces a new dummy variable called "after_2008" to investigate the interaction of this variable with others. Two significant findings emerged as a result of this approach.
+
+Firstly, post-2008, the influence of worldwide revenue on domestic box office revenue in Japan has diminished. (The coefficient of worldwide_revenue before 2008 was 0.061, while after introducing "after_2008," the coefficient for worldwide_revenue after 2008 became 0.061 - 0.028 (coefficient of worldwide_revenue:after_2008) = 0.033.) This suggests that the impact of a movie's international box office revenue on its box office revenue in Japan has decreased, indicating a deviation of Japan's movie box office revenue trend from that of the rest of the world.
+
+Secondly, though according to the exploratory analysis, it appears that Japanese films gained popularity over foreign films after 2008, the reason behind this shift lies not solely in a general rise in the popularity of Japanese films, but in the increased popularity of animated Japanese films.
+
+### Additional analysis (Dividing the data into two periods)
+
+Moving forward, I conducted additional analyses to further find out the trends around the 2008 period. The dataset was divided into two distinct segments: the years 2002-2007 and 2008-2020. Separate linear regression models were then applied to each of these segments.
+
+The aim of these analyses was to provide clearer insights into the shifts that occurred around the 2008 timeframe and capture any contrasting patterns or trends that might have emerged before and after 2008.
+
+```{r}
+
+df_before <- df %>% filter(year<2008)
+df_after <- df %>% filter(year>=2008)
+mod1_before <- lm(JP_revenue~region+anime+Worldwide_revenue, data = df_before)
+mod1_after <- lm(JP_revenue~region+anime+Worldwide_revenue, data = df_after)
+
+
+```
+
+```{r}
+rob_se <- list(sqrt(diag(vcovHC(mod1_before, type = "HC1"))),
+ sqrt(diag(vcovHC(mod1_after, type = "HC1"))))
+
+
+stargazer(mod1_before, mod1_after, 
+          type = "text",
+          column.labels = c("2002-2007", "2008-2020"))
+
+```
+
+The results from these models exhibit similar trends as the previous analysis.
+
+To begin with, prior to 2008, the box office revenue in Japan was influenced by the global box office revenue, but this influence diminished after 2008. (The coefficients of Worldwide_revenue in (1) and (2) decreased from 0.062 to 0.033.) Furthermore, before 2008, being an animated film was associated with a negative relationship between the global box office revenue and the predicted box office revenue in Japan. However, this trend reversed after 2008.
+
+## Conclusion
+
+The moviegoing behavior in Japan underwent a significant shift around 2008. Before 2008, foreign films garnered higher box office revenue in Japan (indicating a larger audience), but post-2008, this trend reversed, with domestic Japanese films surpassing foreign films in box office revenue. As of 2022, the box office revenue from foreign films is less than half of that from Japanese films.
+
+This phenomenon can be attributed to three factors:
+
+Firstly, Japanese movie preferences are diverging from global trends. Prior to 2008, a \$1 increase in worldwide box office revenue corresponded to a \$0.066 increase in Japanese box office revenue. However, post-2008, this correlation weakened significantly to a mere \$0.028 increase. A global hit is not necessarily a guarantee for success in Japan.
+
+Secondly, predicting Japanese movie revenue has become more complex after 2008. Before 2008, 46% of Japanese box office revenue could be explained using three factors: 1. Japanese or foreign film, 2. animated or not, and 3. Worldwide box office revenue. However, post-2008, only 28% of the revenue could be explained. This suggests that Japanese movie preferences are influenced by more intricate factors not covered by these simple variables.
+
+Lastly, while the data indicates a growing preference for Japanese films among Japanese audiences, it's not necessarily the fact of being a Japanese film that drives revenue growth. Instead, the surge in revenue is more correlated with the presence of "anime films," which are prevalent in Japanese cinema.
+
+### Source
+
+Bloomberg, G. R. \|. (2022, December 27). Analysis \| "avatar" struggles show how Japan is ditching Hollywood. The Washington Post. https://www.washingtonpost.com/business/avatar-struggles-show-how-japan-is-ditching-hollywood/2022/12/22/09197536-8234-11ed-8738-ed7217de2775_story.html
+
+STATISTICS OF FILM INDUSTRY IN JAPAN. Motion Picture Producers Association of Japan , Inc. (n.d.). http://www.eiren.org/statistics_e/index.html
+
+Japanese box office. Box Office Mojo. (n.d.). https://www.boxofficemojo.com/year/2022/?area=JP&grossesOption=totalGrosses&sort=rank&sortDir=asc
+
+Pawar, A. (2023, August 16). Movies Daily Update Dataset. Kaggle. https://www.kaggle.com/datasets/akshaypawar7/millions-of-movies
