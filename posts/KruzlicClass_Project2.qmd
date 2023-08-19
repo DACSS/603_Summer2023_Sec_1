@@ -1,0 +1,571 @@
+---
+title: "Kruzlic Class Project 2"
+author: "Bryn Kruzlic"
+desription: "Second iteration of the class project"
+date: "08/18/2023"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - final project 2
+  - Qasim Abbas
+  - dplyr
+
+---
+
+```{r}
+#| label: setup
+#| warning: false
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# These are the libraries being used in the following project. 
+
+```{r}
+
+library(readxl)
+library(tidyverse)
+library(lubridate)
+library(ggplot2)
+library(stringr)
+library(readr)
+library(cluster)
+library(dplyr)
+library(AER)
+library(caret)
+library(dummy)
+library(stargazer)
+library(glmnet)
+library(car)
+library(lmtest)
+library(sandwich)
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Cleaning up the data
+
+##### Unfortunately, this dataset does contain a fair amount of missing data in addition to more measures of music than we need. For this project, we are only focused on genre, dur (duration) and pop (popularity) when it comes to the Top Spotify charting songs from 2010 to 2019. The below code features the cleaning process, merging together different subgenres into one 'umbrella' genre, eliminating repeat values and omitting NAs.
+
+```{r}
+
+# Read in dataset
+
+top10s <- read_csv("C:/Users/Bryn Kruzlic/OneDrive/Desktop/MS_DACSS/DACSS603/top10s.csv")
+View(top10s)
+
+```
+
+
+```{r} 
+
+# Filtering NAs from the dataset
+
+top10s %>% 
+  select_all() %>% 
+  filter(bpm == 0 |
+           nrgy == 0 |
+           dnce == 0 |
+           dB == 0 |
+           live == 0 |
+           dur == 0 |
+           spch == 0 |
+           pop  == 0 )
+
+summary(top10s)
+
+```
+
+
+```{r}
+
+# Repeated in the chart due to seperate releases
+
+top10s <- top10s %>% 
+  filter(title != 'The Hills' | year != 2016)
+
+```
+
+
+```{r}
+
+# Merging subgenres together for more cohesion
+
+genre <- top10s["top genre"]
+
+unique(top10s$'top genre')
+top10s <-top10s%>%separate((`top genre`),c("variable","genre"),extra='merge')
+
+other <- c("complextro", "downtempo", "brostep", "electro", "electronic", "escape", "folk-pop", "hollywood", "house", "irish", "permanent", "neo", "metropolis", "tropical")
+top10s$genre[top10s$variable %in% other] <- 'other'
+top10s$genre[top10s$variable == 'hip'] <- 'hip hop'
+top10s$genre[top10s$variable == 'latin'] <- 'latin'
+top10s$genre[top10s$variable == 'boy'] <- 'pop'
+top10s$genre[top10s$variable == 'french'] <- 'pop'
+top10s$genre[top10s$variable == 'electropop'] <- 'pop'
+top10s$genre[top10s$variable == 'pop'] <- 'pop'
+top10s$genre[top10s$genre == 'contemporary r&b'] <- 'r&b'
+top10s$genre[top10s$genre == 'room'] <- 'other'
+table(top10s$genre)
+
+miss <- colSums(is.na(top10s))
+print(miss[miss>0])
+
+top10s <-na.omit(top10s)
+
+
+```
+
+# Grouping and Analysis- Defining and Representing Variables
+
+### *Top Artists*
+
+##### This below chart represents the artists with the highest number of charting songs between 2010 and 2019. 
+
+```{r}
+
+pop_artist <- top10s%>%arrange(desc(pop))%>%group_by(artist)
+pop_artist
+
+top_artist<-top10s%>%
+  group_by(`year`)%>%
+  count(artist)%>%
+  mutate(prop=n/sum(n))
+
+most_popular_artist <- top10s %>% 
+  group_by(artist) %>% 
+  summarize(no.of.songs = n()) %>% 
+  arrange(desc(no.of.songs)) 
+
+summarized_songs_artist <- most_popular_artist %>% 
+  slice_max(no.of.songs,n=15)
+view(summarized_songs_artist)
+
+most_popular_artist <- pop_artist%>%count(artist)%>%arrange(desc(n))
+most_popular_artist%>%head(15)%>%ggplot(aes(x=reorder(artist,n),y=n))+geom_col(fill="skyblue")+ggtitle("15 Most Popular Artists")+coord_flip()
+
+```
+
+### *Song Duration*
+
+##### This below chart represents the average duration of songs by genre. Not surprisingly, the majority of top charting Spotify songs are in Pop, with most of the songs averaging between 200 and 300 seconds. This means that the majority of charting Pop songs range from 3.5 to 5 minutes. 
+
+```{r}
+
+duration <-top10s%>%ggplot(aes(x=reorder(genre,dur),y=dur))+geom_boxplot(fill="limegreen")+ggtitle("Song Duration")+theme_light()
+duration
+
+duration <- top10s %>% 
+  ggplot(aes(x = reorder(genre, dur), y = dur)) +
+  geom_point() +
+  ggtitle("Song Duration") +
+  xlab("Genre") +
+  ylab("Duration") +
+  theme_light() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1.2)) +
+  geom_point(color = "darkgreen")
+duration
+
+summarized_data_genre <- top10s %>% 
+  group_by(genre) %>% 
+  summarize(avg_duration = mean(dur)) %>% 
+  arrange(desc(avg_duration))
+View(summarized_data_genre)
+
+colnames(summarized_data_genre) <- c("Song Genre", "Average Song Duration")
+view(dur_genre)
+
+```
+
+### *Most and Least Popular Songs*
+
+```{r}
+
+max_pop <-top10s%>%filter(pop>=60)%>%select(artist,pop,title,genre)%>%arrange(desc(pop))
+max_pop
+
+min_pop <-top10s%>%filter(pop<=59)%>%select(artist,pop,title,genre)%>%arrange(desc(pop))
+min_pop
+
+max_pop_threshold <- quantile(top10s$pop, 0.9)
+min_pop_threshold <- quantile(top10s$pop, 0.1)
+
+ggplot(top10s, aes(x = genre, y = pop, color = ifelse(pop >= max_pop_threshold, "Max Popularity", ifelse(pop <= min_pop_threshold, "Min Popularity", "Intermediate")))) +
+  geom_point() +
+  labs(x = "Song Genre", y = "Popularity", color = "Popularity Level by Genre") +
+  scale_color_manual(values = c("Max Popularity" = "green", "Min Popularity" = "red", "Intermediate" = "blue")) +
+  theme_minimal() +
+  scale_x_discrete(expand = c(0.5, 0.5)) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+
+```
+
+
+### *Plot PDF and CDF*
+
+```{r}
+
+var1_pdf <- prop.table(table(top10s$genre))
+var1_cdf <- cumsum(var1_pdf)
+var1_pdf_cdf <- data.frame(Genre = names(var1_pdf), Probability = var1_pdf, Cumulative = var1_cdf)
+print(var1_pdf_cdf)
+
+
+var2_pdf <- density(top10s$dur)
+var2_pdf <- prop.table(table(top10s$dur))
+var2_cdf <- cumsum(top10s$dur)
+
+
+var2_pdf <- prop.table(table(top10s$dur))
+var2_cdf <- cumsum(var2_pdf)
+var2_pdf_cdf <- data.frame(Duration = unique(top10s$dur),
+                      Probability = var2_pdf,
+                      Cumulative = var2_cdf)
+
+tibble(var2_pdf_cdf)
+
+```
+
+##### PDF or probability density function and CDF or cumulative distribution function can help us understand the likelihood of a random variable taking on a particular value. In the example of Spotify chart data, the PDF can provide insight on how frequent these values may appear and the CDF can help us understand how these specific features can impact a songs' relative popularity and performance. 
+
+# Variable Defining and Redefining
+
+```{r}
+
+# naming the variables
+
+genre_mapping <- unique(top10s$genre)
+variable_1 <- as.numeric(factor(top10s$genre, levels = genre_mapping))
+view(variable_1) # genre of the popular songs
+
+variable_2 <- top10s$dur # duration of the popular songs 
+
+variable_3 <- top10s$pop # popularity score of songs; used for omitted variable bias
+
+top10s$variable_1 <- variable_1
+top10s$variable_2 <- variable_2
+
+# mean and standard deviations
+
+mean(variable_1)
+sd(variable_1)
+
+mean(variable_2)
+sd(variable_2)
+  
+mean(variable_3)
+sd(variable_3)
+
+```
+
+### *Standard Errors*
+
+```{r}
+
+standard_errors <- aggregate(dur ~ genre, data = top10s, FUN = function(x) sd(x) / sqrt(length(x)))
+sufficient_observations <- aggregate(dur ~ genre, data = top10s, FUN = function(x) length(x) >= 2)
+
+
+genre_proportions <- prop.table(table(top10s$genre))
+genre_sample_sizes <- as.integer(table(top10s$genre))
+
+```
+
+
+### *Generating Plots*
+
+```{r}
+
+average_duration <- aggregate(dur ~ genre, data = top10s, FUN = mean)
+barplot(average_duration$dur, names.arg = average_duration$genre, xlab = "Genre", ylab = "Duration", main = "Average Duration by Genre", col = "steelblue")
+
+```
+
+# Regression Analysis
+
+```{r}
+
+top10s$dur <- as.numeric(top10s$dur)
+missing_values <- is.na(top10s$dur)
+subset_data <- top10s[!missing_values, ]
+
+
+barplot(table(top10s$genre, useNA = "ifany"), beside = TRUE, col = "lightgray", xlab = "Genre", ylab = "Count", main = "Top 10s - Genre Distribution")
+
+
+boxplot(dur ~ genre, data = top10s, col = "maroon", xlab = "Genre", ylab = "Duration", abline(h = median(top10s$dur), col = "blue", lwd = 2, lty = 2), main = "Top 10s - Duration by Genre")
+
+
+```
+
+# Correlations
+
+##### The graphs below will allow us to see the correlation between specific variables within the dataset. For the purpose of our research, only the variables "genre", "dur" and "bpm" will be utilized. 
+
+```{r}
+
+
+bpm_pop <- top10s%>%ggplot(aes(x=bpm,y=pop))+geom_point()+ggtitle("BPM/Popularity")+theme_minimal()+geom_smooth(se=FALSE)
+bpm_pop
+cor(top10s$bpm, top10s$pop)
+
+dur_pop <- top10s%>%ggplot(aes(x=dur,y=pop))+geom_point()+ggtitle("Duration/Popularity")+theme_minimal()+geom_smooth(se=FALSE)
+dur_pop
+cor(top10s$dur, top10s$pop)
+
+genre_pop <- top10s%>%ggplot(aes(x=variable_1,y=pop))+geom_point()+ggtitle("Genre/Popularity")+theme_minimal()+geom_smooth(se=FALSE)
+genre_pop
+cor(top10s$variable_1, top10s$pop)
+
+
+```
+
+# Customize Variable Models
+
+```{r}
+
+model_genre <- lm(pop ~ genre, data = top10s)
+
+model_dur <- lm(pop ~ dur, data = top10s)
+
+model_1 <- lm(pop ~ variable_1 + variable_2, data = top10s) #multiple regression model
+summary(model_1)$coef
+
+model_2 <- lm(pop ~ log(variable_1) + log(variable_2), data = top10s) # log-linear model
+summary(model_2)$coef
+
+model_3 <- lm(pop ~ I(variable_1) + I(variable_2) + I(variable_1^2) + I(variable_2^2) + I(variable_1^3) + I(variable_2^3), data = top10s) # high order polynomial 
+summary(model_3)$coef
+
+
+```
+
+
+# Plot Observations
+
+
+```{r}
+#Attempting again to omit NA values
+
+top10s <- na.omit(top10s)
+top10s$genre <- na.omit(top10s$genre)
+variable_1 <- na.omit(variable_1)
+variable_2 <- na.omit(variable_2)
+model_1 <- na.omit(model_1)
+model_2 <- na.omit(model_2)
+model_3 <- na.omit(model_3)
+
+data_for_plot <- data.frame(variable_1, variable_2)
+data_for_plot <- na.omit(data_for_plot)
+
+```
+
+## *Model 1:* 
+
+```{r}
+
+#Plotting the following observations- Multiple Regression Model
+
+intercept_1 <- coef(model_1)["(Intercept)"]
+coef_variable_1 <- coef(model_1)["variable_1"]
+coef_variable_2 <- coef(model_1)["variable_2"]
+
+predicted_pop_1 <- intercept_1 + coef_variable_1 * top10s$variable_1 +
+                 coef_variable_2 * top10s$variable_2
+
+ggplot(top10s, aes(x = genre, y = pop)) +
+geom_point() +
+geom_line(aes(x = variable_1, y = predicted_pop_1), color = "red", size = 3) +
+geom_smooth(method = "lm", color = "blue", se = FALSE) +
+  labs(x = "Genre", y = "Popularity") +
+     theme_bw() +
+      theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+  
+
+ggplot(top10s, aes(x = dur, y = pop)) +
+  geom_point() +
+  geom_line(aes(x = variable_2, y = predicted_pop_1), color = "red", size = 3) +
+  geom_smooth(method = "lm", color = "blue", se = FALSE) +
+  labs(x = "Duration", y = "Popularity") +
+     theme_bw() +
+      theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+
+## *Model 2:*
+
+```{r}
+
+# Plotting the following observations- OLS Equation
+
+intercept_ols <- coef(model_2)["(Intercept)"]
+coef_variable_1 <- coef(model_2)["variable_1"]
+coef_variable_2 <- coef(model_2)["variable_2"]
+
+predicted_pop_ols <- intercept_ols + coef_variable_1 * top10s$variable_1 + coef_variable_2 * top10s$variable_2
+na.rm = TRUE
+
+ggplot(top10s, aes(x = genre, y = pop)) +
+  geom_point(pch = 20, col = "green", size = 2.5) +
+  geom_line(aes(x = variable_1, y = fitted(model_2)), col = "pink", lwd = 2) +
+  labs(x = "Genre", y = "Popularity") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+
+ggplot(top10s, aes(x = dur, y = pop)) +
+  geom_point(pch = 20, col = "green", size = 2.5) +
+  geom_line(aes(x = variable_2, y = fitted(model_2)), col = "pink", lwd = 2) +
+  labs(x = "Duration", y = "Popularity") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+
+## *Model 3:*
+
+```{r}
+
+# Plotting the following observations- High Order Polynomial
+
+top10s$predicted_pop <- predict(model_3, newdata = top10s)
+
+ggplot(top10s, aes(x = genre, y = pop)) +
+  geom_point() +
+  geom_line(aes(x = variable_1, y = predicted_pop), color = "maroon", size = 1) +
+  labs(x = "Genre", y = "Popularity") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+ggplot(top10s, aes(x = dur, y = pop)) +
+  geom_point() +
+  geom_line(aes(x = variable_2, y = predicted_pop), color = "maroon", size = 1) +
+  labs(x = "Duration", y = "Popularity") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+
+# Finding the Best Model Specifications
+
+```{r}
+
+#Creating multiple specifications to find best model
+
+top10s_mod1 <- lm(pop ~ variable_1 + I(variable_1^2) + I(variable_1^3), data = top10s)
+  
+top10s_mod2 <- lm(pop ~ variable_2 + I(variable_2^2) + I(variable_2^3), data = top10s)
+  
+top10s_mod3 <- lm(pop ~ variable_1 + variable_2 + variable_3, data = top10s) # exclude from future manipulations
+  
+top10s_mod4 <- lm(pop ~ variable_1 + variable_2 + bpm, data = top10s)
+
+```
+
+### *Checking for multicollinearity in the following models:*
+
+```{r}
+
+# Attempting to mitigate multicollinearity in the previous models
+
+correlation_matrix <- cor(top10s[, c("variable_1", "variable_2")])
+print(correlation_matrix)
+
+### correlation value of -0.03618429 suggests that the variables are not strongly correlated.
+
+vif_results_1 <- vif(model_1)
+vif_results_2 <- vif(model_2)
+vif_results_3 <- vif(model_3)
+print(vif_results_1)
+print(vif_results_2)
+print(vif_results_3)
+
+### very high variance inflation factor (VIF) for model_3, the higher order polynomial equation, signifying multicollinearity in the model. 
+
+tolerance_values_1 <- 1 / vif_results_1
+tolerance_values_2 <- 1 / vif_results_2
+tolerance_values_3 <- 1 / vif_results_3
+
+print(tolerance_values_1)
+print(tolerance_values_2)
+print(tolerance_values_3)
+
+### very low (close to 0) score for model_3, signifying multicollinearity in the model. 
+
+# Attempting to mitigate multicollinearity in the newest models
+
+correlation_matrix <- cor(top10s[, c("variable_1", "variable_2", "pop", "bpm")])
+print(correlation_matrix)
+
+### correlation value less than 1 suggest that the variables are not strongly correlated.
+
+
+```
+
+## Obtaining Robust Standard Errors and Stargazer
+
+```{r}
+
+se_1 <- sqrt(diag(vcovHC(top10s_mod1, type = "HC1")))
+se_2 <- sqrt(diag(vcovHC(top10s_mod2, type = "HC1")))
+se_3 <- sqrt(diag(vcovHC(top10s_mod3, type = "HC1"))) # 'Y' value of 'pop' within the dataset 'top10s' equates to the third variable and therefore, cannot be used. 
+se_4 <- sqrt(diag(vcovHC(top10s_mod4, type = "HC1")))
+
+rob_se <- list(sqrt(diag(vcovHC(top10s_mod1, type = "HC1"))),
+ sqrt(diag(vcovHC(top10s_mod2, type = "HC1"))),
+ sqrt(diag(vcovHC(top10s_mod4, type = "HC1"))))
+
+
+stargazer(top10s_mod1, top10s_mod2, top10s_mod4,
+          title = "Regression Models",
+          type = "text",
+          header = TRUE,
+          digits = 4, 
+          se = rob_se,
+          column.labels = c("(i)", "(ii)", "(iiii)")) 
+
+
+```
+
+## Linear Hypothesis Testing
+
+```{r}
+
+coeftest(top10s_mod1, vcov. = vcovHC, type = "HC1")
+coeftest(top10s_mod2, vcov. = vcovHC, type = "HC1")
+coeftest(top10s_mod4, vcov. = vcovHC, type = "HC1")
+
+linearHypothesis(top10s_mod1,
+   c("variable_1 = 0", "I(variable_1^2) = 0", "I(variable_1^3) = 0"),
+   vcov. = vcovHC(top10s_mod1, type = "HC1"))
+
+linearHypothesis(top10s_mod2,
+   c("variable_2 = 0", "I(variable_2^2) = 0", "I(variable_2^3) = 0"),
+   vcov. = vcovHC(top10s_mod2, type = "HC1"))
+
+linearHypothesis(top10s_mod4,
+   c("variable_1 = 0", "variable_2 = 0", "bpm = 0"),
+   vcov. = vcovHC(top10s_mod4, type = "HC1"))
+
+
+```
+
+# Written explanations: What do we see here? 
+
+A linear model works well with variables that have a directly linear relationship between one another. It can best represent a simple relationship that falls within a straight line, such as the relationship between hours worked and money earned. The 'line of best fit' in the case of Spotify chart data would not be best utilized by a linear relationship, as there is too many factors to consider and too many complex patterns that would be wrongfully ignored in a linear example.
+
+The benefit of non-linear models allows for more flexibility within the growth patterns and the visualizations. These non-linear models in my example, consisting both of polynomial regression and OLS models, provide a more accurate fit to the chart data and to the patterns we are able to see. In the case of model_2, the relationship between duration and popularity, there seems to be a negative relationship as shown by the pink line. From this plot, we are able to see the relationship between duration and popularity, in which the most popular songs (rated on a scale of 0 to 100) have a duration that is under 3 minutes. As the duration increases, the chance of the song charting decreases. 
+
+# Citations
+
+Henrique, L. (2019, December 26). Top Spotify songs from 2010-2019 - by Year. Kaggle. https://www.kaggle.com/datasets/leonardopena/top-spotify-songs-from-20102019-by-year 
+
+Mermovich, A. (2023, April 28). Spotify Hits (2010-2019) Analytics
+
+Hlavac, Marek (2022). stargazer: Well-Formatted Regression and Summary Statistics Tables.
+R package version 5.2.3. https://CRAN.R-project.org/package=stargazer 
