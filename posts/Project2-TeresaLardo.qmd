@@ -1,0 +1,313 @@
+---
+title: "Length of UFO Encounters: Multiple Regressions"
+author: "Peri (Teresa) Lardo"
+desription: "Multiple Regression models for UFO sightings data set"
+date: "8/17/2023"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+categories:
+  - Project2
+  - Peri Teresa Lardo
+  - UFO sightings
+---
+
+## Load libraries and dataset, clean data
+
+```{r Loading Chunk}
+#| label: setup
+#| warning: false
+
+#Load libraries
+library(tidyverse)
+library(readr)
+library(dplyr)
+library(lubridate)
+
+knitr::opts_chunk$set(echo = TRUE)
+
+# Create shape categories for personal sanity
+
+round <- c("disk", "round", "sphere", "circle", "dome")
+triangular <- c("triangle", "cone", "pyramid", "delta", "chevron")
+oval <- c("oval", "teardrop", "egg", "crescent")
+parallelogram <- c("cross", "diamond", "hexagon", "rectangle")
+cylinder <- c("cylinder", "cigar")
+
+# Import data & clean necessary elements
+ufo_sighting_data <- read_csv("data/ufo_sighting_data.csv") %>% drop_na(UFO_shape, length_of_encounter_seconds, country, Date_time, latitude) %>%
+  filter(length_of_encounter_seconds < 86400) %>%
+  filter(country %in% c("us", "ca")) %>%
+  filter(!str_detect(description, 'HOAX')) %>%
+  filter(!UFO_shape %in% c("light", "fireball", "flare", "flash", "other", "unknown", "formation", "changing", "changed")) %>%
+  mutate(Shape_Category = case_when(
+         UFO_shape %in% round ~ "Round",
+         UFO_shape %in% triangular ~ "Triangular",
+         UFO_shape %in% oval ~ "Oval",
+         UFO_shape %in% parallelogram ~ "Parallelogram",
+         UFO_shape %in% cylinder ~ "Cylinder"))
+
+# Make sure the Date_time column is actually in datetime format
+ufo_sighting_data$Date_time <- parse_date_time(ufo_sighting_data$Date_time, "mdy_HM")
+
+# Create separate variables for the Month & time of day (by hour) of the encounters
+ufo_sighting_data$Month = month(ufo_sighting_data$Date_time)
+ufo_sighting_data$Hour = 1 + hour(ufo_sighting_data$Date_time)
+
+# Create dummy variables for categorical Shape (x) variable
+library(fastDummies)
+ufo_sighting_data <- dummy_cols(ufo_sighting_data, select_columns = 'Shape_Category')
+
+summary(ufo_sighting_data)
+```
+
+# Model Building
+
+In Project I, we started off interested in the independent variable of ***UFO Shape*** (transformed into a series of dummy variables) and the dependent variable of ***Length of Encounter (in Seconds)***. Another possible (available) variable that may contribute to the length of a UFO sighting is the hour of day (measured 1-24 from 1st hour of the day, midnight to one, to the 24th hour, 11PM to midnight).
+
+The time of day may influence the length of a sighting (and contribute to the identification of UFO shape) in part because of how much or how little light is available outdoors, where UFOs are traditionally seen (but if you ever spot one in the middle of your kitchen or a Starbucks, definitely let me know). The month of the year would also play into the expected level of sunlight at any given time because the amount of sunlight at, for instance, 7 pm in July is much different than at 7 pm in February.
+
+Latitude is another element that can influence the amount of light at a given time of day & year. There is also a preexisting cultural association between UFOs/paranormal activity and a certain latitude - the 37th parallel north.
+
+Due to the variations in seasons in different hemispheres represented in our dataset, I have limited the data to reported UFO sightings in Canada and the United States. Just over 96% of the sightings in the dataset are from these two countries.
+
+### Variables
+
+```{r Variables Chunk}
+# Customize variables
+ufo_sighting_data$seconds <- ufo_sighting_data$length_of_encounter_seconds
+ufo_sighting_data$Round <- ufo_sighting_data$Shape_Category_Round
+ufo_sighting_data$Triangular <- ufo_sighting_data$Shape_Category_Triangular
+ufo_sighting_data$Cylindrical <- ufo_sighting_data$Shape_Category_Cylinder
+ufo_sighting_data$Oval <- ufo_sighting_data$Shape_Category_Oval
+
+
+# Designate regressors, report mean & standard deviations thereof
+vars <- c("seconds", "Round", "Triangular", "Cylindrical", "Oval", "latitude", "Hour", "Month")
+cbind(Mean = sapply(ufo_sighting_data[, vars], mean),
+      StandardDev = sapply(ufo_sighting_data[, vars], sd))
+```
+
+### Linear Model
+
+```{r Linear Model chunk}
+Linear_model_UFO <- lm(seconds ~ Hour, data = ufo_sighting_data)
+Linear_model_UFO
+```
+
+### Log-Linear Model
+
+```{r Log-Linear Model chunk}
+Linearlog_model_UFO <- lm(seconds ~ log(Hour), data = ufo_sighting_data)
+Linearlog_model_UFO
+```
+
+### Quadratic Model
+
+```{r Quadratic Model chunk}
+quad_model_UFO <- lm(seconds ~ I(Hour) + I((Hour)^2), data = ufo_sighting_data)
+quad_model_UFO
+```
+
+### Cubic Model
+
+```{r Cubic Model chunk}
+cubic_model_UFO <- lm(seconds ~ I(Hour) + I((Hour)^2) + I((Hour)^3) + Month, data = ufo_sighting_data)
+cubic_model_UFO
+```
+
+## Plot Observations & Models
+
+```{r Plot of Models chunk}
+plot(ufo_sighting_data$Hour, ufo_sighting_data$seconds,
+     pch = 20,
+     col = "orange",
+     ylim = c(300, 1300), 
+     xlab = "Hour of Day",
+     ylab = "Length of Sighting in Seconds",
+     main = "Models \n Y-limited for zoomed-in view")
+
+abline(Linear_model_UFO, lwd=2)
+
+order_id <- order(ufo_sighting_data$Hour)
+
+lines(ufo_sighting_data$Hour[order_id],
+     fitted(Linearlog_model_UFO)[order_id],
+     col = "blue",
+     lwd = 2)
+
+lines(x = ufo_sighting_data$Hour[order_id],
+      y = fitted(cubic_model_UFO)[order_id],
+      col = "red",
+      lwd = 4)
+
+lines(x = ufo_sighting_data$Hour[order_id],
+     y = fitted(quad_model_UFO)[order_id],
+     col = "green",
+     lwd = 2)
+ 
+legend("bottomright",
+       legend = c("Linear", "Linear-Log", "Cubic", "Quadratic"),
+       lty = 1,
+       col = c("black", "blue", "red", "green"))
+```
+
+![](images/HoursGraphPlot-01.jpg)
+
+## Linear or Non-Linear?
+
+I think a non-linear equation may better explain the possible relationship between the hour of the day and the duration of UFO sightings. When I inspect the zoomed-out view of the plot above and concentrate on the lower Y-values where most data points collect, I can see that the values do not a) uniformly increase throughout the day, b) uniformly decrease throughout the day, or c) remain constant throughout the day. There appears to be undulation in the shape of the data points.
+
+The plot above shows a dip in encounter/sighting duration during the morning hours when many people are waking up and starting their work day, but sighting duration is higher again during the late afternoon/evening hours. The sighting duration seems to level off during the final few hours of the day (9PM to midnight), so at first I thought a quadratic equation may be best-suited. But my love for bar charts cannot be quelled, so I also made a bar chart to better visualize the mean sighting duration per hour. The bar chart showed a dip in the duration mean from 10PM to midnight that persuades me toward a cubic model. In the zoomed-in model plot above, the cubic and quadratic curves follow a very similar path. When developing my model specifications, I will make both quadratic and cubic models to determine which will be more appropriate.
+
+```{r}
+library(ggplot2)
+
+ggplot(ufo_sighting_data %>% 
+  group_by(Hour), aes(x = Hour, y = mean(seconds), fill = Hour)) + 
+  geom_bar(stat = "identity") + 
+  ggtitle("The Bar Chart that Persuaded Me to Consider Cubic Models") + 
+  xlab("Hour of Day") + 
+  ylab("Duration Mean (in seconds)") +
+  theme(legend.position = "none") + 
+  scale_fill_gradient2(low = "darkorchid4", high = "purple4", mid = "gold2", midpoint = 12)
+```
+
+# Model Specifications
+
+```{r}
+# Create multiple specifications
+UFO_shape_mod1 <- lm(seconds ~ Hour, data = ufo_sighting_data)
+
+UFO_shape_mod2 <- lm(seconds ~ Hour + I(Hour^2), data = ufo_sighting_data)
+
+UFO_shape_mod3 <- lm(seconds ~ Hour + I(Hour^2) + I(Hour^3), data = ufo_sighting_data)
+
+UFO_shape_mod4 <- lm(seconds ~ Hour + I(Hour^2) + I(Hour^3) + Triangular + Round + Cylindrical + Oval, data = ufo_sighting_data)
+
+UFO_shape_mod5 <- lm(seconds ~ Hour + I(Hour^2) + Triangular + Round + Cylindrical + Oval, data = ufo_sighting_data)
+
+UFO_shape_mod6 <- lm(seconds ~ Hour + I(Hour^2) + Triangular + Round + Cylindrical + Oval + latitude, data = ufo_sighting_data)
+
+UFO_shape_mod7 <- lm(seconds ~ Hour + I(Hour^2) + Triangular + Round + Cylindrical + Oval + latitude + Month, data = ufo_sighting_data)
+```
+
+### Robust Standard Errors
+
+```{r}
+# Get Standard Errors for each model
+library(sandwich)
+
+rob_se <- list(sqrt(diag(vcovHC(UFO_shape_mod1, type = "HC1"))),
+sqrt(diag(vcovHC(UFO_shape_mod2, type = "HC1"))),
+sqrt(diag(vcovHC(UFO_shape_mod3, type = "HC1"))),
+sqrt(diag(vcovHC(UFO_shape_mod4, type = "HC1"))),
+sqrt(diag(vcovHC(UFO_shape_mod5, type = "HC1"))),
+sqrt(diag(vcovHC(UFO_shape_mod6, type = "HC1"))),
+sqrt(diag(vcovHC(UFO_shape_mod7, type = "HC1"))))
+
+rob_se
+```
+
+## Multiple Regression Specification Models
+
+```{r my latexable, results = "asis"}
+models <- list(UFO_shape_mod1, UFO_shape_mod2, UFO_shape_mod3,
+UFO_shape_mod4, UFO_shape_mod5, UFO_shape_mod6, UFO_shape_mod7)
+
+library(stargazer)
+stargazer(models,
+title = "Regressions on UFO Sighting Duration",
+type = "html",
+digits = 3,
+header = FALSE,
+se = rob_se,
+object.names = TRUE,
+model.numbers = FALSE,
+column.labels = c("(I)", "(II)", "(III)", "(IV)", "(V)", "(VI)", "(VII)"))
+```
+
+### Hypothesis Testing
+
+```{r}
+library(car)
+linearHypothesis(UFO_shape_mod1,
+c("Hour=0"),
+vcov. = vcovHC(UFO_shape_mod1, type = "HC1"))
+```
+
+```{r}
+linearHypothesis(UFO_shape_mod2,
+c("Hour=0", "I(Hour^2)=0"),
+vcov. = vcovHC(UFO_shape_mod2, type = "HC1"))
+```
+
+```{r}
+linearHypothesis(UFO_shape_mod3,
+c("Hour=0", "I(Hour^2)=0", "I(Hour^3)=0"),
+vcov. = vcovHC(UFO_shape_mod3, type = "HC1"))
+```
+
+```{r}
+linearHypothesis(UFO_shape_mod4,
+c("Hour=0", "I(Hour^2)=0", "I(Hour^3)=0", "Triangular=0", "Round=0", "Cylindrical=0", "Oval=0"),
+vcov. = vcovHC(UFO_shape_mod4, type = "HC1"))
+```
+
+```{r}
+linearHypothesis(UFO_shape_mod5,
+c("Hour=0", "I(Hour^2)=0", "Triangular=0", "Round=0", "Cylindrical=0", "Oval=0"),
+vcov. = vcovHC(UFO_shape_mod5, type = "HC1"))
+```
+
+```{r}
+linearHypothesis(UFO_shape_mod6,
+c("Hour=0", "I(Hour^2)=0", "Triangular=0", "Round=0", "Cylindrical=0", "Oval=0", "latitude=0"),
+vcov. = vcovHC(UFO_shape_mod6, type = "HC1"))
+```
+
+```{r}
+linearHypothesis(UFO_shape_mod7,
+c("Hour=0", "I(Hour^2)=0", "Triangular=0", "Round=0", "Cylindrical=0", "Oval=0", "latitude=0", "Month=0"),
+vcov. = vcovHC(UFO_shape_mod7, type = "HC1"))
+```
+
+After running linear hypothesis tests, we reject the null hypothesis at the **.1%** significance level for each and every one of the seven models.
+
+# Findings & Conclusion
+
+In all of the cubic models tested, the coefficient on the ***Hour^3^*** variable runs close to zero (-0.005 on model III and -0.0004 on model IV), suggesting negligible influence from cubic formulas. The coefficient on ***Hour^2^*** is reliably just over 2.0, and the coefficient on ***Hour*** stabilizes between -66 and -63 once ***Hour^2^*** is added to the specifications. Coefficients on each of the dummy variables for UFO shape remain similar across all regressions that include them.
+
+The R^2^ and adjusted R^2^ values for the seven different model specifications indicate that none of the tested regressors are good predictors for the duration of a UFO sighting; none of the adjusted R^2^ values surpasses .002. Including the ***latitude*** and ***Month*** variables did not raise these low values. The model that best explains the influence of the hour of day and UFO shape on the duration of UFO sightings - and by "best" I do mean "barely least terrible" - is Model V:
+
+$$
+Duration = 1221.673 - 64.791(H) + 2.061(H^2) - 91.437(T) + 58.716(R) - 110.420(C) - 33.923(O)
+$$
+
+|          |                |           |                 |          |
+|----------|----------------|-----------|-----------------|----------|
+| H = Hour | T = Triangular | R = Round | C = Cylindrical | O = Oval |
+
+The multiple regression table indicates that ***Hour*** and ***Hour^2^*** are both statistically significant at the **.1%** level and that the dummy variable for ***Cylindrical*** UFOs is statistically significant at the **5%** level in this model.
+
+### What Does This Mean for UFO Shapes?
+
+The original pursuit of Project 1 was to investigate if and how the shape of UFOs affected the duration of sightings - do people who see round UFOs tend to have longer sightings? Do sightings of cigar-shaped cylindrical crafts tend to be relatively brief? We can use our chosen model formula to find the population mean of duration time when crafts of different shapes appear, holding all other variables constant.
+
+| Coefficient | UFO Shape   | Pop. Mean (seconds) |
+|-------------|-------------|---------------------|
+| -91.437     | Triangular  | 1130.24             |
+| 58.716      | Round       | 1280.39             |
+| -110.420    | Cylindrical | 1111.25             |
+| -33.923     | Oval        | 1187.75             |
+
+The results shown in the table above suggest that sightings of round UFOs trend longer than the other shape categories, while triangular, oval, and cylindrical crafts don't drastically vary from each other in terms of sighting duration.
+
+Further studies on craft shape and sighting duration would be necessary to establish any sort of external validity. However, considering that the low R^2^ values indicate that the shape category regressors are not good predictors of duration length, I strongly doubt that these findings can be generalized in the wider study of ufology.
+
+# Citations
+
+Hlavac, Marek (2022). stargazer: Well-Formatted Regression and Summary Statistics Tables. R package version 5.2.3. https://CRAN.R-project.org/package=stargazer
