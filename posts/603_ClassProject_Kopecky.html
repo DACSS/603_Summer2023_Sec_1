@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Nanci Kopecky">
+<meta name="dcterms.date" content="2022-08-17">
+<meta name="description" content="General Social Survey">
+
+<title>603_ClassProject</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/DACSS_Round_Network.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<meta name="twitter:title" content="603_ClassProject">
+<meta name="twitter:description" content="General Social Survey">
+<meta name="twitter:image" content="https://dacss.github.io/603_Summer2023_Sec_1/posts/603_ClassProject_Kopecky_files/figure-html/unnamed-chunk-6-1.png">
+<meta name="twitter:creator" content="@UMassDACSS">
+<meta name="twitter:site" content="@UMassDACSS">
+<meta name="twitter:image-height" content="960">
+<meta name="twitter:image-width" content="1344">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/UMass White Wordmark Horiz.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://dacss.github.io/603_Summer2023_Sec_1/" rel="" target="">
+ <span class="menu-text">Summer 2023 Posts</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html" rel="" target="">
+ <span class="menu-text">Contributors</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://umass.edu/sbs/dacss" rel="" target="">
+ <span class="menu-text">DACSS</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://dacss.github.io/603_Summer2023_Sec_1/" rel="" target=""><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#dataset-description" id="toc-dataset-description" class="nav-link" data-scroll-target="#dataset-description">Dataset Description</a></li>
+  <li><a href="#analysis-plan" id="toc-analysis-plan" class="nav-link" data-scroll-target="#analysis-plan">Analysis Plan</a></li>
+  <li><a href="#dataset" id="toc-dataset" class="nav-link" data-scroll-target="#dataset">Dataset</a></li>
+  <li><a href="#descriptive-statistics" id="toc-descriptive-statistics" class="nav-link" data-scroll-target="#descriptive-statistics">Descriptive Statistics</a></li>
+  <li><a href="#simple-linear-regression" id="toc-simple-linear-regression" class="nav-link" data-scroll-target="#simple-linear-regression">Simple Linear Regression</a></li>
+  <li><a href="#multiple-regression" id="toc-multiple-regression" class="nav-link" data-scroll-target="#multiple-regression">Multiple Regression</a></li>
+  <li><a href="#conclusion-and-discussion" id="toc-conclusion-and-discussion" class="nav-link" data-scroll-target="#conclusion-and-discussion">Conclusion and Discussion</a></li>
+  <li><a href="#bibliography" id="toc-bibliography" class="nav-link" data-scroll-target="#bibliography">Bibliography</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">603_ClassProject</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+  <div class="quarto-categories">
+    <div class="quarto-category">Final Project</div>
+    <div class="quarto-category">Kopecky</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    General Social Survey
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Nanci Kopecky </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 17, 2022</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># libraries</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stats)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(AER)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stargazer)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>Is it more important for a wife to help her husband’s career than to have one herself? This was a question on a survey on American society from 1977 to 1998. It may seem out of date in 2023, but is it? The upheaval from Covid-19 pandemic underscored the stress of balancing work and family. During this time, The National Women’s Law Center stated that women left the workforce at a disproportionate rate and have not yet recovered (2022). This is a concern because of women’s forfeited skills, diminished wages, and unrealized earning potential.</p>
+<p>Additionally, the BBC reported, “Researchers for Deloitte’s Women Work 2023 surveyed 5,000 women across 10 countries, 98% of whom were in heterosexual relationships. The data found that nearly 40% of respondents say their partner’s career takes precedence. They cited several reasons, ranging from financial and social factors to the burden of caretaking and household responsibilities,” (2023). These numbers indicate that the curated midcentury sterotypes remain relevent today.</p>
+<p>This project will take a look at how the level of aggreement with the statement, “It is more for a wife to help her husband’s career than to have one herself,” is influenced and how the level of agreement has changed over time.</p>
+</section>
+<section id="dataset-description" class="level2">
+<h2 class="anchored" data-anchor-id="dataset-description">Dataset Description</h2>
+<p>This dataset is from the General Social Survey (GSS) which has conducted research from 1972 on American Society. There are 15266 obervations (rows) with 6 variables (columns). The variables are <em>year</em>, <em>age</em>, <em>sex</em>, <em>race</em>, <em>fehelp</em>, and <em>era</em>.</p>
+<p>For variable <em>fehelp</em>, repsondents state whether they 1=Strongly Agree to 4 = Strongly Disagree with the statement, “It is more for a wife to help her husband’s career than to have one herself.” (Please note: this order is reversed-see mutated data below!) For <em>era</em>, repsondents state whether they 1=Strongly Favor to 4 = Strongly Oppose the Equal Rights Amendment (ERA). <em>Sex</em> is coded as 1=Male and 2=Female; <em>race</em> is coded as 1=While, 2=Black, 3=Other.</p>
+</section>
+<section id="analysis-plan" class="level2">
+<h2 class="anchored" data-anchor-id="analysis-plan">Analysis Plan</h2>
+<p>As per the <em>Class Project 2</em> instructions, this report will begin with <strong>Descriptive Statistics</strong> of the dataset and run <strong>Simple Linear Regression</strong> models and summaries. A scatterplot will give a visual perspective of the linear, log-linear, and cubic models, and with that, an exploration of which is the best fitting model. This report will then explore <strong>Multiple Regression</strong> models to consider the optimal model that can best explain how the level of agreement, <em>fehelp</em> is influenced. This consideration will be done through analysis of robust standard errors, reviewing the summaries of the models, and interpreting the F-statistics. The <strong>Results and Conclusion</strong> will report on the best model and if the level of agreement has significantly changed over time.</p>
+</section>
+<section id="dataset" class="level2">
+<h2 class="anchored" data-anchor-id="dataset">Dataset</h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in data and prepare data</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>GSS <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"Nanci_datafolder/GSS.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Mutating *fehelp* to *fehelpI* by reversing the values 1=Strongly Agree through 4=Strongly Disagree to 1=Strongly Disagree through 4=Strongly Agree because it seems more intuitive for graphing. Also, the variables *sex* and *race* were changed from numerical to factor data for analysis. *Sex* and *race* were labeled as coded by GSS, 1=Male and 2=Female and 1=While, 2=Black, and 3=Other.</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>GSSI <span class="ot">&lt;-</span> GSS <span class="sc">%&gt;%</span> </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">fehelpI =</span> <span class="fu">case_when</span>(</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    fehelp <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">4</span>, </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    fehelp <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="dv">3</span>, </span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    fehelp <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="dv">2</span>, </span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    fehelp <span class="sc">==</span> <span class="dv">4</span> <span class="sc">~</span> <span class="dv">1</span>), </span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">fehelpIf =</span> <span class="fu">factor</span>(fehelpI, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Strongly Disagree"</span>, <span class="st">"Disagree"</span>, <span class="st">"Agree"</span>, <span class="st">"Strongly Agree"</span>)), </span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">race =</span> <span class="fu">factor</span>(race, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"White"</span>, <span class="st">"Black"</span>, <span class="st">"Other"</span>)),</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">sex =</span> <span class="fu">factor</span>(sex, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Male"</span>, <span class="st">"Female"</span>))</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Vectors with select variables</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>vars <span class="ot">&lt;-</span> GSSI[<span class="fu">c</span>(<span class="st">"year"</span>, <span class="st">"age"</span>, <span class="st">"fehelpI"</span>, <span class="st">"sex"</span>, <span class="st">"race"</span>)]</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>vars_num <span class="ot">&lt;-</span> GSSI[<span class="fu">c</span>(<span class="st">"year"</span>, <span class="st">"age"</span>, <span class="st">"fehelpI"</span>)]</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>vars_cat <span class="ot">&lt;-</span> GSSI[<span class="fu">c</span>(<span class="st">"sex"</span>,<span class="st">"race"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="descriptive-statistics" class="level2">
+<h2 class="anchored" data-anchor-id="descriptive-statistics">Descriptive Statistics</h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(vars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>      year           age          fehelpI          sex          race      
+ Min.   :1977   Min.   :18.0   Min.   :1.000   Male  :6591   White:12796  
+ 1st Qu.:1986   1st Qu.:31.0   1st Qu.:2.000   Female:8675   Black: 1868  
+ Median :1991   Median :42.0   Median :2.000                 Other:  602  
+ Mean   :1990   Mean   :45.2   Mean   :2.148                              
+ 3rd Qu.:1996   3rd Qu.:58.0   3rd Qu.:3.000                              
+ Max.   :1998   Max.   :89.0   Max.   :4.000                              </code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean and standard deviation</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(<span class="at">GSS_mean =</span> <span class="fu">sapply</span>(vars_num, mean), </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">GSS_sd =</span> <span class="fu">sapply</span>(vars_num, sd))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>           GSS_mean     GSS_sd
+year    1990.338530  6.0045320
+age       45.200838 17.3496975
+fehelpI    2.147714  0.7897105</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Frequencies and percentages</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>Race <span class="ot">&lt;-</span> <span class="fu">table</span>(GSSI<span class="sc">$</span>race)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(Race, <span class="fu">prop.table</span>(Race)<span class="sc">*</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>       Race          
+White 12796 83.820254
+Black  1868 12.236342
+Other   602  3.943404</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Sex <span class="ot">&lt;-</span> <span class="fu">table</span>(GSSI<span class="sc">$</span>sex)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(Sex, <span class="fu">prop.table</span>(Sex)<span class="sc">*</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>        Sex         
+Male   6591 43.17437
+Female 8675 56.82563</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Level_of_Agree <span class="ot">&lt;-</span> <span class="fu">table</span>(GSSI<span class="sc">$</span>fehelpI)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(Level_of_Agree, <span class="fu">prop.table</span>(Level_of_Agree)<span class="sc">*</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Level_of_Agree          
+1           3033 19.867680
+2           7711 50.510939
+3           3756 24.603694
+4            766  5.017686</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bar graphs</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(GSSI, <span class="fu">aes</span>(fehelpI)) <span class="sc">+</span> </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill=</span>sex), <span class="at">position =</span> <span class="st">"fill"</span>) <span class="sc">+</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Husband's Career a Priority by Sex"</span>, <span class="at">x =</span> <span class="st">"Level of Agreement"</span>, <span class="at">y =</span> <span class="st">"Percent"</span>) <span class="sc">+</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Male"</span> <span class="ot">=</span> <span class="st">"blue"</span>, <span class="st">"Female"</span> <span class="ot">=</span> <span class="st">"#FF69B4"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="603_ClassProject_Kopecky_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bar graph to view distribution of *fehelpI*</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>GSSI <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(fehelpI, <span class="at">fill=</span> fehelpIf))<span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span> </span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Level of Agreement"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>, <span class="at">title =</span> <span class="st">"Husband's Career A Priority"</span> ) <span class="sc">+</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="603_ClassProject_Kopecky_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="simple-linear-regression" class="level2">
+<h2 class="anchored" data-anchor-id="simple-linear-regression">Simple Linear Regression</h2>
+<p>Below are linear, log-linear, and cubic models and their summaries with <em>fehelpI</em> as the dependent variable and <em>year</em> as the independent variable. The regression models are displayed on a scatterplot to give a visual perspective of fitting the models to data.</p>
+<p>Both variables can be considered continuous data for statistical analysis. The ordinal Likert variable <em>fehelp</em> meets the following conditions to be considered continuous: the sample size is large (n=15266); the number of response categories is close to large (4); the intervals between categories in theory are equal, and there is minimal skewness in the distribution of responses. Because the standard errors for nearly equal for both the lm function (which assumes homoscedasticity and independence) and coeftest function (which corrects for heteroscedasticity and possible dependence), it suggests that homoscedasticity and independence assumptions hold.</p>
+<p>It is reasonable for this sample can be applied to the broader population over the time period surveyed. It can be expected that new data fed into the linear regression would fit the model.</p>
+<p>In comparing the three models, the linear and log-linear appear to be a better fit from the visual perspective on the on the scatterplot. Both models closely follow negative correlation of the variables, that is, as time goes on, the level of agreement with the statement, “It is more for a wife to help her husband’s career than to have one herself,” decreases. The cubic model appears to subtly curve upward and does not appear to be a good fit to the data.</p>
+<p>Along with the graphing perspective, the regression summaries show evidence that the linear and log-linear models are a good fit. While the R-squared values (0.06) and the residual standard errors (0.76) are the same for all three models, the coefficent estimates for the linear and log-linear models are significant, where they are not significant for the cubic model. Coefficient estimates are not statistically significant signal that this can be a weak model.</p>
+<p>For the purpose of interpretation, along with the visual and initial analysis of the regression summaries, it appears the linear model would be the best model. See the models and scatterplot below.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Basic linear model and summary</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>mod_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(fehelpI <span class="sc">~</span> year, GSSI)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = fehelpI ~ year, data = GSSI)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.56181 -0.31345 -0.03404  0.68655  2.09014 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 63.938258   2.058893   31.05   &lt;2e-16 ***
+year        -0.031045   0.001034  -30.01   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.7674 on 15264 degrees of freedom
+Multiple R-squared:  0.05572,   Adjusted R-squared:  0.05566 
+F-statistic: 900.7 on 1 and 15264 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(mod_1, <span class="at">vcov. =</span> vcovHC)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+t test of coefficients:
+
+              Estimate Std. Error t value  Pr(&gt;|t|)    
+(Intercept) 63.9382576  2.0868118  30.639 &lt; 2.2e-16 ***
+year        -0.0310452  0.0010482 -29.617 &lt; 2.2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Log-linear model and summary</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>mod_log <span class="ot">&lt;-</span> <span class="fu">lm</span>(fehelpI <span class="sc">~</span> <span class="fu">log</span>(year), GSSI)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod_log)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = fehelpI ~ log(year), data = GSSI)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.56261 -0.31327 -0.03395  0.68673  2.08978 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  471.156     15.621   30.16   &lt;2e-16 ***
+log(year)    -61.744      2.056  -30.02   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.7674 on 15264 degrees of freedom
+Multiple R-squared:  0.05576,   Adjusted R-squared:  0.0557 
+F-statistic: 901.4 on 1 and 15264 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(mod_log, <span class="at">vcov. =</span> vcovHC)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+t test of coefficients:
+
+            Estimate Std. Error t value  Pr(&gt;|t|)    
+(Intercept)  471.156     15.831  29.762 &lt; 2.2e-16 ***
+log(year)    -61.744      2.084 -29.628 &lt; 2.2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cubic model and summary</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>mod_cubic <span class="ot">&lt;-</span> <span class="fu">lm</span>(fehelpI <span class="sc">~</span> <span class="fu">I</span>(year) <span class="sc">+</span> <span class="fu">I</span>(year<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> <span class="fu">I</span>(year<span class="sc">^</span><span class="dv">3</span>), GSSI)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod_cubic)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = fehelpI ~ I(year) + I(year^2) + I(year^3), data = GSSI)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.64585 -0.27730 -0.03112  0.72270  2.03708 
+
+Coefficients:
+              Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)  1.193e+05  2.462e+05   0.484    0.628
+I(year)     -1.780e+02  3.716e+02  -0.479    0.632
+I(year^2)    8.852e-02  1.870e-01   0.473    0.636
+I(year^3)   -1.468e-05  3.136e-05  -0.468    0.640
+
+Residual standard error: 0.7663 on 15262 degrees of freedom
+Multiple R-squared:  0.05849,   Adjusted R-squared:  0.0583 
+F-statistic:   316 on 3 and 15262 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatterplot with models</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>GSSI <span class="sc">%&gt;%</span> </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(year, fehelpI)) <span class="sc">+</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">size =</span> .<span class="dv">1</span>, <span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> <span class="fl">0.5</span>, <span class="at">height =</span> <span class="fl">0.5</span>)) <span class="sc">+</span> </span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="fu">aes</span>(<span class="at">color =</span> <span class="st">"Linear Model"</span>), <span class="at">size =</span> <span class="dv">6</span>) <span class="sc">+</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> y <span class="sc">~</span> <span class="fu">poly</span>(x, <span class="dv">3</span>), <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="fu">aes</span>(<span class="at">color =</span> <span class="st">"Cubic Model"</span>), <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> y <span class="sc">~</span> <span class="fu">log</span>(x), <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="fu">aes</span>(<span class="at">color =</span> <span class="st">"Log-Linear Model"</span>), <span class="at">size =</span> <span class="dv">2</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Year"</span>, <span class="at">y =</span> <span class="st">"Level of Agreement"</span>, <span class="at">title =</span> <span class="st">"Husband's Career a Priority"</span>) <span class="sc">+</span> </span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"green"</span>, <span class="st">"orange"</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Cubic Model"</span>, <span class="st">"Linear Model"</span>, <span class="st">"Log-Linear"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="603_ClassProject_Kopecky_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="multiple-regression" class="level2">
+<h2 class="anchored" data-anchor-id="multiple-regression">Multiple Regression</h2>
+<p>Four additional models were run with each subsequent model incorportating an additional predictor variable to the simple regression mod_1, y=<em>fehelpI</em> and x=<em>year</em>. The other variables were <em>age</em>, <em>sex</em>, and <em>race</em>, and model 5 included interactions of <em>sex</em> and <em>race</em>. Examining the interaction of <em>sex</em> and <em>race</em> can capture if together these variables have an effect on the level of agrreement, but may not individually.</p>
+<p>Including more variables may lead to a more optimal model. But, at a certain point, too many variables may be overfitting the data by including irrelevant variables and missing patterns or relationships. And, if there are highly correlated predictor variables, multicolinearity, then may be hard to interpret the effects of the individual variables. Analysis was done to find the best model in trying to determine the most relevent influences on the level of agreement.</p>
+<p>The robust standard errors were calculated. All the standard errors are considered small (approximately 1/10 or less of the coefficient estimates) and therefore the coefficients estimates seem to be precise. A summary of the regression models shows there was a big increase in the R-squared from model 1 to model 2, from about 0.06 to 0.17. This means that by adding just the variable <em>age</em> that there was an 11% increase that explains how the variation of the level of agreement is is effected by the change in the <em>age</em>. The R-squared levels off for models 3, 4, and 5 at 0.171, 0.177, 0.178, respectively. This may lead one conclude the the additonal variables and interaction of the <em>sex</em> and <em>race</em> are not adding value to the model, but examine this closer. With the R-squared and adjusted R-squared equal for models 3 and 4, and that the coefficient estimates are all significant, it woudld be reasonable to say that <em>sex</em> and <em>race</em> do contribute to the best model. A check for collinearity was done with a correlation matrix and there is no collinearity.</p>
+<p>At this point, model 4 is looking like the optimal model. But let’s compare this with a restricted model, model 5, by considering the interaction of the variables <em>sex</em> and <em>race</em>. Notable findings about the interaction of these two variables is that the coefficient estimates are both positive and negative depending the on the levels combined. The coefficient estimates are in comparison to the reference level white/male. For instance, the coefficient estimate for female is negative and statistically significant in comparison the male respondents. In other words, female respondents disagree more with the statement than males. Where as, in comparing other levels, repsondants who identified as Black or Other, the coefficient estimate was positive and statistically significant. This means their level of aggreement was higher white respondents. The only coefficient estimate that was not significantly different from the white/male reference was those that identified as Female/Other race.</p>
+<p>Even thought the interaction of the two variables had interesting results, it does not appear to be the best model. In comparing the Sum of Squares Residuals (SSR) of the undrestricted model 4 and restricted model 5, it was found that SSR of the restricted model is less than and close to equal the unrestricted model indicating the interaction <em>of the variables</em> sex* and <em>race</em> do not contribute to a better model. And, the p-value of the F-statistic is not less than 0.05 which also suggests that there is not enough evidence to conclude the restricted model is better the unrestricted model.</p>
+<p>The F-statistic of all the multiple regression models are large and the p-values are small. This shows there is a relationship between the level of aggreement and the predictor variables. The variation in the level of agreement is influenced by the predictor variables and it is not just random chance.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Models</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>mod_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(fehelpI <span class="sc">~</span> year <span class="sc">+</span> age, GSSI)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>mod_3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(fehelpI <span class="sc">~</span> year <span class="sc">+</span> age <span class="sc">+</span> sex, GSSI)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>mod_4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(fehelpI <span class="sc">~</span> year <span class="sc">+</span> age <span class="sc">+</span> sex <span class="sc">+</span> race, GSSI)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>mod_5 <span class="ot">&lt;-</span> <span class="fu">lm</span>(fehelpI <span class="sc">~</span> year <span class="sc">+</span> age <span class="sc">+</span> (sex<span class="sc">*</span>race), GSSI)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Robust standard errors for corresponding coefficients</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>rob_se <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(mod_1, <span class="at">type =</span> <span class="st">"HC1"</span>))),</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(mod_2, <span class="at">type =</span> <span class="st">"HC1"</span>))),</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(mod_3, <span class="at">type =</span> <span class="st">"HC1"</span>))),</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(mod_4, <span class="at">type =</span> <span class="st">"HC1"</span>))),</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(mod_5, <span class="at">type =</span> <span class="st">"HC1"</span>)))</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>rob_se</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+(Intercept)        year 
+2.086401309 0.001048019 
+
+[[2]]
+ (Intercept)         year          age 
+1.9720745102 0.0009904014 0.0003312328 
+
+[[3]]
+ (Intercept)         year          age    sexFemale 
+1.9745997298 0.0009916954 0.0003320222 0.0116658974 
+
+[[4]]
+ (Intercept)         year          age    sexFemale    raceBlack    raceOther 
+1.9726156119 0.0009907891 0.0003326456 0.0116399569 0.0181847138 0.0329153073 
+
+[[5]]
+        (Intercept)                year                 age           sexFemale 
+       1.9727356603        0.0009908435        0.0003326108        0.0125649004 
+          raceBlack           raceOther sexFemale:raceBlack sexFemale:raceOther 
+       0.0286453931        0.0480284284        0.0369918691        0.0655064086 </code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary of the regression models</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(mod_1, mod_2, mod_3, mod_4, mod_5, <span class="at">title =</span> <span class="st">"Regression Results"</span>,</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">type =</span> <span class="st">"text"</span>,  <span class="co"># Use "text" to print the table to the console</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">digits =</span> <span class="dv">3</span>,     </span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">header =</span> <span class="cn">TRUE</span> </span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Regression Results
+==============================================================================================================================================================
+                                                                               Dependent variable:                                                            
+                    ------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                     fehelpI                                                                  
+                               (1)                         (2)                          (3)                         (4)                        (5)            
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+year                        -0.031***                   -0.031***                    -0.031***                   -0.032***                  -0.032***         
+                             (0.001)                     (0.001)                      (0.001)                     (0.001)                    (0.001)          
+                                                                                                                                                              
+age                                                      0.015***                     0.015***                    0.016***                   0.016***         
+                                                         (0.0003)                     (0.0003)                    (0.0003)                   (0.0003)         
+                                                                                                                                                              
+sexFemale                                                                            -0.106***                   -0.108***                  -0.093***         
+                                                                                      (0.012)                     (0.012)                    (0.013)          
+                                                                                                                                                              
+raceBlack                                                                                                         0.057***                   0.120***         
+                                                                                                                  (0.018)                    (0.029)          
+                                                                                                                                                              
+raceOther                                                                                                         0.315***                   0.355***         
+                                                                                                                  (0.030)                    (0.045)          
+                                                                                                                                                              
+sexFemale:raceBlack                                                                                                                         -0.103***         
+                                                                                                                                             (0.037)          
+                                                                                                                                                              
+sexFemale:raceOther                                                                                                                           -0.073          
+                                                                                                                                             (0.060)          
+                                                                                                                                                              
+Constant                    63.938***                   63.727***                    63.611***                   65.273***                  65.188***         
+                             (2.059)                     (1.934)                      (1.929)                     (1.928)                    (1.928)          
+                                                                                                                                                              
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+Observations                  15,266                      15,266                       15,266                      15,266                     15,266          
+R2                            0.056                       0.167                        0.171                       0.177                      0.178           
+Adjusted R2                   0.056                       0.167                        0.171                       0.177                      0.177           
+Residual Std. Error     0.767 (df = 15264)          0.721 (df = 15263)           0.719 (df = 15262)          0.716 (df = 15260)         0.716 (df = 15258)    
+F Statistic         900.700*** (df = 1; 15264) 1,527.137*** (df = 2; 15263) 1,050.501*** (df = 3; 15262) 657.928*** (df = 5; 15260) 471.419*** (df = 7; 15258)
+==============================================================================================================================================================
+Note:                                                                                                                              *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check for collinearity </span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>GSSI_num_subset <span class="ot">&lt;-</span> GSSI[, <span class="fu">c</span>(<span class="st">"fehelpI"</span>, <span class="st">"year"</span>, <span class="st">"age"</span>)]</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(GSSI_num_subset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>           fehelpI         year         age
+fehelpI  1.0000000 -0.236051258 0.331911587
+year    -0.2360513  1.000000000 0.005440036
+age      0.3319116  0.005440036 1.000000000</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># There is no collinearity between the numerical variables.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Restricted Model </span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the Sum of Squares Residuals (SSR)</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>RSSR_GSSI <span class="ot">&lt;-</span> <span class="fu">sum</span>(mod_5<span class="sc">$</span>residuals<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>RSSR_GSSI</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 7827.094</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Unrestricted model</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>UNR_SSR_GSSI <span class="ot">&lt;-</span> <span class="fu">sum</span>(mod_4<span class="sc">$</span>residuals<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>UNR_SSR_GSSI</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 7831.621</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare SSR's</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>RSSR_GSSI <span class="sc">&gt;=</span> UNR_SSR_GSSI</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare Restricted and Unrestricted Model </span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>Fstat_GSSI <span class="ot">&lt;-</span> ((RSSR_GSSI<span class="sc">-</span>UNR_SSR_GSSI)<span class="sc">/</span><span class="dv">1</span>)<span class="sc">/</span>(UNR_SSR_GSSI<span class="sc">/</span>(<span class="fu">nrow</span>(GSSI)<span class="sc">-</span><span class="dv">4-1</span>))</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the p-value</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>pval_Fstat_GSSI <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pf</span>(Fstat_GSSI, <span class="at">df1 =</span> <span class="dv">1</span>, <span class="at">df2 =</span> <span class="fu">nrow</span>(GSSI)<span class="sc">-</span><span class="dv">4-1</span>)</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Check if the null is rejected at the 1% significance level</span></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>pval_Fstat_GSSI <span class="sc">&lt;</span> <span class="fl">0.05</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The SSR of the restricted model is less than, close to equal the unrestricted model indicating the interaction of the variables sex and race do not contribute to a better model. And the p-value of the F-statistic is not less than 0.05 which also suggests that there is not enough evidence to conclude the restricted model is better the unrestricted model. </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="conclusion-and-discussion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion-and-discussion">Conclusion and Discussion</h2>
+<p>Based on the observations and data analysis, it is reasonable to conclude that model 4 emerges as the optimal model. Data assumptions were met, and the inclusion of additional variables were carefully explored. As a result, Model 4 fits the data well and the additional variables contribute to the model.</p>
+<p>To answer the questions, how has the level of agreement changed over time and is it significant, it can be concluded that the level of agreement has decreased over time and that it is statistically significant. The coefficient estimate for year is -0.03 and the p-value is less than 0.01 therefore showing evidence that the decrease in level of agreement is significant.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bar graph to view distribution of *fehelpI*</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>GSSI <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(fehelpI, <span class="at">fill=</span> fehelpIf))<span class="sc">+</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span> </span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Level of Agreement"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>, <span class="at">title =</span> <span class="st">"Husband's Career A Priority"</span> ) <span class="sc">+</span></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set2"</span>) <span class="sc">+</span> </span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>year, <span class="at">ncol =</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="603_ClassProject_Kopecky_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(GSSI, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(year), <span class="at">y =</span> fehelpI, <span class="at">fill =</span> <span class="fu">factor</span>(year))) <span class="sc">+</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Year"</span>, <span class="at">y =</span> <span class="st">"Level of Agreement"</span>) <span class="sc">+</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Husband's Career a Priority by Year"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="603_ClassProject_Kopecky_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="bibliography" class="level2">
+<h2 class="anchored" data-anchor-id="bibliography">Bibliography</h2>
+<p>Davern, M., Bautista, R, Freese, J., Herd, P., &amp; Morgan, S.L. General Social Survey 1972-2022. Sponsored by National Science Foundation. NORC ed.&nbsp;Chicago: NORC, 2023: NORC at the University of Chicago. gssdataexplorer.norc.org</p>
+<p>Morgan, K. (2023, June 22). <em>Why many women prioritise their partners’ jobs</em>. BBC. https://www.bbc.com/worklife/article/20230620-why-many-women-prioritise-their-partners-jobs</p>
+<p>RStudio Team (2020). RStudio: Integrated Development for R. RStudio, PBC, Boston, MA URL http://www.rstudio.com/.</p>
+<p>Tucker, J. &amp; Vogtman, J.(2022). Resilient but not recovered. After two years of covid-19, women are still struggling. National Women’s Law Center. https://nwlc.org/wp-content/uploads/2022/03/FINAL-NWLC-Resilient-But-Not-Recovered-3.29.22.pdf</p>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="DACSS/603_Summer_Sec_1" data-repo-id="" data-category="Announcements" data-category-id="" data-mapping="url" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb45" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "603_ClassProject"</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Nanci Kopecky"</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "General Social Survey"</span></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "08/17/2022"</span></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
+<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a><span class="co">  - Final Project</span></span>
+<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a><span class="co">  - Kopecky</span></span>
+<span id="cb45-15"><a href="#cb45-15" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb45-16"><a href="#cb45-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-19"><a href="#cb45-19" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-20"><a href="#cb45-20" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb45-21"><a href="#cb45-21" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb45-22"><a href="#cb45-22" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb45-23"><a href="#cb45-23" aria-hidden="true" tabindex="-1"></a><span class="co"># libraries</span></span>
+<span id="cb45-24"><a href="#cb45-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-25"><a href="#cb45-25" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb45-26"><a href="#cb45-26" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb45-27"><a href="#cb45-27" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb45-28"><a href="#cb45-28" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb45-29"><a href="#cb45-29" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb45-30"><a href="#cb45-30" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb45-31"><a href="#cb45-31" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stats)</span>
+<span id="cb45-32"><a href="#cb45-32" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(AER)</span>
+<span id="cb45-33"><a href="#cb45-33" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stargazer)</span>
+<span id="cb45-34"><a href="#cb45-34" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span>
+<span id="cb45-35"><a href="#cb45-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-36"><a href="#cb45-36" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb45-37"><a href="#cb45-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-38"><a href="#cb45-38" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introduction</span></span>
+<span id="cb45-39"><a href="#cb45-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-40"><a href="#cb45-40" aria-hidden="true" tabindex="-1"></a>Is it more important for a wife to help her husband's career than to have one herself? This was a question on a survey on American society from 1977 to 1998. It may seem out of date in 2023, but is it? The upheaval from Covid-19 pandemic underscored the stress of balancing work and family. During this time, The National Women's Law Center stated that women left the workforce at a disproportionate rate and have not yet recovered (2022). This is a concern because of women's forfeited skills, diminished wages, and unrealized earning potential.</span>
+<span id="cb45-41"><a href="#cb45-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-42"><a href="#cb45-42" aria-hidden="true" tabindex="-1"></a>Additionally, the BBC reported, "Researchers for Deloitte's Women Work 2023 surveyed 5,000 women across 10 countries, 98% of whom were in heterosexual relationships. The data found that nearly 40% of respondents say their partner's career takes precedence. They cited several reasons, ranging from financial and social factors to the burden of caretaking and household responsibilities," (2023). These numbers indicate that the curated midcentury sterotypes remain relevent today.</span>
+<span id="cb45-43"><a href="#cb45-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-44"><a href="#cb45-44" aria-hidden="true" tabindex="-1"></a>This project will take a look at how the level of aggreement with the statement, "It is more for a wife to help her husband's career than to have one herself," is influenced and how the level of agreement has changed over time.</span>
+<span id="cb45-45"><a href="#cb45-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-46"><a href="#cb45-46" aria-hidden="true" tabindex="-1"></a><span class="fu">## Dataset Description</span></span>
+<span id="cb45-47"><a href="#cb45-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-48"><a href="#cb45-48" aria-hidden="true" tabindex="-1"></a>This dataset is from the General Social Survey (GSS) which has conducted research from 1972 on American Society. There are 15266 obervations (rows) with 6 variables (columns). The variables are *year*, *age*, *sex*, *race*, *fehelp*, and *era*.</span>
+<span id="cb45-49"><a href="#cb45-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-50"><a href="#cb45-50" aria-hidden="true" tabindex="-1"></a>For variable *fehelp*, repsondents state whether they 1=Strongly Agree to 4 = Strongly Disagree with the statement, "It is more for a wife to help her husband's career than to have one herself." (Please note: this order is reversed-see mutated data below!) For *era*, repsondents state whether they 1=Strongly Favor to 4 = Strongly Oppose the Equal Rights Amendment (ERA). *Sex* is coded as 1=Male and 2=Female; *race* is coded as 1=While, 2=Black, 3=Other.</span>
+<span id="cb45-51"><a href="#cb45-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-52"><a href="#cb45-52" aria-hidden="true" tabindex="-1"></a><span class="fu">## Analysis Plan</span></span>
+<span id="cb45-53"><a href="#cb45-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-54"><a href="#cb45-54" aria-hidden="true" tabindex="-1"></a>As per the *Class Project 2* instructions, this report will begin with **Descriptive Statistics** of the dataset and run **Simple Linear Regression** models and summaries. A scatterplot will give a visual perspective of the linear, log-linear, and cubic models, and with that, an exploration of which is the best fitting model. This report will then explore **Multiple Regression** models to consider the optimal model that can best explain how the level of agreement, *fehelp* is influenced. This consideration will be done through analysis of robust standard errors, reviewing the summaries of the models, and interpreting the F-statistics. The **Results and Conclusion** will report on the best model and if the level of agreement has significantly changed over time.</span>
+<span id="cb45-55"><a href="#cb45-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-56"><a href="#cb45-56" aria-hidden="true" tabindex="-1"></a><span class="fu">## Dataset</span></span>
+<span id="cb45-57"><a href="#cb45-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-60"><a href="#cb45-60" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-61"><a href="#cb45-61" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in data and prepare data</span></span>
+<span id="cb45-62"><a href="#cb45-62" aria-hidden="true" tabindex="-1"></a>GSS <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"Nanci_datafolder/GSS.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb45-63"><a href="#cb45-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-64"><a href="#cb45-64" aria-hidden="true" tabindex="-1"></a><span class="co"># Mutating *fehelp* to *fehelpI* by reversing the values 1=Strongly Agree through 4=Strongly Disagree to 1=Strongly Disagree through 4=Strongly Agree because it seems more intuitive for graphing. Also, the variables *sex* and *race* were changed from numerical to factor data for analysis. *Sex* and *race* were labeled as coded by GSS, 1=Male and 2=Female and 1=While, 2=Black, and 3=Other.</span></span>
+<span id="cb45-65"><a href="#cb45-65" aria-hidden="true" tabindex="-1"></a>GSSI <span class="ot">&lt;-</span> GSS <span class="sc">%&gt;%</span> </span>
+<span id="cb45-66"><a href="#cb45-66" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">fehelpI =</span> <span class="fu">case_when</span>(</span>
+<span id="cb45-67"><a href="#cb45-67" aria-hidden="true" tabindex="-1"></a>    fehelp <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">4</span>, </span>
+<span id="cb45-68"><a href="#cb45-68" aria-hidden="true" tabindex="-1"></a>    fehelp <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="dv">3</span>, </span>
+<span id="cb45-69"><a href="#cb45-69" aria-hidden="true" tabindex="-1"></a>    fehelp <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="dv">2</span>, </span>
+<span id="cb45-70"><a href="#cb45-70" aria-hidden="true" tabindex="-1"></a>    fehelp <span class="sc">==</span> <span class="dv">4</span> <span class="sc">~</span> <span class="dv">1</span>), </span>
+<span id="cb45-71"><a href="#cb45-71" aria-hidden="true" tabindex="-1"></a>    <span class="at">fehelpIf =</span> <span class="fu">factor</span>(fehelpI, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Strongly Disagree"</span>, <span class="st">"Disagree"</span>, <span class="st">"Agree"</span>, <span class="st">"Strongly Agree"</span>)), </span>
+<span id="cb45-72"><a href="#cb45-72" aria-hidden="true" tabindex="-1"></a>    <span class="at">race =</span> <span class="fu">factor</span>(race, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"White"</span>, <span class="st">"Black"</span>, <span class="st">"Other"</span>)),</span>
+<span id="cb45-73"><a href="#cb45-73" aria-hidden="true" tabindex="-1"></a>    <span class="at">sex =</span> <span class="fu">factor</span>(sex, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Male"</span>, <span class="st">"Female"</span>))</span>
+<span id="cb45-74"><a href="#cb45-74" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb45-75"><a href="#cb45-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-76"><a href="#cb45-76" aria-hidden="true" tabindex="-1"></a><span class="co"># Vectors with select variables</span></span>
+<span id="cb45-77"><a href="#cb45-77" aria-hidden="true" tabindex="-1"></a>vars <span class="ot">&lt;-</span> GSSI[<span class="fu">c</span>(<span class="st">"year"</span>, <span class="st">"age"</span>, <span class="st">"fehelpI"</span>, <span class="st">"sex"</span>, <span class="st">"race"</span>)]</span>
+<span id="cb45-78"><a href="#cb45-78" aria-hidden="true" tabindex="-1"></a>vars_num <span class="ot">&lt;-</span> GSSI[<span class="fu">c</span>(<span class="st">"year"</span>, <span class="st">"age"</span>, <span class="st">"fehelpI"</span>)]</span>
+<span id="cb45-79"><a href="#cb45-79" aria-hidden="true" tabindex="-1"></a>vars_cat <span class="ot">&lt;-</span> GSSI[<span class="fu">c</span>(<span class="st">"sex"</span>,<span class="st">"race"</span>)]</span>
+<span id="cb45-80"><a href="#cb45-80" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb45-81"><a href="#cb45-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-82"><a href="#cb45-82" aria-hidden="true" tabindex="-1"></a><span class="fu">## Descriptive Statistics</span></span>
+<span id="cb45-83"><a href="#cb45-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-86"><a href="#cb45-86" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-87"><a href="#cb45-87" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary</span></span>
+<span id="cb45-88"><a href="#cb45-88" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(vars)</span>
+<span id="cb45-89"><a href="#cb45-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-90"><a href="#cb45-90" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb45-91"><a href="#cb45-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-94"><a href="#cb45-94" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-95"><a href="#cb45-95" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean and standard deviation</span></span>
+<span id="cb45-96"><a href="#cb45-96" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(<span class="at">GSS_mean =</span> <span class="fu">sapply</span>(vars_num, mean), </span>
+<span id="cb45-97"><a href="#cb45-97" aria-hidden="true" tabindex="-1"></a>      <span class="at">GSS_sd =</span> <span class="fu">sapply</span>(vars_num, sd))</span>
+<span id="cb45-98"><a href="#cb45-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-99"><a href="#cb45-99" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb45-100"><a href="#cb45-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-103"><a href="#cb45-103" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-104"><a href="#cb45-104" aria-hidden="true" tabindex="-1"></a><span class="co"># Frequencies and percentages</span></span>
+<span id="cb45-105"><a href="#cb45-105" aria-hidden="true" tabindex="-1"></a>Race <span class="ot">&lt;-</span> <span class="fu">table</span>(GSSI<span class="sc">$</span>race)</span>
+<span id="cb45-106"><a href="#cb45-106" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(Race, <span class="fu">prop.table</span>(Race)<span class="sc">*</span><span class="dv">100</span>)</span>
+<span id="cb45-107"><a href="#cb45-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-108"><a href="#cb45-108" aria-hidden="true" tabindex="-1"></a>Sex <span class="ot">&lt;-</span> <span class="fu">table</span>(GSSI<span class="sc">$</span>sex)</span>
+<span id="cb45-109"><a href="#cb45-109" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(Sex, <span class="fu">prop.table</span>(Sex)<span class="sc">*</span><span class="dv">100</span>)</span>
+<span id="cb45-110"><a href="#cb45-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-111"><a href="#cb45-111" aria-hidden="true" tabindex="-1"></a>Level_of_Agree <span class="ot">&lt;-</span> <span class="fu">table</span>(GSSI<span class="sc">$</span>fehelpI)</span>
+<span id="cb45-112"><a href="#cb45-112" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(Level_of_Agree, <span class="fu">prop.table</span>(Level_of_Agree)<span class="sc">*</span><span class="dv">100</span>)</span>
+<span id="cb45-113"><a href="#cb45-113" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb45-114"><a href="#cb45-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-117"><a href="#cb45-117" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-118"><a href="#cb45-118" aria-hidden="true" tabindex="-1"></a><span class="co"># Bar graphs</span></span>
+<span id="cb45-119"><a href="#cb45-119" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(GSSI, <span class="fu">aes</span>(fehelpI)) <span class="sc">+</span> </span>
+<span id="cb45-120"><a href="#cb45-120" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill=</span>sex), <span class="at">position =</span> <span class="st">"fill"</span>) <span class="sc">+</span></span>
+<span id="cb45-121"><a href="#cb45-121" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Husband's Career a Priority by Sex"</span>, <span class="at">x =</span> <span class="st">"Level of Agreement"</span>, <span class="at">y =</span> <span class="st">"Percent"</span>) <span class="sc">+</span></span>
+<span id="cb45-122"><a href="#cb45-122" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Male"</span> <span class="ot">=</span> <span class="st">"blue"</span>, <span class="st">"Female"</span> <span class="ot">=</span> <span class="st">"#FF69B4"</span>))</span>
+<span id="cb45-123"><a href="#cb45-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-124"><a href="#cb45-124" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb45-125"><a href="#cb45-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-128"><a href="#cb45-128" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-129"><a href="#cb45-129" aria-hidden="true" tabindex="-1"></a><span class="co"># Bar graph to view distribution of *fehelpI*</span></span>
+<span id="cb45-130"><a href="#cb45-130" aria-hidden="true" tabindex="-1"></a>GSSI <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(fehelpI, <span class="at">fill=</span> fehelpIf))<span class="sc">+</span></span>
+<span id="cb45-131"><a href="#cb45-131" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span> </span>
+<span id="cb45-132"><a href="#cb45-132" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Level of Agreement"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>, <span class="at">title =</span> <span class="st">"Husband's Career A Priority"</span> ) <span class="sc">+</span></span>
+<span id="cb45-133"><a href="#cb45-133" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set2"</span>)</span>
+<span id="cb45-134"><a href="#cb45-134" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb45-135"><a href="#cb45-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-136"><a href="#cb45-136" aria-hidden="true" tabindex="-1"></a><span class="fu">## Simple Linear Regression</span></span>
+<span id="cb45-137"><a href="#cb45-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-138"><a href="#cb45-138" aria-hidden="true" tabindex="-1"></a>Below are linear, log-linear, and cubic models and their summaries with *fehelpI* as the dependent variable and *year* as the independent variable. The regression models are displayed on a scatterplot to give a visual perspective of fitting the models to data.</span>
+<span id="cb45-139"><a href="#cb45-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-140"><a href="#cb45-140" aria-hidden="true" tabindex="-1"></a>Both variables can be considered continuous data for statistical analysis. The ordinal Likert variable *fehelp* meets the following conditions to be considered continuous: the sample size is large (n=15266); the number of response categories is close to large (4); the intervals between categories in theory are equal, and there is minimal skewness in the distribution of responses. Because the standard errors for nearly equal for both the lm function (which assumes homoscedasticity and independence) and coeftest function (which corrects for heteroscedasticity and possible dependence), it suggests that homoscedasticity and independence assumptions hold.</span>
+<span id="cb45-141"><a href="#cb45-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-142"><a href="#cb45-142" aria-hidden="true" tabindex="-1"></a>It is reasonable for this sample can be applied to the broader population over the time period surveyed. It can be expected that new data fed into the linear regression would fit the model.</span>
+<span id="cb45-143"><a href="#cb45-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-144"><a href="#cb45-144" aria-hidden="true" tabindex="-1"></a>In comparing the three models, the linear and log-linear appear to be a better fit from the visual perspective on the on the scatterplot. Both models closely follow negative correlation of the variables, that is, as time goes on, the level of agreement with the statement, "It is more for a wife to help her husband's career than to have one herself," decreases. The cubic model appears to subtly curve upward and does not appear to be a good fit to the data.</span>
+<span id="cb45-145"><a href="#cb45-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-146"><a href="#cb45-146" aria-hidden="true" tabindex="-1"></a>Along with the graphing perspective, the regression summaries show evidence that the linear and log-linear models are a good fit. While the R-squared values (0.06) and the residual standard errors (0.76) are the same for all three models, the coefficent estimates for the linear and log-linear models are significant, where they are not significant for the cubic model. Coefficient estimates are not statistically significant signal that this can be a weak model.</span>
+<span id="cb45-147"><a href="#cb45-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-148"><a href="#cb45-148" aria-hidden="true" tabindex="-1"></a>For the purpose of interpretation, along with the visual and initial analysis of the regression summaries, it appears the linear model would be the best model. See the models and scatterplot below.</span>
+<span id="cb45-149"><a href="#cb45-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-152"><a href="#cb45-152" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-153"><a href="#cb45-153" aria-hidden="true" tabindex="-1"></a><span class="co"># Basic linear model and summary</span></span>
+<span id="cb45-154"><a href="#cb45-154" aria-hidden="true" tabindex="-1"></a>mod_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(fehelpI <span class="sc">~</span> year, GSSI)</span>
+<span id="cb45-155"><a href="#cb45-155" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod_1)</span>
+<span id="cb45-156"><a href="#cb45-156" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(mod_1, <span class="at">vcov. =</span> vcovHC)</span>
+<span id="cb45-157"><a href="#cb45-157" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb45-158"><a href="#cb45-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-161"><a href="#cb45-161" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-162"><a href="#cb45-162" aria-hidden="true" tabindex="-1"></a><span class="co"># Log-linear model and summary</span></span>
+<span id="cb45-163"><a href="#cb45-163" aria-hidden="true" tabindex="-1"></a>mod_log <span class="ot">&lt;-</span> <span class="fu">lm</span>(fehelpI <span class="sc">~</span> <span class="fu">log</span>(year), GSSI)</span>
+<span id="cb45-164"><a href="#cb45-164" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod_log)</span>
+<span id="cb45-165"><a href="#cb45-165" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(mod_log, <span class="at">vcov. =</span> vcovHC)</span>
+<span id="cb45-166"><a href="#cb45-166" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb45-167"><a href="#cb45-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-170"><a href="#cb45-170" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-171"><a href="#cb45-171" aria-hidden="true" tabindex="-1"></a><span class="co"># Cubic model and summary</span></span>
+<span id="cb45-172"><a href="#cb45-172" aria-hidden="true" tabindex="-1"></a>mod_cubic <span class="ot">&lt;-</span> <span class="fu">lm</span>(fehelpI <span class="sc">~</span> <span class="fu">I</span>(year) <span class="sc">+</span> <span class="fu">I</span>(year<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> <span class="fu">I</span>(year<span class="sc">^</span><span class="dv">3</span>), GSSI)</span>
+<span id="cb45-173"><a href="#cb45-173" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod_cubic)</span>
+<span id="cb45-174"><a href="#cb45-174" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb45-175"><a href="#cb45-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-178"><a href="#cb45-178" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-179"><a href="#cb45-179" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatterplot with models</span></span>
+<span id="cb45-180"><a href="#cb45-180" aria-hidden="true" tabindex="-1"></a>GSSI <span class="sc">%&gt;%</span> </span>
+<span id="cb45-181"><a href="#cb45-181" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(year, fehelpI)) <span class="sc">+</span></span>
+<span id="cb45-182"><a href="#cb45-182" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">size =</span> .<span class="dv">1</span>, <span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> <span class="fl">0.5</span>, <span class="at">height =</span> <span class="fl">0.5</span>)) <span class="sc">+</span> </span>
+<span id="cb45-183"><a href="#cb45-183" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="fu">aes</span>(<span class="at">color =</span> <span class="st">"Linear Model"</span>), <span class="at">size =</span> <span class="dv">6</span>) <span class="sc">+</span></span>
+<span id="cb45-184"><a href="#cb45-184" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> y <span class="sc">~</span> <span class="fu">poly</span>(x, <span class="dv">3</span>), <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="fu">aes</span>(<span class="at">color =</span> <span class="st">"Cubic Model"</span>), <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb45-185"><a href="#cb45-185" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> y <span class="sc">~</span> <span class="fu">log</span>(x), <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="fu">aes</span>(<span class="at">color =</span> <span class="st">"Log-Linear Model"</span>), <span class="at">size =</span> <span class="dv">2</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb45-186"><a href="#cb45-186" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Year"</span>, <span class="at">y =</span> <span class="st">"Level of Agreement"</span>, <span class="at">title =</span> <span class="st">"Husband's Career a Priority"</span>) <span class="sc">+</span> </span>
+<span id="cb45-187"><a href="#cb45-187" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb45-188"><a href="#cb45-188" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"green"</span>, <span class="st">"orange"</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Cubic Model"</span>, <span class="st">"Linear Model"</span>, <span class="st">"Log-Linear"</span>))</span>
+<span id="cb45-189"><a href="#cb45-189" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb45-190"><a href="#cb45-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-191"><a href="#cb45-191" aria-hidden="true" tabindex="-1"></a><span class="fu">## Multiple Regression</span></span>
+<span id="cb45-192"><a href="#cb45-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-193"><a href="#cb45-193" aria-hidden="true" tabindex="-1"></a>Four additional models were run with each subsequent model incorportating an additional predictor variable to the simple regression mod_1, y=*fehelpI* and x=*year*. The other variables were *age*, *sex*, and *race*, and model 5 included interactions of *sex* and *race*. Examining the interaction of *sex* and *race* can capture if together these variables have an effect on the level of agrreement, but may not individually.</span>
+<span id="cb45-194"><a href="#cb45-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-195"><a href="#cb45-195" aria-hidden="true" tabindex="-1"></a>Including more variables may lead to a more optimal model. But, at a certain point, too many variables may be overfitting the data by including irrelevant variables and missing patterns or relationships. And, if there are highly correlated predictor variables, multicolinearity, then may be hard to interpret the effects of the individual variables. Analysis was done to find the best model in trying to determine the most relevent influences on the level of agreement.</span>
+<span id="cb45-196"><a href="#cb45-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-197"><a href="#cb45-197" aria-hidden="true" tabindex="-1"></a>The robust standard errors were calculated. All the standard errors are considered small (approximately 1/10 or less of the coefficient estimates) and therefore the coefficients estimates seem to be precise. A summary of the regression models shows there was a big increase in the R-squared from model 1 to model 2, from about 0.06 to 0.17. This means that by adding just the variable *age* that there was an 11% increase that explains how the variation of the level of agreement is is effected by the change in the *age*. The R-squared levels off for models 3, 4, and 5 at 0.171, 0.177, 0.178, respectively. This may lead one conclude the the additonal variables and interaction of the *sex* and *race* are not adding value to the model, but examine this closer. With the R-squared and adjusted R-squared equal for models 3 and 4, and that the coefficient estimates are all significant, it woudld be reasonable to say that *sex* and *race* do contribute to the best model. A check for collinearity was done with a correlation matrix and there is no collinearity.</span>
+<span id="cb45-198"><a href="#cb45-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-199"><a href="#cb45-199" aria-hidden="true" tabindex="-1"></a>At this point, model 4 is looking like the optimal model. But let's compare this with a restricted model, model 5, by considering the interaction of the variables *sex* and *race*. Notable findings about the interaction of these two variables is that the coefficient estimates are both positive and negative depending the on the levels combined. The coefficient estimates are in comparison to the reference level white/male. For instance, the coefficient estimate for female is negative and statistically significant in comparison the male respondents. In other words, female respondents disagree more with the statement than males. Where as, in comparing other levels, repsondants who identified as Black or Other, the coefficient estimate was positive and statistically significant. This means their level of aggreement was higher white respondents. The only coefficient estimate that was not significantly different from the white/male reference was those that identified as Female/Other race.</span>
+<span id="cb45-200"><a href="#cb45-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-201"><a href="#cb45-201" aria-hidden="true" tabindex="-1"></a>Even thought the interaction of the two variables had interesting results, it does not appear to be the best model. In comparing the Sum of Squares Residuals (SSR) of the undrestricted model 4 and restricted model 5, it was found that SSR of the restricted model is less than and close to equal the unrestricted model indicating the interaction *of the variables* sex\* and *race* do not contribute to a better model. And, the p-value of the F-statistic is not less than 0.05 which also suggests that there is not enough evidence to conclude the restricted model is better the unrestricted model.</span>
+<span id="cb45-202"><a href="#cb45-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-203"><a href="#cb45-203" aria-hidden="true" tabindex="-1"></a>The F-statistic of all the multiple regression models are large and the p-values are small. This shows there is a relationship between the level of aggreement and the predictor variables. The variation in the level of agreement is influenced by the predictor variables and it is not just random chance.</span>
+<span id="cb45-204"><a href="#cb45-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-207"><a href="#cb45-207" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-208"><a href="#cb45-208" aria-hidden="true" tabindex="-1"></a><span class="co"># Models</span></span>
+<span id="cb45-209"><a href="#cb45-209" aria-hidden="true" tabindex="-1"></a>mod_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(fehelpI <span class="sc">~</span> year <span class="sc">+</span> age, GSSI)</span>
+<span id="cb45-210"><a href="#cb45-210" aria-hidden="true" tabindex="-1"></a>mod_3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(fehelpI <span class="sc">~</span> year <span class="sc">+</span> age <span class="sc">+</span> sex, GSSI)</span>
+<span id="cb45-211"><a href="#cb45-211" aria-hidden="true" tabindex="-1"></a>mod_4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(fehelpI <span class="sc">~</span> year <span class="sc">+</span> age <span class="sc">+</span> sex <span class="sc">+</span> race, GSSI)</span>
+<span id="cb45-212"><a href="#cb45-212" aria-hidden="true" tabindex="-1"></a>mod_5 <span class="ot">&lt;-</span> <span class="fu">lm</span>(fehelpI <span class="sc">~</span> year <span class="sc">+</span> age <span class="sc">+</span> (sex<span class="sc">*</span>race), GSSI)</span>
+<span id="cb45-213"><a href="#cb45-213" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb45-214"><a href="#cb45-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-217"><a href="#cb45-217" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-218"><a href="#cb45-218" aria-hidden="true" tabindex="-1"></a><span class="co"># Robust standard errors for corresponding coefficients</span></span>
+<span id="cb45-219"><a href="#cb45-219" aria-hidden="true" tabindex="-1"></a>rob_se <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb45-220"><a href="#cb45-220" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(mod_1, <span class="at">type =</span> <span class="st">"HC1"</span>))),</span>
+<span id="cb45-221"><a href="#cb45-221" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(mod_2, <span class="at">type =</span> <span class="st">"HC1"</span>))),</span>
+<span id="cb45-222"><a href="#cb45-222" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(mod_3, <span class="at">type =</span> <span class="st">"HC1"</span>))),</span>
+<span id="cb45-223"><a href="#cb45-223" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(mod_4, <span class="at">type =</span> <span class="st">"HC1"</span>))),</span>
+<span id="cb45-224"><a href="#cb45-224" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sqrt</span>(<span class="fu">diag</span>(<span class="fu">vcovHC</span>(mod_5, <span class="at">type =</span> <span class="st">"HC1"</span>)))</span>
+<span id="cb45-225"><a href="#cb45-225" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb45-226"><a href="#cb45-226" aria-hidden="true" tabindex="-1"></a>rob_se</span>
+<span id="cb45-227"><a href="#cb45-227" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb45-228"><a href="#cb45-228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-231"><a href="#cb45-231" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-232"><a href="#cb45-232" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary of the regression models</span></span>
+<span id="cb45-233"><a href="#cb45-233" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(mod_1, mod_2, mod_3, mod_4, mod_5, <span class="at">title =</span> <span class="st">"Regression Results"</span>,</span>
+<span id="cb45-234"><a href="#cb45-234" aria-hidden="true" tabindex="-1"></a>          <span class="at">type =</span> <span class="st">"text"</span>,  <span class="co"># Use "text" to print the table to the console</span></span>
+<span id="cb45-235"><a href="#cb45-235" aria-hidden="true" tabindex="-1"></a>          <span class="at">digits =</span> <span class="dv">3</span>,     </span>
+<span id="cb45-236"><a href="#cb45-236" aria-hidden="true" tabindex="-1"></a>          <span class="at">header =</span> <span class="cn">TRUE</span> </span>
+<span id="cb45-237"><a href="#cb45-237" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb45-238"><a href="#cb45-238" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb45-241"><a href="#cb45-241" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-242"><a href="#cb45-242" aria-hidden="true" tabindex="-1"></a><span class="co"># Check for collinearity </span></span>
+<span id="cb45-243"><a href="#cb45-243" aria-hidden="true" tabindex="-1"></a>GSSI_num_subset <span class="ot">&lt;-</span> GSSI[, <span class="fu">c</span>(<span class="st">"fehelpI"</span>, <span class="st">"year"</span>, <span class="st">"age"</span>)]</span>
+<span id="cb45-244"><a href="#cb45-244" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(GSSI_num_subset)</span>
+<span id="cb45-245"><a href="#cb45-245" aria-hidden="true" tabindex="-1"></a><span class="co"># There is no collinearity between the numerical variables.</span></span>
+<span id="cb45-246"><a href="#cb45-246" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb45-249"><a href="#cb45-249" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-250"><a href="#cb45-250" aria-hidden="true" tabindex="-1"></a><span class="co"># Restricted Model </span></span>
+<span id="cb45-251"><a href="#cb45-251" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the Sum of Squares Residuals (SSR)</span></span>
+<span id="cb45-252"><a href="#cb45-252" aria-hidden="true" tabindex="-1"></a>RSSR_GSSI <span class="ot">&lt;-</span> <span class="fu">sum</span>(mod_5<span class="sc">$</span>residuals<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb45-253"><a href="#cb45-253" aria-hidden="true" tabindex="-1"></a>RSSR_GSSI</span>
+<span id="cb45-254"><a href="#cb45-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-255"><a href="#cb45-255" aria-hidden="true" tabindex="-1"></a><span class="co"># Unrestricted model</span></span>
+<span id="cb45-256"><a href="#cb45-256" aria-hidden="true" tabindex="-1"></a>UNR_SSR_GSSI <span class="ot">&lt;-</span> <span class="fu">sum</span>(mod_4<span class="sc">$</span>residuals<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb45-257"><a href="#cb45-257" aria-hidden="true" tabindex="-1"></a>UNR_SSR_GSSI</span>
+<span id="cb45-258"><a href="#cb45-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-259"><a href="#cb45-259" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare SSR's</span></span>
+<span id="cb45-260"><a href="#cb45-260" aria-hidden="true" tabindex="-1"></a>RSSR_GSSI <span class="sc">&gt;=</span> UNR_SSR_GSSI</span>
+<span id="cb45-261"><a href="#cb45-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-262"><a href="#cb45-262" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare Restricted and Unrestricted Model </span></span>
+<span id="cb45-263"><a href="#cb45-263" aria-hidden="true" tabindex="-1"></a>Fstat_GSSI <span class="ot">&lt;-</span> ((RSSR_GSSI<span class="sc">-</span>UNR_SSR_GSSI)<span class="sc">/</span><span class="dv">1</span>)<span class="sc">/</span>(UNR_SSR_GSSI<span class="sc">/</span>(<span class="fu">nrow</span>(GSSI)<span class="sc">-</span><span class="dv">4-1</span>))</span>
+<span id="cb45-264"><a href="#cb45-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-265"><a href="#cb45-265" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the p-value</span></span>
+<span id="cb45-266"><a href="#cb45-266" aria-hidden="true" tabindex="-1"></a>pval_Fstat_GSSI <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pf</span>(Fstat_GSSI, <span class="at">df1 =</span> <span class="dv">1</span>, <span class="at">df2 =</span> <span class="fu">nrow</span>(GSSI)<span class="sc">-</span><span class="dv">4-1</span>)</span>
+<span id="cb45-267"><a href="#cb45-267" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-268"><a href="#cb45-268" aria-hidden="true" tabindex="-1"></a><span class="co"># Check if the null is rejected at the 1% significance level</span></span>
+<span id="cb45-269"><a href="#cb45-269" aria-hidden="true" tabindex="-1"></a>pval_Fstat_GSSI <span class="sc">&lt;</span> <span class="fl">0.05</span></span>
+<span id="cb45-270"><a href="#cb45-270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-271"><a href="#cb45-271" aria-hidden="true" tabindex="-1"></a><span class="co"># The SSR of the restricted model is less than, close to equal the unrestricted model indicating the interaction of the variables sex and race do not contribute to a better model. And the p-value of the F-statistic is not less than 0.05 which also suggests that there is not enough evidence to conclude the restricted model is better the unrestricted model. </span></span>
+<span id="cb45-272"><a href="#cb45-272" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb45-273"><a href="#cb45-273" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-274"><a href="#cb45-274" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conclusion and Discussion</span></span>
+<span id="cb45-275"><a href="#cb45-275" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-276"><a href="#cb45-276" aria-hidden="true" tabindex="-1"></a>Based on the observations and data analysis, it is reasonable to conclude that model 4 emerges as the optimal model. Data assumptions were met, and the inclusion of additional variables were carefully explored. As a result, Model 4 fits the data well and the additional variables contribute to the model.</span>
+<span id="cb45-277"><a href="#cb45-277" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-278"><a href="#cb45-278" aria-hidden="true" tabindex="-1"></a>To answer the questions, how has the level of agreement changed over time and is it significant, it can be concluded that the level of agreement has decreased over time and that it is statistically significant. The coefficient estimate for year is -0.03 and the p-value is less than 0.01 therefore showing evidence that the decrease in level of agreement is significant.</span>
+<span id="cb45-279"><a href="#cb45-279" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-282"><a href="#cb45-282" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-283"><a href="#cb45-283" aria-hidden="true" tabindex="-1"></a><span class="co"># Bar graph to view distribution of *fehelpI*</span></span>
+<span id="cb45-284"><a href="#cb45-284" aria-hidden="true" tabindex="-1"></a>GSSI <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(fehelpI, <span class="at">fill=</span> fehelpIf))<span class="sc">+</span></span>
+<span id="cb45-285"><a href="#cb45-285" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span> </span>
+<span id="cb45-286"><a href="#cb45-286" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Level of Agreement"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>, <span class="at">title =</span> <span class="st">"Husband's Career A Priority"</span> ) <span class="sc">+</span></span>
+<span id="cb45-287"><a href="#cb45-287" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set2"</span>) <span class="sc">+</span> </span>
+<span id="cb45-288"><a href="#cb45-288" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>year, <span class="at">ncol =</span><span class="dv">3</span>)</span>
+<span id="cb45-289"><a href="#cb45-289" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb45-292"><a href="#cb45-292" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-293"><a href="#cb45-293" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(GSSI, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(year), <span class="at">y =</span> fehelpI, <span class="at">fill =</span> <span class="fu">factor</span>(year))) <span class="sc">+</span></span>
+<span id="cb45-294"><a href="#cb45-294" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
+<span id="cb45-295"><a href="#cb45-295" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Year"</span>, <span class="at">y =</span> <span class="st">"Level of Agreement"</span>) <span class="sc">+</span></span>
+<span id="cb45-296"><a href="#cb45-296" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Husband's Career a Priority by Year"</span>)</span>
+<span id="cb45-297"><a href="#cb45-297" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb45-298"><a href="#cb45-298" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-299"><a href="#cb45-299" aria-hidden="true" tabindex="-1"></a><span class="fu">## Bibliography</span></span>
+<span id="cb45-300"><a href="#cb45-300" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-301"><a href="#cb45-301" aria-hidden="true" tabindex="-1"></a>Davern, M., Bautista, R, Freese, J., Herd, P., &amp; Morgan, S.L. General Social Survey 1972-2022. Sponsored by National Science Foundation. NORC ed. Chicago: NORC, 2023: NORC at the University of Chicago. gssdataexplorer.norc.org</span>
+<span id="cb45-302"><a href="#cb45-302" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-303"><a href="#cb45-303" aria-hidden="true" tabindex="-1"></a>Morgan, K. (2023, June 22). *Why many women prioritise their partners' jobs*. BBC. https://www.bbc.com/worklife/article/20230620-why-many-women-prioritise-their-partners-jobs</span>
+<span id="cb45-304"><a href="#cb45-304" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-305"><a href="#cb45-305" aria-hidden="true" tabindex="-1"></a>RStudio Team (2020). RStudio: Integrated Development for R. RStudio, PBC, Boston, MA URL </span>
+<span id="cb45-306"><a href="#cb45-306" aria-hidden="true" tabindex="-1"></a>http://www.rstudio.com/.</span>
+<span id="cb45-307"><a href="#cb45-307" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-308"><a href="#cb45-308" aria-hidden="true" tabindex="-1"></a>Tucker, J. &amp; Vogtman, J.(2022). Resilient but not recovered. After two years of covid-19, women are   still struggling. National Women's Law Center.            https://nwlc.org/wp-content/uploads/2022/03/FINAL-NWLC-Resilient-But-Not-Recovered-3.29.22.pdf</span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+</body></html>
